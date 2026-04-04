@@ -739,13 +739,20 @@ function buildDashboard(){
   `).join('');
 
   // Chart
-  const days=['Mon','Tue','Wed','Thu','Fri'];
-  const vals=[...Array(5)].map((_,i)=>i===4?todaySales:Math.floor(Math.random()*30000)+35000);
+  const days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  const vals=[...Array(7)].map((_,i)=>{
+    if(i===4) return todaySales;
+    if(i===5) return Math.floor(Math.random()*20000)+18000;
+    if(i===6) return Math.floor(Math.random()*15000)+10000;
+    return Math.floor(Math.random()*30000)+35000;
+  });
   const max=Math.max(...vals);
+  const jsDay=new Date().getDay();
+  const todayIdx=jsDay===0?6:jsDay-1;
   document.getElementById('weekChart').innerHTML=days.map((d,i)=>`
     <div class="bar-col">
       <div class="bar-val-lbl">₦${Math.floor(vals[i]/1000)}k</div>
-      <div class="bar${i===4?' today':''}" style="height:${Math.max(8,(vals[i]/max)*80)}px"></div>
+      <div class="bar${i===todayIdx?' today':''}" style="height:${Math.max(8,(vals[i]/max)*80)}px"></div>
       <div class="bar-day">${d}</div>
     </div>
   `).join('');
