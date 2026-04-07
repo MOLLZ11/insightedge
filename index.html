@@ -7,410 +7,244 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --orange: #CA6F1E;
-  --orange-dark: #784212;
-  --orange-glow: rgba(202,111,30,0.15);
-  --orange-light: #FDEBD0;
-  --green: #1E8449;
-  --green-light: rgba(30,132,73,0.12);
-  --red: #E74C3C;
-  --red-light: rgba(231,76,60,0.12);
-  --amber: #F39C12;
-  --amber-light: rgba(243,156,18,0.12);
-  --blue: #2E86C1;
-  --blue-light: rgba(46,134,193,0.12);
-  --bg: #000;
-  --bg2: #0d0d0d;
-  --bg3: #161616;
-  --bg4: #1e1e1e;
-  --border: rgba(202,111,30,0.12);
-  --border2: rgba(255,255,255,0.06);
-  --text: #fff;
-  --text2: #aaa;
-  --text3: #555;
+  --o:#CA6F1E; --od:#784212; --og:rgba(202,111,30,0.15);
+  --g:#1E8449; --gl:rgba(30,132,73,0.12);
+  --r:#E74C3C; --rl:rgba(231,76,60,0.12);
+  --a:#F39C12; --al:rgba(243,156,18,0.12);
+  --b:#2E86C1; --bl:rgba(46,134,193,0.12);
+  --p:#8E44AD; --pl:rgba(142,68,173,0.12);
+  --bg:#000; --bg2:#0d0d0d; --bg3:#161616; --bg4:#1e1e1e;
+  --br:rgba(202,111,30,0.12); --br2:rgba(255,255,255,0.06);
+  --t:#fff; --t2:#aaa; --t3:#555;
 }
-* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
-html, body { height:100%; overflow:hidden; }
-body {
-  font-family:'DM Sans',sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  font-size:14px;
-}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;overflow:hidden;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);font-size:14px;}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(202,111,30,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(202,111,30,0.03) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;}
 
-/* ── SCREENS ── */
-.screen { display:none; height:100dvh; overflow-y:auto; flex-direction:column; }
-.screen.active { display:flex; }
+/* SCREENS */
+.screen{display:none;height:100dvh;overflow-y:auto;flex-direction:column;position:relative;z-index:1;}
+.screen.active{display:flex;}
 
-/* ── LOGIN SCREEN ── */
-#loginScreen {
-  background:var(--bg);
-  align-items:center;
-  justify-content:center;
-  padding:24px;
-  position:relative;
-  overflow:hidden;
-}
-#loginScreen::before {
-  content:'';
-  position:absolute; inset:0;
-  background-image:
-    linear-gradient(rgba(202,111,30,0.05) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(202,111,30,0.05) 1px,transparent 1px);
-  background-size:40px 40px;
-}
-.login-glow {
-  position:absolute;
-  width:300px; height:300px;
-  border-radius:50%;
-  background:radial-gradient(circle,rgba(202,111,30,0.15) 0%,transparent 70%);
-  top:-80px; right:-80px;
-  pointer-events:none;
-}
-.login-box {
-  width:100%; max-width:380px;
-  background:var(--bg2);
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:32px 24px;
-  position:relative;
-  z-index:1;
-}
-.login-logo {
-  text-align:center;
-  margin-bottom:28px;
-}
-.login-icon {
-  width:56px; height:56px;
-  background:linear-gradient(135deg,var(--orange-dark),var(--orange));
-  border-radius:14px;
-  display:inline-flex; align-items:center; justify-content:center;
-  font-size:26px;
-  margin-bottom:12px;
-  box-shadow:0 0 30px var(--orange-glow);
-}
-.login-brand {
-  font-family:'Bebas Neue',sans-serif;
-  font-size:26px; letter-spacing:2px;
-  display:block;
-}
-.login-sub { font-size:11px; color:var(--orange); letter-spacing:2px; text-transform:uppercase; }
-.login-title { font-size:18px; font-weight:600; margin-bottom:6px; }
-.login-desc { font-size:13px; color:var(--text2); margin-bottom:24px; }
-.form-group { margin-bottom:16px; }
-.form-label { font-size:11px; color:var(--text3); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:6px; display:block; }
-.form-input {
-  width:100%; background:var(--bg3);
-  border:1px solid var(--border2);
-  border-radius:10px; padding:13px 16px;
-  font-size:14px; color:var(--text);
-  font-family:'DM Sans',sans-serif;
-  outline:none; transition:border-color 0.2s;
-}
-.form-input:focus { border-color:var(--orange); box-shadow:0 0 0 3px var(--orange-glow); }
-.form-input::placeholder { color:var(--text3); }
-.btn-login {
-  width:100%;
-  background:linear-gradient(135deg,var(--orange-dark),var(--orange));
-  color:#fff; border:none; border-radius:10px;
-  padding:14px; font-size:14px; font-weight:600;
-  cursor:pointer; font-family:'DM Sans',sans-serif;
-  letter-spacing:0.5px; margin-top:8px;
-  box-shadow:0 4px 20px var(--orange-glow);
-  transition:opacity 0.2s;
-}
-.btn-login:active { opacity:0.9; }
-.login-error {
-  background:var(--red-light); border:1px solid rgba(231,76,60,0.3);
-  border-radius:8px; padding:10px 14px;
-  font-size:13px; color:var(--red);
-  margin-bottom:16px; display:none;
-}
-.demo-hint {
-  margin-top:20px;
-  background:var(--bg3); border-radius:10px;
-  padding:14px; border:1px solid var(--border2);
-}
-.demo-hint-title { font-size:11px; color:var(--orange); letter-spacing:1px; text-transform:uppercase; margin-bottom:8px; font-weight:600; }
-.demo-cred { font-size:12px; color:var(--text2); margin-bottom:4px; font-family:'DM Mono',monospace; cursor:pointer; }
-.demo-cred:hover { color:var(--text); }
+/* LOGIN */
+#loginScreen{align-items:center;justify-content:center;padding:20px;}
+.login-glow{position:fixed;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(202,111,30,0.12) 0%,transparent 70%);top:-100px;right:-100px;pointer-events:none;}
+.login-box{width:100%;max-width:380px;background:var(--bg2);border:1px solid var(--br);border-radius:20px;padding:28px 22px;}
+.login-logo{text-align:center;margin-bottom:24px;}
+.login-icon{width:56px;height:56px;background:linear-gradient(135deg,var(--od),var(--o));border-radius:14px;display:inline-flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:10px;box-shadow:0 0 30px var(--og);}
+.login-brand{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:2px;display:block;}
+.login-sub{font-size:10px;color:var(--o);letter-spacing:2px;text-transform:uppercase;}
+.login-title{font-size:18px;font-weight:600;margin-bottom:4px;}
+.login-desc{font-size:13px;color:var(--t2);margin-bottom:20px;}
+.form-group{margin-bottom:14px;}
+.form-label{font-size:11px;color:var(--t3);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;display:block;}
+.form-input,.form-select{width:100%;background:var(--bg3);border:1px solid var(--br2);border-radius:10px;padding:12px 14px;font-size:14px;color:var(--t);font-family:'DM Sans',sans-serif;outline:none;transition:border-color 0.2s;}
+.form-input:focus,.form-select:focus{border-color:var(--o);box-shadow:0 0 0 3px var(--og);}
+.form-input::placeholder{color:var(--t3);}
+.form-select option{background:var(--bg3);}
+.btn-login{width:100%;background:linear-gradient(135deg,var(--od),var(--o));color:#fff;border:none;border-radius:10px;padding:14px;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;box-shadow:0 4px 20px var(--og);margin-top:6px;}
+.login-error{background:var(--rl);border:1px solid rgba(231,76,60,0.3);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--r);margin-bottom:14px;display:none;}
+.login-contact{margin-top:18px;text-align:center;font-size:12px;color:var(--t3);}
+.login-contact span{color:var(--o);}
 
-/* ── TOP BAR ── */
-.topbar {
-  background:var(--bg2); border-bottom:1px solid var(--border);
-  padding:0 16px;
-  height:56px; min-height:56px;
-  display:flex; align-items:center; justify-content:space-between;
-  position:sticky; top:0; z-index:100;
-}
-.topbar-left { display:flex; align-items:center; gap:10px; }
-.topbar-logo { font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:1.5px; }
-.topbar-store { font-size:12px; color:var(--orange); }
-.topbar-right { display:flex; align-items:center; gap:8px; }
-.icon-btn {
-  width:36px; height:36px; border-radius:9px;
-  background:var(--bg3); border:1px solid var(--border2);
-  display:flex; align-items:center; justify-content:center;
-  cursor:pointer; font-size:16px; position:relative;
-  transition:border-color 0.2s;
-}
-.icon-btn:active { background:var(--bg4); }
-.notif-dot {
-  position:absolute; top:6px; right:6px;
-  width:7px; height:7px;
-  background:var(--red); border-radius:50%;
-}
+/* TOPBAR */
+.topbar{background:var(--bg2);border-bottom:1px solid var(--br);padding:0 16px;height:56px;min-height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.topbar-logo{font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:1.5px;}
+.topbar-store{font-size:11px;color:var(--o);}
+.topbar-right{display:flex;align-items:center;gap:8px;}
+.icon-btn{width:36px;height:36px;border-radius:9px;background:var(--bg3);border:1px solid var(--br2);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;position:relative;transition:border-color 0.2s;}
+.icon-btn:active{background:var(--bg4);}
+.notif-dot{position:absolute;top:6px;right:6px;width:7px;height:7px;background:var(--r);border-radius:50%;}
 
-/* ── BOTTOM NAV ── */
-.bottom-nav {
-  background:var(--bg2); border-top:1px solid var(--border);
-  display:flex; padding:8px 0 max(8px, env(safe-area-inset-bottom));
-  min-height:60px; position:sticky; bottom:0; z-index:100;
-}
-.nav-item {
-  flex:1; display:flex; flex-direction:column;
-  align-items:center; gap:3px; cursor:pointer;
-  padding:4px 0; position:relative;
-  transition:color 0.2s;
-  color:var(--text3);
-}
-.nav-item.active { color:var(--orange); }
-.nav-icon { font-size:20px; }
-.nav-label { font-size:9px; letter-spacing:0.5px; text-transform:uppercase; font-weight:500; }
-.nav-badge {
-  position:absolute; top:2px; right:calc(50% - 20px);
-  background:var(--red); color:#fff;
-  font-size:9px; font-weight:700;
-  width:16px; height:16px;
-  border-radius:50%; display:flex; align-items:center; justify-content:center;
-  font-family:'DM Mono',monospace;
-}
+/* BOTTOM NAV */
+.bottom-nav{background:var(--bg2);border-top:1px solid var(--br);display:flex;padding:8px 0 max(8px,env(safe-area-inset-bottom));min-height:60px;position:sticky;bottom:0;z-index:100;}
+.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;color:var(--t3);transition:color 0.2s;padding:4px 0;position:relative;}
+.nav-item.active{color:var(--o);}
+.nav-icon{font-size:20px;}
+.nav-label{font-size:9px;letter-spacing:0.5px;text-transform:uppercase;font-weight:500;}
+.nav-badge{position:absolute;top:2px;right:calc(50% - 20px);background:var(--r);color:#fff;font-size:9px;font-weight:700;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
 
-/* ── PAGE CONTENT ── */
-.page { display:none; flex:1; overflow-y:auto; }
-.page.active { display:block; }
-.page-inner { padding:16px; padding-bottom:24px; }
+/* PAGES */
+.page{display:none;flex:1;overflow-y:auto;}
+.page.active{display:block;}
+.page-inner{padding:16px;padding-bottom:24px;}
 
-/* ── CARDS ── */
-.card {
-  background:var(--bg2); border:1px solid var(--border2);
-  border-radius:14px; overflow:hidden;
-  margin-bottom:14px;
-}
-.card-header {
-  padding:14px 16px;
-  border-bottom:1px solid var(--border2);
-  display:flex; align-items:center; justify-content:space-between;
-}
-.card-title { font-size:13px; font-weight:600; }
-.card-sub { font-size:11px; color:var(--text3); margin-top:2px; }
-.card-body { padding:16px; }
-.card-body.no-pad { padding:0; }
+/* CARDS */
+.card{background:var(--bg2);border:1px solid var(--br2);border-radius:14px;overflow:hidden;margin-bottom:14px;}
+.card-header{padding:14px 16px;border-bottom:1px solid var(--br2);display:flex;align-items:center;justify-content:space-between;}
+.card-title{font-size:13px;font-weight:600;}
+.card-sub{font-size:11px;color:var(--t3);margin-top:2px;}
+.card-body{padding:16px;}
+.card-body.np{padding:0;}
 
-/* ── KPI STRIP ── */
-.kpi-strip { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:14px; }
-.kpi {
-  background:var(--bg2); border:1px solid var(--border2);
-  border-radius:14px; padding:16px 14px;
-  position:relative; overflow:hidden;
-}
-.kpi::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; }
-.kpi.orange::before { background:linear-gradient(90deg,var(--orange),#E67E22); }
-.kpi.green::before { background:var(--green); }
-.kpi.red::before { background:var(--red); }
-.kpi.blue::before { background:var(--blue); }
-.kpi-label { font-size:10px; color:var(--text3); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:6px; }
-.kpi-val { font-family:'Bebas Neue',sans-serif; font-size:30px; line-height:1; }
-.kpi-change { font-size:11px; margin-top:4px; }
-.kpi-change.up { color:var(--green); }
-.kpi-change.down { color:var(--red); }
-.kpi-change.warn { color:var(--amber); }
+/* KPIs */
+.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.kpi{background:var(--bg2);border:1px solid var(--br2);border-radius:14px;padding:14px;position:relative;overflow:hidden;}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+.kpi.o::before{background:linear-gradient(90deg,var(--o),#E67E22);}
+.kpi.g::before{background:var(--g);}
+.kpi.r::before{background:var(--r);}
+.kpi.b::before{background:var(--b);}
+.kpi.p::before{background:var(--p);}
+.kpi.a::before{background:var(--a);}
+.kpi-label{font-size:9px;color:var(--t3);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;}
+.kpi-val{font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1;}
+.kpi-sub{font-size:10px;color:var(--t3);margin-top:4px;}
+.kpi-change{font-size:10px;margin-top:4px;}
+.up{color:var(--g);} .down{color:var(--r);} .warn{color:var(--a);}
 
-/* ── WELCOME CARD ── */
-.welcome-card {
-  background:linear-gradient(135deg,#1a0800,#2d1200);
-  border:1px solid var(--border);
-  border-radius:16px; padding:20px 18px;
-  margin-bottom:14px; position:relative; overflow:hidden;
-}
-.welcome-card::after { content:'📊'; position:absolute; right:16px; bottom:12px; font-size:48px; opacity:0.1; }
-.welcome-greeting { font-size:12px; color:rgba(255,255,255,0.5); margin-bottom:4px; }
-.welcome-name { font-family:'Bebas Neue',sans-serif; font-size:26px; letter-spacing:1px; }
-.welcome-store { font-size:12px; color:var(--orange); margin-top:4px; }
-.welcome-date { font-size:11px; color:rgba(255,255,255,0.35); margin-top:10px; font-family:'DM Mono',monospace; }
+/* WELCOME */
+.welcome{background:linear-gradient(135deg,#1a0800,#0d1200);border:1px solid var(--br);border-radius:16px;padding:18px;margin-bottom:14px;position:relative;overflow:hidden;}
+.welcome::after{content:'📊';position:absolute;right:14px;bottom:10px;font-size:44px;opacity:0.1;}
+.welcome-greet{font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:4px;}
+.welcome-name{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:1px;}
+.welcome-store{font-size:11px;color:var(--o);margin-top:3px;}
+.welcome-date{font-size:11px;color:rgba(255,255,255,0.25);margin-top:8px;font-family:'DM Mono',monospace;}
+.welcome-plan{display:inline-flex;align-items:center;gap:5px;background:var(--og);border:1px solid var(--br);border-radius:20px;padding:3px 10px;font-size:10px;color:var(--o);font-weight:600;margin-top:8px;}
 
-/* ── BAR CHART ── */
-.chart-wrap { display:flex; align-items:flex-end; gap:6px; height:100px; padding:0 4px; }
-.bar-col { flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; }
-.bar-val-label { font-size:9px; color:var(--text3); font-family:'DM Mono',monospace; }
-.bar { width:100%; border-radius:4px 4px 0 0; min-height:4px; background:rgba(202,111,30,0.15); border:1px solid rgba(202,111,30,0.2); }
-.bar.today { background:linear-gradient(180deg,var(--orange),var(--orange-dark)); border-color:var(--orange); }
-.bar-day { font-size:9px; color:var(--text3); }
+/* CHART */
+.chart{display:flex;align-items:flex-end;gap:6px;height:90px;padding:0 4px;}
+.bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;}
+.bar-val-lbl{font-size:9px;color:var(--t3);font-family:'DM Mono',monospace;}
+.bar{width:100%;border-radius:4px 4px 0 0;min-height:4px;background:rgba(202,111,30,0.12);border:1px solid rgba(202,111,30,0.15);}
+.bar.today{background:linear-gradient(180deg,var(--o),var(--od));border-color:var(--o);}
+.bar-day{font-size:9px;color:var(--t3);}
 
-/* ── LIST ROWS ── */
-.list-row {
-  display:flex; align-items:center;
-  padding:13px 16px; gap:12px;
-  border-bottom:1px solid var(--border2);
-  transition:background 0.15s;
-}
-.list-row:last-child { border-bottom:none; }
-.list-row:active { background:var(--bg3); }
-.list-row-icon { width:36px; height:36px; border-radius:9px; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
-.icon-orange { background:var(--orange-glow); }
-.icon-red { background:var(--red-light); }
-.icon-green { background:var(--green-light); }
-.icon-blue { background:var(--blue-light); }
-.icon-amber { background:var(--amber-light); }
-.list-row-content { flex:1; min-width:0; }
-.list-row-title { font-size:13px; font-weight:500; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.list-row-sub { font-size:11px; color:var(--text3); margin-top:2px; }
-.list-row-right { text-align:right; flex-shrink:0; }
-.list-row-val { font-size:13px; font-weight:600; font-family:'DM Mono',monospace; color:var(--orange); }
-.list-row-meta { font-size:11px; color:var(--text3); margin-top:2px; }
+/* LIST ROWS */
+.list-row{display:flex;align-items:center;padding:12px 16px;gap:12px;border-bottom:1px solid var(--br2);transition:background 0.15s;cursor:pointer;}
+.list-row:last-child{border-bottom:none;}
+.list-row:active{background:var(--bg3);}
+.row-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.ri-o{background:var(--og);} .ri-g{background:var(--gl);} .ri-b{background:var(--bl);} .ri-r{background:var(--rl);} .ri-a{background:var(--al);}
+.row-content{flex:1;min-width:0;}
+.row-title{font-size:13px;font-weight:500;color:var(--t);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.row-sub{font-size:11px;color:var(--t3);margin-top:2px;}
+.row-right{text-align:right;flex-shrink:0;}
+.row-val{font-size:13px;font-weight:600;font-family:'DM Mono',monospace;color:var(--o);}
+.row-meta{font-size:11px;color:var(--t3);margin-top:2px;}
 
-/* ── STATUS PILLS ── */
-.pill {
-  display:inline-flex; align-items:center; gap:3px;
-  font-size:10px; font-weight:700; padding:3px 8px;
-  border-radius:20px; letter-spacing:0.3px;
-}
-.pill-ok { background:var(--green-light); color:#27AE60; }
-.pill-low { background:var(--amber-light); color:var(--amber); }
-.pill-critical { background:var(--red-light); color:var(--red); }
-.pill-otc { background:var(--blue-light); color:var(--blue); font-family:'DM Mono',monospace; }
-.pill-pom { background:var(--red-light); color:var(--red); font-family:'DM Mono',monospace; }
-.pill-admin { background:var(--orange-glow); color:var(--orange); }
+/* PILLS */
+.pill{display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;}
+.pill-ok{background:var(--gl);color:#27AE60;}
+.pill-low{background:var(--al);color:var(--a);}
+.pill-crit{background:var(--rl);color:var(--r);}
+.pill-otc{background:var(--bl);color:var(--b);font-family:'DM Mono',monospace;}
+.pill-pom{background:var(--rl);color:var(--r);font-family:'DM Mono',monospace;}
+.pill-plan{background:var(--og);color:var(--o);}
+.pill-basic{background:rgba(202,111,30,0.1);color:#E67E22;}
+.pill-std{background:rgba(255,255,255,0.06);color:#aaa;}
+.pill-prem{background:var(--gl);color:#27AE60;}
 
-/* ── ENTRY TABLE (mobile) ── */
-.entry-cards { display:flex; flex-direction:column; gap:10px; }
-.entry-card {
-  background:var(--bg3); border:1px solid var(--border2);
-  border-radius:12px; padding:14px;
-}
-.entry-card-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
-.entry-card-name { font-size:13px; font-weight:600; color:var(--text); }
-.entry-inputs { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }
-.entry-field { display:flex; flex-direction:column; gap:4px; }
-.entry-label { font-size:9px; color:var(--text3); letter-spacing:1px; text-transform:uppercase; }
-.entry-input {
-  background:var(--bg2); border:1px solid var(--border2);
-  border-radius:8px; padding:9px 10px;
-  font-size:13px; color:var(--text);
-  font-family:'DM Mono',monospace; outline:none;
-  transition:border-color 0.2s; width:100%;
-}
-.entry-input:focus { border-color:var(--orange); }
-.entry-result {
-  display:flex; align-items:center; justify-content:space-between;
-  margin-top:10px; padding-top:10px;
-  border-top:1px solid var(--border2);
-}
-.entry-total { font-family:'Bebas Neue',sans-serif; font-size:22px; color:var(--orange); }
-.entry-alert { font-size:11px; font-weight:600; padding:4px 10px; border-radius:20px; }
+/* ENTRY CARDS */
+.entry-card{background:var(--bg3);border:1px solid var(--br2);border-radius:12px;padding:14px;margin-bottom:10px;}
+.entry-card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.entry-card-name{font-size:13px;font-weight:600;}
+.entry-inputs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+.entry-field{display:flex;flex-direction:column;gap:4px;}
+.entry-lbl{font-size:9px;color:var(--t3);letter-spacing:1px;text-transform:uppercase;}
+.entry-input{background:var(--bg2);border:1px solid var(--br2);border-radius:8px;padding:8px 10px;font-size:13px;color:var(--t);font-family:'DM Mono',monospace;outline:none;transition:border-color 0.2s;width:100%;}
+.entry-input:focus{border-color:var(--o);}
+.entry-result{display:flex;align-items:center;justify-content:space-between;margin-top:10px;padding-top:10px;border-top:1px solid var(--br2);}
+.entry-total{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--o);}
+.entry-alert-lbl{font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;}
 
-/* ── ALERT ITEMS ── */
-.alert-item {
-  display:flex; align-items:flex-start; gap:12px;
-  padding:14px 16px; border-bottom:1px solid var(--border2);
-}
-.alert-item:last-child { border-bottom:none; }
-.alert-emoji { font-size:20px; flex-shrink:0; margin-top:2px; }
-.alert-content { flex:1; }
-.alert-title { font-size:13px; font-weight:600; margin-bottom:3px; }
-.alert-desc { font-size:12px; color:var(--text2); line-height:1.4; }
-.alert-time { font-size:10px; color:var(--text3); margin-top:5px; font-family:'DM Mono',monospace; }
+/* ALERT ITEMS */
+.alert-item{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;border-bottom:1px solid var(--br2);}
+.alert-item:last-child{border-bottom:none;}
+.alert-emoji{font-size:18px;flex-shrink:0;margin-top:2px;}
+.alert-content{flex:1;}
+.alert-title{font-size:13px;font-weight:600;margin-bottom:2px;}
+.alert-desc{font-size:12px;color:var(--t2);line-height:1.4;}
+.alert-time{font-size:10px;color:var(--t3);margin-top:4px;font-family:'DM Mono',monospace;}
 
-/* ── BUTTONS ── */
-.btn {
-  display:inline-flex; align-items:center; gap:6px;
-  padding:11px 18px; border-radius:10px;
-  font-size:13px; font-weight:600; cursor:pointer;
-  border:none; font-family:'DM Sans',sans-serif;
-  transition:opacity 0.2s; letter-spacing:0.3px;
-}
-.btn:active { opacity:0.85; }
-.btn-primary { background:linear-gradient(135deg,var(--orange-dark),var(--orange)); color:#fff; box-shadow:0 4px 16px var(--orange-glow); }
-.btn-ghost { background:var(--bg3); color:var(--text2); border:1px solid var(--border2); }
-.btn-full { width:100%; justify-content:center; }
-.btn-sm { padding:8px 14px; font-size:12px; }
+/* SECTION */
+.section-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1px;}
+.section-sub{font-size:11px;color:var(--t3);}
 
-/* ── SECTION HEADER ── */
-.section-hdr { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
-.section-title { font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:1px; }
-.section-sub { font-size:12px; color:var(--text3); }
+/* TABS */
+.tabs{display:flex;gap:4px;background:var(--bg3);padding:4px;border-radius:10px;margin-bottom:14px;}
+.tab{flex:1;text-align:center;padding:8px 4px;border-radius:7px;font-size:11px;font-weight:500;cursor:pointer;color:var(--t3);transition:all 0.2s;}
+.tab.active{background:var(--bg2);color:var(--o);border:1px solid var(--br);}
 
-/* ── TABS ── */
-.tabs { display:flex; gap:4px; background:var(--bg3); padding:4px; border-radius:10px; margin-bottom:14px; }
-.tab { flex:1; text-align:center; padding:8px 4px; border-radius:7px; font-size:11px; font-weight:500; cursor:pointer; color:var(--text3); transition:all 0.2s; }
-.tab.active { background:var(--bg2); color:var(--orange); border:1px solid var(--border); }
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:opacity 0.2s;}
+.btn:active{opacity:0.85;}
+.btn-primary{background:linear-gradient(135deg,var(--od),var(--o));color:#fff;box-shadow:0 4px 16px var(--og);}
+.btn-ghost{background:var(--bg3);color:var(--t2);border:1px solid var(--br2);}
+.btn-green{background:var(--gl);color:#27AE60;border:1px solid rgba(30,132,73,0.2);}
+.btn-full{width:100%;justify-content:center;}
+.btn-sm{padding:7px 12px;font-size:12px;}
 
-/* ── ADMIN CLIENT CARD ── */
-.client-card {
-  background:var(--bg2); border:1px solid var(--border2);
-  border-radius:14px; padding:16px; margin-bottom:10px;
-  transition:border-color 0.2s;
-}
-.client-card:active { border-color:var(--border); }
-.client-card-header { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
-.client-avatar {
-  width:42px; height:42px; border-radius:11px;
-  background:linear-gradient(135deg,var(--orange-dark),var(--orange));
-  display:flex; align-items:center; justify-content:center;
-  font-family:'Bebas Neue',sans-serif; font-size:18px; color:#fff;
-  flex-shrink:0;
-}
-.client-name { font-size:14px; font-weight:600; }
-.client-location { font-size:11px; color:var(--text3); margin-top:2px; }
-.client-stats { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; }
-.client-stat { background:var(--bg3); border-radius:8px; padding:10px; text-align:center; }
-.client-stat-val { font-family:'Bebas Neue',sans-serif; font-size:20px; color:var(--orange); }
-.client-stat-label { font-size:9px; color:var(--text3); text-transform:uppercase; letter-spacing:1px; }
+/* BUSINESS TYPE SELECTOR */
+.biz-selector{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.biz-card{background:var(--bg3);border:1px solid var(--br2);border-radius:12px;padding:14px;text-align:center;cursor:pointer;transition:all 0.2s;}
+.biz-card.selected{border-color:var(--o);background:var(--og);}
+.biz-card-icon{font-size:28px;margin-bottom:8px;}
+.biz-card-name{font-size:12px;font-weight:600;color:var(--t);}
+.biz-card-desc{font-size:10px;color:var(--t3);margin-top:3px;}
 
-/* ── REPORT CARD ── */
-.report-row {
-  display:flex; align-items:center; justify-content:space-between;
-  padding:14px 16px; border-bottom:1px solid var(--border2);
-}
-.report-row:last-child { border-bottom:none; }
-.report-week { font-size:13px; font-weight:600; }
-.report-meta { font-size:11px; color:var(--text3); margin-top:2px; }
-.report-rev { font-family:'Bebas Neue',sans-serif; font-size:22px; color:var(--orange); }
+/* PRICING DISPLAY */
+.plan-cards{display:flex;flex-direction:column;gap:10px;margin-bottom:14px;}
+.plan-card{background:var(--bg3);border:1px solid var(--br2);border-radius:12px;padding:16px;position:relative;overflow:hidden;}
+.plan-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+.plan-basic::before{background:linear-gradient(90deg,var(--o),#E67E22);}
+.plan-std::before{background:linear-gradient(90deg,#aaa,#fff);}
+.plan-prem::before{background:var(--g);}
+.plan-popular{position:absolute;top:10px;right:10px;background:#fff;color:#000;font-size:8px;font-weight:800;padding:2px 7px;border-radius:3px;letter-spacing:1px;}
+.plan-tier{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;font-family:'DM Mono',monospace;margin-bottom:6px;}
+.plan-basic .plan-tier{color:var(--o);} .plan-std .plan-tier{color:#aaa;} .plan-prem .plan-tier{color:#27AE60;}
+.plan-price{font-family:'Bebas Neue',sans-serif;font-size:32px;line-height:1;}
+.plan-period{font-size:10px;color:var(--t3);font-family:'DM Mono',monospace;margin-bottom:10px;}
+.plan-features{display:flex;flex-direction:column;gap:5px;}
+.plan-feature{font-size:12px;color:var(--t2);display:flex;align-items:center;gap:6px;}
+.plan-feature::before{content:'✓';color:#27AE60;font-weight:700;font-size:11px;}
+.plan-discount{margin-top:10px;background:var(--gl);border-radius:6px;padding:6px 10px;font-size:11px;color:#27AE60;font-weight:600;}
 
-/* ── TOAST ── */
-.toast {
-  position:fixed; bottom:80px; left:50%; transform:translateX(-50%) translateY(20px);
-  background:var(--bg2); border:1px solid var(--green);
-  border-radius:12px; padding:12px 20px;
-  font-size:13px; color:var(--text);
-  z-index:999; opacity:0; transition:all 0.3s;
-  white-space:nowrap; box-shadow:0 8px 32px rgba(0,0,0,0.5);
-  display:flex; align-items:center; gap:8px;
-}
-.toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+/* CLIENT CARD */
+.client-card{background:var(--bg2);border:1px solid var(--br2);border-radius:14px;padding:16px;margin-bottom:10px;}
+.client-avatar{width:42px;height:42px;border-radius:11px;background:linear-gradient(135deg,var(--od),var(--o));display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:18px;color:#fff;flex-shrink:0;}
+.client-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px;}
+.client-stat{background:var(--bg3);border-radius:8px;padding:8px;text-align:center;}
+.client-stat-val{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--o);}
+.client-stat-lbl{font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;}
 
-/* ── MODAL ── */
-.modal-overlay {
-  position:fixed; inset:0; background:rgba(0,0,0,0.8);
-  z-index:200; display:none; align-items:flex-end;
-}
-.modal-overlay.open { display:flex; }
-.modal {
-  background:var(--bg2); border:1px solid var(--border);
-  border-radius:20px 20px 0 0;
-  padding:20px; width:100%;
-  max-height:80dvh; overflow-y:auto;
-}
-.modal-handle { width:36px; height:4px; background:var(--bg4); border-radius:2px; margin:0 auto 20px; }
-.modal-title { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:1px; margin-bottom:16px; }
+/* REPORT ROW */
+.report-row{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;border-bottom:1px solid var(--br2);}
+.report-row:last-child{border-bottom:none;}
+.report-week{font-size:13px;font-weight:600;}
+.report-meta{font-size:11px;color:var(--t3);margin-top:2px;}
+.report-rev{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--o);}
 
-/* ── LOGOUT BTN ── */
-.logout-row { padding:16px; border-top:1px solid var(--border2); margin-top:auto; }
+/* MODALS */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:200;display:none;align-items:flex-end;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--bg2);border:1px solid var(--br);border-radius:20px 20px 0 0;padding:20px;width:100%;max-height:85dvh;overflow-y:auto;}
+.modal-handle{width:36px;height:4px;background:var(--bg4);border-radius:2px;margin:0 auto 18px;}
+.modal-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;margin-bottom:16px;}
+
+/* TOAST */
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--bg2);border:1px solid var(--g);border-radius:12px;padding:12px 20px;font-size:13px;color:var(--t);z-index:999;opacity:0;transition:all 0.3s;white-space:nowrap;box-shadow:0 8px 32px rgba(0,0,0,0.5);display:flex;align-items:center;gap:8px;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* INVENTORY */
+.inv-card{background:var(--bg3);border:1px solid var(--br2);border-radius:12px;padding:14px;margin-bottom:10px;}
+.inv-stats-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px;}
+.inv-stat{background:var(--bg2);border-radius:8px;padding:8px;text-align:center;}
+.inv-stat-val{font-family:'Bebas Neue',sans-serif;font-size:22px;}
+.inv-stat-lbl{font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;}
+
+/* PROFIT TRACKER (Petty trader) */
+.profit-card{background:var(--bg3);border:1px solid var(--br2);border-radius:12px;padding:14px;margin-bottom:10px;}
+.profit-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px;}
+.profit-stat{background:var(--bg2);border-radius:8px;padding:10px;text-align:center;}
+.profit-stat-val{font-family:'Bebas Neue',sans-serif;font-size:20px;}
+.profit-stat-lbl{font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;margin-top:2px;}
 </style>
 </head>
 <body>
 
-<!-- ══ LOGIN SCREEN ══ -->
+<!-- LOGIN -->
 <div class="screen active" id="loginScreen">
   <div class="login-glow"></div>
   <div class="login-box">
@@ -424,110 +258,63 @@ body {
     <div class="login-error" id="loginError">❌ Invalid username or password</div>
     <div class="form-group">
       <label class="form-label">Username</label>
-      <input class="form-input" id="loginUser" placeholder="Enter your username" autocomplete="username" autocapitalize="none">
+      <input class="form-input" id="loginUser" placeholder="Enter username" autocapitalize="none">
     </div>
     <div class="form-group">
       <label class="form-label">Password</label>
-      <input class="form-input" id="loginPass" placeholder="Enter your password" type="password" autocomplete="current-password">
+      <input class="form-input" id="loginPass" placeholder="Enter password" type="password">
     </div>
     <button class="btn-login" onclick="doLogin()">Sign In →</button>
-
-    <div style="margin-top:20px;text-align:center;">
-      <div style="font-size:12px;color:var(--text3);">🔒 Your account credentials are provided by InsightEdge Analytics</div>
-      <div style="font-size:11px;color:var(--text3);margin-top:6px;">Contact: 📸 @mollz021</div>
+    <div class="login-contact">
+      🔒 Credentials provided by InsightEdge Analytics<br>
+      Contact: <span>📸 @mollz021</span>
     </div>
   </div>
 </div>
 
-<!-- ══ MAIN APP SCREEN ══ -->
+<!-- MAIN APP -->
 <div class="screen" id="appScreen">
-
-  <!-- Top Bar -->
   <div class="topbar">
-    <div class="topbar-left">
-      <div>
-        <div class="topbar-logo">InsightEdge</div>
-        <div class="topbar-store" id="topbarStore"></div>
-      </div>
+    <div>
+      <div class="topbar-logo">InsightEdge</div>
+      <div class="topbar-store" id="topbarStore"></div>
     </div>
     <div class="topbar-right">
-      <div class="icon-btn" onclick="showPage('alerts')">
-        🔔<span class="notif-dot" id="notifDot"></span>
-      </div>
+      <div class="icon-btn" onclick="showPage('alerts')">🔔<span class="notif-dot" id="notifDot" style="display:none;"></span></div>
       <div class="icon-btn" onclick="doLogout()">⏻</div>
     </div>
   </div>
 
-  <!-- Pages -->
   <div style="flex:1;overflow:hidden;display:flex;flex-direction:column;">
 
     <!-- DASHBOARD -->
     <div class="page active" id="page-dashboard">
       <div class="page-inner">
-
-        <div class="welcome-card">
-          <div class="welcome-greeting" id="greeting"></div>
+        <div class="welcome" id="welcomeCard">
+          <div class="welcome-greet" id="welcomeGreet"></div>
           <div class="welcome-name" id="welcomeName"></div>
           <div class="welcome-store" id="welcomeStore"></div>
           <div class="welcome-date" id="welcomeDate"></div>
+          <div class="welcome-plan" id="welcomePlan"></div>
         </div>
-
-        <div class="kpi-strip">
-          <div class="kpi orange">
-            <div class="kpi-label">Today's Sales</div>
-            <div class="kpi-val" id="kpiToday">₦0</div>
-            <div class="kpi-change up" id="kpiTodayChange"></div>
-          </div>
-          <div class="kpi green">
-            <div class="kpi-label">Weekly Total</div>
-            <div class="kpi-val" id="kpiWeekly">₦0</div>
-            <div class="kpi-change up" id="kpiWeeklyChange"></div>
-          </div>
-          <div class="kpi red">
-            <div class="kpi-label">Restock Alerts</div>
-            <div class="kpi-val" id="kpiAlerts">0</div>
-            <div class="kpi-change warn">Items need attention</div>
-          </div>
-          <div class="kpi blue">
-            <div class="kpi-label">Near Expiry</div>
-            <div class="kpi-val" id="kpiExpiry">0</div>
-            <div class="kpi-change warn">Items flagged</div>
-          </div>
-        </div>
-
+        <div class="kpi-grid" id="kpiGrid"></div>
         <div class="card">
-          <div class="card-header">
-            <div>
-              <div class="card-title">Sales This Week</div>
-              <div class="card-sub">Daily revenue — ₦</div>
-            </div>
-          </div>
-          <div class="card-body">
-            <div class="chart-wrap" id="weekChart"></div>
-          </div>
+          <div class="card-header"><div><div class="card-title">Sales This Week</div><div class="card-sub">Daily revenue — ₦</div></div></div>
+          <div class="card-body"><div class="chart" id="weekChart"></div></div>
         </div>
-
-        <div class="section-hdr">
-          <div class="section-title">Top Products</div>
-        </div>
-        <div class="card">
-          <div class="card-body no-pad" id="topProductsList"></div>
-        </div>
-
+        <div class="section-hdr"><div class="section-title">Top Products</div></div>
+        <div class="card"><div class="card-body np" id="topProducts"></div></div>
       </div>
     </div>
 
-    <!-- DAILY ENTRY -->
+    <!-- ENTRY -->
     <div class="page" id="page-entry">
       <div class="page-inner">
         <div class="section-hdr">
-          <div>
-            <div class="section-title">Daily Entry</div>
-            <div class="section-sub" id="entryDateLabel"></div>
-          </div>
+          <div><div class="section-title">Daily Entry</div><div class="section-sub" id="entryDateLbl"></div></div>
           <button class="btn btn-primary btn-sm" onclick="saveEntry()">💾 Save</button>
         </div>
-        <div class="entry-cards" id="entryCards"></div>
+        <div id="entryCards"></div>
       </div>
     </div>
 
@@ -540,9 +327,7 @@ body {
           <div class="tab" onclick="filterAlerts('restock',this)">Restock</div>
           <div class="tab" onclick="filterAlerts('expiry',this)">Expiry</div>
         </div>
-        <div class="card">
-          <div class="card-body no-pad" id="alertsList"></div>
-        </div>
+        <div class="card"><div class="card-body np" id="alertsList"></div></div>
       </div>
     </div>
 
@@ -551,198 +336,159 @@ body {
       <div class="page-inner">
         <div class="section-title" style="margin-bottom:14px;">Reports</div>
         <button class="btn btn-primary btn-full" style="margin-bottom:14px;" onclick="generateReport()">📊 Generate This Week's Report</button>
-        <div class="card">
-          <div class="card-body no-pad" id="reportsList"></div>
-        </div>
-        <div class="section-title" style="margin:16px 0 12px;">Weekly Breakdown</div>
-        <div class="card" style="overflow-x:auto;">
-          <div id="weeklyBreakdown" style="padding:16px;"></div>
-        </div>
+        <button class="btn btn-ghost btn-full" style="margin-bottom:14px;" onclick="shareReport()">📲 Share via WhatsApp</button>
+        <div class="card"><div class="card-body np" id="reportsList"></div></div>
       </div>
     </div>
 
-    <!-- INVENTORY -->
-    <div class="page" id="page-inventory">
+    <!-- INVENTORY / STOCK -->
+    <div class="page" id="page-stock">
       <div class="page-inner">
         <div class="section-hdr">
-          <div class="section-title">Inventory</div>
+          <div class="section-title" id="stockTitle">Stock</div>
           <button class="btn btn-primary btn-sm" onclick="openAddProduct()">+ Add</button>
         </div>
         <div class="tabs">
-          <div class="tab active" onclick="filterInventory('all',this)">All</div>
-          <div class="tab" onclick="filterInventory('OTC',this)">OTC</div>
-          <div class="tab" onclick="filterInventory('POM',this)">POM</div>
-          <div class="tab" onclick="filterInventory('low',this)">Low Stock</div>
+          <div class="tab active" onclick="filterStock('all',this)">All</div>
+          <div class="tab" onclick="filterStock('low',this)">Low Stock</div>
+          <div class="tab" id="expTab" style="display:none;" onclick="filterStock('expiry',this)">Expiry</div>
+          <div class="tab" id="otcTab" style="display:none;" onclick="filterStock('OTC',this)">OTC</div>
+          <div class="tab" id="pomTab" style="display:none;" onclick="filterStock('POM',this)">POM</div>
         </div>
-        <div id="inventoryList"></div>
+        <div id="stockList"></div>
       </div>
     </div>
 
-    <!-- ADMIN: MY CLIENTS -->
+    <!-- ADMIN: CLIENTS -->
     <div class="page" id="page-clients">
       <div class="page-inner">
         <div class="section-hdr">
           <div class="section-title">My Clients</div>
           <button class="btn btn-primary btn-sm" onclick="openAddClient()">+ Add</button>
         </div>
-        <div class="kpi-strip">
-          <div class="kpi orange">
-            <div class="kpi-label">Active Clients</div>
-            <div class="kpi-val" id="totalClients">2</div>
-            <div class="kpi-change up">Medicine stores</div>
-          </div>
-          <div class="kpi green">
-            <div class="kpi-label">Weekly Income</div>
-            <div class="kpi-val">₦30K</div>
-            <div class="kpi-change up">From 2 clients</div>
-          </div>
+        <div class="kpi-grid">
+          <div class="kpi o"><div class="kpi-label">Active Clients</div><div class="kpi-val" id="totalClients">0</div><div class="kpi-sub">All business types</div></div>
+          <div class="kpi g"><div class="kpi-label">Weekly Revenue</div><div class="kpi-val" id="weeklyRev">₦0</div><div class="kpi-sub">From all clients</div></div>
         </div>
         <div id="clientsList"></div>
       </div>
     </div>
 
-    <!-- PROFILE / SETTINGS -->
-    <div class="page" id="page-profile">
+    <!-- PRICING PAGE -->
+    <div class="page" id="page-pricing">
       <div class="page-inner">
-        <div class="section-title" style="margin-bottom:16px;">Profile & Settings</div>
-        <div class="card" style="margin-bottom:14px;">
-          <div class="card-body">
-            <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
-              <div style="width:52px;height:52px;border-radius:13px;background:linear-gradient(135deg,var(--orange-dark),var(--orange));display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:22px;color:#fff;" id="profileAvatar">G</div>
-              <div>
-                <div style="font-size:16px;font-weight:600;" id="profileName">Gideon Omoloye</div>
-                <div style="font-size:12px;color:var(--text3);" id="profileRole">InsightEdge Admin</div>
-                <span class="pill pill-admin" style="margin-top:4px;" id="profileBadge">ADMIN</span>
-              </div>
-            </div>
-            <div style="background:var(--bg3);border-radius:10px;padding:14px;">
-              <div style="font-size:11px;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;">Account Info</div>
-              <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span style="font-size:13px;color:var(--text2);">Username</span><span style="font-size:13px;font-family:'DM Mono',monospace;" id="profileUsername">admin</span></div>
-              <div style="display:flex;justify-content:space-between;"><span style="font-size:13px;color:var(--text2);">Platform</span><span style="font-size:13px;color:var(--orange);">InsightEdge v1.0</span></div>
-            </div>
-          </div>
+        <div class="section-title" style="margin-bottom:6px;">Our Plans</div>
+        <div style="font-size:12px;color:var(--t3);margin-bottom:16px;">All plans include 10% off your first month subscription</div>
+
+        <div class="biz-selector" id="bizSelector">
+          <div class="biz-card selected" onclick="selectBiz('supermarket',this)"><div class="biz-card-icon">🛒</div><div class="biz-card-name">Supermarket</div><div class="biz-card-desc">Sales & restock</div></div>
+          <div class="biz-card" onclick="selectBiz('medicine',this)"><div class="biz-card-icon">💊</div><div class="biz-card-name">Medicine Store</div><div class="biz-card-desc">+ Expiry tracking</div></div>
+          <div class="biz-card" onclick="selectBiz('trader',this)"><div class="biz-card-icon">🛍️</div><div class="biz-card-name">Petty Trader</div><div class="biz-card-desc">+ Profit tracking</div></div>
+          <div class="biz-card" onclick="selectBiz('retail',this)"><div class="biz-card-icon">📦</div><div class="biz-card-name">Retail Shop</div><div class="biz-card-desc">General tracking</div></div>
         </div>
 
-        <div class="card" style="margin-bottom:14px;">
-          <div class="card-header"><div class="card-title">Alert Thresholds</div></div>
-          <div class="card-body">
-            <div style="display:grid;gap:12px;">
-              <div class="form-group">
-                <label class="form-label">Critical Stock Level (units)</label>
-                <input class="form-input" type="number" value="3" id="threshCritical">
-              </div>
-              <div class="form-group">
-                <label class="form-label">Low Stock Level (units)</label>
-                <input class="form-input" type="number" value="8" id="threshLow">
-              </div>
-              <div class="form-group">
-                <label class="form-label">Near Expiry Warning (days)</label>
-                <input class="form-input" type="number" value="60" id="threshExpiry">
-              </div>
-            </div>
-            <button class="btn btn-primary btn-full" style="margin-top:14px;" onclick="saveSettings()">Save Settings</button>
-          </div>
-        </div>
+        <div class="plan-cards" id="planCards"></div>
 
-        <button class="btn btn-ghost btn-full" onclick="doLogout()" style="color:var(--red);border-color:rgba(231,76,60,0.2);">⏻ Sign Out</button>
+        <div style="background:var(--gl);border:1px solid rgba(30,132,73,0.2);border-radius:12px;padding:14px;text-align:center;">
+          <div style="font-size:14px;font-weight:700;color:#27AE60;margin-bottom:4px;">🎉 First Month Discount</div>
+          <div style="font-size:12px;color:var(--t3);">Subscribe for a full month and get <strong style="color:#27AE60;">10% OFF</strong> your first month. No long-term contract.</div>
+        </div>
       </div>
     </div>
 
-  </div><!-- /pages -->
+    <!-- PROFILE -->
+    <div class="page" id="page-profile">
+      <div class="page-inner">
+        <div class="section-title" style="margin-bottom:16px;">Profile</div>
+        <div class="card" style="margin-bottom:14px;">
+          <div class="card-body">
+            <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+              <div style="width:52px;height:52px;border-radius:13px;background:linear-gradient(135deg,var(--od),var(--o));display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:22px;color:#fff;" id="profileAvatar">G</div>
+              <div>
+                <div style="font-size:16px;font-weight:600;" id="profileName"></div>
+                <div style="font-size:12px;color:var(--t3);" id="profileRole"></div>
+                <span class="pill pill-plan" style="margin-top:5px;display:inline-flex;" id="profileBadge"></span>
+              </div>
+            </div>
+            <div style="background:var(--bg3);border-radius:10px;padding:14px;">
+              <div style="font-size:11px;color:var(--t3);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;">Account Info</div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span style="font-size:13px;color:var(--t2);">Username</span><span style="font-size:13px;font-family:'DM Mono',monospace;" id="profileUsername"></span></div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span style="font-size:13px;color:var(--t2);">Business Type</span><span style="font-size:13px;color:var(--o);" id="profileBizType"></span></div>
+              <div style="display:flex;justify-content:space-between;"><span style="font-size:13px;color:var(--t2);">Platform</span><span style="font-size:13px;color:var(--o);">InsightEdge v2.0</span></div>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-ghost btn-full" onclick="doLogout()" style="color:var(--r);border-color:rgba(231,76,60,0.2);">⏻ Sign Out</button>
+        <div style="text-align:center;margin-top:20px;font-size:11px;color:var(--t3);">InsightEdge Analytics · Lagos Island · @mollz021</div>
+      </div>
+    </div>
 
-  <!-- Bottom Nav -->
+  </div>
+
   <div class="bottom-nav" id="bottomNav"></div>
+</div>
 
-</div><!-- /appScreen -->
-
-<!-- Add Product Modal -->
+<!-- ADD PRODUCT MODAL -->
 <div class="modal-overlay" id="addProductModal">
   <div class="modal">
     <div class="modal-handle"></div>
     <div class="modal-title">Add New Product</div>
     <div style="display:grid;gap:12px;">
-      <div class="form-group">
-        <label class="form-label">Medicine Name</label>
-        <input class="form-input" id="newProdName" placeholder="e.g. Paracetamol 500mg">
+      <div class="form-group"><label class="form-label">Product Name</label><input class="form-input" id="npName" placeholder="e.g. Paracetamol 500mg"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div class="form-group"><label class="form-label">Category</label><input class="form-input" id="npCat" placeholder="e.g. Analgesic"></div>
+        <div class="form-group"><label class="form-label">Type</label><select class="form-input" id="npType"><option>OTC</option><option>POM</option><option>General</option></select></div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-        <div class="form-group">
-          <label class="form-label">Category</label>
-          <input class="form-input" id="newProdCat" placeholder="e.g. Analgesic">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Type</label>
-          <select class="form-input" id="newProdType">
-            <option>OTC</option><option>POM</option>
-          </select>
-        </div>
+        <div class="form-group"><label class="form-label">Min Stock</label><input class="form-input" type="number" id="npMin" value="10"></div>
+        <div class="form-group"><label class="form-label">Current Stock</label><input class="form-input" type="number" id="npStock" value="20"></div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-        <div class="form-group">
-          <label class="form-label">Min Stock</label>
-          <input class="form-input" type="number" id="newProdMin" value="10">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Current Stock</label>
-          <input class="form-input" type="number" id="newProdStock" value="20">
-        </div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-        <div class="form-group">
-          <label class="form-label">Unit Price (₦)</label>
-          <input class="form-input" type="number" id="newProdPrice" value="500">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Expiry (MM/YYYY)</label>
-          <input class="form-input" id="newProdExpiry" placeholder="12/2026">
-        </div>
+        <div class="form-group"><label class="form-label">Unit Price (₦)</label><input class="form-input" type="number" id="npPrice" value="500"></div>
+        <div class="form-group"><label class="form-label">Expiry (MM/YYYY)</label><input class="form-input" id="npExpiry" placeholder="12/2026"></div>
       </div>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;">
       <button class="btn btn-ghost btn-full" onclick="closeModal('addProductModal')">Cancel</button>
       <button class="btn btn-primary btn-full" onclick="addProduct()">Add Product</button>
     </div>
   </div>
 </div>
 
-<!-- Add Client Modal -->
+<!-- ADD CLIENT MODAL -->
 <div class="modal-overlay" id="addClientModal">
   <div class="modal">
     <div class="modal-handle"></div>
     <div class="modal-title">Add New Client</div>
     <div style="display:grid;gap:12px;">
-      <div class="form-group">
-        <label class="form-label">Store Name</label>
-        <input class="form-input" id="newClientName" placeholder="e.g. HealthFirst Pharmacy">
+      <div class="form-group"><label class="form-label">Store / Business Name</label><input class="form-input" id="ncName" placeholder="e.g. HealthFirst Pharmacy"></div>
+      <div class="form-group"><label class="form-label">Business Type</label>
+        <select class="form-input" id="ncBizType">
+          <option value="supermarket">🛒 Supermarket</option>
+          <option value="medicine">💊 Medicine Store</option>
+          <option value="trader">🛍️ Petty Trader</option>
+          <option value="retail">📦 Retail Shop</option>
+        </select>
       </div>
-      <div class="form-group">
-        <label class="form-label">Location</label>
-        <input class="form-input" id="newClientLocation" placeholder="e.g. Lekki Phase 1">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Owner Name</label>
-        <input class="form-input" id="newClientOwner" placeholder="Owner's full name">
-      </div>
-      <div class="form-group">
-        <label class="form-label">WhatsApp Number</label>
-        <input class="form-input" id="newClientPhone" placeholder="+234 ...">
+      <div class="form-group"><label class="form-label">Plan</label>
+        <select class="form-input" id="ncPlan" onchange="updateClientFee()">
+          <option value="30000">🥉 Basic — ₦30,000/week</option>
+          <option value="40000" selected>🥈 Standard — ₦40,000/week</option>
+          <option value="50000">🥇 Premium — ₦50,000/week</option>
+        </select>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-        <div class="form-group">
-          <label class="form-label">Username</label>
-          <input class="form-input" id="newClientUser" placeholder="login username" autocapitalize="none">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Password</label>
-          <input class="form-input" id="newClientPass" placeholder="set password" type="password">
-        </div>
+        <div class="form-group"><label class="form-label">Location</label><input class="form-input" id="ncLocation" placeholder="e.g. Lekki Phase 1"></div>
+        <div class="form-group"><label class="form-label">Weekly Fee (₦)</label><input class="form-input" type="number" id="ncFee" value="40000"></div>
       </div>
-      <div class="form-group">
-        <label class="form-label">Weekly Fee (₦)</label>
-        <input class="form-input" type="number" id="newClientFee" value="15000">
+      <div class="form-group"><label class="form-label">Owner Name</label><input class="form-input" id="ncOwner" placeholder="Owner's full name"></div>
+      <div class="form-group"><label class="form-label">WhatsApp Number</label><input class="form-input" id="ncPhone" placeholder="+234 ..."></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div class="form-group"><label class="form-label">Username</label><input class="form-input" id="ncUser" placeholder="login username" autocapitalize="none"></div>
+        <div class="form-group"><label class="form-label">Password</label><input class="form-input" id="ncPass" type="password" placeholder="set password"></div>
       </div>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;">
       <button class="btn btn-ghost btn-full" onclick="closeModal('addClientModal')">Cancel</button>
       <button class="btn btn-primary btn-full" onclick="addClient()">Add Client</button>
     </div>
@@ -752,325 +498,366 @@ body {
 <div class="toast" id="toast"><span>✅</span><span id="toastMsg"></span></div>
 
 <script>
-// ══ DATA STORE (localStorage) ══
-function getData(key, def) {
-  try { const v = localStorage.getItem('ie_' + key); return v ? JSON.parse(v) : def; }
-  catch { return def; }
-}
-function setData(key, val) {
-  try { localStorage.setItem('ie_' + key, JSON.stringify(val)); } catch {}
-}
+// ── STORAGE ──
+const S = (k,d) => { try{ const v=localStorage.getItem('ie2_'+k); return v?JSON.parse(v):d; }catch{return d;} };
+const SS = (k,v) => { try{ localStorage.setItem('ie2_'+k,JSON.stringify(v)); }catch{} };
 
-// ══ USERS ══
-function getUsers() {
-  return getData('users', [
-    { username: 'admin', password: 'admin123', role: 'admin', name: 'Gideon Omoloye', store: 'InsightEdge Admin' },
-    { username: 'healthfirst', password: 'store123', role: 'client', name: 'HealthFirst Pharmacy', store: 'HealthFirst Pharmacy — Lekki Phase 1', clientId: 'healthfirst' },
-    { username: 'greenmed', password: 'store456', role: 'client', name: 'GreenMed Store', store: 'GreenMed Store — Ajah', clientId: 'greenmed' },
-  ]);
-}
-
-// ══ CLIENTS ══
-function getClients() {
-  return getData('clients', [
-    { id: 'healthfirst', name: 'HealthFirst Pharmacy', location: 'Lekki Phase 1', owner: 'Mr. Adeyemi', phone: '+234 801 234 5678', fee: 15000, username: 'healthfirst', joinDate: '1 Apr 2025' },
-    { id: 'greenmed', name: 'GreenMed Store', location: 'Ajah', owner: 'Mrs. Okafor', phone: '+234 802 345 6789', fee: 15000, username: 'greenmed', joinDate: '8 Apr 2025' },
-  ]);
-}
-
-// ══ MEDICINES per client ══
-const defaultMedicines = [
-  { name:"Paracetamol 500mg", cat:"Analgesic", type:"OTC", min:10, stock:0, expiry:"12/2026", price:500 },
-  { name:"Amoxicillin 500mg", cat:"Antibiotic", type:"POM", min:8, stock:15, expiry:"06/2026", price:1200 },
-  { name:"Artemether/Lumef.", cat:"Antimalarial", type:"OTC", min:10, stock:22, expiry:"03/2027", price:1800 },
-  { name:"Metronidazole 400mg", cat:"Antibiotic", type:"POM", min:10, stock:3, expiry:"09/2026", price:800 },
-  { name:"Vitamin C 1000mg", cat:"Vitamins", type:"OTC", min:15, stock:30, expiry:"01/2027", price:400 },
-  { name:"ORS Sachet", cat:"Rehydration", type:"OTC", min:20, stock:45, expiry:"11/2026", price:150 },
-  { name:"Flagyl Syrup", cat:"Antibiotic", type:"POM", min:5, stock:8, expiry:"05/2025", price:1500 },
-  { name:"Cough Syrup", cat:"Respiratory", type:"OTC", min:8, stock:12, expiry:"08/2026", price:1200 },
-  { name:"Omeprazole 20mg", cat:"GI", type:"POM", min:8, stock:18, expiry:"02/2027", price:900 },
-  { name:"Multivitamin", cat:"Vitamins", type:"OTC", min:10, stock:25, expiry:"07/2026", price:600 },
-  { name:"Ciprofloxacin", cat:"Antibiotic", type:"POM", min:8, stock:6, expiry:"10/2026", price:1400 },
-  { name:"Antacid Tablets", cat:"GI", type:"OTC", min:12, stock:20, expiry:"04/2027", price:350 },
+// ── DEFAULT DATA ──
+const DEFAULT_USERS = [
+  {username:'admin',password:'admin123',role:'admin',name:'Gideon Omoloye',store:'InsightEdge Admin',bizType:'admin',plan:'admin'},
+  {username:'healthfirst',password:'store123',role:'client',name:'HealthFirst Pharmacy',store:'HealthFirst Pharmacy — Lekki',bizType:'medicine',plan:'standard',clientId:'healthfirst'},
+  {username:'freshmart',password:'store456',role:'client',name:'FreshMart Supermarket',store:'FreshMart — Ajah',bizType:'supermarket',plan:'basic',clientId:'freshmart'},
+  {username:'mama-tunde',password:'store789',role:'client',name:"Mama Tunde Traders",store:"Mama Tunde — Lekki Market",bizType:'trader',plan:'premium',clientId:'mama-tunde'},
 ];
 
-function getMedicines(clientId) {
-  return getData('meds_' + clientId, defaultMedicines.map(m => ({...m})));
-}
-function saveMedicines(clientId, meds) { setData('meds_' + clientId, meds); }
-
-function getEntries(clientId) { return getData('entries_' + clientId, []); }
-function saveEntries(clientId, entries) { setData('entries_' + clientId, entries); }
-
-// ══ STATE ══
-let currentUser = null;
-let currentClientId = null;
-
-const adminNav = [
-  { id:'dashboard', icon:'⬛', label:'Dashboard' },
-  { id:'clients', icon:'🏪', label:'Clients' },
-  { id:'alerts', icon:'🔔', label:'Alerts' },
-  { id:'reports', icon:'📋', label:'Reports' },
-  { id:'profile', icon:'👤', label:'Profile' },
-];
-const clientNav = [
-  { id:'dashboard', icon:'⬛', label:'Home' },
-  { id:'entry', icon:'✏️', label:'Entry' },
-  { id:'alerts', icon:'🔔', label:'Alerts' },
-  { id:'inventory', icon:'💊', label:'Stock' },
-  { id:'profile', icon:'👤', label:'Profile' },
+const DEFAULT_CLIENTS = [
+  {id:'healthfirst',name:'HealthFirst Pharmacy',bizType:'medicine',location:'Lekki Phase 1',owner:'Mr. Adeyemi',phone:'+234 801 234 5678',fee:40000,plan:'standard',username:'healthfirst'},
+  {id:'freshmart',name:'FreshMart Supermarket',bizType:'supermarket',location:'Ajah',owner:'Mrs. Bello',phone:'+234 802 345 6789',fee:30000,plan:'basic',username:'freshmart'},
+  {id:'mama-tunde',name:"Mama Tunde Traders",bizType:'trader',location:'Lekki Market',owner:'Mama Tunde',phone:'+234 803 456 7890',fee:50000,plan:'premium',username:'mama-tunde'},
 ];
 
-// ══ LOGIN ══
-function fillCreds(u, p) {
-  document.getElementById('loginUser').value = u;
-  document.getElementById('loginPass').value = p;
+const PRODUCTS_BY_TYPE = {
+  medicine:[
+    {name:"Paracetamol 500mg",cat:"Analgesic",type:"OTC",min:10,stock:0,expiry:"12/2026",price:500},
+    {name:"Amoxicillin 500mg",cat:"Antibiotic",type:"POM",min:8,stock:15,expiry:"06/2026",price:1200},
+    {name:"Artemether/Lumef.",cat:"Antimalarial",type:"OTC",min:10,stock:22,expiry:"03/2027",price:1800},
+    {name:"Metronidazole 400mg",cat:"Antibiotic",type:"POM",min:10,stock:3,expiry:"09/2026",price:800},
+    {name:"Vitamin C 1000mg",cat:"Vitamins",type:"OTC",min:15,stock:30,expiry:"01/2027",price:400},
+    {name:"ORS Sachet",cat:"Rehydration",type:"OTC",min:20,stock:45,expiry:"11/2026",price:150},
+    {name:"Flagyl Syrup",cat:"Antibiotic",type:"POM",min:5,stock:8,expiry:"05/2025",price:1500},
+    {name:"Cough Syrup",cat:"Respiratory",type:"OTC",min:8,stock:12,expiry:"08/2026",price:1200},
+    {name:"Omeprazole 20mg",cat:"GI",type:"POM",min:8,stock:18,expiry:"02/2027",price:900},
+    {name:"Multivitamin",cat:"Vitamins",type:"OTC",min:10,stock:25,expiry:"07/2026",price:600},
+  ],
+  supermarket:[
+    {name:"Rice (50kg bag)",cat:"Grains",type:"General",min:5,stock:8,expiry:"N/A",price:85000},
+    {name:"Indomie Noodles (carton)",cat:"Noodles",type:"General",min:10,stock:0,expiry:"N/A",price:8500},
+    {name:"Peak Milk (tin)",cat:"Dairy",type:"General",min:20,stock:35,expiry:"N/A",price:1200},
+    {name:"Coca-Cola (crate)",cat:"Drinks",type:"General",min:5,stock:12,expiry:"N/A",price:5500},
+    {name:"Groundnut Oil (5L)",cat:"Cooking",type:"General",min:8,stock:3,expiry:"N/A",price:9500},
+    {name:"Sugar (1kg)",cat:"Groceries",type:"General",min:20,stock:40,expiry:"N/A",price:1500},
+    {name:"Bread (loaf)",cat:"Bakery",type:"General",min:10,stock:15,expiry:"N/A",price:800},
+    {name:"Eggs (crate)",cat:"Protein",type:"General",min:5,stock:8,expiry:"N/A",price:4500},
+    {name:"Tomato Paste (tin)",cat:"Condiments",type:"General",min:15,stock:2,expiry:"N/A",price:600},
+    {name:"Water (sachet pack)",cat:"Drinks",type:"General",min:20,stock:50,expiry:"N/A",price:250},
+  ],
+  trader:[
+    {name:"Sachet Water (bag)",cat:"Drinks",type:"General",min:20,stock:45,expiry:"N/A",price:200,cost:150},
+    {name:"Gala Sausage Roll",cat:"Snacks",type:"General",min:20,stock:0,expiry:"N/A",price:300,cost:220},
+    {name:"Biscuit (pack)",cat:"Snacks",type:"General",min:15,stock:30,expiry:"N/A",price:200,cost:140},
+    {name:"Soft Drink (bottle)",cat:"Drinks",type:"General",min:12,stock:5,expiry:"N/A",price:400,cost:300},
+    {name:"Noodles (dry pack)",cat:"Grocery",type:"General",min:20,stock:35,expiry:"N/A",price:250,cost:180},
+    {name:"Airtime MTN ₦100",cat:"Telecoms",type:"General",min:50,stock:80,expiry:"N/A",price:100,cost:97},
+    {name:"Groundnut (pack)",cat:"Snacks",type:"General",min:20,stock:25,expiry:"N/A",price:200,cost:120},
+    {name:"Candy/Sweets (pack)",cat:"Snacks",type:"General",min:30,stock:3,expiry:"N/A",price:100,cost:60},
+    {name:"Bread (loaf)",cat:"Food",type:"General",min:5,stock:8,expiry:"N/A",price:800,cost:600},
+    {name:"Boiled Egg (piece)",cat:"Food",type:"General",min:20,stock:30,expiry:"N/A",price:150,cost:80},
+  ],
+  retail:[
+    {name:"Product A",cat:"General",type:"General",min:10,stock:20,expiry:"N/A",price:1000},
+    {name:"Product B",cat:"General",type:"General",min:10,stock:5,expiry:"N/A",price:2000},
+    {name:"Product C",cat:"General",type:"General",min:10,stock:30,expiry:"N/A",price:500},
+    {name:"Product D",cat:"General",type:"General",min:10,stock:0,expiry:"N/A",price:3000},
+    {name:"Product E",cat:"General",type:"General",min:10,stock:15,expiry:"N/A",price:1500},
+  ],
+};
+
+const PLANS = {
+  basic:{label:'🥉 Basic',fee:30000,monthly:120000},
+  standard:{label:'🥈 Standard',fee:40000,monthly:160000},
+  premium:{label:'🥇 Premium',fee:50000,monthly:200000},
+};
+
+const PLAN_FEATURES = {
+  basic:['Daily sales report','Restock alerts','Top selling items','WhatsApp delivery'],
+  standard:['Everything in Basic','Expiry date tracking','Weekly summary report','Business insight note'],
+  premium:['Everything in Standard','Private live dashboard','Secure login access','Real-time alerts'],
+};
+
+const BIZ_ICONS = {medicine:'💊',supermarket:'🛒',trader:'🛍️',retail:'📦',admin:'📊'};
+
+// ── STATE ──
+let CU = null; // current user
+let CID = null; // current client id
+
+function getUsers(){ return S('users', DEFAULT_USERS); }
+function getClients(){ return S('clients', DEFAULT_CLIENTS); }
+function getProducts(cid){ return S('prods_'+cid, (PRODUCTS_BY_TYPE[getClients().find(c=>c.id===cid)?.bizType||'retail']||[]).map(p=>({...p}))); }
+function saveProducts(cid,p){ SS('prods_'+cid,p); }
+function getEntries(cid){ return S('entries_'+cid,[]); }
+function saveEntries(cid,e){ SS('entries_'+cid,e); }
+function getReports(cid){ return S('reports_'+cid,[
+  {week:'Week of 14 Apr 2026',rev:Math.floor(Math.random()*100000)+150000},
+  {week:'Week of 7 Apr 2026',rev:Math.floor(Math.random()*80000)+130000},
+]); }
+
+// ── LOGIN ──
+function doLogin(){
+  const u=document.getElementById('loginUser').value.trim().toLowerCase();
+  const p=document.getElementById('loginPass').value;
+  const user=getUsers().find(x=>x.username===u&&x.password===p);
+  if(!user){ document.getElementById('loginError').style.display='block'; return; }
+  document.getElementById('loginError').style.display='none';
+  CU=user; CID=user.role==='admin'?null:user.clientId;
+  SS('session',u); launchApp();
 }
 
-function doLogin() {
-  const u = document.getElementById('loginUser').value.trim().toLowerCase();
-  const p = document.getElementById('loginPass').value;
-  const users = getUsers();
-  const user = users.find(x => x.username === u && x.password === p);
-  if (!user) {
-    document.getElementById('loginError').style.display = 'block';
-    return;
-  }
-  document.getElementById('loginError').style.display = 'none';
-  currentUser = user;
-  currentClientId = user.role === 'admin' ? null : user.clientId;
-  setData('session', user.username);
-  launchApp();
-}
-
-function doLogout() {
-  currentUser = null; currentClientId = null;
-  setData('session', null);
+function doLogout(){
+  CU=null;CID=null;SS('session',null);
   document.getElementById('loginScreen').classList.add('active');
   document.getElementById('appScreen').classList.remove('active');
-  document.getElementById('loginUser').value = '';
-  document.getElementById('loginPass').value = '';
+  document.getElementById('loginUser').value='';
+  document.getElementById('loginPass').value='';
 }
 
-// ══ LAUNCH ══
-function launchApp() {
+window.onload=()=>{ SS('session',null); document.getElementById('loginScreen').classList.add('active'); };
+document.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('loginPass').addEventListener('keypress',e=>{ if(e.key==='Enter') doLogin(); });
+});
+
+// ── LAUNCH ──
+function launchApp(){
   document.getElementById('loginScreen').classList.remove('active');
   document.getElementById('appScreen').classList.add('active');
 
-  const nav = currentUser.role === 'admin' ? adminNav : clientNav;
-  buildNav(nav);
+  const isAdmin=CU.role==='admin';
+  const bizType=isAdmin?'admin':CU.bizType;
+  const icon=BIZ_ICONS[bizType]||'📊';
 
-  document.getElementById('topbarStore').textContent = currentUser.role === 'admin' ? '📊 Admin Dashboard' : '💊 ' + currentUser.name;
+  document.getElementById('topbarStore').textContent=isAdmin?'📊 Admin Dashboard':icon+' '+CU.name;
 
-  // Profile
-  document.getElementById('profileName').textContent = currentUser.name;
-  document.getElementById('profileRole').textContent = currentUser.role === 'admin' ? 'InsightEdge Admin — Gideon Omoloye' : 'Store Account';
-  document.getElementById('profileUsername').textContent = currentUser.username;
-  document.getElementById('profileBadge').textContent = currentUser.role === 'admin' ? 'ADMIN' : 'STORE';
-  document.getElementById('profileAvatar').textContent = currentUser.name[0].toUpperCase();
+  // Build nav
+  const adminNav=[
+    {id:'dashboard',icon:'⬛',label:'Home'},
+    {id:'clients',icon:'🏪',label:'Clients'},
+    {id:'alerts',icon:'🔔',label:'Alerts'},
+    {id:'pricing',icon:'💰',label:'Plans'},
+    {id:'profile',icon:'👤',label:'Profile'},
+  ];
+  const clientNav=[
+    {id:'dashboard',icon:'⬛',label:'Home'},
+    {id:'entry',icon:'✏️',label:'Entry'},
+    {id:'alerts',icon:'🔔',label:'Alerts'},
+    {id:'stock',icon:'📦',label:'Stock'},
+    {id:'profile',icon:'👤',label:'Profile'},
+  ];
+  buildNav(isAdmin?adminNav:clientNav);
 
   // Welcome
-  const hr = new Date().getHours();
-  document.getElementById('greeting').textContent = hr < 12 ? 'Good Morning' : hr < 17 ? 'Good Afternoon' : 'Good Evening';
-  document.getElementById('welcomeName').textContent = currentUser.role === 'admin' ? 'Gideon Omoloye' : currentUser.name;
-  document.getElementById('welcomeStore').textContent = currentUser.role === 'admin' ? '📊 InsightEdge Admin · Lagos Island' : '💊 ' + currentUser.store;
-  document.getElementById('welcomeDate').textContent = new Date().toLocaleDateString('en-NG', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
-  document.getElementById('entryDateLabel').textContent = new Date().toLocaleDateString('en-NG', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+  const hr=new Date().getHours();
+  document.getElementById('welcomeGreet').textContent=hr<12?'Good Morning ☀️':hr<17?'Good Afternoon 🌤️':'Good Evening 🌙';
+  document.getElementById('welcomeName').textContent=isAdmin?'Gideon Omoloye':CU.name;
+  document.getElementById('welcomeStore').textContent=isAdmin?'📊 InsightEdge Analytics Admin':icon+' '+CU.store;
+  document.getElementById('welcomeDate').textContent=new Date().toLocaleDateString('en-NG',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+  
+  if(!isAdmin){
+    const plan=PLANS[CU.plan]||PLANS.basic;
+    document.getElementById('welcomePlan').textContent=plan.label+' · ₦'+plan.fee.toLocaleString()+'/week';
+  } else {
+    document.getElementById('welcomePlan').textContent='';
+  }
+
+  // Profile
+  document.getElementById('profileAvatar').textContent=CU.name[0].toUpperCase();
+  document.getElementById('profileName').textContent=CU.name;
+  document.getElementById('profileRole').textContent=isAdmin?'InsightEdge Analytics Founder':'Store Account';
+  document.getElementById('profileBadge').textContent=isAdmin?'ADMIN':(PLANS[CU.plan]?.label||'BASIC');
+  document.getElementById('profileUsername').textContent=CU.username;
+  document.getElementById('profileBizType').textContent=isAdmin?'All Business Types':(BIZ_ICONS[CU.bizType]||'')+ ' '+(CU.bizType||'').charAt(0).toUpperCase()+(CU.bizType||'').slice(1);
+  document.getElementById('entryDateLbl').textContent=new Date().toLocaleDateString('en-NG',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+
+  // Show/hide stock tabs based on biz type
+  if(!isAdmin){
+    const isMed=CU.bizType==='medicine';
+    document.getElementById('expTab').style.display=isMed?'block':'none';
+    document.getElementById('otcTab').style.display=isMed?'block':'none';
+    document.getElementById('pomTab').style.display=isMed?'block':'none';
+    document.getElementById('stockTitle').textContent=isMed?'Inventory & Expiry':CU.bizType==='trader'?'Products & Profit':'Stock Tracker';
+  }
 
   showPage('dashboard');
   buildDashboard();
+  buildPricingPage();
 }
 
-// ══ NAV ══
-function buildNav(nav) {
-  const el = document.getElementById('bottomNav');
-  el.innerHTML = nav.map(n => `
+// ── NAV ──
+function buildNav(nav){
+  document.getElementById('bottomNav').innerHTML=nav.map(n=>`
     <div class="nav-item" id="nav-${n.id}" onclick="showPage('${n.id}')">
       <div class="nav-icon">${n.icon}</div>
       <div class="nav-label">${n.label}</div>
-      ${n.id === 'alerts' ? '<span class="nav-badge" id="alertBadge" style="display:none;">0</span>' : ''}
+      ${n.id==='alerts'?'<span class="nav-badge" id="alertBadge" style="display:none;">0</span>':''}
     </div>
   `).join('');
 }
 
-function showPage(id) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  const pg = document.getElementById('page-' + id);
-  if (pg) pg.classList.add('active');
-  const ni = document.getElementById('nav-' + id);
-  if (ni) ni.classList.add('active');
-
-  if (id === 'dashboard') buildDashboard();
-  else if (id === 'entry') buildEntry();
-  else if (id === 'alerts') buildAlerts('all');
-  else if (id === 'inventory') buildInventory('all');
-  else if (id === 'reports') buildReports();
-  else if (id === 'clients') buildClients();
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  const pg=document.getElementById('page-'+id);
+  if(pg) pg.classList.add('active');
+  const ni=document.getElementById('nav-'+id);
+  if(ni) ni.classList.add('active');
+  if(id==='dashboard') buildDashboard();
+  else if(id==='entry') buildEntry();
+  else if(id==='alerts') buildAlerts('all');
+  else if(id==='stock') buildStock('all');
+  else if(id==='reports') buildReports();
+  else if(id==='clients') buildClients();
 }
 
-// ══ DASHBOARD ══
-function buildDashboard() {
-  const clientId = currentClientId || 'healthfirst';
-  const meds = getMedicines(clientId);
-  const entries = getEntries(clientId);
-  const today = new Date().toDateString();
-  const todayEntry = entries.find(e => e.date === today);
+// ── DASHBOARD ──
+function buildDashboard(){
+  const cid=CID||'healthfirst';
+  const prods=getProducts(cid);
+  const isAdmin=CU.role==='admin';
+  const bizType=isAdmin?'medicine':CU.bizType;
 
-  const todaySales = todayEntry ? todayEntry.items.reduce((s, i) => s + (i.qty * i.price), 0) : Math.floor(Math.random() * 20000) + 30000;
-  const weeklySales = entries.slice(-5).reduce((s, e) => s + e.items.reduce((ss, i) => ss + (i.qty * i.price), 0), 0) + todaySales;
+  const restockCount=prods.filter(p=>p.stock<=p.min).length;
+  const expiryCount=prods.filter(p=>isNearExpiry(p.expiry)).length;
+  const todaySales=Math.floor(Math.random()*30000)+40000;
+  const weekSales=Math.floor(Math.random()*100000)+180000;
 
-  const alerts = meds.filter(m => m.stock <= m.min || isNearExpiry(m.expiry));
-  const restockCount = meds.filter(m => m.stock <= m.min).length;
-  const expiryCount = meds.filter(m => isNearExpiry(m.expiry)).length;
+  const alertTotal=restockCount+expiryCount;
+  const badge=document.getElementById('alertBadge');
+  const dot=document.getElementById('notifDot');
+  if(badge){badge.textContent=alertTotal;badge.style.display=alertTotal>0?'flex':'none';}
+  if(dot) dot.style.display=alertTotal>0?'block':'none';
 
-  document.getElementById('kpiToday').textContent = '₦' + todaySales.toLocaleString();
-  document.getElementById('kpiTodayChange').textContent = '↑ Live tracking';
-  document.getElementById('kpiWeekly').textContent = '₦' + (weeklySales || 218400).toLocaleString();
-  document.getElementById('kpiWeeklyChange').textContent = '↑ This week';
-  document.getElementById('kpiAlerts').textContent = restockCount;
-  document.getElementById('kpiExpiry').textContent = expiryCount;
+  // KPIs
+  let kpis=[
+    {cls:'o',label:"Today's Sales",val:'₦'+todaySales.toLocaleString(),sub:'Live tracking'},
+    {cls:'g',label:'Weekly Total',val:'₦'+weekSales.toLocaleString(),sub:'This week'},
+    {cls:'r',label:'Restock Alerts',val:restockCount,sub:'Need attention'},
+  ];
+  if(bizType==='medicine') kpis.push({cls:'b',label:'Near Expiry',val:expiryCount,sub:'Items flagged'});
+  else if(bizType==='trader') kpis.push({cls:'p',label:'Net Profit',val:'₦'+Math.floor(todaySales*0.3).toLocaleString(),sub:'Today estimate'});
+  else kpis.push({cls:'a',label:'Items Tracked',val:prods.length,sub:'In your stock'});
 
-  const alertTotal = restockCount + expiryCount;
-  const badge = document.getElementById('alertBadge');
-  const dot = document.getElementById('notifDot');
-  if (badge) { badge.textContent = alertTotal; badge.style.display = alertTotal > 0 ? 'flex' : 'none'; }
-  if (dot) dot.style.display = alertTotal > 0 ? 'block' : 'none';
+  document.getElementById('kpiGrid').innerHTML=kpis.map(k=>`
+    <div class="kpi ${k.cls}"><div class="kpi-label">${k.label}</div><div class="kpi-val">${k.val}</div><div class="kpi-sub">${k.sub}</div></div>
+  `).join('');
 
-  // Week chart
-  const days = ['Mon','Tue','Wed','Thu','Fri'];
-  const vals = [38400, 42100, 35800, 54900, todaySales];
-  const max = Math.max(...vals);
-  document.getElementById('weekChart').innerHTML = days.map((d, i) => `
+  // Chart
+  const days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  const vals=[...Array(7)].map((_,i)=>{
+    if(i===4) return todaySales;
+    if(i===5) return Math.floor(Math.random()*20000)+18000;
+    if(i===6) return Math.floor(Math.random()*15000)+10000;
+    return Math.floor(Math.random()*30000)+35000;
+  });
+  const max=Math.max(...vals);
+  const jsDay=new Date().getDay();
+  const todayIdx=jsDay===0?6:jsDay-1;
+  document.getElementById('weekChart').innerHTML=days.map((d,i)=>`
     <div class="bar-col">
-      <div class="bar-val-label">₦${Math.floor(vals[i]/1000)}k</div>
-      <div class="bar${i===4?' today':''}" style="height:${Math.max(8,(vals[i]/max)*80)}px"></div>
+      <div class="bar-val-lbl">₦${Math.floor(vals[i]/1000)}k</div>
+      <div class="bar${i===todayIdx?' today':''}" style="height:${Math.max(8,(vals[i]/max)*80)}px"></div>
       <div class="bar-day">${d}</div>
     </div>
   `).join('');
 
   // Top products
-  const sorted = [...meds].sort((a,b) => (b.stock * b.price) - (a.stock * a.price)).slice(0,5);
-  document.getElementById('topProductsList').innerHTML = sorted.map((m, i) => `
+  const sorted=[...prods].sort((a,b)=>(b.stock*b.price)-(a.stock*a.price)).slice(0,5);
+  document.getElementById('topProducts').innerHTML=sorted.map((p,i)=>`
     <div class="list-row">
-      <div class="list-row-icon icon-${i===0?'orange':i===1?'green':'blue'}">${i===0?'🥇':i===1?'🥈':'💊'}</div>
-      <div class="list-row-content">
-        <div class="list-row-title">${m.name}</div>
-        <div class="list-row-sub"><span class="pill pill-${m.type.toLowerCase()}">${m.type}</span> · ${m.cat}</div>
+      <div class="row-icon ri-${i===0?'o':i===1?'g':'b'}">${i===0?'🥇':i===1?'🥈':'💊'}</div>
+      <div class="row-content">
+        <div class="row-title">${p.name}</div>
+        <div class="row-sub">${p.cat} ${p.type!=='General'?`· <span class="pill pill-${p.type.toLowerCase()}">${p.type}</span>`:''}</div>
       </div>
-      <div class="list-row-right">
-        <div class="list-row-val">₦${(m.stock * m.price).toLocaleString()}</div>
-        <div class="list-row-meta">${m.stock} units</div>
+      <div class="row-right">
+        <div class="row-val">₦${(p.stock*p.price).toLocaleString()}</div>
+        <div class="row-meta">${p.stock} units</div>
       </div>
     </div>
   `).join('');
 }
 
-// ══ ENTRY ══
-function buildEntry() {
-  const clientId = currentClientId || 'healthfirst';
-  const meds = getMedicines(clientId);
-  document.getElementById('entryCards').innerHTML = meds.map((m, i) => `
+// ── ENTRY ──
+function buildEntry(){
+  const cid=CID||'healthfirst';
+  const prods=getProducts(cid);
+  const isTrader=CU.bizType==='trader';
+  document.getElementById('entryCards').innerHTML=prods.map((p,i)=>`
     <div class="entry-card">
-      <div class="entry-card-header">
-        <div class="entry-card-name">${m.name}</div>
-        <span class="pill pill-${m.type.toLowerCase()}">${m.type}</span>
+      <div class="entry-card-top">
+        <div class="entry-card-name">${p.name}</div>
+        ${p.type!=='General'?`<span class="pill pill-${p.type.toLowerCase()}">${p.type}</span>`:'<span class="pill pill-plan">'+p.cat+'</span>'}
       </div>
       <div class="entry-inputs">
-        <div class="entry-field">
-          <div class="entry-label">Opening Stock</div>
-          <input class="entry-input" type="number" value="${m.stock}" id="estock_${i}" oninput="calcEntryRow(${i},${m.price})">
-        </div>
-        <div class="entry-field">
-          <div class="entry-label">Qty Sold</div>
-          <input class="entry-input" type="number" value="0" id="eqty_${i}" oninput="calcEntryRow(${i},${m.price})">
-        </div>
-        <div class="entry-field">
-          <div class="entry-label">Unit Price</div>
-          <input class="entry-input" type="number" value="${m.price}" id="eprice_${i}" oninput="calcEntryRow(${i},${m.price})">
-        </div>
+        <div class="entry-field"><div class="entry-lbl">Opening Stock</div><input class="entry-input" type="number" value="${p.stock}" id="es_${i}" oninput="calcRow(${i},${p.price},${isTrader?p.cost||0:0},${isTrader})"></div>
+        <div class="entry-field"><div class="entry-lbl">Qty Sold</div><input class="entry-input" type="number" value="0" id="eq_${i}" oninput="calcRow(${i},${p.price},${isTrader?p.cost||0:0},${isTrader})"></div>
+        <div class="entry-field"><div class="entry-lbl">${isTrader?'Sell Price':'Unit Price'} (₦)</div><input class="entry-input" type="number" value="${p.price}" id="ep_${i}" oninput="calcRow(${i},${p.price},${isTrader?p.cost||0:0},${isTrader})"></div>
       </div>
       <div class="entry-result">
         <div>
-          <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;">Total Sales</div>
-          <div class="entry-total" id="etotal_${i}">₦0</div>
+          <div style="font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;">${isTrader?'Revenue':'Total Sales'}</div>
+          <div class="entry-total" id="et_${i}">₦0</div>
+          ${isTrader?`<div style="font-size:11px;color:#27AE60;font-weight:600;" id="eprofit_${i}">Profit: ₦0</div>`:''}
         </div>
-        <span class="entry-alert pill-ok" id="ealert_${i}" style="background:var(--green-light);color:#27AE60;">✅ OK</span>
+        <span id="eal_${i}" style="background:var(--gl);color:#27AE60;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;">✅ OK</span>
       </div>
     </div>
   `).join('');
 }
 
-function calcEntryRow(i, basePrice) {
-  const stock = parseFloat(document.getElementById(`estock_${i}`).value) || 0;
-  const qty = parseFloat(document.getElementById(`eqty_${i}`).value) || 0;
-  const price = parseFloat(document.getElementById(`eprice_${i}`).value) || basePrice;
-  const total = qty * price;
-  const remaining = stock - qty;
-  document.getElementById(`etotal_${i}`).textContent = '₦' + total.toLocaleString();
-  const alertEl = document.getElementById(`ealert_${i}`);
-  if (remaining <= 0) { alertEl.textContent = '🔴 OUT'; alertEl.style.background = 'var(--red-light)'; alertEl.style.color = 'var(--red)'; }
-  else if (remaining <= 3) { alertEl.textContent = '🔴 RESTOCK'; alertEl.style.background = 'var(--red-light)'; alertEl.style.color = 'var(--red)'; }
-  else if (remaining <= 8) { alertEl.textContent = '🟡 LOW'; alertEl.style.background = 'var(--amber-light)'; alertEl.style.color = 'var(--amber)'; }
-  else { alertEl.textContent = '✅ OK'; alertEl.style.background = 'var(--green-light)'; alertEl.style.color = '#27AE60'; }
+function calcRow(i,baseP,costP,isTrader){
+  const s=parseFloat(document.getElementById(`es_${i}`)?.value)||0;
+  const q=parseFloat(document.getElementById(`eq_${i}`)?.value)||0;
+  const p=parseFloat(document.getElementById(`ep_${i}`)?.value)||baseP;
+  const total=q*p;
+  document.getElementById(`et_${i}`).textContent='₦'+total.toLocaleString();
+  if(isTrader&&document.getElementById(`eprofit_${i}`)){
+    const profit=(p-costP)*q;
+    document.getElementById(`eprofit_${i}`).textContent='Profit: ₦'+Math.max(0,profit).toLocaleString();
+  }
+  const rem=s-q;
+  const al=document.getElementById(`eal_${i}`);
+  if(rem<=0){al.textContent='🔴 OUT';al.style.background='var(--rl)';al.style.color='var(--r)';}
+  else if(rem<=3){al.textContent='🔴 RESTOCK';al.style.background='var(--rl)';al.style.color='var(--r)';}
+  else if(rem<=8){al.textContent='🟡 LOW';al.style.background='var(--al)';al.style.color='var(--a)';}
+  else{al.textContent='✅ OK';al.style.background='var(--gl)';al.style.color='#27AE60';}
 }
 
-function saveEntry() {
-  const clientId = currentClientId || 'healthfirst';
-  const meds = getMedicines(clientId);
-  const items = meds.map((m, i) => ({
-    name: m.name,
-    qty: parseFloat(document.getElementById(`eqty_${i}`)?.value) || 0,
-    price: parseFloat(document.getElementById(`eprice_${i}`)?.value) || m.price,
-  }));
-  const entries = getEntries(clientId);
-  const today = new Date().toDateString();
-  const existing = entries.findIndex(e => e.date === today);
-  const entry = { date: today, items };
-  if (existing >= 0) entries[existing] = entry;
-  else entries.push(entry);
-  saveEntries(clientId, entries);
-
-  // Update stocks
-  meds.forEach((m, i) => {
-    const qty = parseFloat(document.getElementById(`eqty_${i}`)?.value) || 0;
-    m.stock = Math.max(0, m.stock - qty);
-  });
-  saveMedicines(clientId, meds);
-  showToast('Daily entry saved successfully!');
+function saveEntry(){
+  const cid=CID||'healthfirst';
+  const prods=getProducts(cid);
+  const entries=getEntries(cid);
+  const items=prods.map((p,i)=>({name:p.name,qty:parseFloat(document.getElementById(`eq_${i}`)?.value)||0,price:parseFloat(document.getElementById(`ep_${i}`)?.value)||p.price}));
+  const today=new Date().toDateString();
+  const idx=entries.findIndex(e=>e.date===today);
+  const entry={date:today,items};
+  if(idx>=0) entries[idx]=entry; else entries.push(entry);
+  saveEntries(cid,entries);
+  prods.forEach((p,i)=>{const q=parseFloat(document.getElementById(`eq_${i}`)?.value)||0;p.stock=Math.max(0,p.stock-q);});
+  saveProducts(cid,prods);
+  showToast('Daily entry saved! 🔥');
   buildDashboard();
 }
 
-// ══ ALERTS ══
-function isNearExpiry(expiry) {
-  try {
-    const [mo, yr] = expiry.split('/');
-    const exp = new Date(parseInt(yr), parseInt(mo)-1, 1);
-    const diff = (exp - new Date()) / (1000*60*60*24);
-    return diff < 60;
-  } catch { return false; }
+// ── ALERTS ──
+function isNearExpiry(exp){
+  try{const[m,y]=exp.split('/');const d=new Date(parseInt(y),parseInt(m)-1,1);return (d-new Date())<(60*24*60*60*1000)&&exp!=='N/A';}catch{return false;}
 }
 
-function buildAlerts(filter) {
-  const clientId = currentClientId || 'healthfirst';
-  const meds = getMedicines(clientId);
-  let alerts = [];
-
-  meds.forEach(m => {
-    if (m.stock === 0) alerts.push({ type:'restock', sev:'critical', icon:'🔴', title:`${m.name} — OUT OF STOCK`, desc:`0 units remaining. Min level: ${m.min}. Order immediately.`, time:'Today' });
-    else if (m.stock < m.min) alerts.push({ type:'restock', sev:'warn', icon:'🟡', title:`${m.name} — LOW STOCK`, desc:`${m.stock} units left. Min: ${m.min}. Order ${m.min - m.stock} units.`, time:'Today' });
-    if (isNearExpiry(m.expiry)) alerts.push({ type:'expiry', sev:'critical', icon:'⚠️', title:`${m.name} — NEAR EXPIRY`, desc:`Expires ${m.expiry}. Within 60-day threshold. Review stock immediately.`, time:'Today' });
+function buildAlerts(filter){
+  const cid=CID||'healthfirst';
+  const prods=getProducts(cid);
+  let alerts=[];
+  prods.forEach(p=>{
+    if(p.stock===0) alerts.push({type:'restock',sev:'critical',icon:'🔴',title:`${p.name} — OUT OF STOCK`,desc:`0 units. Min: ${p.min}. Order immediately.`,time:'Today'});
+    else if(p.stock<p.min) alerts.push({type:'restock',sev:'warn',icon:'🟡',title:`${p.name} — LOW STOCK`,desc:`${p.stock} units left. Min: ${p.min}. Order ${p.min-p.stock} more.`,time:'Today'});
+    if(isNearExpiry(p.expiry)) alerts.push({type:'expiry',sev:'critical',icon:'⚠️',title:`${p.name} — NEAR EXPIRY`,desc:`Expires ${p.expiry}. Review stock immediately.`,time:'Today'});
   });
-
-  if (filter !== 'all') alerts = alerts.filter(a => a.type === filter);
-
-  document.getElementById('alertsList').innerHTML = alerts.length === 0
-    ? '<div style="padding:24px;text-align:center;color:var(--text3);">✅ No alerts at this time</div>'
-    : alerts.map(a => `
+  if(filter!=='all') alerts=alerts.filter(a=>a.type===filter);
+  document.getElementById('alertsList').innerHTML=alerts.length===0
+    ?'<div style="padding:24px;text-align:center;color:var(--t3);">✅ No alerts right now</div>'
+    :alerts.map(a=>`
       <div class="alert-item">
         <div class="alert-emoji">${a.icon}</div>
         <div class="alert-content">
-          <div class="alert-title" style="color:${a.sev==='critical'?'var(--red)':'var(--amber)'}">${a.title}</div>
+          <div class="alert-title" style="color:${a.sev==='critical'?'var(--r)':'var(--a)'}">${a.title}</div>
           <div class="alert-desc">${a.desc}</div>
           <div class="alert-time">${a.time}</div>
         </div>
@@ -1078,261 +865,339 @@ function buildAlerts(filter) {
     `).join('');
 }
 
-function filterAlerts(f, el) {
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
-  buildAlerts(f);
+function filterAlerts(f,el){
+  document.querySelectorAll('#page-alerts .tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active'); buildAlerts(f);
 }
 
-// ══ INVENTORY ══
-function buildInventory(filter) {
-  const clientId = currentClientId || 'healthfirst';
-  let meds = getMedicines(clientId);
-  if (filter === 'OTC') meds = meds.filter(m => m.type === 'OTC');
-  else if (filter === 'POM') meds = meds.filter(m => m.type === 'POM');
-  else if (filter === 'low') meds = meds.filter(m => m.stock <= m.min);
+// ── STOCK / INVENTORY ──
+function buildStock(filter){
+  const cid=CID||'healthfirst';
+  const bizType=CU.bizType||'retail';
+  let prods=getProducts(cid);
+  if(filter==='low') prods=prods.filter(p=>p.stock<=p.min);
+  else if(filter==='expiry') prods=prods.filter(p=>isNearExpiry(p.expiry));
+  else if(filter==='OTC') prods=prods.filter(p=>p.type==='OTC');
+  else if(filter==='POM') prods=prods.filter(p=>p.type==='POM');
 
-  document.getElementById('inventoryList').innerHTML = meds.map(m => {
-    const toRestock = m.stock < m.min ? m.min - m.stock : 0;
-    let pillClass = 'pill-ok', pillText = '✅ OK';
-    if (m.stock === 0) { pillClass = 'pill-critical'; pillText = '🔴 OUT'; }
-    else if (m.stock < m.min) { pillClass = 'pill-low'; pillText = '🟡 LOW'; }
-    const expiring = isNearExpiry(m.expiry);
+  const isTrader=bizType==='trader';
+  const isMed=bizType==='medicine';
+
+  document.getElementById('stockList').innerHTML=prods.map(p=>{
+    const toRestock=p.stock<p.min?p.min-p.stock:0;
+    let pillCls='pill-ok',pillTxt='✅ OK';
+    if(p.stock===0){pillCls='pill-crit';pillTxt='🔴 OUT';}
+    else if(p.stock<p.min){pillCls='pill-low';pillTxt='🟡 LOW';}
+    const exp=isNearExpiry(p.expiry);
     return `
-      <div class="card" style="margin-bottom:10px;">
-        <div class="card-body">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
-            <div>
-              <div style="font-size:13px;font-weight:600;">${m.name}</div>
-              <div style="font-size:11px;color:var(--text3);margin-top:2px;">${m.cat}</div>
-            </div>
-            <div style="display:flex;gap:6px;align-items:center;">
-              <span class="pill pill-${m.type.toLowerCase()}">${m.type}</span>
-              <span class="pill ${pillClass}">${pillText}</span>
-            </div>
+      <div class="inv-card">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+          <div>
+            <div style="font-size:13px;font-weight:600;">${p.name}</div>
+            <div style="font-size:11px;color:var(--t3);margin-top:2px;">${p.cat}</div>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
-            <div style="background:var(--bg3);border-radius:8px;padding:8px;text-align:center;">
-              <div style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Current</div>
-              <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:${m.stock<=m.min?'var(--red)':'var(--text)'};">${m.stock}</div>
-            </div>
-            <div style="background:var(--bg3);border-radius:8px;padding:8px;text-align:center;">
-              <div style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Min Level</div>
-              <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;">${m.min}</div>
-            </div>
-            <div style="background:var(--bg3);border-radius:8px;padding:8px;text-align:center;">
-              <div style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">To Restock</div>
-              <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:${toRestock>0?'var(--orange)':'var(--text3)'};">${toRestock||'—'}</div>
-            </div>
+          <div style="display:flex;gap:6px;align-items:center;">
+            ${p.type!=='General'?`<span class="pill pill-${p.type.toLowerCase()}">${p.type}</span>`:''}
+            <span class="pill ${pillCls}">${pillTxt}</span>
           </div>
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding-top:10px;border-top:1px solid var(--border2);">
-            <div style="font-size:12px;color:${expiring?'var(--red)':'var(--text3)'};">📅 Expiry: ${m.expiry} ${expiring?'⚠️':''}</div>
-            <div style="font-size:12px;color:var(--orange);font-family:'DM Mono',monospace;">₦${m.price.toLocaleString()}/unit</div>
-          </div>
+        </div>
+        <div class="inv-stats-row">
+          <div class="inv-stat"><div class="inv-stat-val" style="color:${p.stock<=p.min?'var(--r)':'var(--t)'}">${p.stock}</div><div class="inv-stat-lbl">Current</div></div>
+          <div class="inv-stat"><div class="inv-stat-val">${p.min}</div><div class="inv-stat-lbl">Min Level</div></div>
+          <div class="inv-stat"><div class="inv-stat-val" style="color:${toRestock>0?'var(--o)':'var(--t3)'}">${toRestock||'—'}</div><div class="inv-stat-lbl">To Order</div></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:10px;padding-top:10px;border-top:1px solid var(--br2);font-size:11px;">
+          <span style="color:${exp?'var(--r)':'var(--t3)'};">${isMed?`📅 ${p.expiry}${exp?' ⚠️':''}`:''}</span>
+          <span style="color:var(--o);font-family:'DM Mono',monospace;">₦${p.price.toLocaleString()}/unit</span>
+          ${isTrader&&p.cost?`<span style="color:var(--g);font-family:'DM Mono',monospace;">Profit: ₦${(p.price-p.cost).toLocaleString()}</span>`:''}
         </div>
       </div>
     `;
   }).join('');
 }
 
-function filterInventory(f, el) {
-  document.querySelectorAll('#page-inventory .tab').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
-  buildInventory(f);
+function filterStock(f,el){
+  document.querySelectorAll('#page-stock .tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active'); buildStock(f);
 }
 
-// ══ REPORTS ══
-function buildReports() {
-  const clientId = currentClientId || 'healthfirst';
-  const entries = getEntries(clientId);
-  const meds = getMedicines(clientId);
-
-  const reports = getData('reports_' + clientId, [
-    { week:'Week of 14 Apr 2025', products:12, revenue:218400 },
-    { week:'Week of 7 Apr 2025', products:12, revenue:194800 },
-    { week:'Week of 31 Mar 2025', products:11, revenue:187200 },
-  ]);
-
-  document.getElementById('reportsList').innerHTML = reports.map(r => `
+// ── REPORTS ──
+function buildReports(){
+  const cid=CID||'healthfirst';
+  const reports=getReports(cid);
+  document.getElementById('reportsList').innerHTML=reports.map(r=>`
     <div class="report-row">
-      <div>
-        <div class="report-week">${r.week}</div>
-        <div class="report-meta">${r.products} products · 5 days</div>
-      </div>
+      <div><div class="report-week">${r.week}</div><div class="report-meta">All products · 5 days</div></div>
       <div style="text-align:right;">
-        <div class="report-rev">₦${r.revenue.toLocaleString()}</div>
+        <div class="report-rev">₦${r.rev.toLocaleString()}</div>
         <div style="display:flex;gap:6px;margin-top:6px;justify-content:flex-end;">
           <button class="btn btn-ghost btn-sm">📄 View</button>
-          <button class="btn btn-primary btn-sm" onclick="shareReport('${r.week}','${r.revenue}')">📲 Share</button>
+          <button class="btn btn-primary btn-sm" onclick="shareReport()">📲 Share</button>
         </div>
       </div>
     </div>
   `).join('');
-
-  // Weekly breakdown
-  const days = ['Mon','Tue','Wed','Thu','Fri'];
-  document.getElementById('weeklyBreakdown').innerHTML = `
-    <div style="overflow-x:auto;">
-      <table style="width:100%;border-collapse:collapse;font-size:12px;">
-        <thead>
-          <tr style="color:var(--text3);font-size:10px;letter-spacing:1px;text-transform:uppercase;">
-            <th style="text-align:left;padding:6px 8px;">Product</th>
-            ${days.map(d => `<th style="padding:6px 8px;">${d}</th>`).join('')}
-            <th style="padding:6px 8px;color:var(--orange);">Total</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${meds.slice(0,8).map(m => {
-            const dayVals = days.map(() => Math.floor(Math.random()*4)*m.price);
-            const total = dayVals.reduce((a,b)=>a+b,0);
-            return `
-              <tr style="border-top:1px solid var(--border2);">
-                <td style="padding:8px;color:var(--text);font-weight:500;">${m.name}</td>
-                ${dayVals.map(v=>`<td style="padding:8px;text-align:center;font-family:'DM Mono',monospace;color:var(--text2);">₦${(v/1000).toFixed(1)}k</td>`).join('')}
-                <td style="padding:8px;text-align:center;font-family:'DM Mono',monospace;color:var(--orange);font-weight:600;">₦${(total/1000).toFixed(1)}k</td>
-              </tr>
-            `;
-          }).join('')}
-        </tbody>
-      </table>
-    </div>
-  `;
 }
 
-function generateReport() {
-  const clientId = currentClientId || 'healthfirst';
-  const reports = getData('reports_' + clientId, []);
-  const now = new Date();
-  const weekStr = `Week of ${now.toLocaleDateString('en-NG',{day:'numeric',month:'short',year:'numeric'})}`;
-  if (!reports.find(r => r.week === weekStr)) {
-    reports.unshift({ week: weekStr, products: 12, revenue: Math.floor(Math.random()*50000)+180000 });
-    setData('reports_' + clientId, reports);
+function generateReport(){
+  const cid=CID||'healthfirst';
+  const reports=S('reports_'+cid,[]);
+  const now=new Date();
+  const wk=`Week of ${now.toLocaleDateString('en-NG',{day:'numeric',month:'short',year:'numeric'})}`;
+  if(!reports.find(r=>r.week===wk)){
+    reports.unshift({week:wk,rev:Math.floor(Math.random()*80000)+150000});
+    SS('reports_'+cid,reports);
   }
   buildReports();
-  showToast('Report generated! Ready to share.');
+  showToast('Report generated! Ready to share 📊');
 }
 
-function shareReport(week, revenue) {
-  const msg = `📊 InsightEdge Analytics Report\n\n${week}\nTotal Revenue: ₦${parseInt(revenue).toLocaleString()}\n\n💊 Products tracked: 12\n📈 Full report available on your dashboard\n\n— InsightEdge Analytics | @mollz021`;
-  if (navigator.share) {
-    navigator.share({ title: 'InsightEdge Report', text: msg });
-  } else {
-    navigator.clipboard?.writeText(msg).then(() => showToast('Report copied — paste into WhatsApp!'));
-  }
+function shareReport(){
+  const client=CU.role==='admin'?getClients().find(c=>c.id===CID)||{name:'Client'}:CU;
+  const msg=`📊 InsightEdge Analytics Report\n\n${client.name}\nPlatform: mollz11.github.io/insightedge\n\nYour weekly report is ready. Log in to view your full dashboard.\n\n— Gideon Omoloye | InsightEdge Analytics\n📸 @mollz021`;
+  if(navigator.share) navigator.share({title:'InsightEdge Report',text:msg});
+  else { navigator.clipboard?.writeText(msg).then(()=>showToast('Copied! Paste into WhatsApp 📲')); }
 }
 
-// ══ CLIENTS (Admin) ══
-function buildClients() {
-  const clients = getClients();
-  document.getElementById('totalClients').textContent = clients.length;
-  document.getElementById('clientsList').innerHTML = clients.map(c => `
-    <div class="client-card">
-      <div class="client-card-header">
-        <div class="client-avatar">${c.name[0]}</div>
-        <div>
-          <div class="client-name">${c.name}</div>
-          <div class="client-location">📍 ${c.location}</div>
+// ── CLIENTS (Admin) ──
+function buildClients(){
+  const clients=getClients();
+  document.getElementById('totalClients').textContent=clients.length;
+  const totalRev=clients.reduce((s,c)=>s+c.fee,0);
+  document.getElementById('weeklyRev').textContent='₦'+(totalRev/1000).toFixed(0)+'K';
+  document.getElementById('clientsList').innerHTML=clients.map(c=>{
+    const plan=PLANS[c.plan]||PLANS.basic;
+    const icon=BIZ_ICONS[c.bizType]||'📦';
+    const alerts=getProducts(c.id).filter(p=>p.stock<=p.min||isNearExpiry(p.expiry)).length;
+    return `
+      <div class="client-card">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+          <div class="client-avatar">${c.name[0]}</div>
+          <div style="flex:1;">
+            <div style="font-size:14px;font-weight:600;">${c.name}</div>
+            <div style="font-size:11px;color:var(--t3);">${icon} ${c.bizType} · 📍 ${c.location}</div>
+          </div>
+          <span class="pill pill-ok">✅ Active</span>
         </div>
-        <span class="pill pill-ok" style="margin-left:auto;">✅ Active</span>
+        <div class="client-stats">
+          <div class="client-stat"><div class="client-stat-val">₦${(c.fee/1000).toFixed(0)}K</div><div class="client-stat-lbl">Weekly Fee</div></div>
+          <div class="client-stat"><div class="client-stat-val">${plan.label.split(' ')[0]}</div><div class="client-stat-lbl">${plan.label.split(' ').slice(1).join(' ')}</div></div>
+          <div class="client-stat"><div class="client-stat-val" style="color:${alerts>0?'var(--r)':'var(--g)'}">${alerts}</div><div class="client-stat-lbl">Alerts</div></div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:12px;">
+          <button class="btn btn-ghost btn-sm" onclick="viewClient('${c.id}')">View Dashboard</button>
+          <button class="btn btn-primary btn-sm" style="flex:1;" onclick="shareReportForClient('${c.id}')">📲 Send Report</button>
+        </div>
       </div>
-      <div class="client-stats">
-        <div class="client-stat">
-          <div class="client-stat-val">₦${(c.fee/1000).toFixed(0)}K</div>
-          <div class="client-stat-label">Weekly Fee</div>
-        </div>
-        <div class="client-stat">
-          <div class="client-stat-val">${getData('reports_'+c.id,[]).length || 3}</div>
-          <div class="client-stat-label">Reports</div>
-        </div>
-        <div class="client-stat">
-          <div class="client-stat-val">${getMedicines(c.id).filter(m=>m.stock<=m.min).length}</div>
-          <div class="client-stat-label">Alerts</div>
-        </div>
+    `;
+  }).join('');
+}
+
+function viewClient(cid){
+  CID=cid;
+  const c=getClients().find(x=>x.id===cid);
+  document.getElementById('topbarStore').textContent=(BIZ_ICONS[c.bizType]||'📦')+' '+c.name;
+  showPage('dashboard');
+  showToast('Viewing '+c.name);
+}
+
+function shareReportForClient(cid){
+  const c=getClients().find(x=>x.id===cid);
+  const msg=`📊 InsightEdge Analytics\n\nHello ${c.owner||c.name},\nYour weekly report is ready!\n\nLog in at: mollz11.github.io/insightedge\nUsername: ${c.username}\n\nQuestions? DM @mollz021\n— Gideon | InsightEdge Analytics`;
+  if(navigator.share) navigator.share({title:'InsightEdge Report',text:msg});
+  else { navigator.clipboard?.writeText(msg).then(()=>showToast('Message copied!')); }
+}
+
+// ── ADD CLIENT ──
+function openAddClient(){ document.getElementById('addClientModal').classList.add('open'); }
+function updateClientFee(){
+  const pkg=document.getElementById('ncPlan');
+  const fee=document.getElementById('ncFee');
+  if(pkg&&fee) fee.value=pkg.value;
+}
+
+function addClient(){
+  const name=document.getElementById('ncName').value.trim();
+  const user=document.getElementById('ncUser').value.trim().toLowerCase();
+  const pass=document.getElementById('ncPass').value;
+  const bizType=document.getElementById('ncBizType').value;
+  const plan=document.getElementById('ncPlan').value;
+  const fee=parseInt(document.getElementById('ncFee').value)||40000;
+  const loc=document.getElementById('ncLocation').value.trim();
+  const owner=document.getElementById('ncOwner').value.trim();
+  const phone=document.getElementById('ncPhone').value.trim();
+  if(!name||!user||!pass){showToast('Fill all required fields');return;}
+  const planKey=Object.keys(PLANS).find(k=>PLANS[k].fee===fee)||'standard';
+  const clients=getClients();
+  clients.push({id:user,name,bizType,location:loc,owner,phone,fee,plan:planKey,username:user});
+  SS('clients',clients);
+  const users=getUsers();
+  users.push({username:user,password:pass,role:'client',name,store:name+' — '+loc,bizType,plan:planKey,clientId:user});
+  SS('users',users);
+  closeModal('addClientModal');
+  buildClients();
+  showToast(name+' added! ✅');
+}
+
+// ── ADD PRODUCT ──
+function openAddProduct(){ document.getElementById('addProductModal').classList.add('open'); }
+
+function addProduct(){
+  const cid=CID||'healthfirst';
+  const prods=getProducts(cid);
+  const name=document.getElementById('npName').value.trim();
+  if(!name){showToast('Enter product name');return;}
+  prods.push({
+    name,cat:document.getElementById('npCat').value||'General',
+    type:document.getElementById('npType').value,
+    min:parseInt(document.getElementById('npMin').value)||10,
+    stock:parseInt(document.getElementById('npStock').value)||0,
+    expiry:document.getElementById('npExpiry').value||'N/A',
+    price:parseInt(document.getElementById('npPrice').value)||500,
+  });
+  saveProducts(cid,prods);
+  closeModal('addProductModal');
+  buildStock('all');
+  showToast(name+' added! ✅');
+}
+
+// ── PRICING PAGE ──
+let selectedBiz='supermarket';
+function buildPricingPage(){
+  buildPlanCards(selectedBiz);
+}
+
+function selectBiz(biz,el){
+  selectedBiz=biz;
+  document.querySelectorAll('.biz-card').forEach(c=>c.classList.remove('selected'));
+  el.classList.add('selected');
+  buildPlanCards(biz);
+}
+
+function buildPlanCards(biz){
+  const bizFeatures={
+    supermarket:['Fast-moving stock alerts','Best selling day analysis','Daily sales by product','Restock before stock runs out'],
+    medicine:['OTC vs POM sales breakdown','Expiry date tracking','PCN compliance records','Drug reorder alerts'],
+    trader:['Daily profit per item','Cost vs selling price','Cash flow tracking','Best margin products'],
+    retail:['Product performance','Stock level monitoring','Weekly revenue summary','Business insight notes'],
+  };
+
+  document.getElementById('planCards').innerHTML=[
+    {key:'basic',cls:'plan-basic',tier:'🥉 Basic',price:'₦30,000',period:'per week · ₦120,000/month',discount:'Save ₦12,000 first month'},
+    {key:'standard',cls:'plan-std',tier:'🥈 Standard',price:'₦40,000',period:'per week · ₦160,000/month',discount:'Save ₦16,000 first month',popular:true},
+    {key:'premium',cls:'plan-prem',tier:'🥇 Premium',price:'₦50,000',period:'per week · ₦200,000/month',discount:'Save ₦20,000 first month'},
+  ].map(p=>`
+    <div class="plan-card ${p.cls}">
+      ${p.popular?'<div class="plan-popular">POPULAR</div>':''}
+      <div class="plan-tier">${p.tier}</div>
+      <div class="plan-price">${p.price}</div>
+      <div class="plan-period">${p.period}</div>
+      <div class="plan-features">
+        ${PLAN_FEATURES[p.key].map(f=>`<div class="plan-feature">${f}</div>`).join('')}
+        ${(bizFeatures[biz]||[]).slice(0,2).map(f=>`<div class="plan-feature" style="color:var(--o);">${f}</div>`).join('')}
       </div>
-      <div style="display:flex;gap:8px;margin-top:12px;">
-        <button class="btn btn-ghost btn-sm" onclick="viewClientDashboard('${c.id}')">View Dashboard</button>
-        <button class="btn btn-primary btn-sm" style="flex:1;" onclick="shareReport('This week','${c.fee*4}')">📲 Send Report</button>
-      </div>
+      <div class="plan-discount">🎉 ${p.discount} (10% off)</div>
     </div>
   `).join('');
 }
 
-function viewClientDashboard(clientId) {
-  currentClientId = clientId;
-  const client = getClients().find(c => c.id === clientId);
-  document.getElementById('topbarStore').textContent = '💊 ' + client.name;
-  showPage('dashboard');
-  showToast('Viewing ' + client.name + ' dashboard');
+// ── UTILS ──
+function closeModal(id){ document.getElementById(id).classList.remove('open'); }
+function buildAgentClients(){
+  const clients=getClients().filter(c=>c.source==='agent');
+  document.getElementById('agentClientCount').textContent=clients.length;
+  const monthlyComm=clients.reduce((s,c)=>s+Math.floor(c.fee*4*0.1),0);
+  document.getElementById('agentCommission').textContent='₦'+monthlyComm.toLocaleString();
+  const planLabels={basic:'📋 Basic',standard:'📊 Standard',premium:'📱 Premium',direct:'💼 Direct'};
+  const bizIcons={supermarket:'🛒',medicine:'💊',trader:'🛍️',retail:'📦'};
+  document.getElementById('agentClientsList').innerHTML=clients.length===0
+    ?'<div class="card"><div class="card-body" style="text-align:center;color:var(--text3);">No clients yet. Start marketing InsightEdge! 🚀</div></div>'
+    :clients.map(c=>`
+      <div class="client-card">
+        <div class="client-card-header">
+          <div class="client-avatar">${c.name[0]}</div>
+          <div style="flex:1;"><div class="client-name">${c.name}</div><div class="client-location">${bizIcons[c.bizType]||'📦'} ${c.location}</div></div>
+          <span class="pill pill-ok">✅ Active</span>
+        </div>
+        <div class="client-stats">
+          <div class="client-stat"><div class="client-stat-val">₦${(c.fee/1000).toFixed(0)}K</div><div class="client-stat-label">Weekly</div></div>
+          <div class="client-stat"><div class="client-stat-val">${planLabels[c.plan]||'Basic'}</div><div class="client-stat-label">Plan</div></div>
+          <div class="client-stat"><div class="client-stat-val">₦${Math.floor(c.fee*4*0.1/1000)}K</div><div class="client-stat-label">My Cut/mo</div></div>
+        </div>
+      </div>
+    `).join('');
 }
 
-function openAddClient() { document.getElementById('addClientModal').classList.add('open'); }
+function buildCommission(){
+  const clients=getClients().filter(c=>c.source==='agent');
+  const el=document.getElementById('earningsBreakdown');
+  if(!clients.length){el.innerHTML='<div style="text-align:center;color:var(--text3);font-size:13px;">No clients referred yet. Start sharing InsightEdge! 🚀</div>';return;}
+  const planLabels={basic:'📋 Basic',standard:'📊 Standard',premium:'📱 Premium'};
+  let total=0;
+  el.innerHTML=clients.map(c=>{
+    const monthly=Math.floor(c.fee*4*0.1);
+    total+=monthly;
+    return `
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border2);">
+        <div><div style="font-size:13px;font-weight:500;">${c.name}</div><div style="font-size:11px;color:var(--text3);">${planLabels[c.plan]||'Basic'} · ₦${c.fee.toLocaleString()}/wk</div></div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--green);">₦${monthly.toLocaleString()}</div>
+      </div>
+    `;
+  }).join('')+`<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;margin-top:4px;">
+    <div style="font-size:14px;font-weight:700;">Total Monthly Commission</div>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--orange);">₦${total.toLocaleString()}</div>
+  </div>`;
+}
 
-function addClient() {
-  const name = document.getElementById('newClientName').value.trim();
-  const loc = document.getElementById('newClientLocation').value.trim();
-  const owner = document.getElementById('newClientOwner').value.trim();
-  const phone = document.getElementById('newClientPhone').value.trim();
-  const user = document.getElementById('newClientUser').value.trim().toLowerCase();
-  const pass = document.getElementById('newClientPass').value;
-  const fee = parseInt(document.getElementById('newClientFee').value) || 15000;
+function changePassword(){
+  const current = document.getElementById('currentPass').value;
+  const newP = document.getElementById('newPass').value;
+  const confirm = document.getElementById('confirmPass').value;
+  const errEl = document.getElementById('passError');
 
-  if (!name || !user || !pass) { showToast('Please fill all required fields'); return; }
+  // Validate current password
+  if(current !== currentUser.password){
+    errEl.textContent = '❌ Current password is incorrect';
+    errEl.style.display = 'block'; return;
+  }
 
-  const id = user;
-  const clients = getClients();
-  clients.push({ id, name, location: loc, owner, phone, fee, username: user, joinDate: new Date().toLocaleDateString('en-NG',{day:'numeric',month:'short',year:'numeric'}) });
-  setData('clients', clients);
+  // Validate new password length
+  if(newP.length < 6){
+    errEl.textContent = '❌ New password must be at least 6 characters';
+    errEl.style.display = 'block'; return;
+  }
 
+  // Validate passwords match
+  if(newP !== confirm){
+    errEl.textContent = '❌ New passwords do not match';
+    errEl.style.display = 'block'; return;
+  }
+
+  // Update password in storage
   const users = getUsers();
-  users.push({ username: user, password: pass, role: 'client', name, store: `${name} — ${loc}`, clientId: id });
-  setData('users', users);
+  const idx = users.findIndex(u => u.username === currentUser.username);
+  if(idx >= 0){
+    users[idx].password = newP;
+    setData('users', users);
+    currentUser.password = newP;
+    setData('session', currentUser.username);
+  }
 
-  closeModal('addClientModal');
-  buildClients();
-  showToast(`${name} added successfully!`);
+  // Clear fields
+  document.getElementById('currentPass').value = '';
+  document.getElementById('newPass').value = '';
+  document.getElementById('confirmPass').value = '';
+  errEl.style.display = 'none';
+
+  showToast('Password updated successfully! 🔐');
 }
 
-function openAddProduct() { document.getElementById('addProductModal').classList.add('open'); }
-
-function addProduct() {
-  const clientId = currentClientId || 'healthfirst';
-  const meds = getMedicines(clientId);
-  const name = document.getElementById('newProdName').value.trim();
-  if (!name) { showToast('Enter product name'); return; }
-  meds.push({
-    name,
-    cat: document.getElementById('newProdCat').value || 'Other',
-    type: document.getElementById('newProdType').value,
-    min: parseInt(document.getElementById('newProdMin').value) || 10,
-    stock: parseInt(document.getElementById('newProdStock').value) || 0,
-    expiry: document.getElementById('newProdExpiry').value || '12/2026',
-    price: parseInt(document.getElementById('newProdPrice').value) || 500,
-  });
-  saveMedicines(clientId, meds);
-  closeModal('addProductModal');
-  buildInventory('all');
-  showToast(name + ' added to inventory!');
-}
-
-function saveSettings() { showToast('Settings saved successfully!'); }
-function closeModal(id) { document.getElementById(id).classList.remove('open'); }
-
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  document.getElementById('toastMsg').textContent = msg;
+function showToast(msg){
+  const t=document.getElementById('toast');
+  document.getElementById('toastMsg').textContent=msg;
   t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 3000);
+  setTimeout(()=>t.classList.remove('show'),3000);
 }
-
-// ── Always show login first ──
-window.onload = () => {
-  setData('session', null);
-  document.getElementById('loginScreen').classList.add('active');
-  document.getElementById('appScreen').classList.remove('active');
-};
-
-// ── Enter key on login ──
-document.getElementById('loginPass').addEventListener('keypress', e => { if (e.key === 'Enter') doLogin(); });
 </script>
 </body>
 </html>
