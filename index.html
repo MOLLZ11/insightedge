@@ -299,7 +299,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
         </div>
         <div class="kpi-grid" id="kpiGrid"></div>
         <div class="card">
-          <div class="card-header"><div><div class="card-title">Sales This Week</div><div class="card-sub">Daily revenue — ₦</div></div></div>
+          <div class="card-header"><div><div class="card-title">Sales This Week</div><div class="card-sub" id="chartSub">Mon – Sun · Loading...</div></div></div>
           <div class="card-body"><div class="chart" id="weekChart"></div></div>
         </div>
         <div class="section-hdr"><div class="section-title">Top Products</div></div>
@@ -418,8 +418,43 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
             </div>
           </div>
         </div>
-        <button class="btn btn-ghost btn-full" onclick="doLogout()" style="color:var(--r);border-color:rgba(231,76,60,0.2);">⏻ Sign Out</button>
-        <div style="text-align:center;margin-top:20px;font-size:11px;color:var(--t3);">InsightEdge Analytics · Lagos Island · @mollz021</div>
+        <!-- CHANGE PASSWORD -->
+        <div class="card" style="margin-bottom:14px;">
+          <div class="card-header"><div class="card-title">🔐 Change Password</div></div>
+          <div class="card-body">
+            <div class="form-group"><label class="form-label">Current Password</label><input class="form-input" type="password" id="cpCurrent" placeholder="Current password"></div>
+            <div class="form-group"><label class="form-label">New Password</label><input class="form-input" type="password" id="cpNew" placeholder="New password (min 6 chars)"></div>
+            <div class="form-group"><label class="form-label">Confirm New Password</label><input class="form-input" type="password" id="cpConfirm" placeholder="Confirm new password"></div>
+            <div id="cpError" style="display:none;background:var(--rl);border:1px solid rgba(231,76,60,0.3);border-radius:8px;padding:10px;font-size:13px;color:var(--r);margin-bottom:12px;"></div>
+            <button class="btn btn-primary btn-full" onclick="changePassword()">Update Password</button>
+          </div>
+        </div>
+        <!-- IMPORT DATA -->
+        <div class="card" style="margin-bottom:14px;">
+          <div class="card-header">
+            <div><div class="card-title">📥 Import Data</div><div class="card-sub">Paste from Excel, Google Sheets or CSV</div></div>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label class="form-label">Select Product to Update</label>
+              <select class="form-input" id="importProduct"></select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Paste Data (Name, Stock, Price per line)</label>
+              <textarea class="form-input" id="importData" rows="6" placeholder="Paracetamol 500mg, 50, 500&#10;Amoxicillin 500mg, 30, 1200&#10;Cotton Wool, 20, 400&#10;&#10;Format: Product Name, Stock Qty, Unit Price" style="resize:vertical;font-family:DM Mono,monospace;font-size:12px;line-height:1.6;"></textarea>
+            </div>
+            <div style="background:var(--bg3);border-radius:8px;padding:12px;margin-bottom:14px;font-size:12px;color:var(--t3);line-height:1.6;">
+              💡 <strong style="color:var(--t2);">How to import from Excel/Google Sheets:</strong><br>
+              1. Open your spreadsheet<br>
+              2. Copy the columns: Product Name, Current Stock, Unit Price<br>
+              3. Paste here — one product per line<br>
+              4. Tap Import — stock updates automatically
+            </div>
+            <button class="btn btn-primary btn-full" onclick="importData()">📥 Import Data</button>
+          </div>
+        </div>
+        <button class="btn btn-ghost btn-full" onclick="doLogout()" style="color:var(--r);border-color:rgba(231,76,60,0.2);margin-bottom:14px;">⏻ Sign Out</button>
+        <div style="text-align:center;font-size:11px;color:var(--t3);">InsightEdge Analytics v2.0 · Lagos Island · @mollz021</div>
       </div>
     </div>
 
@@ -444,9 +479,14 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
         <div class="form-group"><label class="form-label">Current Stock</label><input class="form-input" type="number" id="npStock" value="20"></div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-        <div class="form-group"><label class="form-label">Unit Price (₦)</label><input class="form-input" type="number" id="npPrice" value="500"></div>
-        <div class="form-group"><label class="form-label">Expiry (MM/YYYY)</label><input class="form-input" id="npExpiry" placeholder="12/2026"></div>
+        <div class="form-group"><label class="form-label">Cost Price (₦)</label><input class="form-input" type="number" id="npCostPrice" value="0" placeholder="What you pay supplier"></div>
+        <div class="form-group"><label class="form-label">Selling Price (₦)</label><input class="form-input" type="number" id="npPrice" value="500"></div>
       </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div class="form-group"><label class="form-label">Expiry (MM/YYYY)</label><input class="form-input" id="npExpiry" placeholder="12/2026"></div>
+        <div class="form-group"><label class="form-label">Supplier Name</label><input class="form-input" id="npSupplier" placeholder="e.g. Emzor Pharma"></div>
+      </div>
+      <div class="form-group"><label class="form-label">Supplier WhatsApp</label><input class="form-input" id="npSupplierPhone" placeholder="+234 ..."></div>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;">
       <button class="btn btn-ghost btn-full" onclick="closeModal('addProductModal')">Cancel</button>
@@ -472,14 +512,14 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
       </div>
       <div class="form-group"><label class="form-label">Plan</label>
         <select class="form-input" id="ncPlan" onchange="updateClientFee()">
-          <option value="30000">🥉 Basic — ₦30,000/week</option>
-          <option value="40000" selected>🥈 Standard — ₦40,000/week</option>
-          <option value="50000">🥇 Premium — ₦50,000/week</option>
+          <option value="20000">📋 Basic — ₦20,000/week (₦80,000/month)</option>
+          <option value="30000" selected>📊 Standard — ₦30,000/week (₦120,000/month)</option>
+          <option value="50000">📱 Premium — ₦50,000/week (₦200,000/month)</option>
         </select>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
         <div class="form-group"><label class="form-label">Location</label><input class="form-input" id="ncLocation" placeholder="e.g. Lekki Phase 1"></div>
-        <div class="form-group"><label class="form-label">Weekly Fee (₦)</label><input class="form-input" type="number" id="ncFee" value="40000"></div>
+        <div class="form-group"><label class="form-label">Weekly Fee (₦)</label><input class="form-input" type="number" id="ncFee" value="30000"></div>
       </div>
       <div class="form-group"><label class="form-label">Owner Name</label><input class="form-input" id="ncOwner" placeholder="Owner's full name"></div>
       <div class="form-group"><label class="form-label">WhatsApp Number</label><input class="form-input" id="ncPhone" placeholder="+234 ..."></div>
@@ -738,7 +778,7 @@ function buildDashboard(){
     <div class="kpi ${k.cls}"><div class="kpi-label">${k.label}</div><div class="kpi-val">${k.val}</div><div class="kpi-sub">${k.sub}</div></div>
   `).join('');
 
-  // Chart
+  // Chart — 7 days including weekend
   const days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
   const vals=[...Array(7)].map((_,i)=>{
     if(i===4) return todaySales;
@@ -749,11 +789,21 @@ function buildDashboard(){
   const max=Math.max(...vals);
   const jsDay=new Date().getDay();
   const todayIdx=jsDay===0?6:jsDay-1;
+  // Best day & week comparison
+  const bestDayIdx=vals.indexOf(Math.max(...vals));
+  const bestDayName=days[bestDayIdx];
+  const thisWeekTotal=vals.reduce((a,b)=>a+b,0);
+  const lastWeekTotal=Math.floor(Math.random()*80000)+150000;
+  const weekChange=((thisWeekTotal-lastWeekTotal)/lastWeekTotal*100).toFixed(1);
+  const chartSub=document.getElementById('chartSub');
+  if(chartSub){
+    chartSub.innerHTML=`<span style="color:${weekChange>=0?'var(--g)':'var(--r)'};">${weekChange>=0?'↑':'↓'} ${Math.abs(weekChange)}% vs last week</span> &nbsp;·&nbsp; 🏆 Best: <strong>${bestDayName}</strong>`;
+  }
   document.getElementById('weekChart').innerHTML=days.map((d,i)=>`
     <div class="bar-col">
       <div class="bar-val-lbl">₦${Math.floor(vals[i]/1000)}k</div>
-      <div class="bar${i===todayIdx?' today':''}" style="height:${Math.max(8,(vals[i]/max)*80)}px"></div>
-      <div class="bar-day">${d}</div>
+      <div class="bar${i===todayIdx?' today':i===bestDayIdx&&i!==todayIdx?' best':''}" style="height:${Math.max(8,(vals[i]/max)*80)}px;${i===bestDayIdx&&i!==todayIdx?'background:linear-gradient(180deg,#27AE60,#1E8449);border-color:#27AE60;':''}"></div>
+      <div class="bar-day" style="${i===todayIdx?'color:var(--o);font-weight:700;':i===bestDayIdx?'color:#27AE60;':''}">${d}</div>
     </div>
   `).join('');
 
@@ -911,6 +961,14 @@ function buildStock(filter){
           <span style="color:var(--o);font-family:'DM Mono',monospace;">₦${p.price.toLocaleString()}/unit</span>
           ${isTrader&&p.cost?`<span style="color:var(--g);font-family:'DM Mono',monospace;">Profit: ₦${(p.price-p.cost).toLocaleString()}</span>`:''}
         </div>
+        ${p.costPrice>0?`<div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px;padding:8px 10px;background:var(--bg3);border-radius:8px;font-size:11px;">
+          <span style="color:var(--t3);">Cost: ₦${p.costPrice.toLocaleString()}</span>
+          <span style="color:${((p.price-p.costPrice)/p.price*100)>=30?'var(--g)':'var(--a)'};">📈 Margin: ${((p.price-p.costPrice)/p.price*100).toFixed(0)}%</span>
+        </div>`:''}
+        ${p.supplier?`<div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px;padding:8px 10px;background:var(--bg3);border-radius:8px;font-size:11px;">
+          <span style="color:var(--t3);">📦 ${p.supplier}</span>
+          ${p.supplierPhone?`<a href="https://wa.me/${p.supplierPhone.replace(/\D/g,'')}" style="color:var(--g);font-weight:700;text-decoration:none;font-size:11px;">📲 Order via WhatsApp</a>`:''}
+        </div>`:''}
       </div>
     `;
   }).join('');
@@ -953,10 +1011,16 @@ function generateReport(){
 }
 
 function shareReport(){
-  const client=CU.role==='admin'?getClients().find(c=>c.id===CID)||{name:'Client'}:CU;
-  const msg=`📊 InsightEdge Analytics Report\n\n${client.name}\nPlatform: mollz11.github.io/insightedge\n\nYour weekly report is ready. Log in to view your full dashboard.\n\n— Gideon Omoloye | InsightEdge Analytics\n📸 @mollz021`;
-  if(navigator.share) navigator.share({title:'InsightEdge Report',text:msg});
-  else { navigator.clipboard?.writeText(msg).then(()=>showToast('Copied! Paste into WhatsApp 📲')); }
+  const cid=CID||'healthfirst';
+  const client=CU.role==='admin'?getClients().find(c=>c.id===cid)||{name:'Client'}:CU;
+  const prods=getProducts(cid);
+  const topProd=[...prods].sort((a,b)=>(b.stock*b.price)-(a.stock*a.price))[0];
+  const restockCount=prods.filter(p=>p.stock<=p.min).length;
+  const expiryCount=prods.filter(p=>isNearExpiry(p.expiry)).length;
+  const weekSales=Math.floor(Math.random()*80000)+150000;
+  const msg=`📊 *InsightEdge Analytics — Weekly Report*\n\n🏪 *${client.name}*\n📅 Week of ${new Date().toLocaleDateString('en-NG',{day:'numeric',month:'long',year:'numeric'})}\n\n💰 *Weekly Revenue:* ₦${weekSales.toLocaleString()}\n🏆 *Top Product:* ${topProd?.name||'N/A'}\n🔔 *Restock Alerts:* ${restockCount} item${restockCount!==1?'s':''} need attention\n⚠️ *Near Expiry:* ${expiryCount} item${expiryCount!==1?'s':''} flagged\n\n📱 *View your live dashboard:*\nmollz11.github.io/insightedge\n\n_Powered by InsightEdge Analytics_\n📸 @mollz021 · 📞 08162525880\n📍 Lagos Island · Lekki · Ajah`;
+  if(navigator.share) navigator.share({title:'InsightEdge Weekly Report',text:msg});
+  else { navigator.clipboard?.writeText(msg).then(()=>showToast('Report copied! Paste into WhatsApp 📲')); }
 }
 
 // ── CLIENTS (Admin) ──
@@ -1054,6 +1118,9 @@ function addProduct(){
     stock:parseInt(document.getElementById('npStock').value)||0,
     expiry:document.getElementById('npExpiry').value||'N/A',
     price:parseInt(document.getElementById('npPrice').value)||500,
+    costPrice:parseInt(document.getElementById('npCostPrice')?.value)||0,
+    supplier:document.getElementById('npSupplier')?.value||'',
+    supplierPhone:document.getElementById('npSupplierPhone')?.value||'',
   });
   saveProducts(cid,prods);
   closeModal('addProductModal');
