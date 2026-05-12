@@ -385,6 +385,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
           <div class="biz-card" onclick="selectBiz('medicine',this)"><div class="biz-card-icon">💊</div><div class="biz-card-name">Medicine Store</div><div class="biz-card-desc">+ Expiry tracking</div></div>
           <div class="biz-card" onclick="selectBiz('trader',this)"><div class="biz-card-icon">🛍️</div><div class="biz-card-name">Petty Trader</div><div class="biz-card-desc">+ Profit tracking</div></div>
           <div class="biz-card" onclick="selectBiz('retail',this)"><div class="biz-card-icon">📦</div><div class="biz-card-name">Retail Shop</div><div class="biz-card-desc">General tracking</div></div>
+          <div class="biz-card" onclick="selectBiz('quickfix',this)"><div class="biz-card-icon">🔧</div><div class="biz-card-name">Quick Fix Services</div><div class="biz-card-desc">Jobs & parts tracking</div></div>
         </div>
 
         <div class="plan-cards" id="planCards"></div>
@@ -508,18 +509,19 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
           <option value="medicine">💊 Medicine Store</option>
           <option value="trader">🛍️ Petty Trader</option>
           <option value="retail">📦 Retail Shop</option>
+          <option value="quickfix">🔧 Quick Fix Services</option>
         </select>
       </div>
       <div class="form-group"><label class="form-label">Plan</label>
         <select class="form-input" id="ncPlan" onchange="updateClientFee()">
-          <option value="20000">📋 Basic — ₦20,000/week (₦80,000/month)</option>
-          <option value="30000" selected>📊 Standard — ₦30,000/week (₦120,000/month)</option>
-          <option value="50000">📱 Premium — ₦50,000/week (₦200,000/month)</option>
+          <option value="15000">📋 Basic — ₦15,000/week (₦60,000/month)</option>
+          <option value="25000" selected>📊 Standard — ₦25,000/week (₦100,000/month)</option>
+          <option value="35000">📱 Premium — ₦35,000/week (₦140,000/month)</option>
         </select>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
         <div class="form-group"><label class="form-label">Location</label><input class="form-input" id="ncLocation" placeholder="e.g. Lekki Phase 1"></div>
-        <div class="form-group"><label class="form-label">Weekly Fee (₦)</label><input class="form-input" type="number" id="ncFee" value="30000"></div>
+        <div class="form-group"><label class="form-label">Weekly Fee (₦)</label><input class="form-input" type="number" id="ncFee" value="25000"></div>
       </div>
       <div class="form-group"><label class="form-label">Owner Name</label><input class="form-input" id="ncOwner" placeholder="Owner's full name"></div>
       <div class="form-group"><label class="form-label">WhatsApp Number</label><input class="form-input" id="ncPhone" placeholder="+234 ..."></div>
@@ -599,6 +601,23 @@ const PRODUCTS_BY_TYPE = {
     {name:"Product C",cat:"General",type:"General",min:10,stock:30,expiry:"N/A",price:500},
     {name:"Product D",cat:"General",type:"General",min:10,stock:0,expiry:"N/A",price:3000},
     {name:"Product E",cat:"General",type:"General",min:10,stock:15,expiry:"N/A",price:1500},
+  ],
+  quickfix:[
+    {name:"AC Unit Filter",cat:"AC Parts",type:"Spare Part",min:5,stock:12,expiry:"N/A",price:8500},
+    {name:"AC Gas Refill (1kg)",cat:"AC Parts",type:"Consumable",min:3,stock:8,expiry:"N/A",price:12000},
+    {name:"Printer Cartridge - Black",cat:"Printer Parts",type:"Consumable",min:4,stock:10,expiry:"N/A",price:6500},
+    {name:"Printer Cartridge - Colour",cat:"Printer Parts",type:"Consumable",min:3,stock:6,expiry:"N/A",price:9000},
+    {name:"Generator Spark Plug",cat:"Generator Parts",type:"Spare Part",min:4,stock:15,expiry:"N/A",price:3500},
+    {name:"Generator Engine Oil (1L)",cat:"Generator Parts",type:"Consumable",min:5,stock:20,expiry:"N/A",price:4500},
+    {name:"UPS Battery (12V)",cat:"Power Parts",type:"Spare Part",min:3,stock:7,expiry:"N/A",price:18000},
+    {name:"Network Cable (per 10m)",cat:"Network",type:"Material",min:5,stock:25,expiry:"N/A",price:3000},
+    {name:"CCTV Camera (Standard)",cat:"Security",type:"Equipment",min:2,stock:5,expiry:"N/A",price:35000},
+    {name:"Laptop Charger (Universal)",cat:"Computer Parts",type:"Accessory",min:3,stock:8,expiry:"N/A",price:7500},
+    {name:"Office Chair (Standard)",cat:"Furniture",type:"Equipment",min:2,stock:4,expiry:"N/A",price:45000},
+    {name:"Extension Cable (4-Way)",cat:"Electrical",type:"Accessory",min:5,stock:12,expiry:"N/A",price:4000},
+    {name:"Router/Switch",cat:"Network",type:"Equipment",min:2,stock:6,expiry:"N/A",price:22000},
+    {name:"Keyboard & Mouse Set",cat:"Computer Parts",type:"Accessory",min:3,stock:9,expiry:"N/A",price:8000},
+    {name:"Screen Cleaning Kit",cat:"Maintenance",type:"Consumable",min:5,stock:18,expiry:"N/A",price:2500},
   ],
 };
 
@@ -1147,6 +1166,7 @@ function buildPlanCards(biz){
     medicine:['OTC vs POM sales breakdown','Expiry date tracking','PCN compliance records','Drug reorder alerts'],
     trader:['Daily profit per item','Cost vs selling price','Cash flow tracking','Best margin products'],
     retail:['Product performance','Stock level monitoring','Weekly revenue summary','Business insight notes'],
+    quickfix:['Daily job completion tracking','Spare parts inventory alerts','Corporate client revenue ranking','Engineer performance metrics'],
   };
 
   document.getElementById('planCards').innerHTML=[
