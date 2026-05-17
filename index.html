@@ -514,9 +514,9 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
       </div>
       <div class="form-group"><label class="form-label">Plan</label>
         <select class="form-input" id="ncPlan" onchange="updateClientFee()">
-          <option value="15000">📋 Basic — ₦15,000/week (₦60,000/month)</option>
-          <option value="25000" selected>📊 Standard — ₦25,000/week (₦100,000/month)</option>
-          <option value="35000">📱 Premium — ₦35,000/week (₦140,000/month)</option>
+          <option value="25000">📋 Basic — ₦25,000/week (₦100,000/month)</option>
+          <option value="40000" selected>📊 Standard — ₦40,000/week (₦160,000/month)</option>
+          <option value="60000">📱 Premium — ₦60,000/week (₦240,000/month)</option>
         </select>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
@@ -550,12 +550,33 @@ const DEFAULT_USERS = [
   {username:'healthfirst',password:'store123',role:'client',name:'HealthFirst Pharmacy',store:'HealthFirst Pharmacy — Lekki',bizType:'medicine',plan:'standard',clientId:'healthfirst'},
   {username:'freshmart',password:'store456',role:'client',name:'FreshMart Supermarket',store:'FreshMart — Ajah',bizType:'supermarket',plan:'basic',clientId:'freshmart'},
   {username:'mama-tunde',password:'store789',role:'client',name:"Mama Tunde Traders",store:"Mama Tunde — Lekki Market",bizType:'trader',plan:'premium',clientId:'mama-tunde'},
+  {username:'greenpharma',password:'green123',role:'client',name:'GreenMed Pharmacy',store:'GreenMed Pharmacy — Victoria Island',bizType:'medicine',plan:'premium',clientId:'greenpharma'},
+  {username:'lagosmart',password:'lagos123',role:'client',name:'Lagos Smartmart',store:'Lagos Smartmart — Surulere',bizType:'supermarket',plan:'standard',clientId:'lagosmart'},
+  {username:'cityretail',password:'city123',role:'client',name:'City Retail Hub',store:'City Retail Hub — Ikeja',bizType:'retail',plan:'premium',clientId:'cityretail'},
+  {username:'pearlpharm',password:'pearl123',role:'client',name:'Pearl Pharmacy & Stores',store:'Pearl Pharmacy — Ajah',bizType:'medicine',plan:'standard',clientId:'pearlpharm'},
+  {username:'elitemart',password:'elite123',role:'client',name:'Elite Supermart',store:'Elite Supermart — Lekki Phase 1',bizType:'supermarket',plan:'premium',clientId:'elitemart'},
 ];
 
 const DEFAULT_CLIENTS = [
   {id:'healthfirst',name:'HealthFirst Pharmacy',bizType:'medicine',location:'Lekki Phase 1',owner:'Mr. Adeyemi',phone:'+234 801 234 5678',fee:40000,plan:'standard',username:'healthfirst'},
   {id:'freshmart',name:'FreshMart Supermarket',bizType:'supermarket',location:'Ajah',owner:'Mrs. Bello',phone:'+234 802 345 6789',fee:30000,plan:'basic',username:'freshmart'},
   {id:'mama-tunde',name:"Mama Tunde Traders",bizType:'trader',location:'Lekki Market',owner:'Mama Tunde',phone:'+234 803 456 7890',fee:50000,plan:'premium',username:'mama-tunde'},
+,
+  {id:'corp1', name:'MedPlus Pharmacy Lekki', bizType:'medicine', location:'Lekki Phase 1', owner:'Dr. Adeyemi Folake', phone:'+234 801 234 5678', fee:160000, plan:'standard', username:'medplus', password:'medplus123'},
+  {id:'corp2', name:'FreshMart Supermarket', bizType:'supermarket', location:'Victoria Island', owner:'Mr. Chukwuemeka Obi', phone:'+234 802 345 6789', fee:240000, plan:'premium', username:'freshmart', password:'freshmart123'},
+  {id:'corp3', name:'HealthFirst Pharmacy Ajah', bizType:'medicine', location:'Ajah, Lagos', owner:'Pharm. Blessing Eze', phone:'+234 803 456 7890', fee:100000, plan:'basic', username:'healthfirst2', password:'healthfirst456'},
+  {id:'corp4', name:'Royal Stores Nigeria', bizType:'retail', location:'Ikeja, Lagos', owner:'Mrs. Aisha Mohammed', phone:'+234 804 567 8901', fee:160000, plan:'standard', username:'royalstores', password:'royal123'},
+  {id:'corp5', name:'GreenMed Pharmacy VI', bizType:'medicine', location:'Victoria Island', owner:'Pharm. Tunde Adewale', phone:'+234 805 678 9012', fee:240000, plan:'premium', username:'greenmed2', password:'greenmed456'},
+  {id:'corp6', name:'TechBridge IT Solutions', bizType:'retail', location:'Ikeja GRA, Lagos', owner:'Mr. Emeka Nwosu', phone:'+234 806 789 0123', fee:160000, plan:'standard', username:'techbridge', password:'techbridge123'},
+  {id:'corp7', name:'Apex Office Maintenance', bizType:'quickfix', location:'Victoria Island, Lagos', owner:'Mrs. Chioma Okafor', phone:'+234 807 890 1234', fee:240000, plan:'premium', username:'apexoffice', password:'apex123'},
+  {id:'corp8', name:'SilverCare Pharmacy', bizType:'medicine', location:'Surulere, Lagos', owner:'Pharm. Yetunde Balogun', phone:'+234 808 901 2345', fee:100000, plan:'basic', username:'silvercare', password:'silver123'},
+  {id:'corp9', name:'DataTech Nigeria Ltd', bizType:'retail', location:'Lekki Phase 2, Lagos', owner:'Mr. Babatunde Adeyinka', phone:'+234 809 012 3456', fee:240000, plan:'premium', username:'datatech', password:'datatech123'},
+  {id:'corp10', name:'ProFix Equipment Services', bizType:'quickfix', location:'Ojo, Lagos', owner:'Mr. Seun Adesanya', phone:'+234 810 123 4567', fee:160000, plan:'standard', username:'profix', password:'profix123'},
+  {id:'corp11', name:'Lagos MedStore', bizType:'medicine', location:'Alimosho, Lagos', owner:'Pharm. Grace Obiora', phone:'+234 811 234 5678', fee:160000, plan:'standard', username:'lagosmed', password:'lagosmed123'},
+  {id:'corp12', name:'SmartMart Superstore', bizType:'supermarket', location:'Festac Town, Lagos', owner:'Mrs. Funke Adebisi', phone:'+234 812 345 6789', fee:240000, plan:'premium', username:'smartmart', password:'smart123'},
+  {id:'corp13', name:'NetWorks IT Services', bizType:'retail', location:'Maryland, Lagos', owner:'Mr. Chidi Okpara', phone:'+234 813 456 7890', fee:100000, plan:'basic', username:'networks', password:'networks123'},
+  {id:'corp14', name:'PrimeCare Hospital Pharmacy', bizType:'medicine', location:'Gbagada, Lagos', owner:'Dr. Amaka Ihejirika', phone:'+234 814 567 8901', fee:240000, plan:'premium', username:'primecare', password:'prime123'},
+  {id:'corp15', name:'QuickServe Office Support', bizType:'quickfix', location:'Ikorodu, Lagos', owner:'Mr. Tayo Olawale', phone:'+234 815 678 9012', fee:160000, plan:'standard', username:'quickserve', password:'qserve123'},
 ];
 
 const PRODUCTS_BY_TYPE = {
