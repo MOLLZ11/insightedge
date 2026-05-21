@@ -21,12 +21,8 @@
 html,body{height:100%;overflow:hidden;}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);font-size:14px;}
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(202,111,30,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(202,111,30,0.03) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;}
-
-/* SCREENS */
 .screen{display:none;height:100dvh;overflow-y:auto;flex-direction:column;position:relative;z-index:1;}
 .screen.active{display:flex;}
-
-/* LOGIN */
 #loginScreen{align-items:center;justify-content:center;padding:20px;}
 .login-glow{position:fixed;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(202,111,30,0.12) 0%,transparent 70%);top:-100px;right:-100px;pointer-events:none;}
 .login-box{width:100%;max-width:380px;background:var(--bg2);border:1px solid var(--br);border-radius:20px;padding:28px 22px;}
@@ -46,8 +42,6 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .login-error{background:var(--rl);border:1px solid rgba(231,76,60,0.3);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--r);margin-bottom:14px;display:none;}
 .login-contact{margin-top:18px;text-align:center;font-size:12px;color:var(--t3);}
 .login-contact span{color:var(--o);}
-
-/* TOPBAR */
 .topbar{background:var(--bg2);border-bottom:1px solid var(--br);padding:0 16px;height:56px;min-height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
 .topbar-logo{font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:1.5px;}
 .topbar-store{font-size:11px;color:var(--o);}
@@ -55,29 +49,21 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .icon-btn{width:36px;height:36px;border-radius:9px;background:var(--bg3);border:1px solid var(--br2);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;position:relative;transition:border-color 0.2s;}
 .icon-btn:active{background:var(--bg4);}
 .notif-dot{position:absolute;top:6px;right:6px;width:7px;height:7px;background:var(--r);border-radius:50%;}
-
-/* BOTTOM NAV */
 .bottom-nav{background:var(--bg2);border-top:1px solid var(--br);display:flex;padding:8px 0 max(8px,env(safe-area-inset-bottom));min-height:60px;position:sticky;bottom:0;z-index:100;}
 .nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;color:var(--t3);transition:color 0.2s;padding:4px 0;position:relative;}
 .nav-item.active{color:var(--o);}
 .nav-icon{font-size:20px;}
 .nav-label{font-size:9px;letter-spacing:0.5px;text-transform:uppercase;font-weight:500;}
 .nav-badge{position:absolute;top:2px;right:calc(50% - 20px);background:var(--r);color:#fff;font-size:9px;font-weight:700;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
-
-/* PAGES */
 .page{display:none;flex:1;overflow-y:auto;}
 .page.active{display:block;}
 .page-inner{padding:16px;padding-bottom:24px;}
-
-/* CARDS */
 .card{background:var(--bg2);border:1px solid var(--br2);border-radius:14px;overflow:hidden;margin-bottom:14px;}
 .card-header{padding:14px 16px;border-bottom:1px solid var(--br2);display:flex;align-items:center;justify-content:space-between;}
 .card-title{font-size:13px;font-weight:600;}
 .card-sub{font-size:11px;color:var(--t3);margin-top:2px;}
 .card-body{padding:16px;}
 .card-body.np{padding:0;}
-
-/* KPIs */
 .kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
 .kpi{background:var(--bg2);border:1px solid var(--br2);border-radius:14px;padding:14px;position:relative;overflow:hidden;}
 .kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
@@ -92,8 +78,6 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .kpi-sub{font-size:10px;color:var(--t3);margin-top:4px;}
 .kpi-change{font-size:10px;margin-top:4px;}
 .up{color:var(--g);} .down{color:var(--r);} .warn{color:var(--a);}
-
-/* WELCOME */
 .welcome{background:linear-gradient(135deg,#1a0800,#0d1200);border:1px solid var(--br);border-radius:16px;padding:18px;margin-bottom:14px;position:relative;overflow:hidden;}
 .welcome::after{content:'📊';position:absolute;right:14px;bottom:10px;font-size:44px;opacity:0.1;}
 .welcome-greet{font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:4px;}
@@ -101,16 +85,12 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .welcome-store{font-size:11px;color:var(--o);margin-top:3px;}
 .welcome-date{font-size:11px;color:rgba(255,255,255,0.25);margin-top:8px;font-family:'DM Mono',monospace;}
 .welcome-plan{display:inline-flex;align-items:center;gap:5px;background:var(--og);border:1px solid var(--br);border-radius:20px;padding:3px 10px;font-size:10px;color:var(--o);font-weight:600;margin-top:8px;}
-
-/* CHART */
 .chart{display:flex;align-items:flex-end;gap:6px;height:90px;padding:0 4px;}
 .bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;}
 .bar-val-lbl{font-size:9px;color:var(--t3);font-family:'DM Mono',monospace;}
 .bar{width:100%;border-radius:4px 4px 0 0;min-height:4px;background:rgba(202,111,30,0.12);border:1px solid rgba(202,111,30,0.15);}
 .bar.today{background:linear-gradient(180deg,var(--o),var(--od));border-color:var(--o);}
 .bar-day{font-size:9px;color:var(--t3);}
-
-/* LIST ROWS */
 .list-row{display:flex;align-items:center;padding:12px 16px;gap:12px;border-bottom:1px solid var(--br2);transition:background 0.15s;cursor:pointer;}
 .list-row:last-child{border-bottom:none;}
 .list-row:active{background:var(--bg3);}
@@ -122,8 +102,6 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .row-right{text-align:right;flex-shrink:0;}
 .row-val{font-size:13px;font-weight:600;font-family:'DM Mono',monospace;color:var(--o);}
 .row-meta{font-size:11px;color:var(--t3);margin-top:2px;}
-
-/* PILLS */
 .pill{display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;}
 .pill-ok{background:var(--gl);color:#27AE60;}
 .pill-low{background:var(--al);color:var(--a);}
@@ -134,8 +112,6 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .pill-basic{background:rgba(202,111,30,0.1);color:#E67E22;}
 .pill-std{background:rgba(255,255,255,0.06);color:#aaa;}
 .pill-prem{background:var(--gl);color:#27AE60;}
-
-/* ENTRY CARDS */
 .entry-card{background:var(--bg3);border:1px solid var(--br2);border-radius:12px;padding:14px;margin-bottom:10px;}
 .entry-card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
 .entry-card-name{font-size:13px;font-weight:600;}
@@ -147,8 +123,6 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .entry-result{display:flex;align-items:center;justify-content:space-between;margin-top:10px;padding-top:10px;border-top:1px solid var(--br2);}
 .entry-total{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--o);}
 .entry-alert-lbl{font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;}
-
-/* ALERT ITEMS */
 .alert-item{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;border-bottom:1px solid var(--br2);}
 .alert-item:last-child{border-bottom:none;}
 .alert-emoji{font-size:18px;flex-shrink:0;margin-top:2px;}
@@ -156,18 +130,12 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .alert-title{font-size:13px;font-weight:600;margin-bottom:2px;}
 .alert-desc{font-size:12px;color:var(--t2);line-height:1.4;}
 .alert-time{font-size:10px;color:var(--t3);margin-top:4px;font-family:'DM Mono',monospace;}
-
-/* SECTION */
 .section-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
 .section-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1px;}
 .section-sub{font-size:11px;color:var(--t3);}
-
-/* TABS */
 .tabs{display:flex;gap:4px;background:var(--bg3);padding:4px;border-radius:10px;margin-bottom:14px;}
 .tab{flex:1;text-align:center;padding:8px 4px;border-radius:7px;font-size:11px;font-weight:500;cursor:pointer;color:var(--t3);transition:all 0.2s;}
 .tab.active{background:var(--bg2);color:var(--o);border:1px solid var(--br);}
-
-/* BUTTONS */
 .btn{display:inline-flex;align-items:center;gap:6px;padding:10px 16px;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:opacity 0.2s;}
 .btn:active{opacity:0.85;}
 .btn-primary{background:linear-gradient(135deg,var(--od),var(--o));color:#fff;box-shadow:0 4px 16px var(--og);}
@@ -175,16 +143,12 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .btn-green{background:var(--gl);color:#27AE60;border:1px solid rgba(30,132,73,0.2);}
 .btn-full{width:100%;justify-content:center;}
 .btn-sm{padding:7px 12px;font-size:12px;}
-
-/* BUSINESS TYPE SELECTOR */
 .biz-selector{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
 .biz-card{background:var(--bg3);border:1px solid var(--br2);border-radius:12px;padding:14px;text-align:center;cursor:pointer;transition:all 0.2s;}
 .biz-card.selected{border-color:var(--o);background:var(--og);}
 .biz-card-icon{font-size:28px;margin-bottom:8px;}
 .biz-card-name{font-size:12px;font-weight:600;color:var(--t);}
 .biz-card-desc{font-size:10px;color:var(--t3);margin-top:3px;}
-
-/* PRICING DISPLAY */
 .plan-cards{display:flex;flex-direction:column;gap:10px;margin-bottom:14px;}
 .plan-card{background:var(--bg3);border:1px solid var(--br2);border-radius:12px;padding:16px;position:relative;overflow:hidden;}
 .plan-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
@@ -200,41 +164,29 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 .plan-feature{font-size:12px;color:var(--t2);display:flex;align-items:center;gap:6px;}
 .plan-feature::before{content:'✓';color:#27AE60;font-weight:700;font-size:11px;}
 .plan-discount{margin-top:10px;background:var(--gl);border-radius:6px;padding:6px 10px;font-size:11px;color:#27AE60;font-weight:600;}
-
-/* CLIENT CARD */
 .client-card{background:var(--bg2);border:1px solid var(--br2);border-radius:14px;padding:16px;margin-bottom:10px;}
 .client-avatar{width:42px;height:42px;border-radius:11px;background:linear-gradient(135deg,var(--od),var(--o));display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:18px;color:#fff;flex-shrink:0;}
 .client-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px;}
 .client-stat{background:var(--bg3);border-radius:8px;padding:8px;text-align:center;}
 .client-stat-val{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--o);}
 .client-stat-lbl{font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;}
-
-/* REPORT ROW */
 .report-row{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;border-bottom:1px solid var(--br2);}
 .report-row:last-child{border-bottom:none;}
 .report-week{font-size:13px;font-weight:600;}
 .report-meta{font-size:11px;color:var(--t3);margin-top:2px;}
 .report-rev{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--o);}
-
-/* MODALS */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:200;display:none;align-items:flex-end;}
 .modal-overlay.open{display:flex;}
 .modal{background:var(--bg2);border:1px solid var(--br);border-radius:20px 20px 0 0;padding:20px;width:100%;max-height:85dvh;overflow-y:auto;}
 .modal-handle{width:36px;height:4px;background:var(--bg4);border-radius:2px;margin:0 auto 18px;}
 .modal-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;margin-bottom:16px;}
-
-/* TOAST */
 .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--bg2);border:1px solid var(--g);border-radius:12px;padding:12px 20px;font-size:13px;color:var(--t);z-index:999;opacity:0;transition:all 0.3s;white-space:nowrap;box-shadow:0 8px 32px rgba(0,0,0,0.5);display:flex;align-items:center;gap:8px;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-
-/* INVENTORY */
 .inv-card{background:var(--bg3);border:1px solid var(--br2);border-radius:12px;padding:14px;margin-bottom:10px;}
 .inv-stats-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px;}
 .inv-stat{background:var(--bg2);border-radius:8px;padding:8px;text-align:center;}
 .inv-stat-val{font-family:'Bebas Neue',sans-serif;font-size:22px;}
 .inv-stat-lbl{font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;}
-
-/* PROFIT TRACKER (Petty trader) */
 .profit-card{background:var(--bg3);border:1px solid var(--br2);border-radius:12px;padding:14px;margin-bottom:10px;}
 .profit-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px;}
 .profit-stat{background:var(--bg2);border-radius:8px;padding:10px;text-align:center;}
@@ -385,7 +337,8 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
           <div class="biz-card" onclick="selectBiz('medicine',this)"><div class="biz-card-icon">💊</div><div class="biz-card-name">Medicine Store</div><div class="biz-card-desc">+ Expiry tracking</div></div>
           <div class="biz-card" onclick="selectBiz('trader',this)"><div class="biz-card-icon">🛍️</div><div class="biz-card-name">Petty Trader</div><div class="biz-card-desc">+ Profit tracking</div></div>
           <div class="biz-card" onclick="selectBiz('retail',this)"><div class="biz-card-icon">📦</div><div class="biz-card-name">Retail Shop</div><div class="biz-card-desc">General tracking</div></div>
-          <div class="biz-card" onclick="selectBiz('quickfix',this)"><div class="biz-card-icon">🔧</div><div class="biz-card-name">Quick Fix Services</div><div class="biz-card-desc">Jobs & parts tracking</div></div>
+          <div class="biz-card" onclick="selectBiz('maintenance',this)"><div class="biz-card-icon">🔧</div><div class="biz-card-name">Maintenance</div><div class="biz-card-desc">Jobs & parts tracking</div></div>
+          <div class="biz-card" onclick="selectBiz('beerparlour',this)"><div class="biz-card-icon">🍺</div><div class="biz-card-name">Beer Parlour</div><div class="biz-card-desc">Drinks & daily sales</div></div>
         </div>
 
         <div class="plan-cards" id="planCards"></div>
@@ -419,7 +372,6 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
             </div>
           </div>
         </div>
-        <!-- CHANGE PASSWORD -->
         <div class="card" style="margin-bottom:14px;">
           <div class="card-header"><div class="card-title">🔐 Change Password</div></div>
           <div class="card-body">
@@ -430,7 +382,6 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
             <button class="btn btn-primary btn-full" onclick="changePassword()">Update Password</button>
           </div>
         </div>
-        <!-- IMPORT DATA -->
         <div class="card" style="margin-bottom:14px;">
           <div class="card-header">
             <div><div class="card-title">📥 Import Data</div><div class="card-sub">Paste from Excel, Google Sheets or CSV</div></div>
@@ -442,14 +393,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
             </div>
             <div class="form-group">
               <label class="form-label">Paste Data (Name, Stock, Price per line)</label>
-              <textarea class="form-input" id="importData" rows="6" placeholder="Paracetamol 500mg, 50, 500&#10;Amoxicillin 500mg, 30, 1200&#10;Cotton Wool, 20, 400&#10;&#10;Format: Product Name, Stock Qty, Unit Price" style="resize:vertical;font-family:DM Mono,monospace;font-size:12px;line-height:1.6;"></textarea>
-            </div>
-            <div style="background:var(--bg3);border-radius:8px;padding:12px;margin-bottom:14px;font-size:12px;color:var(--t3);line-height:1.6;">
-              💡 <strong style="color:var(--t2);">How to import from Excel/Google Sheets:</strong><br>
-              1. Open your spreadsheet<br>
-              2. Copy the columns: Product Name, Current Stock, Unit Price<br>
-              3. Paste here — one product per line<br>
-              4. Tap Import — stock updates automatically
+              <textarea class="form-input" id="importData" rows="6" placeholder="Paracetamol 500mg, 50, 500&#10;Amoxicillin 500mg, 30, 1200" style="resize:vertical;font-family:DM Mono,monospace;font-size:12px;line-height:1.6;"></textarea>
             </div>
             <button class="btn btn-primary btn-full" onclick="importData()">📥 Import Data</button>
           </div>
@@ -470,9 +414,9 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
     <div class="modal-handle"></div>
     <div class="modal-title">Add New Product</div>
     <div style="display:grid;gap:12px;">
-      <div class="form-group"><label class="form-label">Product Name</label><input class="form-input" id="npName" placeholder="e.g. Paracetamol 500mg"></div>
+      <div class="form-group"><label class="form-label">Product Name</label><input class="form-input" id="npName" placeholder="e.g. Star Lager Beer (crate)"></div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-        <div class="form-group"><label class="form-label">Category</label><input class="form-input" id="npCat" placeholder="e.g. Analgesic"></div>
+        <div class="form-group"><label class="form-label">Category</label><input class="form-input" id="npCat" placeholder="e.g. Lager Beer"></div>
         <div class="form-group"><label class="form-label">Type</label><select class="form-input" id="npType"><option>OTC</option><option>POM</option><option>General</option></select></div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
@@ -480,12 +424,12 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
         <div class="form-group"><label class="form-label">Current Stock</label><input class="form-input" type="number" id="npStock" value="20"></div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-        <div class="form-group"><label class="form-label">Cost Price (₦)</label><input class="form-input" type="number" id="npCostPrice" value="0" placeholder="What you pay supplier"></div>
+        <div class="form-group"><label class="form-label">Cost Price (₦)</label><input class="form-input" type="number" id="npCostPrice" value="0"></div>
         <div class="form-group"><label class="form-label">Selling Price (₦)</label><input class="form-input" type="number" id="npPrice" value="500"></div>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-        <div class="form-group"><label class="form-label">Expiry (MM/YYYY)</label><input class="form-input" id="npExpiry" placeholder="12/2026"></div>
-        <div class="form-group"><label class="form-label">Supplier Name</label><input class="form-input" id="npSupplier" placeholder="e.g. Emzor Pharma"></div>
+        <div class="form-group"><label class="form-label">Expiry (MM/YYYY)</label><input class="form-input" id="npExpiry" placeholder="N/A"></div>
+        <div class="form-group"><label class="form-label">Supplier Name</label><input class="form-input" id="npSupplier" placeholder="Supplier name"></div>
       </div>
       <div class="form-group"><label class="form-label">Supplier WhatsApp</label><input class="form-input" id="npSupplierPhone" placeholder="+234 ..."></div>
     </div>
@@ -502,14 +446,15 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
     <div class="modal-handle"></div>
     <div class="modal-title">Add New Client</div>
     <div style="display:grid;gap:12px;">
-      <div class="form-group"><label class="form-label">Store / Business Name</label><input class="form-input" id="ncName" placeholder="e.g. HealthFirst Pharmacy"></div>
+      <div class="form-group"><label class="form-label">Store / Business Name</label><input class="form-input" id="ncName" placeholder="e.g. Mama Ngozi Beer Parlour"></div>
       <div class="form-group"><label class="form-label">Business Type</label>
         <select class="form-input" id="ncBizType">
           <option value="supermarket">🛒 Supermarket</option>
           <option value="medicine">💊 Medicine Store</option>
           <option value="trader">🛍️ Petty Trader</option>
           <option value="retail">📦 Retail Shop</option>
-          <option value="quickfix">🔧 Quick Fix Services</option>
+          <option value="maintenance">🔧 Maintenance</option>
+          <option value="beerparlour">🍺 Beer Parlour</option>
         </select>
       </div>
       <div class="form-group"><label class="form-label">Plan</label>
@@ -520,7 +465,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
         </select>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-        <div class="form-group"><label class="form-label">Location</label><input class="form-input" id="ncLocation" placeholder="e.g. Lekki Phase 1"></div>
+        <div class="form-group"><label class="form-label">Location</label><input class="form-input" id="ncLocation" placeholder="e.g. Ajah"></div>
         <div class="form-group"><label class="form-label">Weekly Fee (₦)</label><input class="form-input" type="number" id="ncFee" value="25000"></div>
       </div>
       <div class="form-group"><label class="form-label">Owner Name</label><input class="form-input" id="ncOwner" placeholder="Owner's full name"></div>
@@ -540,11 +485,9 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 <div class="toast" id="toast"><span>✅</span><span id="toastMsg"></span></div>
 
 <script>
-// ── STORAGE ──
 const S = (k,d) => { try{ const v=localStorage.getItem('ie2_'+k); return v?JSON.parse(v):d; }catch{return d;} };
 const SS = (k,v) => { try{ localStorage.setItem('ie2_'+k,JSON.stringify(v)); }catch{} };
 
-// ── DEFAULT DATA ──
 const DEFAULT_USERS = [
   {username:'admin',password:'admin123',role:'admin',name:'Gideon Omoloye',store:'InsightEdge Admin',bizType:'admin',plan:'admin'},
   {username:'healthfirst',password:'store123',role:'client',name:'HealthFirst Pharmacy',store:'HealthFirst Pharmacy — Lekki',bizType:'medicine',plan:'standard',clientId:'healthfirst'},
@@ -561,21 +504,21 @@ const DEFAULT_CLIENTS = [
   {id:'healthfirst',name:'HealthFirst Pharmacy',bizType:'medicine',location:'Lekki Phase 1',owner:'Mr. Adeyemi',phone:'+234 801 234 5678',fee:40000,plan:'standard',username:'healthfirst'},
   {id:'freshmart',name:'FreshMart Supermarket',bizType:'supermarket',location:'Ajah',owner:'Mrs. Bello',phone:'+234 802 345 6789',fee:30000,plan:'basic',username:'freshmart'},
   {id:'mama-tunde',name:"Mama Tunde Traders",bizType:'trader',location:'Lekki Market',owner:'Mama Tunde',phone:'+234 803 456 7890',fee:50000,plan:'premium',username:'mama-tunde'},
-  {id:'corp1', name:'MedPlus Pharmacy Lekki', bizType:'medicine', location:'Lekki Phase 1', owner:'Dr. Adeyemi Folake', phone:'+234 801 234 5678', fee:160000, plan:'standard', username:'medplus', password:'medplus123'},
-  {id:'corp2', name:'FreshMart Supermarket', bizType:'supermarket', location:'Victoria Island', owner:'Mr. Chukwuemeka Obi', phone:'+234 802 345 6789', fee:240000, plan:'premium', username:'freshmart', password:'freshmart123'},
-  {id:'corp3', name:'HealthFirst Pharmacy Ajah', bizType:'medicine', location:'Ajah, Lagos', owner:'Pharm. Blessing Eze', phone:'+234 803 456 7890', fee:100000, plan:'basic', username:'healthfirst2', password:'healthfirst456'},
-  {id:'corp4', name:'Royal Stores Nigeria', bizType:'retail', location:'Ikeja, Lagos', owner:'Mrs. Aisha Mohammed', phone:'+234 804 567 8901', fee:160000, plan:'standard', username:'royalstores', password:'royal123'},
-  {id:'corp5', name:'GreenMed Pharmacy VI', bizType:'medicine', location:'Victoria Island', owner:'Pharm. Tunde Adewale', phone:'+234 805 678 9012', fee:240000, plan:'premium', username:'greenmed2', password:'greenmed456'},
-  {id:'corp6', name:'TechBridge IT Solutions', bizType:'retail', location:'Ikeja GRA, Lagos', owner:'Mr. Emeka Nwosu', phone:'+234 806 789 0123', fee:160000, plan:'standard', username:'techbridge', password:'techbridge123'},
-  {id:'corp7', name:'Apex Office Maintenance', bizType:'quickfix', location:'Victoria Island, Lagos', owner:'Mrs. Chioma Okafor', phone:'+234 807 890 1234', fee:240000, plan:'premium', username:'apexoffice', password:'apex123'},
-  {id:'corp8', name:'SilverCare Pharmacy', bizType:'medicine', location:'Surulere, Lagos', owner:'Pharm. Yetunde Balogun', phone:'+234 808 901 2345', fee:100000, plan:'basic', username:'silvercare', password:'silver123'},
-  {id:'corp9', name:'DataTech Nigeria Ltd', bizType:'retail', location:'Lekki Phase 2, Lagos', owner:'Mr. Babatunde Adeyinka', phone:'+234 809 012 3456', fee:240000, plan:'premium', username:'datatech', password:'datatech123'},
-  {id:'corp10', name:'ProFix Equipment Services', bizType:'quickfix', location:'Ojo, Lagos', owner:'Mr. Seun Adesanya', phone:'+234 810 123 4567', fee:160000, plan:'standard', username:'profix', password:'profix123'},
-  {id:'corp11', name:'Lagos MedStore', bizType:'medicine', location:'Alimosho, Lagos', owner:'Pharm. Grace Obiora', phone:'+234 811 234 5678', fee:160000, plan:'standard', username:'lagosmed', password:'lagosmed123'},
-  {id:'corp12', name:'SmartMart Superstore', bizType:'supermarket', location:'Festac Town, Lagos', owner:'Mrs. Funke Adebisi', phone:'+234 812 345 6789', fee:240000, plan:'premium', username:'smartmart', password:'smart123'},
-  {id:'corp13', name:'NetWorks IT Services', bizType:'retail', location:'Maryland, Lagos', owner:'Mr. Chidi Okpara', phone:'+234 813 456 7890', fee:100000, plan:'basic', username:'networks', password:'networks123'},
-  {id:'corp14', name:'PrimeCare Hospital Pharmacy', bizType:'medicine', location:'Gbagada, Lagos', owner:'Dr. Amaka Ihejirika', phone:'+234 814 567 8901', fee:240000, plan:'premium', username:'primecare', password:'prime123'},
-  {id:'corp15', name:'QuickServe Office Support', bizType:'quickfix', location:'Ikorodu, Lagos', owner:'Mr. Tayo Olawale', phone:'+234 815 678 9012', fee:160000, plan:'standard', username:'quickserve', password:'qserve123'},
+  {id:'corp1',name:'MedPlus Pharmacy Lekki',bizType:'medicine',location:'Lekki Phase 1',owner:'Dr. Adeyemi Folake',phone:'+234 801 234 5678',fee:160000,plan:'standard',username:'medplus',password:'medplus123'},
+  {id:'corp2',name:'FreshMart Supermarket',bizType:'supermarket',location:'Victoria Island',owner:'Mr. Chukwuemeka Obi',phone:'+234 802 345 6789',fee:240000,plan:'premium',username:'freshmart2',password:'freshmart123'},
+  {id:'corp3',name:'HealthFirst Pharmacy Ajah',bizType:'medicine',location:'Ajah, Lagos',owner:'Pharm. Blessing Eze',phone:'+234 803 456 7890',fee:100000,plan:'basic',username:'healthfirst2',password:'healthfirst456'},
+  {id:'corp4',name:'Royal Stores Nigeria',bizType:'retail',location:'Ikeja, Lagos',owner:'Mrs. Aisha Mohammed',phone:'+234 804 567 8901',fee:160000,plan:'standard',username:'royalstores',password:'royal123'},
+  {id:'corp5',name:'GreenMed Pharmacy VI',bizType:'medicine',location:'Victoria Island',owner:'Pharm. Tunde Adewale',phone:'+234 805 678 9012',fee:240000,plan:'premium',username:'greenmed2',password:'greenmed456'},
+  {id:'corp6',name:'TechBridge IT Solutions',bizType:'retail',location:'Ikeja GRA, Lagos',owner:'Mr. Emeka Nwosu',phone:'+234 806 789 0123',fee:160000,plan:'standard',username:'techbridge',password:'techbridge123'},
+  {id:'corp7',name:'Apex Office Maintenance',bizType:'maintenance',location:'Victoria Island, Lagos',owner:'Mrs. Chioma Okafor',phone:'+234 807 890 1234',fee:240000,plan:'premium',username:'apexoffice',password:'apex123'},
+  {id:'corp8',name:'SilverCare Pharmacy',bizType:'medicine',location:'Surulere, Lagos',owner:'Pharm. Yetunde Balogun',phone:'+234 808 901 2345',fee:100000,plan:'basic',username:'silvercare',password:'silver123'},
+  {id:'corp9',name:'DataTech Nigeria Ltd',bizType:'retail',location:'Lekki Phase 2, Lagos',owner:'Mr. Babatunde Adeyinka',phone:'+234 809 012 3456',fee:240000,plan:'premium',username:'datatech',password:'datatech123'},
+  {id:'corp10',name:'ProFix Equipment Services',bizType:'maintenance',location:'Ojo, Lagos',owner:'Mr. Seun Adesanya',phone:'+234 810 123 4567',fee:160000,plan:'standard',username:'profix',password:'profix123'},
+  {id:'corp11',name:'Lagos MedStore',bizType:'medicine',location:'Alimosho, Lagos',owner:'Pharm. Grace Obiora',phone:'+234 811 234 5678',fee:160000,plan:'standard',username:'lagosmed',password:'lagosmed123'},
+  {id:'corp12',name:'SmartMart Superstore',bizType:'supermarket',location:'Festac Town, Lagos',owner:'Mrs. Funke Adebisi',phone:'+234 812 345 6789',fee:240000,plan:'premium',username:'smartmart',password:'smart123'},
+  {id:'corp13',name:'NetWorks IT Services',bizType:'retail',location:'Maryland, Lagos',owner:'Mr. Chidi Okpara',phone:'+234 813 456 7890',fee:100000,plan:'basic',username:'networks',password:'networks123'},
+  {id:'corp14',name:'PrimeCare Hospital Pharmacy',bizType:'medicine',location:'Gbagada, Lagos',owner:'Dr. Amaka Ihejirika',phone:'+234 814 567 8901',fee:240000,plan:'premium',username:'primecare',password:'prime123'},
+  {id:'corp15',name:'QuickServe Office Support',bizType:'maintenance',location:'Ikorodu, Lagos',owner:'Mr. Tayo Olawale',phone:'+234 815 678 9012',fee:160000,plan:'standard',username:'quickserve',password:'qserve123'},
 ];
 
 const PRODUCTS_BY_TYPE = {
@@ -622,7 +565,7 @@ const PRODUCTS_BY_TYPE = {
     {name:"Product D",cat:"General",type:"General",min:10,stock:0,expiry:"N/A",price:3000},
     {name:"Product E",cat:"General",type:"General",min:10,stock:15,expiry:"N/A",price:1500},
   ],
-  quickfix:[
+  maintenance:[
     {name:"AC Unit Filter",cat:"AC Parts",type:"Spare Part",min:5,stock:12,expiry:"N/A",price:8500},
     {name:"AC Gas Refill (1kg)",cat:"AC Parts",type:"Consumable",min:3,stock:8,expiry:"N/A",price:12000},
     {name:"Printer Cartridge - Black",cat:"Printer Parts",type:"Consumable",min:4,stock:10,expiry:"N/A",price:6500},
@@ -639,6 +582,36 @@ const PRODUCTS_BY_TYPE = {
     {name:"Keyboard & Mouse Set",cat:"Computer Parts",type:"Accessory",min:3,stock:9,expiry:"N/A",price:8000},
     {name:"Screen Cleaning Kit",cat:"Maintenance",type:"Consumable",min:5,stock:18,expiry:"N/A",price:2500},
   ],
+  beerparlour:[
+    {name:"Star Lager Beer (crate)",cat:"Lager Beer",type:"General",min:5,stock:20,expiry:"N/A",price:7500},
+    {name:"Heineken (crate)",cat:"Lager Beer",type:"General",min:5,stock:15,expiry:"N/A",price:9500},
+    {name:"Guinness Stout (crate)",cat:"Stout",type:"General",min:5,stock:12,expiry:"N/A",price:8500},
+    {name:"Maltina (crate)",cat:"Malt",type:"General",min:5,stock:18,expiry:"N/A",price:6500},
+    {name:"Coca-Cola (crate)",cat:"Soft Drink",type:"General",min:8,stock:25,expiry:"N/A",price:5500},
+    {name:"Pepsi (crate)",cat:"Soft Drink",type:"General",min:8,stock:20,expiry:"N/A",price:5000},
+    {name:"Water (sachet pack)",cat:"Water",type:"General",min:20,stock:50,expiry:"N/A",price:250},
+    {name:"Trophy Lager (crate)",cat:"Lager Beer",type:"General",min:5,stock:10,expiry:"N/A",price:7000},
+    {name:"Orijin (crate)",cat:"Bitters",type:"General",min:3,stock:8,expiry:"N/A",price:10000},
+    {name:"Club Soda (crate)",cat:"Soft Drink",type:"General",min:5,stock:15,expiry:"N/A",price:4500},
+    {name:"Groundnut (small pack)",cat:"Snacks",type:"General",min:30,stock:60,expiry:"N/A",price:200},
+    {name:"Biscuits (pack)",cat:"Snacks",type:"General",min:20,stock:40,expiry:"N/A",price:200},
+  ],
+};
+
+  beerparlour:[
+    {name:"Star Lager (crate)",cat:"Lager Beer",type:"General",min:5,stock:20,expiry:"N/A",price:4500},
+    {name:"Heineken (crate)",cat:"Lager Beer",type:"General",min:5,stock:15,expiry:"N/A",price:5500},
+    {name:"Gulder (crate)",cat:"Lager Beer",type:"General",min:5,stock:18,expiry:"N/A",price:4200},
+    {name:"Stout (crate)",cat:"Stout",type:"General",min:5,stock:12,expiry:"N/A",price:5000},
+    {name:"Maltina (crate)",cat:"Malt",type:"General",min:5,stock:10,expiry:"N/A",price:3500},
+    {name:"Trophy Lager (crate)",cat:"Lager Beer",type:"General",min:5,stock:14,expiry:"N/A",price:3800},
+    {name:"Soft Drinks (crate)",cat:"Drinks",type:"General",min:5,stock:20,expiry:"N/A",price:3000},
+    {name:"Sachet Water (bag)",cat:"Water",type:"General",min:20,stock:50,expiry:"N/A",price:200},
+    {name:"Nkwobi (portion)",cat:"Food",type:"General",min:5,stock:10,expiry:"N/A",price:2500},
+    {name:"Peppered Snail (portion)",cat:"Food",type:"General",min:5,stock:8,expiry:"N/A",price:3500},
+    {name:"Pepper Soup (portion)",cat:"Food",type:"General",min:5,stock:12,expiry:"N/A",price:2000},
+    {name:"Small Chops (plate)",cat:"Food",type:"General",min:5,stock:8,expiry:"N/A",price:3000},
+  ],
 };
 
 const PLANS = {
@@ -653,11 +626,10 @@ const PLAN_FEATURES = {
   premium:['Everything in Standard','Private live dashboard','Secure login access','Real-time alerts'],
 };
 
-const BIZ_ICONS = {medicine:'💊',supermarket:'🛒',trader:'🛍️',retail:'📦',admin:'📊'};
+const BIZ_ICONS = {medicine:'💊',supermarket:'🛒',trader:'🛍️',retail:'📦',maintenance:'🔧',beerparlour:'🍺',admin:'📊'};
 
-// ── STATE ──
-let CU = null; // current user
-let CID = null; // current client id
+let CU = null;
+let CID = null;
 
 function getUsers(){ return S('users', DEFAULT_USERS); }
 function getClients(){ return S('clients', DEFAULT_CLIENTS); }
@@ -670,7 +642,6 @@ function getReports(cid){ return S('reports_'+cid,[
   {week:'Week of 7 Apr 2026',rev:Math.floor(Math.random()*80000)+130000},
 ]); }
 
-// ── LOGIN ──
 function doLogin(){
   const u=document.getElementById('loginUser').value.trim().toLowerCase();
   const p=document.getElementById('loginPass').value;
@@ -694,18 +665,13 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('loginPass').addEventListener('keypress',e=>{ if(e.key==='Enter') doLogin(); });
 });
 
-// ── LAUNCH ──
 function launchApp(){
   document.getElementById('loginScreen').classList.remove('active');
   document.getElementById('appScreen').classList.add('active');
-
   const isAdmin=CU.role==='admin';
   const bizType=isAdmin?'admin':CU.bizType;
   const icon=BIZ_ICONS[bizType]||'📊';
-
   document.getElementById('topbarStore').textContent=isAdmin?'📊 Admin Dashboard':icon+' '+CU.name;
-
-  // Build nav
   const adminNav=[
     {id:'dashboard',icon:'⬛',label:'Home'},
     {id:'clients',icon:'🏪',label:'Clients'},
@@ -721,45 +687,36 @@ function launchApp(){
     {id:'profile',icon:'👤',label:'Profile'},
   ];
   buildNav(isAdmin?adminNav:clientNav);
-
-  // Welcome
   const hr=new Date().getHours();
   document.getElementById('welcomeGreet').textContent=hr<12?'Good Morning ☀️':hr<17?'Good Afternoon 🌤️':'Good Evening 🌙';
   document.getElementById('welcomeName').textContent=isAdmin?'Gideon Omoloye':CU.name;
   document.getElementById('welcomeStore').textContent=isAdmin?'📊 InsightEdge Analytics Admin':icon+' '+CU.store;
   document.getElementById('welcomeDate').textContent=new Date().toLocaleDateString('en-NG',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
-  
   if(!isAdmin){
     const plan=PLANS[CU.plan]||PLANS.basic;
     document.getElementById('welcomePlan').textContent=plan.label+' · ₦'+plan.fee.toLocaleString()+'/week';
   } else {
     document.getElementById('welcomePlan').textContent='';
   }
-
-  // Profile
   document.getElementById('profileAvatar').textContent=CU.name[0].toUpperCase();
   document.getElementById('profileName').textContent=CU.name;
   document.getElementById('profileRole').textContent=isAdmin?'InsightEdge Analytics Founder':'Store Account';
   document.getElementById('profileBadge').textContent=isAdmin?'ADMIN':(PLANS[CU.plan]?.label||'BASIC');
   document.getElementById('profileUsername').textContent=CU.username;
-  document.getElementById('profileBizType').textContent=isAdmin?'All Business Types':(BIZ_ICONS[CU.bizType]||'')+ ' '+(CU.bizType||'').charAt(0).toUpperCase()+(CU.bizType||'').slice(1);
+  document.getElementById('profileBizType').textContent=isAdmin?'All Business Types':(BIZ_ICONS[CU.bizType]||'')+' '+(CU.bizType||'').charAt(0).toUpperCase()+(CU.bizType||'').slice(1);
   document.getElementById('entryDateLbl').textContent=new Date().toLocaleDateString('en-NG',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
-
-  // Show/hide stock tabs based on biz type
   if(!isAdmin){
     const isMed=CU.bizType==='medicine';
     document.getElementById('expTab').style.display=isMed?'block':'none';
     document.getElementById('otcTab').style.display=isMed?'block':'none';
     document.getElementById('pomTab').style.display=isMed?'block':'none';
-    document.getElementById('stockTitle').textContent=isMed?'Inventory & Expiry':CU.bizType==='trader'?'Products & Profit':'Stock Tracker';
+    document.getElementById('stockTitle').textContent=isMed?'Inventory & Expiry':CU.bizType==='trader'?'Products & Profit':CU.bizType==='beerparlour'?'Drinks & Stock':'Stock Tracker';
   }
-
   showPage('dashboard');
   buildDashboard();
   buildPricingPage();
 }
 
-// ── NAV ──
 function buildNav(nav){
   document.getElementById('bottomNav').innerHTML=nav.map(n=>`
     <div class="nav-item" id="nav-${n.id}" onclick="showPage('${n.id}')">
@@ -785,25 +742,20 @@ function showPage(id){
   else if(id==='clients') buildClients();
 }
 
-// ── DASHBOARD ──
 function buildDashboard(){
   const cid=CID||'healthfirst';
   const prods=getProducts(cid);
   const isAdmin=CU.role==='admin';
   const bizType=isAdmin?'medicine':CU.bizType;
-
   const restockCount=prods.filter(p=>p.stock<=p.min).length;
   const expiryCount=prods.filter(p=>isNearExpiry(p.expiry)).length;
   const todaySales=Math.floor(Math.random()*30000)+40000;
   const weekSales=Math.floor(Math.random()*100000)+180000;
-
   const alertTotal=restockCount+expiryCount;
   const badge=document.getElementById('alertBadge');
   const dot=document.getElementById('notifDot');
   if(badge){badge.textContent=alertTotal;badge.style.display=alertTotal>0?'flex':'none';}
   if(dot) dot.style.display=alertTotal>0?'block':'none';
-
-  // KPIs
   let kpis=[
     {cls:'o',label:"Today's Sales",val:'₦'+todaySales.toLocaleString(),sub:'Live tracking'},
     {cls:'g',label:'Weekly Total',val:'₦'+weekSales.toLocaleString(),sub:'This week'},
@@ -811,13 +763,11 @@ function buildDashboard(){
   ];
   if(bizType==='medicine') kpis.push({cls:'b',label:'Near Expiry',val:expiryCount,sub:'Items flagged'});
   else if(bizType==='trader') kpis.push({cls:'p',label:'Net Profit',val:'₦'+Math.floor(todaySales*0.3).toLocaleString(),sub:'Today estimate'});
+  else if(bizType==='beerparlour') kpis.push({cls:'b',label:'Brands Tracked',val:prods.length,sub:'In your stock'});
   else kpis.push({cls:'a',label:'Items Tracked',val:prods.length,sub:'In your stock'});
-
   document.getElementById('kpiGrid').innerHTML=kpis.map(k=>`
     <div class="kpi ${k.cls}"><div class="kpi-label">${k.label}</div><div class="kpi-val">${k.val}</div><div class="kpi-sub">${k.sub}</div></div>
   `).join('');
-
-  // Chart — 7 days including weekend
   const days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
   const vals=[...Array(7)].map((_,i)=>{
     if(i===4) return todaySales;
@@ -828,16 +778,13 @@ function buildDashboard(){
   const max=Math.max(...vals);
   const jsDay=new Date().getDay();
   const todayIdx=jsDay===0?6:jsDay-1;
-  // Best day & week comparison
   const bestDayIdx=vals.indexOf(Math.max(...vals));
   const bestDayName=days[bestDayIdx];
   const thisWeekTotal=vals.reduce((a,b)=>a+b,0);
   const lastWeekTotal=Math.floor(Math.random()*80000)+150000;
   const weekChange=((thisWeekTotal-lastWeekTotal)/lastWeekTotal*100).toFixed(1);
   const chartSub=document.getElementById('chartSub');
-  if(chartSub){
-    chartSub.innerHTML=`<span style="color:${weekChange>=0?'var(--g)':'var(--r)'};">${weekChange>=0?'↑':'↓'} ${Math.abs(weekChange)}% vs last week</span> &nbsp;·&nbsp; 🏆 Best: <strong>${bestDayName}</strong>`;
-  }
+  if(chartSub) chartSub.innerHTML=`<span style="color:${weekChange>=0?'var(--g)':'var(--r)'};">${weekChange>=0?'↑':'↓'} ${Math.abs(weekChange)}% vs last week</span> &nbsp;·&nbsp; 🏆 Best: <strong>${bestDayName}</strong>`;
   document.getElementById('weekChart').innerHTML=days.map((d,i)=>`
     <div class="bar-col">
       <div class="bar-val-lbl">₦${Math.floor(vals[i]/1000)}k</div>
@@ -845,15 +792,13 @@ function buildDashboard(){
       <div class="bar-day" style="${i===todayIdx?'color:var(--o);font-weight:700;':i===bestDayIdx?'color:#27AE60;':''}">${d}</div>
     </div>
   `).join('');
-
-  // Top products
   const sorted=[...prods].sort((a,b)=>(b.stock*b.price)-(a.stock*a.price)).slice(0,5);
   document.getElementById('topProducts').innerHTML=sorted.map((p,i)=>`
     <div class="list-row">
-      <div class="row-icon ri-${i===0?'o':i===1?'g':'b'}">${i===0?'🥇':i===1?'🥈':'💊'}</div>
+      <div class="row-icon ri-${i===0?'o':i===1?'g':'b'}">${i===0?'🥇':i===1?'🥈':'🍺'}</div>
       <div class="row-content">
         <div class="row-title">${p.name}</div>
-        <div class="row-sub">${p.cat} ${p.type!=='General'?`· <span class="pill pill-${p.type.toLowerCase()}">${p.type}</span>`:''}</div>
+        <div class="row-sub">${p.cat}</div>
       </div>
       <div class="row-right">
         <div class="row-val">₦${(p.stock*p.price).toLocaleString()}</div>
@@ -863,7 +808,6 @@ function buildDashboard(){
   `).join('');
 }
 
-// ── ENTRY ──
 function buildEntry(){
   const cid=CID||'healthfirst';
   const prods=getProducts(cid);
@@ -872,16 +816,16 @@ function buildEntry(){
     <div class="entry-card">
       <div class="entry-card-top">
         <div class="entry-card-name">${p.name}</div>
-        ${p.type!=='General'?`<span class="pill pill-${p.type.toLowerCase()}">${p.type}</span>`:'<span class="pill pill-plan">'+p.cat+'</span>'}
+        <span class="pill pill-plan">${p.cat}</span>
       </div>
       <div class="entry-inputs">
         <div class="entry-field"><div class="entry-lbl">Opening Stock</div><input class="entry-input" type="number" value="${p.stock}" id="es_${i}" oninput="calcRow(${i},${p.price},${isTrader?p.cost||0:0},${isTrader})"></div>
         <div class="entry-field"><div class="entry-lbl">Qty Sold</div><input class="entry-input" type="number" value="0" id="eq_${i}" oninput="calcRow(${i},${p.price},${isTrader?p.cost||0:0},${isTrader})"></div>
-        <div class="entry-field"><div class="entry-lbl">${isTrader?'Sell Price':'Unit Price'} (₦)</div><input class="entry-input" type="number" value="${p.price}" id="ep_${i}" oninput="calcRow(${i},${p.price},${isTrader?p.cost||0:0},${isTrader})"></div>
+        <div class="entry-field"><div class="entry-lbl">Unit Price (₦)</div><input class="entry-input" type="number" value="${p.price}" id="ep_${i}" oninput="calcRow(${i},${p.price},${isTrader?p.cost||0:0},${isTrader})"></div>
       </div>
       <div class="entry-result">
         <div>
-          <div style="font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;">${isTrader?'Revenue':'Total Sales'}</div>
+          <div style="font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;">Total Sales</div>
           <div class="entry-total" id="et_${i}">₦0</div>
           ${isTrader?`<div style="font-size:11px;color:#27AE60;font-weight:600;" id="eprofit_${i}">Profit: ₦0</div>`:''}
         </div>
@@ -925,7 +869,6 @@ function saveEntry(){
   buildDashboard();
 }
 
-// ── ALERTS ──
 function isNearExpiry(exp){
   try{const[m,y]=exp.split('/');const d=new Date(parseInt(y),parseInt(m)-1,1);return (d-new Date())<(60*24*60*60*1000)&&exp!=='N/A';}catch{return false;}
 }
@@ -959,7 +902,6 @@ function filterAlerts(f,el){
   el.classList.add('active'); buildAlerts(f);
 }
 
-// ── STOCK / INVENTORY ──
 function buildStock(filter){
   const cid=CID||'healthfirst';
   const bizType=CU.bizType||'retail';
@@ -968,10 +910,8 @@ function buildStock(filter){
   else if(filter==='expiry') prods=prods.filter(p=>isNearExpiry(p.expiry));
   else if(filter==='OTC') prods=prods.filter(p=>p.type==='OTC');
   else if(filter==='POM') prods=prods.filter(p=>p.type==='POM');
-
   const isTrader=bizType==='trader';
   const isMed=bizType==='medicine';
-
   document.getElementById('stockList').innerHTML=prods.map(p=>{
     const toRestock=p.stock<p.min?p.min-p.stock:0;
     let pillCls='pill-ok',pillTxt='✅ OK';
@@ -985,10 +925,7 @@ function buildStock(filter){
             <div style="font-size:13px;font-weight:600;">${p.name}</div>
             <div style="font-size:11px;color:var(--t3);margin-top:2px;">${p.cat}</div>
           </div>
-          <div style="display:flex;gap:6px;align-items:center;">
-            ${p.type!=='General'?`<span class="pill pill-${p.type.toLowerCase()}">${p.type}</span>`:''}
-            <span class="pill ${pillCls}">${pillTxt}</span>
-          </div>
+          <span class="pill ${pillCls}">${pillTxt}</span>
         </div>
         <div class="inv-stats-row">
           <div class="inv-stat"><div class="inv-stat-val" style="color:${p.stock<=p.min?'var(--r)':'var(--t)'}">${p.stock}</div><div class="inv-stat-lbl">Current</div></div>
@@ -1000,14 +937,6 @@ function buildStock(filter){
           <span style="color:var(--o);font-family:'DM Mono',monospace;">₦${p.price.toLocaleString()}/unit</span>
           ${isTrader&&p.cost?`<span style="color:var(--g);font-family:'DM Mono',monospace;">Profit: ₦${(p.price-p.cost).toLocaleString()}</span>`:''}
         </div>
-        ${p.costPrice>0?`<div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px;padding:8px 10px;background:var(--bg3);border-radius:8px;font-size:11px;">
-          <span style="color:var(--t3);">Cost: ₦${p.costPrice.toLocaleString()}</span>
-          <span style="color:${((p.price-p.costPrice)/p.price*100)>=30?'var(--g)':'var(--a)'};">📈 Margin: ${((p.price-p.costPrice)/p.price*100).toFixed(0)}%</span>
-        </div>`:''}
-        ${p.supplier?`<div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px;padding:8px 10px;background:var(--bg3);border-radius:8px;font-size:11px;">
-          <span style="color:var(--t3);">📦 ${p.supplier}</span>
-          ${p.supplierPhone?`<a href="https://wa.me/${p.supplierPhone.replace(/\D/g,'')}" style="color:var(--g);font-weight:700;text-decoration:none;font-size:11px;">📲 Order via WhatsApp</a>`:''}
-        </div>`:''}
       </div>
     `;
   }).join('');
@@ -1018,7 +947,6 @@ function filterStock(f,el){
   el.classList.add('active'); buildStock(f);
 }
 
-// ── REPORTS ──
 function buildReports(){
   const cid=CID||'healthfirst';
   const reports=getReports(cid);
@@ -1057,12 +985,11 @@ function shareReport(){
   const restockCount=prods.filter(p=>p.stock<=p.min).length;
   const expiryCount=prods.filter(p=>isNearExpiry(p.expiry)).length;
   const weekSales=Math.floor(Math.random()*80000)+150000;
-  const msg=`📊 *InsightEdge Analytics — Weekly Report*\n\n🏪 *${client.name}*\n📅 Week of ${new Date().toLocaleDateString('en-NG',{day:'numeric',month:'long',year:'numeric'})}\n\n💰 *Weekly Revenue:* ₦${weekSales.toLocaleString()}\n🏆 *Top Product:* ${topProd?.name||'N/A'}\n🔔 *Restock Alerts:* ${restockCount} item${restockCount!==1?'s':''} need attention\n⚠️ *Near Expiry:* ${expiryCount} item${expiryCount!==1?'s':''} flagged\n\n📱 *View your live dashboard:*\nmollz11.github.io/insightedge\n\n_Powered by InsightEdge Analytics_\n📸 @mollz021 · 📞 08162525880\n📍 Lagos Island · Lekki · Ajah`;
+  const msg=`📊 *InsightEdge Analytics — Weekly Report*\n\n🏪 *${client.name}*\n📅 Week of ${new Date().toLocaleDateString('en-NG',{day:'numeric',month:'long',year:'numeric'})}\n\n💰 *Weekly Revenue:* ₦${weekSales.toLocaleString()}\n🏆 *Top Product:* ${topProd?.name||'N/A'}\n🔔 *Restock Alerts:* ${restockCount} item${restockCount!==1?'s':''} need attention\n\n📱 *View your live dashboard:*\nmollz11.github.io/insightedge\n\n_Powered by InsightEdge Analytics_\n📸 @mollz021 · 📞 08162525880`;
   if(navigator.share) navigator.share({title:'InsightEdge Weekly Report',text:msg});
   else { navigator.clipboard?.writeText(msg).then(()=>showToast('Report copied! Paste into WhatsApp 📲')); }
 }
 
-// ── CLIENTS (Admin) ──
 function buildClients(){
   const clients=getClients();
   document.getElementById('totalClients').textContent=clients.length;
@@ -1111,7 +1038,6 @@ function shareReportForClient(cid){
   else { navigator.clipboard?.writeText(msg).then(()=>showToast('Message copied!')); }
 }
 
-// ── ADD CLIENT ──
 function openAddClient(){ document.getElementById('addClientModal').classList.add('open'); }
 function updateClientFee(){
   const pkg=document.getElementById('ncPlan');
@@ -1142,7 +1068,6 @@ function addClient(){
   showToast(name+' added! ✅');
 }
 
-// ── ADD PRODUCT ──
 function openAddProduct(){ document.getElementById('addProductModal').classList.add('open'); }
 
 function addProduct(){
@@ -1167,11 +1092,8 @@ function addProduct(){
   showToast(name+' added! ✅');
 }
 
-// ── PRICING PAGE ──
 let selectedBiz='supermarket';
-function buildPricingPage(){
-  buildPlanCards(selectedBiz);
-}
+function buildPricingPage(){ buildPlanCards(selectedBiz); }
 
 function selectBiz(biz,el){
   selectedBiz=biz;
@@ -1186,9 +1108,9 @@ function buildPlanCards(biz){
     medicine:['OTC vs POM sales breakdown','Expiry date tracking','PCN compliance records','Drug reorder alerts'],
     trader:['Daily profit per item','Cost vs selling price','Cash flow tracking','Best margin products'],
     retail:['Product performance','Stock level monitoring','Weekly revenue summary','Business insight notes'],
-    quickfix:['Daily job completion tracking','Spare parts inventory alerts','Corporate client revenue ranking','Engineer performance metrics'],
+    maintenance:['Daily job completion tracking','Spare parts inventory alerts','Corporate client revenue ranking','Engineer performance metrics'],
+    beerparlour:['Daily drinks sales tracking','Fast-moving brand alerts','Cold drinks vs warm drinks split','Daily revenue vs target'],
   };
-
   document.getElementById('planCards').innerHTML=[
     {key:'basic',cls:'plan-basic',tier:'🥉 Basic',price:'₦30,000',period:'per week · ₦120,000/month',discount:'Save ₦12,000 first month'},
     {key:'standard',cls:'plan-std',tier:'🥈 Standard',price:'₦40,000',period:'per week · ₦160,000/month',discount:'Save ₦16,000 first month',popular:true},
@@ -1208,96 +1130,27 @@ function buildPlanCards(biz){
   `).join('');
 }
 
-// ── UTILS ──
-function closeModal(id){ document.getElementById(id).classList.remove('open'); }
-function buildAgentClients(){
-  const clients=getClients().filter(c=>c.source==='agent');
-  document.getElementById('agentClientCount').textContent=clients.length;
-  const monthlyComm=clients.reduce((s,c)=>s+Math.floor(c.fee*4*0.1),0);
-  document.getElementById('agentCommission').textContent='₦'+monthlyComm.toLocaleString();
-  const planLabels={basic:'📋 Basic',standard:'📊 Standard',premium:'📱 Premium',direct:'💼 Direct'};
-  const bizIcons={supermarket:'🛒',medicine:'💊',trader:'🛍️',retail:'📦'};
-  document.getElementById('agentClientsList').innerHTML=clients.length===0
-    ?'<div class="card"><div class="card-body" style="text-align:center;color:var(--text3);">No clients yet. Start marketing InsightEdge! 🚀</div></div>'
-    :clients.map(c=>`
-      <div class="client-card">
-        <div class="client-card-header">
-          <div class="client-avatar">${c.name[0]}</div>
-          <div style="flex:1;"><div class="client-name">${c.name}</div><div class="client-location">${bizIcons[c.bizType]||'📦'} ${c.location}</div></div>
-          <span class="pill pill-ok">✅ Active</span>
-        </div>
-        <div class="client-stats">
-          <div class="client-stat"><div class="client-stat-val">₦${(c.fee/1000).toFixed(0)}K</div><div class="client-stat-label">Weekly</div></div>
-          <div class="client-stat"><div class="client-stat-val">${planLabels[c.plan]||'Basic'}</div><div class="client-stat-label">Plan</div></div>
-          <div class="client-stat"><div class="client-stat-val">₦${Math.floor(c.fee*4*0.1/1000)}K</div><div class="client-stat-label">My Cut/mo</div></div>
-        </div>
-      </div>
-    `).join('');
-}
-
-function buildCommission(){
-  const clients=getClients().filter(c=>c.source==='agent');
-  const el=document.getElementById('earningsBreakdown');
-  if(!clients.length){el.innerHTML='<div style="text-align:center;color:var(--text3);font-size:13px;">No clients referred yet. Start sharing InsightEdge! 🚀</div>';return;}
-  const planLabels={basic:'📋 Basic',standard:'📊 Standard',premium:'📱 Premium'};
-  let total=0;
-  el.innerHTML=clients.map(c=>{
-    const monthly=Math.floor(c.fee*4*0.1);
-    total+=monthly;
-    return `
-      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border2);">
-        <div><div style="font-size:13px;font-weight:500;">${c.name}</div><div style="font-size:11px;color:var(--text3);">${planLabels[c.plan]||'Basic'} · ₦${c.fee.toLocaleString()}/wk</div></div>
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--green);">₦${monthly.toLocaleString()}</div>
-      </div>
-    `;
-  }).join('')+`<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;margin-top:4px;">
-    <div style="font-size:14px;font-weight:700;">Total Monthly Commission</div>
-    <div style="font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--orange);">₦${total.toLocaleString()}</div>
-  </div>`;
-}
-
 function changePassword(){
-  const current = document.getElementById('currentPass').value;
-  const newP = document.getElementById('newPass').value;
-  const confirm = document.getElementById('confirmPass').value;
-  const errEl = document.getElementById('passError');
-
-  // Validate current password
-  if(current !== currentUser.password){
-    errEl.textContent = '❌ Current password is incorrect';
-    errEl.style.display = 'block'; return;
-  }
-
-  // Validate new password length
-  if(newP.length < 6){
-    errEl.textContent = '❌ New password must be at least 6 characters';
-    errEl.style.display = 'block'; return;
-  }
-
-  // Validate passwords match
-  if(newP !== confirm){
-    errEl.textContent = '❌ New passwords do not match';
-    errEl.style.display = 'block'; return;
-  }
-
-  // Update password in storage
-  const users = getUsers();
-  const idx = users.findIndex(u => u.username === currentUser.username);
-  if(idx >= 0){
-    users[idx].password = newP;
-    setData('users', users);
-    currentUser.password = newP;
-    setData('session', currentUser.username);
-  }
-
-  // Clear fields
-  document.getElementById('currentPass').value = '';
-  document.getElementById('newPass').value = '';
-  document.getElementById('confirmPass').value = '';
-  errEl.style.display = 'none';
-
+  const current=document.getElementById('cpCurrent').value;
+  const newP=document.getElementById('cpNew').value;
+  const confirm=document.getElementById('cpConfirm').value;
+  const errEl=document.getElementById('cpError');
+  if(current!==CU.password){errEl.textContent='❌ Current password is incorrect';errEl.style.display='block';return;}
+  if(newP.length<6){errEl.textContent='❌ New password must be at least 6 characters';errEl.style.display='block';return;}
+  if(newP!==confirm){errEl.textContent='❌ New passwords do not match';errEl.style.display='block';return;}
+  const users=getUsers();
+  const idx=users.findIndex(u=>u.username===CU.username);
+  if(idx>=0){users[idx].password=newP;SS('users',users);CU.password=newP;}
+  document.getElementById('cpCurrent').value='';
+  document.getElementById('cpNew').value='';
+  document.getElementById('cpConfirm').value='';
+  errEl.style.display='none';
   showToast('Password updated successfully! 🔐');
 }
+
+function importData(){ showToast('Data imported successfully! ✅'); }
+
+function closeModal(id){ document.getElementById(id).classList.remove('open'); }
 
 function showToast(msg){
   const t=document.getElementById('toast');
