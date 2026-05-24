@@ -2,562 +2,1168 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
 <title>InsightEdge Analytics</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
 <style>
 :root{
-  --bg:#0f0b08;
-  --bg2:#1a1410;
-  --bg3:#221c15;
-  --bg4:#2e261c;
-  --bg5:#3a3025;
-  --border:#3d3225;
-  --border2:#5a4a35;
-  --amber:#c87941;
-  --amber-light:#e09050;
-  --amber-pale:#f5b870;
-  --amber-bg:rgba(200,121,65,.13);
-  --amber-bg2:rgba(200,121,65,.22);
-  --red:#e05555;--red-bg:rgba(224,85,85,.13);
-  --green:#4caf82;--green-bg:rgba(76,175,130,.13);
-  --blue:#5b9bd5;--blue-bg:rgba(91,155,213,.13);
-  --text:#ede8e0;--text2:#a89880;--text3:#6b5c48;
-  --radius:10px;--radius-lg:14px;
+  --bg:#0d0d0d;--bg2:#181818;--bg3:#222;--bg4:#2a2a2a;
+  --border:#2e2e2e;--border2:#3d3d3d;
+  --amber:#c87941;--amber-l:#e09050;--amber-p:#f5b870;
+  --amber-bg:rgba(200,121,65,.15);
+  --red:#e05555;--red-bg:rgba(224,85,85,.15);
+  --green:#3ecf78;--green-bg:rgba(62,207,120,.12);
+  --blue:#4d9cf8;--blue-bg:rgba(77,156,248,.12);
+  --yellow:#f5c542;
+  --text:#f0ede8;--text2:#999;--text3:#555;
+  --r:14px;--r2:18px;
 }
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);font-size:15px}
 
-/* ── LOGIN SCREEN ── */
-#login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem;background:radial-gradient(ellipse at 50% 0%,#2e1f0e 0%,#0f0b08 65%)}
-.login-box{width:100%;max-width:420px}
-.login-logo-wrap{text-align:center;margin-bottom:1.75rem}
-.login-logo-icon{width:72px;height:72px;background:linear-gradient(145deg,#c87941,#8b4f22);border-radius:18px;display:inline-flex;align-items:center;justify-content:center;margin-bottom:1rem;box-shadow:0 8px 32px rgba(200,121,65,.35)}
-.login-logo-icon i{font-size:34px;color:#fff}
-.login-title{font-family:'Barlow Condensed',sans-serif;font-size:34px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text)}
-.login-subtitle{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-top:4px}
-.login-card{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:2rem}
-.login-welcome{font-size:22px;font-weight:600;margin-bottom:4px}
-.login-sub{font-size:14px;color:var(--text2);margin-bottom:1.75rem}
-.login-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text2);margin-bottom:6px;margin-top:1.25rem;display:block}
-.login-label:first-of-type{margin-top:0}
-.login-input{width:100%;padding:12px 16px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;outline:none;transition:border .2s}
-.login-input:focus{border-color:var(--amber)}
-.login-btn{width:100%;margin-top:1.5rem;padding:13px;background:linear-gradient(135deg,#c87941,#a05c28);color:#fff;font-family:'DM Sans',sans-serif;font-size:16px;font-weight:600;border:none;border-radius:var(--radius);cursor:pointer;transition:opacity .2s;letter-spacing:.02em}
-.login-btn:hover{opacity:.88}
-.login-footer{text-align:center;margin-top:1.25rem;font-size:12px;color:var(--text3)}
-.login-footer span{color:var(--amber)}
-.login-err{color:var(--red);font-size:13px;margin-top:8px;display:none}
+/* ── SCREENS ── */
+.screen{position:fixed;inset:0;overflow-y:auto;overflow-x:hidden;display:none;flex-direction:column;background:var(--bg)}
+.screen.active{display:flex}
 
-/* ── SETUP SCREEN ── */
-#setup-screen{display:none;align-items:center;justify-content:center;min-height:100vh;padding:2rem;background:radial-gradient(ellipse at 50% 0%,#2e1f0e 0%,#0f0b08 65%)}
-.setup-box{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:2.5rem;width:100%;max-width:580px}
-.setup-hd{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.25rem}
-.setup-sub{color:var(--text2);font-size:13px;margin-bottom:1.75rem}
-.setup-label{font-size:11px;font-weight:600;letter-spacing:.1em;color:var(--text2);text-transform:uppercase;margin-bottom:8px;margin-top:1.25rem;display:block}
-.setup-label:first-of-type{margin-top:0}
-.setup-input{width:100%;padding:10px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border .2s}
-.setup-input:focus{border-color:var(--amber)}
-.biz-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
-.biz-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:11px 14px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:10px}
-.biz-card:hover{border-color:var(--border2)}
-.biz-card.selected{border-color:var(--amber);background:var(--amber-bg)}
-.biz-card i{font-size:20px;color:var(--text2)}
-.biz-card.selected i{color:var(--amber-light)}
-.biz-card-label{font-size:13px;font-weight:500}
-.biz-card-sub{font-size:11px;color:var(--text2);margin-top:1px}
-.setup-btn{width:100%;margin-top:1.75rem;padding:12px;background:linear-gradient(135deg,#c87941,#a05c28);color:#fff;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;border:none;border-radius:var(--radius);cursor:pointer;transition:opacity .2s}
-.setup-btn:hover{opacity:.88}
+/* ── LOGIN ── */
+#s-login{align-items:center;justify-content:center;padding:2rem 1.25rem;background:radial-gradient(ellipse at 50% 10%,#2b1c0a 0%,#0d0d0d 60%)}
+.login-wrap{width:100%;max-width:400px}
+.login-logo{text-align:center;margin-bottom:2rem}
+.logo-icon{width:72px;height:72px;background:linear-gradient(145deg,#c87941,#7a3e14);border-radius:20px;display:inline-flex;align-items:center;justify-content:center;margin-bottom:.75rem;box-shadow:0 8px 30px rgba(200,121,65,.4)}
+.logo-icon i{font-size:34px;color:#fff}
+.logo-title{font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.logo-sub{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-top:3px}
+.login-card{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:1.75rem}
+.lbl{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--text2);display:block;margin-bottom:5px;margin-top:1.1rem}
+.lbl:first-of-type{margin-top:0}
+.inp{width:100%;padding:12px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;outline:none}
+.inp:focus{border-color:var(--amber)}
+.login-btn{width:100%;margin-top:1.25rem;padding:13px;background:linear-gradient(135deg,#c87941,#8b4a1e);color:#fff;font-family:'DM Sans',sans-serif;font-size:16px;font-weight:600;border:none;border-radius:var(--r);cursor:pointer}
+.login-err{color:var(--red);font-size:13px;margin-top:8px;display:none;padding:8px 12px;background:var(--red-bg);border-radius:8px;text-align:center}
+.dir-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:1rem 1.1rem;margin-top:1rem}
+.dir-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text2);margin-bottom:8px}
+.dir-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px 16px}
+.dir-row{font-size:11px;color:var(--text2);padding:2px 0}
+.dir-row b{color:var(--amber-p);font-weight:500}
+.login-foot{text-align:center;margin-top:1rem;font-size:11px;color:var(--text3)}
+.login-foot span{color:var(--amber)}
 
-/* ── MAIN APP ── */
-#app{display:none;flex-direction:column;min-height:100vh}
-.topbar{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:100}
-.topbar-logo{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;letter-spacing:.07em;text-transform:uppercase}
-.topbar-logo span{color:var(--amber)}
-.biz-badge{background:var(--bg4);border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-size:12px;color:var(--text2);display:flex;align-items:center;gap:6px}
-.biz-badge i{font-size:14px;color:var(--amber)}
-.topbar-right{display:flex;align-items:center;gap:10px}
-.client-name{font-size:13px;font-weight:500;color:var(--amber-pale)}
-.logout-btn{background:none;border:1px solid var(--border);border-radius:8px;color:var(--text2);padding:5px 10px;cursor:pointer;font-size:12px;font-family:'DM Sans',sans-serif;transition:all .2s}
-.logout-btn:hover{border-color:var(--amber);color:var(--amber)}
-.main{display:flex;flex:1}
-.sidebar{width:200px;background:var(--bg2);border-right:1px solid var(--border);padding:1rem 0;flex-shrink:0;position:sticky;top:56px;height:calc(100vh - 56px);overflow-y:auto}
-.nav-item{display:flex;align-items:center;gap:10px;padding:9px 20px;cursor:pointer;color:var(--text2);font-size:13px;font-weight:500;transition:all .15s;border-left:2px solid transparent}
-.nav-item i{font-size:18px}
-.nav-item:hover{color:var(--text);background:var(--bg3)}
-.nav-item.active{color:var(--amber-light);border-left-color:var(--amber);background:var(--amber-bg)}
-.nav-section{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--text3);padding:14px 20px 4px}
-.content{flex:1;padding:1.5rem;overflow-y:auto;max-width:1100px}
-.page-title{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:1.5rem;color:var(--text)}
-.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:1.5rem}
-.metric{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.1rem 1.25rem}
-.metric-label{font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
-.metric-value{font-size:26px;font-weight:600;color:var(--text)}
-.metric-sub{font-size:11px;margin-top:4px;color:var(--text2)}
-.metric-sub.up{color:var(--green)}.metric-sub.warn{color:var(--amber)}.metric-sub.down{color:var(--red)}
-.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.1rem 1.25rem;margin-bottom:1rem}
-.card-title{font-size:11px;font-weight:600;color:var(--text3);margin-bottom:1rem;text-transform:uppercase;letter-spacing:.08em}
-table{width:100%;border-collapse:collapse;font-size:13px}
-th{text-align:left;font-weight:600;font-size:10px;color:var(--text3);padding:6px 10px;border-bottom:1px solid var(--border);text-transform:uppercase;letter-spacing:.07em}
-td{padding:9px 10px;border-bottom:1px solid var(--border);color:var(--text)}
-tr:last-child td{border-bottom:none}
-tr:hover td{background:var(--bg3)}
+/* ── APP SHELL ── */
+#s-app{padding-bottom:70px}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.1rem .7rem;position:sticky;top:0;background:var(--bg);z-index:50}
+.tb-left .tb-brand{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.tb-left .tb-sub{font-size:12px;color:var(--amber);font-weight:500;display:flex;align-items:center;gap:4px}
+.tb-right{display:flex;gap:8px}
+.tb-btn{width:38px;height:38px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;font-size:18px;color:var(--text2)}
+.notif-dot{position:absolute;top:6px;right:6px;width:8px;height:8px;background:var(--red);border-radius:50%;border:1.5px solid var(--bg)}
+
+/* ── PAGE CONTENT ── */
+.page-content{padding:.25rem 1rem 1rem;display:none}
+.page-content.active{display:block}
+
+/* ── GREETING CARD ── */
+.greet-card{background:linear-gradient(135deg,#2a1a08 0%,#1c1208 100%);border:1px solid #3d2e18;border-radius:var(--r2);padding:1.25rem 1.25rem 1rem;margin-bottom:1rem;position:relative;overflow:hidden}
+.greet-card::after{content:'';position:absolute;right:-20px;bottom:-20px;width:100px;height:100px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Crect x='10' y='30' width='16' height='35' rx='3' fill='%23e05555' opacity='.7'/%3E%3Crect x='32' y='18' width='16' height='47' rx='3' fill='%23c87941' opacity='.7'/%3E%3Crect x='54' y='10' width='16' height='55' rx='3' fill='%233ecf78' opacity='.7'/%3E%3C/svg%3E") no-repeat center/contain;opacity:.18}
+.greet-tod{font-size:13px;color:var(--text2);margin-bottom:4px}
+.greet-name{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
+.greet-role{font-size:12px;color:var(--amber);font-weight:500;display:flex;align-items:center;gap:5px;margin-bottom:6px}
+.greet-date{font-size:11px;color:var(--text3);letter-spacing:.04em}
+.greet-bar{margin-top:.75rem;height:4px;width:48px;background:linear-gradient(90deg,#c87941,#e09050);border-radius:2px}
+
+/* ── METRIC CARDS ── */
+.metrics-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem}
+.m-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:1rem;overflow:hidden;position:relative}
+.m-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--r2) var(--r2) 0 0}
+.mc-amber::before{background:linear-gradient(90deg,#c87941,#e09050)}
+.mc-green::before{background:linear-gradient(90deg,#3ecf78,#2bb065)}
+.mc-red::before{background:var(--red)}
+.mc-blue::before{background:var(--blue)}
+.m-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text2);margin-bottom:8px}
+.m-value{font-size:24px;font-weight:600;line-height:1}
+.m-sub{font-size:11px;color:var(--text3);margin-top:5px}
+
+/* ── CHART ── */
+.chart-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:1.1rem;margin-bottom:1rem}
+.chart-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:.75rem}
+.chart-title{font-size:15px;font-weight:600}
+.chart-meta{font-size:11px;color:var(--text2);margin-top:2px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.chart-up{color:var(--green);font-weight:600}
+.chart-bars{display:flex;align-items:flex-end;gap:6px;height:90px}
+.bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
+.bar-val{font-size:9px;color:var(--text2)}
+.bar{width:100%;border-radius:4px 4px 0 0;min-height:4px;transition:height .4s}
+.bar-lbl{font-size:9px;color:var(--text3)}
+.bar.best{background:var(--green)}
+.bar.normal{background:var(--bg4)}
+
+/* ── ALERTS LIST ── */
+.section-title{font-size:13px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.6rem;margin-top:1rem}
+.alert-item{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);margin-bottom:6px}
+.a-icon{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:17px}
+.a-red{background:var(--red-bg);color:var(--red)}
+.a-amber{background:var(--amber-bg);color:var(--amber-l)}
+.a-green{background:var(--green-bg);color:var(--green)}
+.a-blue{background:var(--blue-bg);color:var(--blue)}
+.a-text{flex:1;min-width:0}
+.a-title{font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.a-sub{font-size:11px;color:var(--text2);margin-top:1px}
+.a-right{flex-shrink:0}
 .badge{display:inline-block;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:500}
 .b-red{background:var(--red-bg);color:var(--red)}
-.b-amber{background:var(--amber-bg);color:var(--amber-pale)}
+.b-amber{background:var(--amber-bg);color:var(--amber-p)}
 .b-green{background:var(--green-bg);color:var(--green)}
 .b-blue{background:var(--blue-bg);color:var(--blue)}
-.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-bottom:12px}
-.field label{font-size:10px;color:var(--text2);display:block;margin-bottom:4px;font-weight:600;text-transform:uppercase;letter-spacing:.07em}
-.field input,.field select,.field textarea{width:100%;padding:9px 12px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;outline:none;transition:border .2s}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--amber)}
+.empty{color:var(--text3);font-size:13px;padding:1rem;text-align:center}
+
+/* ── CLIENTS PAGE ── */
+.client-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:1rem 1.1rem;margin-bottom:8px;display:flex;align-items:center;gap:12px}
+.client-avatar{width:44px;height:44px;border-radius:12px;background:var(--amber-bg);border:1px solid var(--amber);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.client-info{flex:1;min-width:0}
+.client-name{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.client-type{font-size:11px;color:var(--text2);margin-top:1px}
+.client-login{font-size:10px;color:var(--text3);margin-top:2px;font-family:'DM Mono',monospace}
+.client-arr{color:var(--text3);font-size:18px}
+
+/* ── INVENTORY / TABLES ── */
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:1rem;margin-bottom:.75rem}
+.card-title{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.75rem}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.field label{font-size:10px;color:var(--text2);display:block;margin-bottom:3px;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.field input,.field select{width:100%;padding:9px 10px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;outline:none}
+.field input:focus,.field select:focus{border-color:var(--amber)}
 .field select option{background:var(--bg3)}
-.btn{padding:8px 18px;border-radius:var(--radius);font-size:13px;font-weight:500;cursor:pointer;border:1px solid var(--border);background:var(--bg3);color:var(--text);font-family:'DM Sans',sans-serif;transition:all .2s}
-.btn:hover{border-color:var(--border2);background:var(--bg4)}
-.btn-amber{background:linear-gradient(135deg,#c87941,#a05c28);color:#fff;border-color:transparent}
-.btn-amber:hover{opacity:.88;background:linear-gradient(135deg,#c87941,#a05c28)}
-.alert-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border)}
-.alert-item:last-child{border-bottom:none}
-.alert-icon{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
-.ai-red{background:var(--red-bg);color:var(--red)}
-.ai-amber{background:var(--amber-bg);color:var(--amber-pale)}
-.ai-green{background:var(--green-bg);color:var(--green)}
-.alert-title{font-size:13px;font-weight:500}
-.alert-sub{font-size:11px;color:var(--text2);margin-top:1px}
-.alert-right{margin-left:auto;text-align:right}
-.bar-row{margin-bottom:12px}
-.bar-meta{display:flex;justify-content:space-between;font-size:12px;color:var(--text2);margin-bottom:4px}
-.bar-track{height:7px;background:var(--bg4);border-radius:4px;overflow:hidden}
-.bar-fill{height:100%;border-radius:4px}
-.ceo-kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:1.5rem}
-.kpi-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem}
-.kpi-label{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;font-weight:600}
-.kpi-value{font-size:30px;font-weight:600}
-.kpi-trend{font-size:12px;margin-top:4px}
-.empty{color:var(--text3);font-size:13px;padding:16px 0;text-align:center}
-.divider{height:1px;background:var(--border);margin:1rem 0}
-@media(max-width:600px){
-  .sidebar{display:none}
-  .biz-grid{grid-template-columns:1fr}
-  .form-grid{grid-template-columns:1fr}
-  .ceo-kpi{grid-template-columns:1fr 1fr}
-}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{text-align:left;font-weight:600;font-size:10px;color:var(--text3);padding:5px 8px;border-bottom:1px solid var(--border);text-transform:uppercase;letter-spacing:.06em}
+td{padding:8px 8px;border-bottom:1px solid var(--border);color:var(--text);font-size:12px}
+tr:last-child td{border-bottom:none}
+.btn{padding:7px 14px;border-radius:10px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid var(--border);background:var(--bg3);color:var(--text);font-family:'DM Sans',sans-serif}
+.btn-amber{background:linear-gradient(135deg,#c87941,#8b4a1e);color:#fff;border-color:transparent;padding:10px;width:100%;font-size:14px;font-weight:600;border-radius:var(--r)}
+
+/* ── CEO ── */
+.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:.75rem}
+.kpi-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:1rem}
+.kpi-label{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;font-weight:600}
+.kpi-value{font-size:22px;font-weight:600}
+.kpi-trend{font-size:11px;margin-top:3px}
+.up{color:var(--green)}.down{color:var(--red)}
+.bar-row{margin-bottom:10px}
+.bar-meta{display:flex;justify-content:space-between;font-size:11px;color:var(--text2);margin-bottom:3px}
+.bar-track{height:6px;background:var(--bg4);border-radius:3px;overflow:hidden}
+.bar-fill{height:100%;border-radius:3px}
+
+/* ── PLANS PAGE ── */
+.plan-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:1.25rem;margin-bottom:10px}
+.plan-name{font-size:16px;font-weight:600;margin-bottom:4px}
+.plan-price{font-size:26px;font-weight:700;color:var(--amber);margin-bottom:.75rem}
+.plan-price span{font-size:13px;color:var(--text2);font-weight:400}
+.plan-feat{font-size:13px;color:var(--text2);padding:4px 0;display:flex;align-items:center;gap:8px}
+.plan-feat i{color:var(--green);font-size:15px}
+.plan-card.featured{border-color:var(--amber);background:linear-gradient(135deg,#1e1208,#181818)}
+
+/* ── PROFILE PAGE ── */
+.profile-head{text-align:center;padding:1rem 0 1.5rem}
+.profile-av{width:72px;height:72px;background:linear-gradient(145deg,#c87941,#7a3e14);border-radius:20px;display:inline-flex;align-items:center;justify-content:center;font-size:30px;color:#fff;margin-bottom:.75rem}
+.profile-name{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+.profile-role{font-size:12px;color:var(--amber);margin-top:2px}
+.profile-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border)}
+.profile-row:last-child{border-bottom:none}
+.pr-label{font-size:13px;font-weight:500;display:flex;align-items:center;gap:8px}
+.pr-label i{font-size:16px;color:var(--text2)}
+.pr-val{font-size:13px;color:var(--text2)}
+
+/* ── BOTTOM NAV ── */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:66px;background:var(--bg2);border-top:1px solid var(--border);display:flex;z-index:100}
+.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--text3);border:none;background:none;font-family:'DM Sans',sans-serif;position:relative}
+.nav-btn i{font-size:22px}
+.nav-btn.active{color:var(--amber)}
+.nav-badge{position:absolute;top:8px;right:calc(50% - 18px);background:var(--red);color:#fff;font-size:9px;font-weight:700;border-radius:10px;padding:1px 5px;min-width:16px;text-align:center}
+
+/* ── SUB NAV (inside client) ── */
+.sub-nav{display:flex;gap:6px;overflow-x:auto;padding:.5rem 0 .75rem;-ms-overflow-style:none;scrollbar-width:none}
+.sub-nav::-webkit-scrollbar{display:none}
+.sub-btn{flex-shrink:0;padding:6px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:20px;font-size:12px;font-weight:500;color:var(--text2);cursor:pointer;white-space:nowrap;font-family:'DM Sans',sans-serif}
+.sub-btn.active{background:var(--amber-bg);border-color:var(--amber);color:var(--amber-p)}
+
+/* ── CLIENT DETAIL HEADER ── */
+.client-header{display:flex;align-items:center;gap:10px;padding:.75rem 0 .5rem}
+.back-btn{width:36px;height:36px;background:var(--bg2);border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;color:var(--text2);flex-shrink:0}
+.ch-info .ch-name{font-size:16px;font-weight:600}
+.ch-info .ch-type{font-size:11px;color:var(--amber)}
 </style>
 </head>
 <body>
 
-<!-- ══════════ LOGIN SCREEN ══════════ -->
-<div id="login-screen">
-  <div class="login-box">
-    <div class="login-logo-wrap">
-      <div class="login-logo-icon"><i class="ti ti-chart-bar" aria-hidden="true"></i></div>
-      <div class="login-title">InsightEdge Analytics</div>
-      <div class="login-subtitle">Secure Business Platform</div>
+<!-- ══ LOGIN ══ -->
+<div class="screen active" id="s-login">
+  <div class="login-wrap">
+    <div class="login-logo">
+      <div class="logo-icon"><i class="ti ti-chart-bar"></i></div>
+      <div class="logo-title">InsightEdge</div>
+      <div class="logo-sub">Secure Business Platform</div>
     </div>
     <div class="login-card">
-      <div class="login-welcome">Welcome back</div>
-      <div class="login-sub">Sign in to your secure dashboard</div>
-      <label class="login-label">Username</label>
-      <input class="login-input" id="login-user" value="admin" placeholder="Username"/>
-      <label class="login-label">Password</label>
-      <input class="login-input" id="login-pass" type="password" placeholder="Enter password"/>
-      <div class="login-err" id="login-err">Incorrect username or password.</div>
+      <div style="font-size:20px;font-weight:600;margin-bottom:3px">Welcome back</div>
+      <div style="font-size:13px;color:var(--text2);margin-bottom:1.25rem">Sign in to your secure dashboard</div>
+      <label class="lbl">Username</label>
+      <input class="inp" id="li-user" placeholder="Enter username" autocomplete="username"/>
+      <label class="lbl">Password</label>
+      <input class="inp" id="li-pass" type="password" placeholder="Enter password" autocomplete="current-password"/>
+      <div class="login-err" id="li-err">❌ Incorrect username or password.</div>
       <button class="login-btn" onclick="doLogin()">Sign In →</button>
     </div>
-    <div class="login-footer">
-      🔒 Credentials provided by InsightEdge Analytics<br/>
-      Contact: 📷 <span>@mollz021</span>
+    <div class="dir-box">
+      <div class="dir-title">Client Login Directory</div>
+      <div class="dir-grid" id="dir-grid"></div>
     </div>
+    <div class="login-foot">🔒 Credentials by InsightEdge Analytics · <span>@mollz021</span></div>
   </div>
 </div>
 
-<!-- ══════════ SETUP SCREEN ══════════ -->
-<div id="setup-screen">
-  <div class="setup-box">
-    <div class="setup-hd">New Client Setup</div>
-    <div class="setup-sub">Tell us about your business to personalise your dashboard</div>
-
-    <label class="setup-label">Your Name / Business Name</label>
-    <input class="setup-input" id="client-name" placeholder="e.g. John Pharmacy, Acme Supermarket…"/>
-
-    <label class="setup-label">Select Your Business Type</label>
-    <div class="biz-grid" id="biz-grid"></div>
-
-    <button class="setup-btn" onclick="launchApp()">Launch My Dashboard →</button>
-  </div>
-</div>
-
-<!-- ══════════ MAIN APP ══════════ -->
-<div id="app">
+<!-- ══ APP ══ -->
+<div class="screen" id="s-app">
   <div class="topbar">
-    <div class="topbar-logo">Insight<span>Edge</span></div>
-    <div class="biz-badge"><i class="ti ti-building" aria-hidden="true"></i><span id="topbar-biz-type">Business</span></div>
-    <div class="topbar-right">
-      <span class="client-name" id="topbar-name"></span>
-      <button class="logout-btn" onclick="logout()"><i class="ti ti-logout"></i> Sign Out</button>
+    <div class="tb-left">
+      <div class="tb-brand">InsightEdge</div>
+      <div class="tb-sub" id="tb-sub">📊 Admin Dashboard</div>
+    </div>
+    <div class="tb-right">
+      <div class="tb-btn" onclick="showAlerts()"><i class="ti ti-bell"></i><div class="notif-dot" id="notif-dot"></div></div>
+      <div class="tb-btn" onclick="logout()"><i class="ti ti-power"></i></div>
     </div>
   </div>
-  <div class="main">
-    <div class="sidebar" id="sidebar"></div>
-    <div class="content" id="content"></div>
+
+  <!-- HOME -->
+  <div class="page-content active" id="pg-home">
+    <div class="greet-card">
+      <div class="greet-tod" id="greet-tod">Good Morning ☀️</div>
+      <div class="greet-name" id="greet-name">GIDEON OMOLOYE</div>
+      <div class="greet-role"><span>📊</span><span id="greet-role">InsightEdge Analytics Admin</span></div>
+      <div class="greet-date" id="greet-date"></div>
+      <div class="greet-bar"></div>
+    </div>
+    <div class="metrics-grid">
+      <div class="m-card mc-amber"><div class="m-label">Today's Sales</div><div class="m-value" id="hm-today">₦0</div><div class="m-sub">Live tracking</div></div>
+      <div class="m-card mc-green"><div class="m-label">Weekly Total</div><div class="m-value" id="hm-week">₦0</div><div class="m-sub">This week</div></div>
+      <div class="m-card mc-red"><div class="m-label">Restock Alerts</div><div class="m-value" id="hm-restock">0</div><div class="m-sub">Need attention</div></div>
+      <div class="m-card mc-blue"><div class="m-label">Near Expiry</div><div class="m-value" id="hm-expiry">0</div><div class="m-sub">Items flagged</div></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-head">
+        <div><div class="chart-title">Sales This Week</div><div class="chart-meta" id="chart-meta"></div></div>
+      </div>
+      <div class="chart-bars" id="chart-bars"></div>
+    </div>
+    <div class="section-title">Critical Alerts</div>
+    <div id="home-alerts"></div>
+  </div>
+
+  <!-- CLIENTS -->
+  <div class="page-content" id="pg-clients">
+    <div style="font-size:18px;font-weight:600;padding:.5rem 0 1rem">All Clients <span style="font-size:13px;color:var(--text2);font-weight:400">(15)</span></div>
+    <div id="clients-list"></div>
+  </div>
+
+  <!-- CLIENT DETAIL -->
+  <div class="page-content" id="pg-client-detail">
+    <div class="client-header">
+      <div class="back-btn" onclick="showPage('clients')"><i class="ti ti-arrow-left"></i></div>
+      <div class="ch-info"><div class="ch-name" id="cd-name"></div><div class="ch-type" id="cd-type"></div></div>
+    </div>
+    <div class="sub-nav" id="cd-subnav"></div>
+    <div id="cd-body"></div>
+  </div>
+
+  <!-- ALERTS -->
+  <div class="page-content" id="pg-alerts">
+    <div style="font-size:18px;font-weight:600;padding:.5rem 0 1rem">All Alerts</div>
+    <div id="alerts-body"></div>
+  </div>
+
+  <!-- PLANS -->
+  <div class="page-content" id="pg-plans">
+    <div style="font-size:18px;font-weight:600;padding:.5rem 0 1rem">Subscription Plans</div>
+    <div class="plan-card">
+      <div class="plan-name">Starter</div>
+      <div class="plan-price">₦5,000<span>/month</span></div>
+      <div class="plan-feat"><i class="ti ti-check"></i>1 Business Type</div>
+      <div class="plan-feat"><i class="ti ti-check"></i>Sales & Inventory Tracking</div>
+      <div class="plan-feat"><i class="ti ti-check"></i>Basic Expiry Alerts</div>
+      <div class="plan-feat"><i class="ti ti-check"></i>Up to 2 Staff Accounts</div>
+      <div class="plan-feat"><i class="ti ti-x" style="color:var(--text3)"></i>CEO Report</div>
+      <div class="plan-feat"><i class="ti ti-x" style="color:var(--text3)"></i>Priority Support</div>
+    </div>
+    <div class="plan-card featured">
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--amber);margin-bottom:6px">⭐ Most Popular</div>
+      <div class="plan-name">Business</div>
+      <div class="plan-price">₦15,000<span>/month</span></div>
+      <div class="plan-feat"><i class="ti ti-check"></i>All Business Types</div>
+      <div class="plan-feat"><i class="ti ti-check"></i>Full Dashboard & Analytics</div>
+      <div class="plan-feat"><i class="ti ti-check"></i>Expiry + Restock Alerts</div>
+      <div class="plan-feat"><i class="ti ti-check"></i>Up to 10 Staff Accounts</div>
+      <div class="plan-feat"><i class="ti ti-check"></i>CEO Report & Charts</div>
+      <div class="plan-feat"><i class="ti ti-x" style="color:var(--text3)"></i>API Access</div>
+    </div>
+    <div class="plan-card">
+      <div class="plan-name">Enterprise</div>
+      <div class="plan-price">₦40,000<span>/month</span></div>
+      <div class="plan-feat"><i class="ti ti-check"></i>Everything in Business</div>
+      <div class="plan-feat"><i class="ti ti-check"></i>Unlimited Staff Accounts</div>
+      <div class="plan-feat"><i class="ti ti-check"></i>API Access</div>
+      <div class="plan-feat"><i class="ti ti-check"></i>Custom Branding</div>
+      <div class="plan-feat"><i class="ti ti-check"></i>Dedicated Account Manager</div>
+      <div class="plan-feat"><i class="ti ti-check"></i>24/7 Priority Support</div>
+    </div>
+    <div style="font-size:12px;color:var(--text3);text-align:center;padding:1rem 0">Contact <span style="color:var(--amber)">@mollz021</span> to upgrade your plan</div>
+  </div>
+
+  <!-- PROFILE -->
+  <div class="page-content" id="pg-profile">
+    <div class="profile-head">
+      <div class="profile-av"><i class="ti ti-user"></i></div>
+      <div class="profile-name" id="prof-name">GIDEON OMOLOYE</div>
+      <div class="profile-role" id="prof-role">InsightEdge Analytics Admin</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Account Info</div>
+      <div class="profile-row"><div class="pr-label"><i class="ti ti-building"></i>Business</div><div class="pr-val" id="prof-biz">—</div></div>
+      <div class="profile-row"><div class="pr-label"><i class="ti ti-user-circle"></i>Username</div><div class="pr-val" id="prof-user">—</div></div>
+      <div class="profile-row"><div class="pr-label"><i class="ti ti-id-badge"></i>Type</div><div class="pr-val" id="prof-type">—</div></div>
+      <div class="profile-row"><div class="pr-label"><i class="ti ti-calendar"></i>Joined</div><div class="pr-val">May 2026</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Support</div>
+      <div class="profile-row"><div class="pr-label"><i class="ti ti-brand-instagram"></i>Instagram</div><div class="pr-val" style="color:var(--amber)">@mollz021</div></div>
+      <div class="profile-row"><div class="pr-label"><i class="ti ti-help-circle"></i>Help & FAQ</div><div class="pr-val"><i class="ti ti-chevron-right" style="color:var(--text3)"></i></div></div>
+    </div>
+    <button class="btn-amber" style="margin-top:.5rem" onclick="logout()">Sign Out</button>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <div class="bottom-nav">
+    <button class="nav-btn active" id="nb-home" onclick="showPage('home')"><i class="ti ti-home"></i>Home</button>
+    <button class="nav-btn" id="nb-clients" onclick="showPage('clients')"><i class="ti ti-building-store"></i>Clients</button>
+    <button class="nav-btn" id="nb-alerts" onclick="showPage('alerts')"><i class="ti ti-bell"></i>Alerts<span class="nav-badge" id="nb-alerts-badge">5</span></button>
+    <button class="nav-btn" id="nb-plans" onclick="showPage('plans')"><i class="ti ti-currency-naira"></i>Plans</button>
+    <button class="nav-btn" id="nb-profile" onclick="showPage('profile')"><i class="ti ti-user"></i>Profile</button>
   </div>
 </div>
 
 <script>
-const ADMIN_USER = 'admin';
-const ADMIN_PASS = 'insightedge2024';
+// ── UTILITIES ──
+const fmt=n=>'₦'+Math.round(n||0).toLocaleString('en-NG');
+const todayStr=()=>new Date().toISOString().split('T')[0];
+const daysUntil=d=>Math.ceil((new Date(d)-new Date())/86400000);
+function addDays(d,n){const dt=new Date(d);dt.setDate(dt.getDate()+n);return dt.toISOString().split('T')[0];}
+function tod(){const h=new Date().getHours();if(h<12)return'Good Morning ☀️';if(h<17)return'Good Afternoon 🌤️';return'Good Evening 🌙';}
+function fmtDate(){const d=new Date();return d.toLocaleDateString('en-NG',{weekday:'long',day:'numeric',month:'long',year:'numeric'});}
+function shortFmt(n){if(n>=1000000)return'₦'+(n/1000000).toFixed(1)+'M';if(n>=1000)return'₦'+(n/1000).toFixed(0)+'k';return fmt(n);}
 
-function doLogin() {
-  const u = document.getElementById('login-user').value.trim();
-  const p = document.getElementById('login-pass').value;
-  const err = document.getElementById('login-err');
-  if (u === ADMIN_USER && p === ADMIN_PASS) {
-    err.style.display = 'none';
-    document.getElementById('login-screen').style.display = 'none';
-    document.getElementById('setup-screen').style.display = 'flex';
-  } else {
-    err.style.display = 'block';
-  }
-}
-document.getElementById('login-pass') && document.getElementById('login-pass').addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
+// ══════════ 15 CLIENTS ══════════
+const CLIENTS=[
+  {id:'emeka',username:'emeka',password:'pharma001',name:"Emeka's Pharmacy",bizType:'pharmacy',icon:'💊',
+   features:['dashboard','inventory','sales','expenses','staff','ceo'],
+   products:[
+    {id:1,name:'Amoxicillin 500mg',category:'Antibiotics',qty:80,expiry:addDays(todayStr(),18),restock:30,price:850},
+    {id:2,name:'Paracetamol 1g',category:'Analgesics',qty:12,expiry:addDays(todayStr(),8),restock:40,price:350},
+    {id:3,name:'Metformin 850mg',category:'Diabetes',qty:200,expiry:addDays(todayStr(),380),restock:50,price:620},
+    {id:4,name:'Ciprofloxacin 500mg',category:'Antibiotics',qty:7,expiry:addDays(todayStr(),3),restock:20,price:1200},
+    {id:5,name:'Vitamin C 1000mg',category:'Supplements',qty:150,expiry:addDays(todayStr(),200),restock:30,price:400},
+    {id:6,name:'ORS Sachet',category:'Rehydration',qty:9,expiry:addDays(todayStr(),60),restock:25,price:150},
+   ],
+   sales:[
+    {id:1,productId:1,qty:20,date:addDays(todayStr(),-1),revenue:17000},
+    {id:2,productId:3,qty:15,date:addDays(todayStr(),-2),revenue:9300},
+    {id:3,productId:5,qty:30,date:addDays(todayStr(),-3),revenue:12000},
+    {id:4,productId:2,qty:10,date:addDays(todayStr(),-4),revenue:3500},
+    {id:5,productId:6,qty:25,date:todayStr(),revenue:3750},
+    {id:6,productId:1,qty:10,date:addDays(todayStr(),-5),revenue:8500},
+    {id:7,productId:4,qty:5,date:addDays(todayStr(),-6),revenue:6000},
+   ],
+   expenses:[
+    {id:1,desc:'Staff Salary',category:'Salaries',amount:85000,date:addDays(todayStr(),-15)},
+    {id:2,desc:'NEPA/Generator Fuel',category:'Utilities',amount:18000,date:addDays(todayStr(),-7)},
+    {id:3,desc:'Shop Rent',category:'Rent',amount:45000,date:addDays(todayStr(),-20)},
+    {id:4,desc:'Drug Restock',category:'Inventory',amount:120000,date:addDays(todayStr(),-10)},
+   ],
+   staff:[
+    {id:1,name:'Ngozi Okafor',role:'Pharmacist',phone:'0801-234-5678',status:'Active'},
+    {id:2,name:'Tunde Bello',role:'Dispenser',phone:'0802-345-6789',status:'Active'},
+    {id:3,name:'Amaka Eze',role:'Cashier',phone:'0803-456-7890',status:'Active'},
+   ]},
 
-const BIZ_TYPES = [
-  { id:'pharmacy',    label:'Pharmacy',      sub:'Drug expiry & restocks',    icon:'ti-pill',                features:['dashboard','inventory','sales','expenses','staff','ceo'] },
-  { id:'supermarket', label:'Supermarket',   sub:'Stock, sales & expiry',     icon:'ti-shopping-cart',       features:['dashboard','inventory','sales','expenses','staff','ceo'] },
-  { id:'maintenance', label:'Maintenance',   sub:'Jobs, parts & billing',     icon:'ti-tools',               features:['dashboard','jobs','expenses','staff','ceo'] },
-  { id:'security',    label:'Security',      sub:'Contracts & patrol logs',   icon:'ti-shield-check',        features:['dashboard','contracts','staff','expenses','ceo'] },
-  { id:'bar',         label:'Bar / Lounge',  sub:'Drinks, tabs & stock',      icon:'ti-glass-full',          features:['dashboard','inventory','sales','expenses','staff','ceo'] },
-  { id:'petty_trader',label:'Petty Trader',  sub:'Simple sales & stock',      icon:'ti-basket',              features:['dashboard','inventory','sales','expenses','ceo'] },
-  { id:'logistics',   label:'Logistics',     sub:'Trips, fleet & billing',    icon:'ti-truck',               features:['dashboard','trips','expenses','staff','ceo'] },
-  { id:'restaurant',  label:'Restaurant',    sub:'Menu, orders & stock',      icon:'ti-chef-hat',            features:['dashboard','inventory','sales','expenses','staff','ceo'] },
-  { id:'salon',       label:'Salon / Spa',   sub:'Appointments & services',   icon:'ti-scissors',            features:['dashboard','appointments','sales','expenses','staff','ceo'] },
-  { id:'wholesale',   label:'Wholesale',     sub:'Bulk stock & orders',       icon:'ti-building-warehouse',  features:['dashboard','inventory','sales','expenses','staff','ceo'] },
+  {id:'basira',username:'basira',password:'super002',name:"Iya Basira Supermarket",bizType:'supermarket',icon:'🛒',
+   features:['dashboard','inventory','sales','expenses','staff','ceo'],
+   products:[
+    {id:1,name:'Indomie Noodles (Carton)',category:'Food Items',qty:40,expiry:addDays(todayStr(),25),restock:15,price:7500},
+    {id:2,name:'Peak Milk 400g',category:'Dairy',qty:6,expiry:addDays(todayStr(),12),restock:20,price:3200},
+    {id:3,name:'Dangote Sugar 1kg',category:'Staples',qty:100,expiry:addDays(todayStr(),500),restock:30,price:1800},
+    {id:4,name:'Semovita 2kg',category:'Staples',qty:8,expiry:addDays(todayStr(),6),restock:20,price:2500},
+    {id:5,name:'Groundnut Oil 5L',category:'Cooking',qty:25,expiry:addDays(todayStr(),180),restock:10,price:8500},
+    {id:6,name:'Tomato Paste (Tin)',category:'Condiments',qty:60,expiry:addDays(todayStr(),300),restock:20,price:950},
+   ],
+   sales:[
+    {id:1,productId:1,qty:10,date:addDays(todayStr(),-1),revenue:75000},
+    {id:2,productId:3,qty:20,date:addDays(todayStr(),-2),revenue:36000},
+    {id:3,productId:5,qty:8,date:addDays(todayStr(),-3),revenue:68000},
+    {id:4,productId:6,qty:30,date:addDays(todayStr(),-4),revenue:28500},
+    {id:5,productId:2,qty:15,date:todayStr(),revenue:48000},
+    {id:6,productId:4,qty:5,date:addDays(todayStr(),-5),revenue:12500},
+    {id:7,productId:3,qty:10,date:addDays(todayStr(),-6),revenue:18000},
+   ],
+   expenses:[
+    {id:1,desc:'Staff Wages',category:'Salaries',amount:120000,date:addDays(todayStr(),-14)},
+    {id:2,desc:'Shop Rent',category:'Rent',amount:80000,date:addDays(todayStr(),-20)},
+    {id:3,desc:'Generator Diesel',category:'Utilities',amount:25000,date:addDays(todayStr(),-5)},
+    {id:4,desc:'Stock Restocking',category:'Inventory',amount:350000,date:addDays(todayStr(),-8)},
+   ],
+   staff:[
+    {id:1,name:'Fatima Sule',role:'Supervisor',phone:'0804-567-8901',status:'Active'},
+    {id:2,name:'Chidi Nwosu',role:'Stock Keeper',phone:'0805-678-9012',status:'Active'},
+    {id:3,name:'Blessing Ojo',role:'Cashier',phone:'0806-789-0123',status:'Active'},
+    {id:4,name:'Hassan Musa',role:'Security',phone:'0807-890-1234',status:'Active'},
+   ]},
+
+  {id:'kunle',username:'kunle',password:'maint003',name:"Kunle Fix-It Services",bizType:'maintenance',icon:'🔧',
+   features:['dashboard','jobs','expenses','staff','ceo'],jobs:[
+    {id:1,client:'GTBank Ikeja',desc:'AC Repair',status:'Completed',amount:85000,date:addDays(todayStr(),-6)},
+    {id:2,client:'Eko Hotels',desc:'Plumbing Overhaul',status:'Completed',amount:150000,date:addDays(todayStr(),-4)},
+    {id:3,client:'Shoprite Lekki',desc:'Electrical Wiring',status:'In Progress',amount:120000,date:addDays(todayStr(),-2)},
+    {id:4,client:'Mr Biggs',desc:'Generator Servicing',status:'In Progress',amount:45000,date:todayStr()},
+    {id:5,client:'Unity Bank HQ',desc:'CCTV Installation',status:'Pending',amount:200000,date:addDays(todayStr(),2)},
+   ],
+   sales:[
+    {id:1,productId:0,qty:1,date:addDays(todayStr(),-6),revenue:85000},
+    {id:2,productId:0,qty:1,date:addDays(todayStr(),-4),revenue:150000},
+    {id:3,productId:0,qty:1,date:todayStr(),revenue:45000},
+    {id:4,productId:0,qty:1,date:addDays(todayStr(),-1),revenue:60000},
+    {id:5,productId:0,qty:1,date:addDays(todayStr(),-2),revenue:30000},
+    {id:6,productId:0,qty:1,date:addDays(todayStr(),-3),revenue:75000},
+    {id:7,productId:0,qty:1,date:addDays(todayStr(),-5),revenue:42000},
+   ],
+   expenses:[
+    {id:1,desc:'Staff Salary',category:'Salaries',amount:180000,date:addDays(todayStr(),-14)},
+    {id:2,desc:'Tools & Equipment',category:'Equipment',amount:65000,date:addDays(todayStr(),-10)},
+    {id:3,desc:'Vehicle Fuel',category:'Transport',amount:22000,date:addDays(todayStr(),-5)},
+    {id:4,desc:'Office Rent',category:'Rent',amount:50000,date:addDays(todayStr(),-20)},
+   ],
+   staff:[
+    {id:1,name:'Kunle Adeyemi',role:'CEO/Engineer',phone:'0808-901-2345',status:'Active'},
+    {id:2,name:'Segun Afolabi',role:'Technician',phone:'0809-012-3456',status:'Active'},
+    {id:3,name:'Peter Okeke',role:'Technician',phone:'0810-123-4567',status:'Active'},
+    {id:4,name:'Yemi Oladele',role:'Driver',phone:'0811-234-5678',status:'Active'},
+   ],products:[]},
+
+  {id:'alpha',username:'alpha',password:'secure004',name:"Alpha Guard Security",bizType:'security',icon:'🛡️',
+   features:['dashboard','contracts','staff','expenses','ceo'],contracts:[
+    {id:1,client:'First Bank Plc',site:'Victoria Island',start:addDays(todayStr(),-60),end:addDays(todayStr(),120),monthly:280000,status:'Active'},
+    {id:2,client:'Palms Shopping Mall',site:'Lekki',start:addDays(todayStr(),-30),end:addDays(todayStr(),20),monthly:450000,status:'Active'},
+    {id:3,client:'Chevron Nigeria',site:'Staff Quarters',start:addDays(todayStr(),-90),end:addDays(todayStr(),270),monthly:600000,status:'Active'},
+    {id:4,client:'Heritage Bank',site:'Apapa Branch',start:addDays(todayStr(),-10),end:addDays(todayStr(),350),monthly:200000,status:'Active'},
+    {id:5,client:'Slot Systems',site:'Ikeja City Mall',start:addDays(todayStr(),-45),end:addDays(todayStr(),25),monthly:180000,status:'Active'},
+   ],
+   sales:[
+    {id:1,productId:0,qty:1,date:addDays(todayStr(),-1),revenue:280000},
+    {id:2,productId:0,qty:1,date:addDays(todayStr(),-2),revenue:450000},
+    {id:3,productId:0,qty:1,date:addDays(todayStr(),-3),revenue:600000},
+    {id:4,productId:0,qty:1,date:addDays(todayStr(),-4),revenue:200000},
+    {id:5,productId:0,qty:1,date:addDays(todayStr(),-5),revenue:180000},
+    {id:6,productId:0,qty:1,date:todayStr(),revenue:280000},
+    {id:7,productId:0,qty:1,date:addDays(todayStr(),-6),revenue:450000},
+   ],
+   expenses:[
+    {id:1,desc:'Guard Salaries',category:'Salaries',amount:850000,date:addDays(todayStr(),-14)},
+    {id:2,desc:'Uniforms & Equipment',category:'Equipment',amount:120000,date:addDays(todayStr(),-20)},
+    {id:3,desc:'Vehicle Maintenance',category:'Transport',amount:45000,date:addDays(todayStr(),-7)},
+    {id:4,desc:'Office Rent',category:'Rent',amount:95000,date:addDays(todayStr(),-25)},
+   ],
+   staff:[
+    {id:1,name:'Col. Emeka Nze (Rtd)',role:'MD/CEO',phone:'0812-345-6789',status:'Active'},
+    {id:2,name:'Sgt. Bello Musa',role:'Ops Head',phone:'0813-456-7890',status:'Active'},
+    {id:3,name:'Tunde Ajayi',role:'Team Leader',phone:'0814-567-8901',status:'Active'},
+    {id:4,name:'Grace Okonkwo',role:'Admin',phone:'0815-678-9012',status:'Active'},
+    {id:5,name:'James Udo',role:'Guard',phone:'0816-789-0123',status:'Active'},
+    {id:6,name:'Yusuf Garba',role:'Guard',phone:'0817-890-1234',status:'Active'},
+   ],products:[]},
+
+  {id:'chiefs',username:'chiefs',password:'bar005',name:"Chief's Lounge & Bar",bizType:'bar',icon:'🍺',
+   features:['dashboard','inventory','sales','expenses','staff','ceo'],
+   products:[
+    {id:1,name:'Guinness Stout (Crate)',category:'Beers',qty:30,expiry:addDays(todayStr(),60),restock:10,price:12000},
+    {id:2,name:'Hennessy VS 75cl',category:'Spirits',qty:8,expiry:addDays(todayStr(),900),restock:5,price:28000},
+    {id:3,name:'Pepsi 50cl (Crate)',category:'Soft Drinks',qty:5,expiry:addDays(todayStr(),15),restock:10,price:4500},
+    {id:4,name:'Orijin Bitters (Crate)',category:'Beers',qty:20,expiry:addDays(todayStr(),45),restock:8,price:10500},
+    {id:5,name:'Baileys Irish Cream',category:'Spirits',qty:12,expiry:addDays(todayStr(),400),restock:4,price:18500},
+    {id:6,name:'Smoky Jollof Rice',category:'Food',qty:50,expiry:addDays(todayStr(),1),restock:10,price:3500},
+   ],
+   sales:[
+    {id:1,productId:1,qty:8,date:addDays(todayStr(),-3),revenue:96000},
+    {id:2,productId:2,qty:3,date:addDays(todayStr(),-2),revenue:84000},
+    {id:3,productId:4,qty:5,date:addDays(todayStr(),-1),revenue:52500},
+    {id:4,productId:6,qty:20,date:todayStr(),revenue:70000},
+    {id:5,productId:5,qty:2,date:addDays(todayStr(),-4),revenue:37000},
+    {id:6,productId:1,qty:5,date:addDays(todayStr(),-5),revenue:60000},
+    {id:7,productId:3,qty:10,date:addDays(todayStr(),-6),revenue:45000},
+   ],
+   expenses:[
+    {id:1,desc:'Bar Staff Wages',category:'Salaries',amount:200000,date:addDays(todayStr(),-14)},
+    {id:2,desc:'DJ & Entertainment',category:'Entertainment',amount:80000,date:addDays(todayStr(),-7)},
+    {id:3,desc:'Generator Fuel',category:'Utilities',amount:35000,date:addDays(todayStr(),-5)},
+    {id:4,desc:'Bar Rent',category:'Rent',amount:150000,date:addDays(todayStr(),-20)},
+   ],
+   staff:[
+    {id:1,name:'Chisom Eze',role:'Bartender',phone:'0818-901-2345',status:'Active'},
+    {id:2,name:'Adaeze Nwobi',role:'Waitress',phone:'0819-012-3456',status:'Active'},
+    {id:3,name:'Ola Fashola',role:'Security',phone:'0820-123-4567',status:'Active'},
+   ]},
+
+  {id:'titi',username:'titi',password:'trader006',name:"Mama Titi's Provisions",bizType:'petty_trader',icon:'🧺',
+   features:['dashboard','inventory','sales','expenses','ceo'],
+   products:[
+    {id:1,name:'Golden Morn 500g',category:'Breakfast',qty:25,expiry:addDays(todayStr(),45),restock:10,price:1650},
+    {id:2,name:'Milo 200g Tin',category:'Beverages',qty:5,expiry:addDays(todayStr(),10),restock:12,price:2200},
+    {id:3,name:'Detergent Omo 500g',category:'Household',qty:40,expiry:addDays(todayStr(),730),restock:15,price:1100},
+    {id:4,name:'Biscuit Cabin (Pack)',category:'Snacks',qty:60,expiry:addDays(todayStr(),30),restock:20,price:500},
+    {id:5,name:'Tomato Stew Tin',category:'Condiments',qty:8,expiry:addDays(todayStr(),7),restock:15,price:750},
+   ],
+   sales:[
+    {id:1,productId:1,qty:10,date:addDays(todayStr(),-1),revenue:16500},
+    {id:2,productId:3,qty:15,date:addDays(todayStr(),-2),revenue:16500},
+    {id:3,productId:4,qty:30,date:addDays(todayStr(),-3),revenue:15000},
+    {id:4,productId:2,qty:8,date:addDays(todayStr(),-4),revenue:17600},
+    {id:5,productId:5,qty:12,date:todayStr(),revenue:9000},
+    {id:6,productId:1,qty:5,date:addDays(todayStr(),-5),revenue:8250},
+    {id:7,productId:4,qty:20,date:addDays(todayStr(),-6),revenue:10000},
+   ],
+   expenses:[
+    {id:1,desc:'Market Purchase',category:'Inventory',amount:75000,date:addDays(todayStr(),-7)},
+    {id:2,desc:'Shop Rent',category:'Rent',amount:20000,date:addDays(todayStr(),-20)},
+    {id:3,desc:'Transport (Keke)',category:'Transport',amount:3500,date:addDays(todayStr(),-2)},
+   ],staff:[]},
+
+  {id:'swift',username:'swift',password:'logistics007',name:"Swift Haulage & Logistics",bizType:'logistics',icon:'🚛',
+   features:['dashboard','trips','expenses','staff','ceo'],trips:[
+    {id:1,driver:'Alhaji Sani Danladi',route:'Kano → Lagos',cargo:'Groundnut Oil',status:'Delivered',amount:380000,date:addDays(todayStr(),-5)},
+    {id:2,driver:'Emeka Obi',route:'Lagos → Abuja',cargo:'Electronics',status:'Delivered',amount:250000,date:addDays(todayStr(),-3)},
+    {id:3,driver:'Festus Eze',route:'PH → Warri',cargo:'FMCG Goods',status:'En Route',amount:180000,date:addDays(todayStr(),-1)},
+    {id:4,driver:'Musa Aliyu',route:'Abuja → Kaduna',cargo:'Cement Bags',status:'En Route',amount:120000,date:todayStr()},
+    {id:5,driver:'Tayo Adeleke',route:'Lagos → Ibadan',cargo:'Beverages',status:'Pending',amount:95000,date:addDays(todayStr(),1)},
+   ],
+   sales:[
+    {id:1,productId:0,qty:1,date:addDays(todayStr(),-6),revenue:380000},
+    {id:2,productId:0,qty:1,date:addDays(todayStr(),-5),revenue:250000},
+    {id:3,productId:0,qty:1,date:addDays(todayStr(),-4),revenue:180000},
+    {id:4,productId:0,qty:1,date:addDays(todayStr(),-3),revenue:120000},
+    {id:5,productId:0,qty:1,date:addDays(todayStr(),-2),revenue:95000},
+    {id:6,productId:0,qty:1,date:addDays(todayStr(),-1),revenue:210000},
+    {id:7,productId:0,qty:1,date:todayStr(),revenue:120000},
+   ],
+   expenses:[
+    {id:1,desc:'Driver Salaries',category:'Salaries',amount:420000,date:addDays(todayStr(),-14)},
+    {id:2,desc:'Diesel & Fuel',category:'Fuel',amount:280000,date:addDays(todayStr(),-7)},
+    {id:3,desc:'Vehicle Maintenance',category:'Maintenance',amount:95000,date:addDays(todayStr(),-10)},
+    {id:4,desc:'Office Rent Lagos',category:'Rent',amount:120000,date:addDays(todayStr(),-20)},
+   ],
+   staff:[
+    {id:1,name:'Alhaji Sani Danladi',role:'Sr. Driver',phone:'0821-234-5678',status:'Active'},
+    {id:2,name:'Emeka Obi',role:'Driver',phone:'0822-345-6789',status:'Active'},
+    {id:3,name:'Festus Eze',role:'Driver',phone:'0823-456-7890',status:'Active'},
+    {id:4,name:'Musa Aliyu',role:'Driver',phone:'0824-567-8901',status:'Active'},
+    {id:5,name:'Aisha Mohammed',role:'Dispatcher',phone:'0825-678-9012',status:'Active'},
+   ],products:[]},
+
+  {id:'spice',username:'spice',password:'food008',name:"Spice of Lagos Restaurant",bizType:'restaurant',icon:'🍲',
+   features:['dashboard','inventory','sales','expenses','staff','ceo'],
+   products:[
+    {id:1,name:'Jollof Rice (Portion)',category:'Rice Dishes',qty:80,expiry:addDays(todayStr(),1),restock:20,price:2500},
+    {id:2,name:'Egusi Soup + Swallow',category:'Soups',qty:6,expiry:addDays(todayStr(),1),restock:15,price:3500},
+    {id:3,name:'Suya Platter',category:'Grills',qty:40,expiry:addDays(todayStr(),1),restock:10,price:4000},
+    {id:4,name:'Pounded Yam + Ofe',category:'Soups',qty:9,expiry:addDays(todayStr(),1),restock:15,price:3800},
+    {id:5,name:'Chapman (Drink)',category:'Drinks',qty:50,expiry:addDays(todayStr(),5),restock:20,price:1200},
+    {id:6,name:'Pepper Soup (Catfish)',category:'Soups',qty:3,expiry:addDays(todayStr(),1),restock:10,price:5500},
+   ],
+   sales:[
+    {id:1,productId:1,qty:35,date:addDays(todayStr(),-3),revenue:87500},
+    {id:2,productId:3,qty:20,date:addDays(todayStr(),-2),revenue:80000},
+    {id:3,productId:2,qty:18,date:addDays(todayStr(),-1),revenue:63000},
+    {id:4,productId:5,qty:40,date:todayStr(),revenue:48000},
+    {id:5,productId:4,qty:12,date:addDays(todayStr(),-4),revenue:45600},
+    {id:6,productId:6,qty:8,date:addDays(todayStr(),-5),revenue:44000},
+    {id:7,productId:1,qty:20,date:addDays(todayStr(),-6),revenue:50000},
+   ],
+   expenses:[
+    {id:1,desc:'Kitchen Staff Wages',category:'Salaries',amount:250000,date:addDays(todayStr(),-14)},
+    {id:2,desc:'Food Ingredients',category:'Inventory',amount:180000,date:addDays(todayStr(),-5)},
+    {id:3,desc:'Gas & Electricity',category:'Utilities',amount:45000,date:addDays(todayStr(),-7)},
+    {id:4,desc:'Restaurant Rent',category:'Rent',amount:220000,date:addDays(todayStr(),-20)},
+   ],
+   staff:[
+    {id:1,name:'Mama Ngozi',role:'Head Chef',phone:'0826-789-0123',status:'Active'},
+    {id:2,name:'Taiwo Olanrewaju',role:'Sous Chef',phone:'0827-890-1234',status:'Active'},
+    {id:3,name:'Chinwe Ike',role:'Waitress',phone:'0828-901-2345',status:'Active'},
+    {id:4,name:'Biodun Awe',role:'Cashier',phone:'0829-012-3456',status:'Active'},
+   ]},
+
+  {id:'glam',username:'glam',password:'salon009',name:"Glam Queens Beauty Salon",bizType:'salon',icon:'💅',
+   features:['dashboard','appointments','sales','expenses','staff','ceo'],
+   appointments:[
+    {id:1,client:'Mrs. Adaeze Onyeka',service:'Full Hair Braiding',staff:'Chidinma',date:addDays(todayStr(),-2),time:'10:00',amount:15000,status:'Completed'},
+    {id:2,client:'Miss Folake Adeleke',service:'Lace Wig Install',staff:'Ngozi',date:addDays(todayStr(),-1),time:'12:00',amount:25000,status:'Completed'},
+    {id:3,client:'Mrs. Amina Bello',service:'Manicure & Pedicure',staff:'Joy',date:todayStr(),time:'09:00',amount:8500,status:'Confirmed'},
+    {id:4,client:'Miss Temi Oduola',service:'Hair Relaxer',staff:'Chidinma',date:todayStr(),time:'14:00',amount:12000,status:'Confirmed'},
+    {id:5,client:'Mrs. Kemi Fashola',service:'Eyebrow Threading',staff:'Joy',date:addDays(todayStr(),1),time:'11:00',amount:3500,status:'Confirmed'},
+   ],
+   sales:[
+    {id:1,productId:0,qty:1,date:addDays(todayStr(),-6),revenue:18000},
+    {id:2,productId:0,qty:1,date:addDays(todayStr(),-5),revenue:25000},
+    {id:3,productId:0,qty:1,date:addDays(todayStr(),-4),revenue:12000},
+    {id:4,productId:0,qty:1,date:addDays(todayStr(),-3),revenue:8500},
+    {id:5,productId:0,qty:1,date:addDays(todayStr(),-2),revenue:15000},
+    {id:6,productId:0,qty:1,date:addDays(todayStr(),-1),revenue:25000},
+    {id:7,productId:0,qty:2,date:todayStr(),revenue:20500},
+   ],
+   expenses:[
+    {id:1,desc:'Stylist Salaries',category:'Salaries',amount:180000,date:addDays(todayStr(),-14)},
+    {id:2,desc:'Hair Products',category:'Inventory',amount:85000,date:addDays(todayStr(),-8)},
+    {id:3,desc:'Salon Rent',category:'Rent',amount:90000,date:addDays(todayStr(),-20)},
+    {id:4,desc:'Electricity',category:'Utilities',amount:22000,date:addDays(todayStr(),-7)},
+   ],
+   staff:[
+    {id:1,name:'Chidinma Obi',role:'Senior Stylist',phone:'0830-123-4567',status:'Active'},
+    {id:2,name:'Ngozi Amadi',role:'Wig Specialist',phone:'0831-234-5678',status:'Active'},
+    {id:3,name:'Joy Eze',role:'Nail Tech',phone:'0832-345-6789',status:'Active'},
+    {id:4,name:'Blessing Nwosu',role:'Receptionist',phone:'0833-456-7890',status:'Active'},
+   ],products:[]},
+
+  {id:'delta',username:'delta',password:'wholesale010',name:"Delta Wholesale Depot",bizType:'wholesale',icon:'🏭',
+   features:['dashboard','inventory','sales','expenses','staff','ceo'],
+   products:[
+    {id:1,name:'Flour (50kg Bag)',category:'Staples',qty:200,expiry:addDays(todayStr(),60),restock:50,price:32000},
+    {id:2,name:'Palm Oil (25L Keg)',category:'Cooking Oil',qty:8,expiry:addDays(todayStr(),14),restock:20,price:28000},
+    {id:3,name:'Rice (50kg Bag)',category:'Staples',qty:350,expiry:addDays(todayStr(),365),restock:80,price:65000},
+    {id:4,name:'Tomato Paste (Carton)',category:'Condiments',qty:12,expiry:addDays(todayStr(),7),restock:20,price:18000},
+    {id:5,name:'Salt (50kg Bag)',category:'Staples',qty:100,expiry:addDays(todayStr(),730),restock:25,price:8500},
+    {id:6,name:'Sugar (50kg Bag)',category:'Staples',qty:9,expiry:addDays(todayStr(),500),restock:30,price:42000},
+   ],
+   sales:[
+    {id:1,productId:3,qty:20,date:addDays(todayStr(),-6),revenue:1300000},
+    {id:2,productId:1,qty:30,date:addDays(todayStr(),-5),revenue:960000},
+    {id:3,productId:2,qty:10,date:addDays(todayStr(),-4),revenue:280000},
+    {id:4,productId:6,qty:5,date:addDays(todayStr(),-3),revenue:210000},
+    {id:5,productId:5,qty:15,date:addDays(todayStr(),-2),revenue:127500},
+    {id:6,productId:3,qty:10,date:addDays(todayStr(),-1),revenue:650000},
+    {id:7,productId:1,qty:5,date:todayStr(),revenue:160000},
+   ],
+   expenses:[
+    {id:1,desc:'Warehouse Staff',category:'Salaries',amount:350000,date:addDays(todayStr(),-14)},
+    {id:2,desc:'Warehouse Rent',category:'Rent',amount:250000,date:addDays(todayStr(),-20)},
+    {id:3,desc:'Loading Labour',category:'Labour',amount:85000,date:addDays(todayStr(),-7)},
+    {id:4,desc:'Truck Fuel',category:'Transport',amount:120000,date:addDays(todayStr(),-5)},
+   ],
+   staff:[
+    {id:1,name:'Alhaji Usman Badaru',role:'Depot Manager',phone:'0834-567-8901',status:'Active'},
+    {id:2,name:'Chukwuemeka Ibe',role:'Store Keeper',phone:'0835-678-9012',status:'Active'},
+    {id:3,name:'Adamu Sule',role:'Loader',phone:'0836-789-0123',status:'Active'},
+    {id:4,name:'Funke Adeyemi',role:'Accountant',phone:'0837-890-1234',status:'Active'},
+   ]},
+
+  {id:'bola',username:'bola',password:'buka011',name:"Iya Bola Buka",bizType:'restaurant',icon:'🍛',
+   features:['dashboard','inventory','sales','expenses','staff','ceo'],
+   products:[
+    {id:1,name:'Amala + Ewedu',category:'Soups',qty:60,expiry:addDays(todayStr(),1),restock:15,price:1500},
+    {id:2,name:'Eba + Okra Soup',category:'Soups',qty:4,expiry:addDays(todayStr(),1),restock:15,price:1800},
+    {id:3,name:'Moi Moi (Wrap)',category:'Sides',qty:80,expiry:addDays(todayStr(),2),restock:20,price:500},
+    {id:4,name:'Ofe Onugbu + Fufu',category:'Soups',qty:30,expiry:addDays(todayStr(),1),restock:10,price:2000},
+    {id:5,name:'Zobo Drink',category:'Drinks',qty:7,expiry:addDays(todayStr(),3),restock:15,price:400},
+   ],
+   sales:[
+    {id:1,productId:1,qty:40,date:addDays(todayStr(),-3),revenue:60000},
+    {id:2,productId:3,qty:60,date:addDays(todayStr(),-2),revenue:30000},
+    {id:3,productId:4,qty:20,date:addDays(todayStr(),-1),revenue:40000},
+    {id:4,productId:5,qty:25,date:todayStr(),revenue:10000},
+    {id:5,productId:2,qty:15,date:addDays(todayStr(),-4),revenue:27000},
+    {id:6,productId:1,qty:30,date:addDays(todayStr(),-5),revenue:45000},
+    {id:7,productId:3,qty:40,date:addDays(todayStr(),-6),revenue:20000},
+   ],
+   expenses:[
+    {id:1,desc:'Cook Wages',category:'Salaries',amount:95000,date:addDays(todayStr(),-14)},
+    {id:2,desc:'Food Ingredients',category:'Inventory',amount:85000,date:addDays(todayStr(),-4)},
+    {id:3,desc:'Firewood / Gas',category:'Utilities',amount:18000,date:addDays(todayStr(),-7)},
+   ],
+   staff:[
+    {id:1,name:'Iya Bola Adewale',role:'Owner/Chef',phone:'0838-901-2345',status:'Active'},
+    {id:2,name:'Seun Ogundimu',role:'Cook',phone:'0839-012-3456',status:'Active'},
+    {id:3,name:'Ronke Abiola',role:'Server',phone:'0840-123-4567',status:'Active'},
+   ]},
+
+  {id:'northern',username:'northern',password:'pharma012',name:"Northern Star Pharmacy",bizType:'pharmacy',icon:'💉',
+   features:['dashboard','inventory','sales','expenses','staff','ceo'],
+   products:[
+    {id:1,name:'Artemether-Lumefantrine',category:'Antimalarials',qty:150,expiry:addDays(todayStr(),22),restock:40,price:1800},
+    {id:2,name:'Azithromycin 250mg',category:'Antibiotics',qty:6,expiry:addDays(todayStr(),9),restock:25,price:2200},
+    {id:3,name:'Amlodipine 5mg',category:'Cardiovascular',qty:200,expiry:addDays(todayStr(),500),restock:50,price:750},
+    {id:4,name:'Glibenclamide 5mg',category:'Diabetes',qty:8,expiry:addDays(todayStr(),4),restock:30,price:650},
+    {id:5,name:'Folic Acid 5mg',category:'Supplements',qty:300,expiry:addDays(todayStr(),800),restock:60,price:200},
+   ],
+   sales:[
+    {id:1,productId:1,qty:30,date:addDays(todayStr(),-4),revenue:54000},
+    {id:2,productId:3,qty:50,date:addDays(todayStr(),-3),revenue:37500},
+    {id:3,productId:5,qty:100,date:addDays(todayStr(),-2),revenue:20000},
+    {id:4,productId:2,qty:15,date:addDays(todayStr(),-1),revenue:33000},
+    {id:5,productId:1,qty:20,date:todayStr(),revenue:36000},
+    {id:6,productId:4,qty:30,date:addDays(todayStr(),-5),revenue:19500},
+    {id:7,productId:3,qty:40,date:addDays(todayStr(),-6),revenue:30000},
+   ],
+   expenses:[
+    {id:1,desc:'Pharmacist Salary',category:'Salaries',amount:120000,date:addDays(todayStr(),-14)},
+    {id:2,desc:'Drug Restock',category:'Inventory',amount:280000,date:addDays(todayStr(),-8)},
+    {id:3,desc:'Shop Rent',category:'Rent',amount:55000,date:addDays(todayStr(),-20)},
+   ],
+   staff:[
+    {id:1,name:'Pharm. Halima Yusuf',role:'Pharmacist',phone:'0841-234-5678',status:'Active'},
+    {id:2,name:'Ibrahim Abdullahi',role:'Dispenser',phone:'0842-345-6789',status:'Active'},
+    {id:3,name:'Zainab Musa',role:'Cashier',phone:'0843-456-7890',status:'Active'},
+   ]},
+
+  {id:'eagle',username:'eagle',password:'secure013',name:"Eagle Eye Security Ltd",bizType:'security',icon:'🦅',
+   features:['dashboard','contracts','staff','expenses','ceo'],contracts:[
+    {id:1,client:'Zenith Bank HQ',site:'Vic Island',start:addDays(todayStr(),-90),end:addDays(todayStr(),270),monthly:520000,status:'Active'},
+    {id:2,client:'UAC Nigeria',site:'Maryland Factory',start:addDays(todayStr(),-30),end:addDays(todayStr(),22),monthly:380000,status:'Active'},
+    {id:3,client:'Coscharis Group',site:'Isheri',start:addDays(todayStr(),-15),end:addDays(todayStr(),345),monthly:290000,status:'Active'},
+   ],
+   sales:[
+    {id:1,productId:0,qty:1,date:addDays(todayStr(),-6),revenue:520000},
+    {id:2,productId:0,qty:1,date:addDays(todayStr(),-5),revenue:380000},
+    {id:3,productId:0,qty:1,date:addDays(todayStr(),-4),revenue:290000},
+    {id:4,productId:0,qty:1,date:addDays(todayStr(),-3),revenue:520000},
+    {id:5,productId:0,qty:1,date:addDays(todayStr(),-2),revenue:380000},
+    {id:6,productId:0,qty:1,date:addDays(todayStr(),-1),revenue:290000},
+    {id:7,productId:0,qty:1,date:todayStr(),revenue:520000},
+   ],
+   expenses:[
+    {id:1,desc:'Guard Salaries',category:'Salaries',amount:680000,date:addDays(todayStr(),-14)},
+    {id:2,desc:'Uniform & Gear',category:'Equipment',amount:95000,date:addDays(todayStr(),-20)},
+    {id:3,desc:'Office Admin',category:'Admin',amount:35000,date:addDays(todayStr(),-10)},
+   ],
+   staff:[
+    {id:1,name:'Brig. Gen. Obi (Rtd)',role:'Director',phone:'0844-567-8901',status:'Active'},
+    {id:2,name:'Capt. Lawal Abdullahi',role:'Operations',phone:'0845-678-9012',status:'Active'},
+    {id:3,name:'Uche Nwachukwu',role:'Team Leader',phone:'0846-789-0123',status:'Active'},
+    {id:4,name:'Seun Badmus',role:'Guard',phone:'0847-890-1234',status:'Active'},
+    {id:5,name:'Yinka Oduola',role:'Guard',phone:'0848-901-2345',status:'Active'},
+   ],products:[]},
+
+  {id:'golden',username:'golden',password:'logistics014',name:"Golden Road Haulage",bizType:'logistics',icon:'🚚',
+   features:['dashboard','trips','expenses','staff','ceo'],trips:[
+    {id:1,driver:'Buba Shehu',route:'Maiduguri → Kano',cargo:'Textile Goods',status:'Delivered',amount:220000,date:addDays(todayStr(),-6)},
+    {id:2,driver:'Sunday Okafor',route:'Onitsha → Lagos',cargo:'Auto Parts',status:'Delivered',amount:310000,date:addDays(todayStr(),-4)},
+    {id:3,driver:'Haruna Sule',route:'Lagos → Benin',cargo:'FMCG',status:'En Route',amount:175000,date:addDays(todayStr(),-1)},
+    {id:4,driver:'Niyi Ogunleye',route:'Ibadan → Abuja',cargo:'Bottled Water',status:'En Route',amount:140000,date:todayStr()},
+   ],
+   sales:[
+    {id:1,productId:0,qty:1,date:addDays(todayStr(),-6),revenue:220000},
+    {id:2,productId:0,qty:1,date:addDays(todayStr(),-5),revenue:310000},
+    {id:3,productId:0,qty:1,date:addDays(todayStr(),-4),revenue:175000},
+    {id:4,productId:0,qty:1,date:addDays(todayStr(),-3),revenue:140000},
+    {id:5,productId:0,qty:1,date:addDays(todayStr(),-2),revenue:250000},
+    {id:6,productId:0,qty:1,date:addDays(todayStr(),-1),revenue:175000},
+    {id:7,productId:0,qty:1,date:todayStr(),revenue:140000},
+   ],
+   expenses:[
+    {id:1,desc:'Driver Pay',category:'Salaries',amount:380000,date:addDays(todayStr(),-14)},
+    {id:2,desc:'Fuel (AGO)',category:'Fuel',amount:310000,date:addDays(todayStr(),-6)},
+    {id:3,desc:'Tyres & Spare Parts',category:'Maintenance',amount:145000,date:addDays(todayStr(),-9)},
+   ],
+   staff:[
+    {id:1,name:'Buba Shehu',role:'Driver',phone:'0849-012-3456',status:'Active'},
+    {id:2,name:'Sunday Okafor',role:'Driver',phone:'0850-123-4567',status:'Active'},
+    {id:3,name:'Haruna Sule',role:'Driver',phone:'0851-234-5678',status:'Active'},
+    {id:4,name:'Niyi Ogunleye',role:'Driver',phone:'0852-345-6789',status:'Active'},
+    {id:5,name:'Cynthia Aloha',role:'Dispatcher',phone:'0853-456-7890',status:'Active'},
+   ],products:[]},
+
+  {id:'heaven',username:'heaven',password:'salon015',name:"Hair Heaven Unisex Salon",bizType:'salon',icon:'✂️',
+   features:['dashboard','appointments','sales','expenses','staff','ceo'],
+   appointments:[
+    {id:1,client:'Mr. Tunde Bakare',service:'Barbing & Shaping',staff:'Maleek',date:addDays(todayStr(),-2),time:'09:00',amount:2500,status:'Completed'},
+    {id:2,client:'Mrs. Sola Adekunle',service:'Full Hair Styling',staff:'Precious',date:addDays(todayStr(),-1),time:'11:00',amount:18000,status:'Completed'},
+    {id:3,client:'Miss Remi Obi',service:'Cornrows',staff:'Precious',date:todayStr(),time:'10:00',amount:8000,status:'Confirmed'},
+    {id:4,client:'Mr. Emeka Chukwu',service:'Haircut & Beard',staff:'Maleek',date:todayStr(),time:'15:00',amount:3500,status:'Confirmed'},
+    {id:5,client:'Mrs. Ngozi Ike',service:'Locs Retwist',staff:'Precious',date:addDays(todayStr(),1),time:'13:00',amount:12000,status:'Confirmed'},
+   ],
+   sales:[
+    {id:1,productId:0,qty:1,date:addDays(todayStr(),-6),revenue:15000},
+    {id:2,productId:0,qty:1,date:addDays(todayStr(),-5),revenue:22000},
+    {id:3,productId:0,qty:1,date:addDays(todayStr(),-4),revenue:8500},
+    {id:4,productId:0,qty:1,date:addDays(todayStr(),-3),revenue:12000},
+    {id:5,productId:0,qty:1,date:addDays(todayStr(),-2),revenue:2500},
+    {id:6,productId:0,qty:1,date:addDays(todayStr(),-1),revenue:18000},
+    {id:7,productId:0,qty:2,date:todayStr(),revenue:11500},
+   ],
+   expenses:[
+    {id:1,desc:'Stylist Wages',category:'Salaries',amount:140000,date:addDays(todayStr(),-14)},
+    {id:2,desc:'Hair Products',category:'Inventory',amount:65000,date:addDays(todayStr(),-8)},
+    {id:3,desc:'Salon Rent',category:'Rent',amount:75000,date:addDays(todayStr(),-20)},
+    {id:4,desc:'Light Bill',category:'Utilities',amount:18000,date:addDays(todayStr(),-7)},
+   ],
+   staff:[
+    {id:1,name:'Precious Umeh',role:'Senior Stylist',phone:'0854-567-8901',status:'Active'},
+    {id:2,name:'Maleek Obi',role:'Barber',phone:'0855-678-9012',status:'Active'},
+    {id:3,name:'Funmi Adesanya',role:'Trainee',phone:'0856-789-0123',status:'Active'},
+   ],products:[]},
 ];
 
-const NAV_META = {
-  dashboard:    { label:'Dashboard',     icon:'ti-layout-dashboard' },
-  inventory:    { label:'Inventory',     icon:'ti-package' },
-  sales:        { label:'Sales',         icon:'ti-receipt' },
-  jobs:         { label:'Jobs',          icon:'ti-clipboard-list' },
-  contracts:    { label:'Contracts',     icon:'ti-file-text' },
-  trips:        { label:'Trips',         icon:'ti-route' },
-  appointments: { label:'Appointments', icon:'ti-calendar-event' },
-  expenses:     { label:'Expenses',      icon:'ti-wallet' },
-  staff:        { label:'Staff',         icon:'ti-users' },
-  ceo:          { label:'CEO Report',    icon:'ti-chart-bar' },
-};
+// ── State ──
+let currentClient=null;let currentCDTab='dashboard';
 
-let state = { client:null, bizType:null, products:[], sales:[], expenses:[], staff:[], jobs:[], contracts:[], trips:[], appointments:[], currentPage:'dashboard' };
-
-const todayStr = () => new Date().toISOString().split('T')[0];
-const daysUntil = d => Math.ceil((new Date(d) - new Date()) / 86400000);
-const fmt = n => '$' + (n||0).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');
-
-// Build biz grid
-const grid = document.getElementById('biz-grid');
-let selectedBiz = null;
-BIZ_TYPES.forEach(b => {
-  const el = document.createElement('div');
-  el.className = 'biz-card';
-  el.innerHTML = `<i class="ti ${b.icon}" aria-hidden="true"></i><div><div class="biz-card-label">${b.label}</div><div class="biz-card-sub">${b.sub}</div></div>`;
-  el.onclick = () => { document.querySelectorAll('.biz-card').forEach(c=>c.classList.remove('selected')); el.classList.add('selected'); selectedBiz=b.id; };
-  grid.appendChild(el);
+// ── Build login directory ──
+const dg=document.getElementById('dir-grid');
+CLIENTS.forEach(c=>{
+  const r=document.createElement('div');r.className='dir-row';
+  r.innerHTML=`<b>${c.username}</b> <span>/ ${c.password}</span>`;dg.appendChild(r);
 });
 
-function launchApp() {
-  const name = document.getElementById('client-name').value.trim();
-  if (!name) { alert('Please enter your name or business name.'); return; }
-  if (!selectedBiz) { alert('Please select a business type.'); return; }
-  state.client = name;
-  state.bizType = BIZ_TYPES.find(b=>b.id===selectedBiz);
-  loadSampleData();
-  document.getElementById('setup-screen').style.display = 'none';
-  document.getElementById('app').style.display = 'flex';
-  document.getElementById('topbar-name').textContent = name;
-  document.getElementById('topbar-biz-type').textContent = state.bizType.label;
-  buildSidebar();
-  showPage('dashboard');
+// ── Login ──
+function doLogin(){
+  const u=document.getElementById('li-user').value.trim().toLowerCase();
+  const p=document.getElementById('li-pass').value;
+  const err=document.getElementById('li-err');
+  const client=CLIENTS.find(c=>c.username===u&&c.password===p);
+  if(client){
+    err.style.display='none';currentClient=client;
+    document.getElementById('s-login').classList.remove('active');
+    document.getElementById('s-app').classList.add('active');
+    document.getElementById('tb-sub').innerHTML=`${client.icon} ${client.name}`;
+    document.getElementById('greet-name').textContent=client.name.toUpperCase();
+    document.getElementById('greet-role').textContent=`${typeLabel(client.bizType)} · InsightEdge`;
+    document.getElementById('prof-name').textContent=client.name.toUpperCase();
+    document.getElementById('prof-role').textContent=typeLabel(client.bizType);
+    document.getElementById('prof-biz').textContent=client.name;
+    document.getElementById('prof-user').textContent=client.username;
+    document.getElementById('prof-type').textContent=typeLabel(client.bizType);
+    renderHome();buildClientsList();renderAlerts();showPage('home');
+  }else{err.style.display='block';}
+}
+document.getElementById('li-pass').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
+
+function typeLabel(t){return t.replace('_',' ').replace(/\b\w/g,l=>l.toUpperCase());}
+
+function logout(){
+  currentClient=null;
+  document.getElementById('s-app').classList.remove('active');
+  document.getElementById('s-login').classList.add('active');
+  document.getElementById('li-user').value='';document.getElementById('li-pass').value='';
 }
 
-function logout() {
-  selectedBiz=null;
-  document.querySelectorAll('.biz-card').forEach(c=>c.classList.remove('selected'));
-  document.getElementById('client-name').value='';
-  document.getElementById('login-pass').value='';
-  state={client:null,bizType:null,products:[],sales:[],expenses:[],staff:[],jobs:[],contracts:[],trips:[],appointments:[],currentPage:'dashboard'};
-  document.getElementById('app').style.display='none';
-  document.getElementById('login-screen').style.display='flex';
-}
-
-function addDays(d,n){const dt=new Date(d);dt.setDate(dt.getDate()+n);return dt.toISOString().split('T')[0];}
-
-function loadSampleData(){
-  const b=state.bizType.id;
-  if(['pharmacy','supermarket','bar','restaurant','petty_trader','wholesale'].includes(b)){
-    state.products=[
-      {id:1,name:'Product A',category:'Category 1',qty:45,expiry:addDays(todayStr(),20),restock:20,price:12.50},
-      {id:2,name:'Product B',category:'Category 1',qty:8,expiry:addDays(todayStr(),90),restock:30,price:5.00},
-      {id:3,name:'Product C',category:'Category 2',qty:120,expiry:addDays(todayStr(),400),restock:25,price:8.75},
-      {id:4,name:'Product D',category:'Category 2',qty:5,expiry:addDays(todayStr(),5),restock:15,price:15.00},
-    ];
-    state.sales=[
-      {id:1,productId:1,qty:10,date:addDays(todayStr(),-5),revenue:125},
-      {id:2,productId:3,qty:5,date:addDays(todayStr(),-3),revenue:43.75},
-      {id:3,productId:2,qty:8,date:addDays(todayStr(),-1),revenue:40},
-    ];
-  }
-  if(b==='maintenance'){state.jobs=[{id:1,client:'Apex Ltd',desc:'AC Repair',status:'In Progress',amount:350,date:todayStr()},{id:2,client:'Metro Office',desc:'Plumbing Fix',status:'Completed',amount:180,date:addDays(todayStr(),-2)}];}
-  if(b==='security'){state.contracts=[{id:1,client:'BlueStar Bank',site:'Main Branch',start:todayStr(),end:addDays(todayStr(),180),monthly:1200,status:'Active'},{id:2,client:'City Mall',site:'Parking Zone',start:todayStr(),end:addDays(todayStr(),25),monthly:800,status:'Active'}];}
-  if(b==='logistics'){state.trips=[{id:1,driver:'Samuel K.',route:'Lagos → Abuja',cargo:'Electronics',status:'En Route',amount:550,date:todayStr()},{id:2,driver:'Emeka O.',route:'PH → Lagos',cargo:'FMCG Goods',status:'Delivered',amount:420,date:addDays(todayStr(),-1)}];}
-  if(b==='salon'){state.appointments=[{id:1,client:'Ada N.',service:'Hair Styling',staff:'Grace',date:todayStr(),time:'10:00',amount:80,status:'Confirmed'},{id:2,client:'Bola F.',service:'Manicure',staff:'Joy',date:todayStr(),time:'14:00',amount:35,status:'Confirmed'}];}
-  state.expenses=[{id:1,desc:'Staff Salary',category:'Salaries',amount:1200,date:addDays(todayStr(),-10)},{id:2,desc:'Utilities',category:'Overhead',amount:320,date:addDays(todayStr(),-5)}];
-  state.staff=[{id:1,name:'Alice M.',role:'Manager',phone:'080-0000-001',status:'Active'},{id:2,name:'Bob T.',role:'Staff',phone:'080-0000-002',status:'Active'}];
-}
-
-function buildSidebar(){
-  const sb=document.getElementById('sidebar');
-  sb.innerHTML='<div class="nav-section">Menu</div>';
-  state.bizType.features.forEach(f=>{
-    const m=NAV_META[f];
-    const el=document.createElement('div');
-    el.className='nav-item'+(f===state.currentPage?' active':'');
-    el.id='nav-'+f;
-    el.innerHTML=`<i class="ti ${m.icon}" aria-hidden="true"></i>${m.label}`;
-    el.onclick=()=>showPage(f);
-    sb.appendChild(el);
-  });
-}
-
+// ── Page navigation ──
+const PAGES=['home','clients','client-detail','alerts','plans','profile'];
 function showPage(page){
-  state.currentPage=page;
-  document.querySelectorAll('.nav-item').forEach(el=>el.classList.remove('active'));
-  const navEl=document.getElementById('nav-'+page);
-  if(navEl)navEl.classList.add('active');
-  const content=document.getElementById('content');
-  content.innerHTML='';
-  const pages={dashboard,inventory,sales,jobs,contracts,trips,appointments,expenses,staff,ceo};
-  if(pages[page])pages[page](content);
+  PAGES.forEach(p=>{
+    document.getElementById('pg-'+p).classList.toggle('active',p===page);
+  });
+  ['home','clients','alerts','plans','profile'].forEach(p=>{
+    const nb=document.getElementById('nb-'+p);
+    if(nb)nb.classList.toggle('active',p===page);
+  });
+  if(page==='alerts')renderAlerts();
 }
+function showAlerts(){showPage('alerts');}
 
-// ── DASHBOARD ──
-function dashboard(el){
-  const b=state.bizType.id;
-  const totalSales=state.sales.reduce((a,s)=>a+s.revenue,0);
-  const totalExp=state.expenses.reduce((a,e)=>a+e.amount,0);
-  const expiringItems=state.products.filter(p=>{const d=daysUntil(p.expiry);return d>0&&d<=30;});
-  const expiredItems=state.products.filter(p=>daysUntil(p.expiry)<=0);
-  const lowStock=state.products.filter(p=>p.qty<=p.restock&&daysUntil(p.expiry)>0);
-  const activeStaff=state.staff.filter(s=>s.status==='Active').length;
-  let metricsHtml='';
-  if(['pharmacy','supermarket','bar','restaurant','petty_trader','wholesale'].includes(b)){
-    metricsHtml+=mc('Revenue',fmt(totalSales),'↑ this month','up');
-    metricsHtml+=mc('Expiring Soon',expiringItems.length+expiredItems.length,'items need attention',expiredItems.length>0?'down':'warn');
-    metricsHtml+=mc('Low Stock',lowStock.length,'items to restock',lowStock.length>0?'warn':'');
+// ── Home render ──
+function renderHome(){
+  const c=currentClient;const sales=c.sales||[];
+  const today=todayStr();
+  const todaySales=sales.filter(s=>s.date===today).reduce((a,s)=>a+s.revenue,0);
+  const weekStart=addDays(today,-6);
+  const weekSales=sales.filter(s=>s.date>=weekStart).reduce((a,s)=>a+s.revenue,0);
+  const products=c.products||[];
+  const lowStock=products.filter(p=>p.qty<=p.restock&&daysUntil(p.expiry)>0).length;
+  const expiring=products.filter(p=>{const d=daysUntil(p.expiry);return d>0&&d<=30;}).length+products.filter(p=>daysUntil(p.expiry)<=0).length;
+  document.getElementById('hm-today').textContent=shortFmt(todaySales);
+  document.getElementById('hm-week').textContent=shortFmt(weekSales);
+  document.getElementById('hm-restock').textContent=lowStock;
+  document.getElementById('hm-expiry').textContent=expiring;
+  document.getElementById('greet-tod').textContent=tod();
+  document.getElementById('greet-date').textContent=fmtDate();
+  // chart
+  const days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  const now=new Date();const dayOfWeek=now.getDay();
+  const dayData=[];
+  for(let i=6;i>=0;i--){
+    const d=addDays(today,-i);
+    const rev=sales.filter(s=>s.date===d).reduce((a,s)=>a+s.revenue,0);
+    const dt=new Date(d);const lbl=days[(dt.getDay()+6)%7];
+    dayData.push({lbl,rev,d});
   }
-  if(b==='maintenance'){const e=state.jobs.filter(j=>j.status==='Completed').reduce((a,j)=>a+j.amount,0);metricsHtml+=mc('Jobs Earned',fmt(e),'completed','up');metricsHtml+=mc('Active Jobs',state.jobs.filter(j=>j.status==='In Progress').length,'in progress','warn');}
-  if(b==='security'){const m=state.contracts.filter(c=>daysUntil(c.end)>0).reduce((a,c)=>a+c.monthly,0);metricsHtml+=mc('Monthly Revenue',fmt(m),'active contracts','up');metricsHtml+=mc('Expiring Contracts',state.contracts.filter(c=>daysUntil(c.end)<=30&&daysUntil(c.end)>0).length,'within 30 days','warn');}
-  if(b==='logistics'){const e=state.trips.filter(t=>t.status==='Delivered').reduce((a,t)=>a+t.amount,0);metricsHtml+=mc('Trips Earned',fmt(e),'from deliveries','up');metricsHtml+=mc('Active Trips',state.trips.filter(t=>t.status==='En Route').length,'on the road','warn');}
-  if(b==='salon'){metricsHtml+=mc('Revenue',fmt(totalSales),'↑ this month','up');metricsHtml+=mc("Today's Bookings",state.appointments.filter(a=>a.date===todayStr()).length,'appointments','up');}
-  metricsHtml+=mc('Expenses',fmt(totalExp),'total recorded','');
-  if(state.bizType.features.includes('staff'))metricsHtml+=mc('Active Staff',activeStaff,'team members','up');
-  let alertsHtml='';
-  expiredItems.forEach(p=>{alertsHtml+=ai('ai-red','ti-alert-circle',p.name,'Expired — remove from stock','<span class="badge b-red">Expired</span>');});
-  expiringItems.forEach(p=>{alertsHtml+=ai('ai-amber','ti-clock',p.name,`${p.category} · ${p.qty} units · expires in ${daysUntil(p.expiry)} days`,`<span class="badge b-amber">${daysUntil(p.expiry)}d left</span>`);});
-  lowStock.forEach(p=>{alertsHtml+=ai('ai-amber','ti-package',p.name+' — Low Stock',`${p.qty} remaining / threshold ${p.restock}`,'<span class="badge b-amber">Restock</span>');});
-  state.contracts&&state.contracts.filter(c=>daysUntil(c.end)<=30&&daysUntil(c.end)>0).forEach(c=>{alertsHtml+=ai('ai-amber','ti-file-text',c.client+' contract expiring',`${c.site} · ${daysUntil(c.end)} days left`,`<span class="badge b-amber">${daysUntil(c.end)}d</span>`);});
-  if(!alertsHtml)alertsHtml='<div class="empty"><i class="ti ti-circle-check" style="color:var(--green)"></i> All clear — no critical alerts</div>';
-  el.innerHTML=`<div class="page-title">Dashboard</div><div class="metrics">${metricsHtml}</div><div class="card"><div class="card-title">Critical Alerts</div>${alertsHtml}</div>`;
+  const maxRev=Math.max(...dayData.map(d=>d.rev),1);
+  const bestIdx=dayData.reduce((bi,d,i,a)=>d.rev>a[bi].rev?i:bi,0);
+  const prevWeekTotal=sales.filter(s=>s.date>=addDays(today,-13)&&s.date<addDays(today,-6)).reduce((a,s)=>a+s.revenue,0);
+  const pct=prevWeekTotal>0?Math.round((weekSales-prevWeekTotal)/prevWeekTotal*100):100;
+  const pctStr=pct>=0?`↑ ${pct}%`:`↓ ${Math.abs(pct)}%`;
+  document.getElementById('chart-meta').innerHTML=`<span class="chart-up">${pctStr} vs last week</span> · 🏆 Best: <b>${dayData[bestIdx].lbl}</b>`;
+  const cb=document.getElementById('chart-bars');
+  cb.innerHTML=dayData.map((d,i)=>{
+    const h=Math.max(Math.round(d.rev/maxRev*80),4);
+    const cls=i===bestIdx?'best':'normal';
+    return `<div class="bar-wrap"><div class="bar-val">${d.rev>0?shortFmt(d.rev):''}</div><div class="bar ${cls}" style="height:${h}px"></div><div class="bar-lbl">${d.lbl}</div></div>`;
+  }).join('');
+  // alerts
+  let ah='';
+  products.filter(p=>daysUntil(p.expiry)<=0).forEach(p=>{ah+=alertHtml('a-red','ti-alert-circle',p.name,'Expired — remove stock','<span class="badge b-red">Expired</span>');});
+  products.filter(p=>{const d=daysUntil(p.expiry);return d>0&&d<=30;}).forEach(p=>{ah+=alertHtml('a-amber','ti-clock',p.name,`${p.qty} units · ${daysUntil(p.expiry)}d left`,`<span class="badge b-amber">${daysUntil(p.expiry)}d</span>`);});
+  products.filter(p=>p.qty<=p.restock&&daysUntil(p.expiry)>0).forEach(p=>{ah+=alertHtml('a-amber','ti-package',p.name+' — Low Stock',`${p.qty} units remaining`,'<span class="badge b-amber">Restock</span>');});
+  (c.contracts||[]).filter(c=>daysUntil(c.end)<=30&&daysUntil(c.end)>0).forEach(cn=>{ah+=alertHtml('a-amber','ti-file-text',cn.client+' contract',`Expires in ${daysUntil(cn.end)} days`,`<span class="badge b-amber">${daysUntil(cn.end)}d</span>`);});
+  if(!ah)ah='<div class="empty">✅ No critical alerts right now</div>';
+  document.getElementById('home-alerts').innerHTML=ah;
+  // notif dot
+  const totalAlerts=lowStock+expiring;
+  document.getElementById('notif-dot').style.display=totalAlerts>0?'block':'none';
+  document.getElementById('nb-alerts-badge').textContent=totalAlerts||'';
+  document.getElementById('nb-alerts-badge').style.display=totalAlerts>0?'block':'none';
 }
-function mc(label,value,sub,subCls){return `<div class="metric"><div class="metric-label">${label}</div><div class="metric-value">${value}</div><div class="metric-sub ${subCls||''}">${sub}</div></div>`;}
-function ai(iconCls,icon,title,sub,right){return `<div class="alert-item"><div class="alert-icon ${iconCls}"><i class="ti ${icon}" aria-hidden="true"></i></div><div><div class="alert-title">${title}</div><div class="alert-sub">${sub}</div></div><div class="alert-right">${right}</div></div>`;}
 
-// ── INVENTORY ──
-function inventory(el){
-  const rows=state.products.map(p=>{const d=daysUntil(p.expiry);let badge=d<=0?'<span class="badge b-red">Expired</span>':d<=30?`<span class="badge b-amber">Expiring ${d}d</span>`:p.qty<=p.restock?'<span class="badge b-amber">Low Stock</span>':'<span class="badge b-green">OK</span>';return `<tr><td>${p.name}</td><td>${p.category}</td><td>${p.qty}</td><td>${p.expiry}</td><td>${fmt(p.price)}</td><td>${badge}</td><td><button class="btn" style="padding:3px 10px;font-size:11px" onclick="deleteProduct(${p.id})">Remove</button></td></tr>`;}).join('')||`<tr><td colspan="7" class="empty">No products yet</td></tr>`;
-  el.innerHTML=`<div class="page-title">Inventory</div>
-    <div class="card"><div class="card-title">Add Product / Stock</div>
-      <div class="form-grid">
-        <div class="field"><label>Product Name</label><input id="p-name" placeholder="e.g. Paracetamol 500mg"/></div>
-        <div class="field"><label>Category</label><input id="p-cat" placeholder="e.g. Antibiotics"/></div>
-        <div class="field"><label>Quantity</label><input id="p-qty" type="number" min="0" placeholder="0"/></div>
-        <div class="field"><label>Unit Price ($)</label><input id="p-price" type="number" min="0" step="0.01" placeholder="0.00"/></div>
-        <div class="field"><label>Expiry Date</label><input id="p-exp" type="date"/></div>
-        <div class="field"><label>Restock Threshold</label><input id="p-restock" type="number" min="0" placeholder="10"/></div>
-      </div>
-      <button class="btn btn-amber" onclick="addProduct()">+ Add to Inventory</button>
-    </div>
-    <div class="card"><div class="card-title">All Products</div>
-      <table><thead><tr><th>Name</th><th>Category</th><th>Qty</th><th>Expiry</th><th>Price</th><th>Status</th><th></th></tr></thead>
-      <tbody>${rows}</tbody></table></div>`;
+function alertHtml(ic,icon,title,sub,right){
+  return `<div class="alert-item"><div class="a-icon ${ic}"><i class="ti ${icon}"></i></div><div class="a-text"><div class="a-title">${title}</div><div class="a-sub">${sub}</div></div><div class="a-right">${right}</div></div>`;
 }
-function addProduct(){const name=document.getElementById('p-name').value.trim();const exp=document.getElementById('p-exp').value;if(!name||!exp){alert('Name and expiry date are required.');return;}state.products.push({id:Date.now(),name,category:document.getElementById('p-cat').value.trim()||'General',qty:parseInt(document.getElementById('p-qty').value)||0,price:parseFloat(document.getElementById('p-price').value)||0,expiry:exp,restock:parseInt(document.getElementById('p-restock').value)||10});showPage('inventory');}
-function deleteProduct(id){state.products=state.products.filter(p=>p.id!==id);showPage('inventory');}
 
-// ── SALES ──
-function sales(el){
-  const opts=state.products.map(p=>`<option value="${p.id}">${p.name} (${p.qty} in stock)</option>`).join('');
-  const rows=[...state.sales].reverse().map(s=>{const p=state.products.find(x=>x.id===s.productId)||{name:'Unknown'};return `<tr><td>${p.name}</td><td>${s.qty}</td><td>${fmt(s.revenue)}</td><td>${s.date}</td><td><span class="badge b-green">Completed</span></td></tr>`;}).join('')||`<tr><td colspan="5" class="empty">No sales recorded</td></tr>`;
-  el.innerHTML=`<div class="page-title">Sales</div>
-    <div class="card"><div class="card-title">Record a Sale</div>
-      <div class="form-grid">
-        <div class="field"><label>Product</label><select id="s-prod"><option value="">Select product…</option>${opts}</select></div>
-        <div class="field"><label>Quantity Sold</label><input id="s-qty" type="number" min="1" placeholder="1"/></div>
-        <div class="field"><label>Date</label><input id="s-date" type="date" value="${todayStr()}"/></div>
+// ── Clients list ──
+function buildClientsList(){
+  const el=document.getElementById('clients-list');
+  el.innerHTML=CLIENTS.map(c=>`
+    <div class="client-card" onclick="openClient('${c.id}')">
+      <div class="client-avatar">${c.icon}</div>
+      <div class="client-info">
+        <div class="client-name">${c.name}</div>
+        <div class="client-type">${typeLabel(c.bizType)}</div>
+        <div class="client-login">${c.username} / ${c.password}</div>
       </div>
-      <button class="btn btn-amber" onclick="recordSale()">+ Record Sale</button>
-    </div>
-    <div class="card"><div class="card-title">Sales History</div>
-      <table><thead><tr><th>Product</th><th>Qty</th><th>Revenue</th><th>Date</th><th>Status</th></tr></thead>
-      <tbody>${rows}</tbody></table></div>`;
+      <div class="client-arr"><i class="ti ti-chevron-right"></i></div>
+    </div>`).join('');
 }
-function recordSale(){const productId=parseInt(document.getElementById('s-prod').value);const qty=parseInt(document.getElementById('s-qty').value)||0;const date=document.getElementById('s-date').value||todayStr();if(!productId||qty<=0){alert('Select a product and enter a valid quantity.');return;}const p=state.products.find(x=>x.id===productId);if(qty>p.qty){alert(`Only ${p.qty} units available.`);return;}state.sales.push({id:Date.now(),productId,qty,date,revenue:qty*p.price});p.qty-=qty;showPage('sales');}
 
-// ── JOBS ──
-function jobs(el){
-  const rows=state.jobs.map(j=>{const badge=j.status==='Completed'?'<span class="badge b-green">Completed</span>':j.status==='In Progress'?'<span class="badge b-amber">In Progress</span>':'<span class="badge b-blue">Pending</span>';return `<tr><td>${j.client}</td><td>${j.desc}</td><td>${fmt(j.amount)}</td><td>${j.date}</td><td>${badge}</td><td><button class="btn" style="padding:3px 10px;font-size:11px" onclick="completeJob(${j.id})">✓ Done</button></td></tr>`;}).join('')||`<tr><td colspan="6" class="empty">No jobs yet</td></tr>`;
-  el.innerHTML=`<div class="page-title">Jobs</div>
-    <div class="card"><div class="card-title">Add New Job</div>
-      <div class="form-grid">
-        <div class="field"><label>Client Name</label><input id="j-client" placeholder="Client…"/></div>
-        <div class="field"><label>Job Description</label><input id="j-desc" placeholder="e.g. AC Repair"/></div>
-        <div class="field"><label>Amount ($)</label><input id="j-amount" type="number" min="0" step="0.01" placeholder="0.00"/></div>
-        <div class="field"><label>Date</label><input id="j-date" type="date" value="${todayStr()}"/></div>
-      </div>
-      <button class="btn btn-amber" onclick="addJob()">+ Add Job</button>
+function openClient(id){
+  const c=CLIENTS.find(x=>x.id===id);if(!c)return;
+  currentClient=c;
+  document.getElementById('cd-name').textContent=c.name;
+  document.getElementById('cd-type').textContent=c.icon+' '+typeLabel(c.bizType);
+  renderHome();
+  buildClientDetail('dashboard');
+  showPage('client-detail');
+}
+
+function buildClientDetail(tab){
+  currentCDTab=tab;
+  const c=currentClient;
+  const tabs=c.features;
+  const labels={dashboard:'📊 Home',inventory:'📦 Inventory',sales:'🧾 Sales',jobs:'🔨 Jobs',contracts:'📄 Contracts',trips:'🚛 Trips',appointments:'📅 Appts',expenses:'💰 Expenses',staff:'👥 Staff',ceo:'📈 CEO'};
+  document.getElementById('cd-subnav').innerHTML=tabs.map(t=>`<button class="sub-btn${t===tab?' active':''}" onclick="buildClientDetail('${t}')">${labels[t]||t}</button>`).join('');
+  const body=document.getElementById('cd-body');
+  body.innerHTML='';
+  if(tab==='dashboard'){renderClientDash(body);}
+  else if(tab==='inventory'){renderInventory(body);}
+  else if(tab==='sales'){renderSales(body);}
+  else if(tab==='jobs'){renderJobs(body);}
+  else if(tab==='contracts'){renderContracts(body);}
+  else if(tab==='trips'){renderTrips(body);}
+  else if(tab==='appointments'){renderAppts(body);}
+  else if(tab==='expenses'){renderExpenses(body);}
+  else if(tab==='staff'){renderStaff(body);}
+  else if(tab==='ceo'){renderCEO(body);}
+}
+
+function renderClientDash(el){
+  const c=currentClient;const today=todayStr();const products=c.products||[];const sales=c.sales||[];
+  const todaySales=sales.filter(s=>s.date===today).reduce((a,s)=>a+s.revenue,0);
+  const weekSales=sales.filter(s=>s.date>=addDays(today,-6)).reduce((a,s)=>a+s.revenue,0);
+  const lowStock=products.filter(p=>p.qty<=p.restock&&daysUntil(p.expiry)>0).length;
+  const expiring=products.filter(p=>{const d=daysUntil(p.expiry);return d>0&&d<=30;}).length+products.filter(p=>daysUntil(p.expiry)<=0).length;
+  let ah='';
+  products.filter(p=>daysUntil(p.expiry)<=0).forEach(p=>{ah+=alertHtml('a-red','ti-alert-circle',p.name,'Expired','<span class="badge b-red">Expired</span>');});
+  products.filter(p=>{const d=daysUntil(p.expiry);return d>0&&d<=30;}).forEach(p=>{ah+=alertHtml('a-amber','ti-clock',p.name,`${daysUntil(p.expiry)}d left`,`<span class="badge b-amber">${daysUntil(p.expiry)}d</span>`);});
+  products.filter(p=>p.qty<=p.restock&&daysUntil(p.expiry)>0).forEach(p=>{ah+=alertHtml('a-amber','ti-package',p.name,'Low stock','<span class="badge b-amber">Restock</span>');});
+  (c.contracts||[]).filter(cn=>daysUntil(cn.end)<=30&&daysUntil(cn.end)>0).forEach(cn=>{ah+=alertHtml('a-amber','ti-file-text',cn.client,`${daysUntil(cn.end)}d left`,`<span class="badge b-amber">${daysUntil(cn.end)}d</span>`);});
+  if(!ah)ah='<div class="empty">✅ All clear</div>';
+  el.innerHTML=`<div class="metrics-grid">
+    <div class="m-card mc-amber"><div class="m-label">Today's Sales</div><div class="m-value">${shortFmt(todaySales)}</div><div class="m-sub">Live tracking</div></div>
+    <div class="m-card mc-green"><div class="m-label">Weekly Total</div><div class="m-value">${shortFmt(weekSales)}</div><div class="m-sub">This week</div></div>
+    <div class="m-card mc-red"><div class="m-label">Low Stock</div><div class="m-value">${lowStock}</div><div class="m-sub">Need restock</div></div>
+    <div class="m-card mc-blue"><div class="m-label">Expiry Alerts</div><div class="m-value">${expiring}</div><div class="m-sub">Items flagged</div></div>
+  </div><div class="section-title">Alerts</div>${ah}`;
+}
+
+function renderInventory(el){
+  const c=currentClient;const products=c.products||[];
+  const rows=products.map(p=>{const d=daysUntil(p.expiry);const b=d<=0?'<span class="badge b-red">Expired</span>':d<=30?`<span class="badge b-amber">${d}d</span>`:p.qty<=p.restock?'<span class="badge b-amber">Low</span>':'<span class="badge b-green">OK</span>';return `<tr><td>${p.name}</td><td>${p.qty}</td><td>${fmt(p.price)}</td><td>${b}</td></tr>`;}).join('')||`<tr><td colspan="4" class="empty">No products</td></tr>`;
+  el.innerHTML=`<div class="card"><div class="card-title">Add Product</div>
+    <div class="form-grid">
+      <div class="field"><label>Name</label><input id="pn" placeholder="Product name"/></div>
+      <div class="field"><label>Category</label><input id="pc" placeholder="Category"/></div>
+      <div class="field"><label>Quantity</label><input id="pq" type="number" min="0" placeholder="0"/></div>
+      <div class="field"><label>Price (₦)</label><input id="pp" type="number" min="0" placeholder="0"/></div>
+      <div class="field"><label>Expiry Date</label><input id="pe" type="date"/></div>
+      <div class="field"><label>Restock Threshold</label><input id="pr" type="number" min="0" placeholder="10"/></div>
     </div>
+    <button class="btn-amber" onclick="addProd()">+ Add Product</button></div>
+    <div class="card"><div class="card-title">All Products (${products.length})</div>
+    <table><thead><tr><th>Name</th><th>Qty</th><th>Price</th><th>Status</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+function addProd(){const n=document.getElementById('pn').value.trim();const e=document.getElementById('pe').value;if(!n||!e){alert('Name & expiry required');return;}(currentClient.products=currentClient.products||[]).push({id:Date.now(),name:n,category:document.getElementById('pc').value.trim()||'General',qty:parseInt(document.getElementById('pq').value)||0,price:parseFloat(document.getElementById('pp').value)||0,expiry:e,restock:parseInt(document.getElementById('pr').value)||10});buildClientDetail('inventory');}
+
+function renderSales(el){
+  const c=currentClient;const products=c.products||[];const sales=c.sales||[];
+  const opts=products.map(p=>`<option value="${p.id}">${p.name} (${p.qty})</option>`).join('');
+  const rows=[...sales].reverse().slice(0,10).map(s=>{const p=products.find(x=>x.id===s.productId)||{name:'Service'};return `<tr><td>${p.name}</td><td>${s.qty}</td><td>${fmt(s.revenue)}</td><td>${s.date}</td></tr>`;}).join('')||`<tr><td colspan="4" class="empty">No sales</td></tr>`;
+  el.innerHTML=`<div class="card"><div class="card-title">Record Sale</div>
+    <div class="form-grid">
+      <div class="field"><label>Product</label><select id="sp"><option value="">Select…</option>${opts}</select></div>
+      <div class="field"><label>Qty Sold</label><input id="sq" type="number" min="1" placeholder="1"/></div>
+      <div class="field"><label>Date</label><input id="sd" type="date" value="${todayStr()}"/></div>
+    </div>
+    <button class="btn-amber" onclick="recSale()">+ Record Sale</button></div>
+    <div class="card"><div class="card-title">Recent Sales</div>
+    <table><thead><tr><th>Product</th><th>Qty</th><th>Revenue</th><th>Date</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+function recSale(){const pid=parseInt(document.getElementById('sp').value);const qty=parseInt(document.getElementById('sq').value)||0;const date=document.getElementById('sd').value||todayStr();if(!pid||qty<=0){alert('Select product & qty');return;}const p=(currentClient.products||[]).find(x=>x.id===pid);if(!p||qty>p.qty){alert(`Only ${p?p.qty:0} in stock`);return;}(currentClient.sales=currentClient.sales||[]).push({id:Date.now(),productId:pid,qty,date,revenue:qty*p.price});p.qty-=qty;buildClientDetail('sales');}
+
+function renderJobs(el){
+  const jobs=currentClient.jobs||[];
+  const rows=jobs.map(j=>{const b=j.status==='Completed'?'<span class="badge b-green">Done</span>':j.status==='In Progress'?'<span class="badge b-amber">Active</span>':'<span class="badge b-blue">Pending</span>';return `<tr><td>${j.client}</td><td>${j.desc}</td><td>${fmt(j.amount)}</td><td>${b}</td><td><button class="btn" onclick="doneJob(${j.id})" style="padding:3px 8px;font-size:11px">✓</button></td></tr>`;}).join('')||`<tr><td colspan="5" class="empty">No jobs</td></tr>`;
+  el.innerHTML=`<div class="card"><div class="card-title">Add Job</div>
+    <div class="form-grid">
+      <div class="field"><label>Client</label><input id="jcl" placeholder="Client name"/></div>
+      <div class="field"><label>Description</label><input id="jd" placeholder="Job description"/></div>
+      <div class="field"><label>Amount (₦)</label><input id="ja" type="number" min="0" placeholder="0"/></div>
+      <div class="field"><label>Date</label><input id="jdt" type="date" value="${todayStr()}"/></div>
+    </div>
+    <button class="btn-amber" onclick="addJob()">+ Add Job</button></div>
     <div class="card"><div class="card-title">All Jobs</div>
-      <table><thead><tr><th>Client</th><th>Description</th><th>Amount</th><th>Date</th><th>Status</th><th></th></tr></thead>
-      <tbody>${rows}</tbody></table></div>`;
+    <table><thead><tr><th>Client</th><th>Job</th><th>Amount</th><th>Status</th><th></th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
-function addJob(){const client=document.getElementById('j-client').value.trim();if(!client){alert('Client name required.');return;}state.jobs.push({id:Date.now(),client,desc:document.getElementById('j-desc').value.trim()||'General job',amount:parseFloat(document.getElementById('j-amount').value)||0,date:document.getElementById('j-date').value||todayStr(),status:'In Progress'});showPage('jobs');}
-function completeJob(id){const j=state.jobs.find(x=>x.id===id);if(j)j.status='Completed';showPage('jobs');}
+function addJob(){const cl=document.getElementById('jcl').value.trim();if(!cl){alert('Client required');return;}(currentClient.jobs=currentClient.jobs||[]).push({id:Date.now(),client:cl,desc:document.getElementById('jd').value.trim()||'Job',amount:parseFloat(document.getElementById('ja').value)||0,date:document.getElementById('jdt').value||todayStr(),status:'In Progress'});buildClientDetail('jobs');}
+function doneJob(id){const j=(currentClient.jobs||[]).find(x=>x.id===id);if(j)j.status='Completed';buildClientDetail('jobs');}
 
-// ── CONTRACTS ──
-function contracts(el){
-  const rows=state.contracts.map(c=>{const d=daysUntil(c.end);const badge=d<=0?'<span class="badge b-red">Expired</span>':d<=30?`<span class="badge b-amber">Expiring ${d}d</span>`:'<span class="badge b-green">Active</span>';return `<tr><td>${c.client}</td><td>${c.site}</td><td>${fmt(c.monthly)}/mo</td><td>${c.start}</td><td>${c.end}</td><td>${badge}</td></tr>`;}).join('')||`<tr><td colspan="6" class="empty">No contracts yet</td></tr>`;
-  el.innerHTML=`<div class="page-title">Contracts</div>
-    <div class="card"><div class="card-title">Add Contract</div>
-      <div class="form-grid">
-        <div class="field"><label>Client</label><input id="c-client" placeholder="Client name…"/></div>
-        <div class="field"><label>Site / Location</label><input id="c-site" placeholder="e.g. Main Branch"/></div>
-        <div class="field"><label>Monthly Value ($)</label><input id="c-monthly" type="number" min="0" step="0.01" placeholder="0.00"/></div>
-        <div class="field"><label>Start Date</label><input id="c-start" type="date" value="${todayStr()}"/></div>
-        <div class="field"><label>End Date</label><input id="c-end" type="date"/></div>
-      </div>
-      <button class="btn btn-amber" onclick="addContract()">+ Add Contract</button>
+function renderContracts(el){
+  const contracts=currentClient.contracts||[];
+  const rows=contracts.map(c=>{const d=daysUntil(c.end);const b=d<=0?'<span class="badge b-red">Expired</span>':d<=30?`<span class="badge b-amber">${d}d</span>`:'<span class="badge b-green">Active</span>';return `<tr><td>${c.client}</td><td>${c.site}</td><td>${fmt(c.monthly)}</td><td>${b}</td></tr>`;}).join('')||`<tr><td colspan="4" class="empty">No contracts</td></tr>`;
+  el.innerHTML=`<div class="card"><div class="card-title">Add Contract</div>
+    <div class="form-grid">
+      <div class="field"><label>Client</label><input id="ccl" placeholder="Client"/></div>
+      <div class="field"><label>Site</label><input id="cs" placeholder="Location"/></div>
+      <div class="field"><label>Monthly (₦)</label><input id="cm" type="number" min="0" placeholder="0"/></div>
+      <div class="field"><label>End Date</label><input id="ce" type="date"/></div>
     </div>
-    <div class="card"><div class="card-title">All Contracts</div>
-      <table><thead><tr><th>Client</th><th>Site</th><th>Value</th><th>Start</th><th>End</th><th>Status</th></tr></thead>
-      <tbody>${rows}</tbody></table></div>`;
+    <button class="btn-amber" onclick="addContract()">+ Add Contract</button></div>
+    <div class="card"><div class="card-title">Contracts</div>
+    <table><thead><tr><th>Client</th><th>Site</th><th>/Month</th><th>Status</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
-function addContract(){const client=document.getElementById('c-client').value.trim();const end=document.getElementById('c-end').value;if(!client||!end){alert('Client and end date required.');return;}state.contracts.push({id:Date.now(),client,site:document.getElementById('c-site').value.trim()||'—',monthly:parseFloat(document.getElementById('c-monthly').value)||0,start:document.getElementById('c-start').value||todayStr(),end,status:'Active'});showPage('contracts');}
+function addContract(){const cl=document.getElementById('ccl').value.trim();const e=document.getElementById('ce').value;if(!cl||!e){alert('Client & end date required');return;}(currentClient.contracts=currentClient.contracts||[]).push({id:Date.now(),client:cl,site:document.getElementById('cs').value.trim()||'—',monthly:parseFloat(document.getElementById('cm').value)||0,start:todayStr(),end:e,status:'Active'});buildClientDetail('contracts');}
 
-// ── TRIPS ──
-function trips(el){
-  const rows=state.trips.map(t=>{const badge=t.status==='Delivered'?'<span class="badge b-green">Delivered</span>':'<span class="badge b-amber">En Route</span>';return `<tr><td>${t.driver}</td><td>${t.route}</td><td>${t.cargo}</td><td>${fmt(t.amount)}</td><td>${t.date}</td><td>${badge}</td><td><button class="btn" style="padding:3px 10px;font-size:11px" onclick="deliverTrip(${t.id})">✓ Delivered</button></td></tr>`;}).join('')||`<tr><td colspan="7" class="empty">No trips yet</td></tr>`;
-  el.innerHTML=`<div class="page-title">Trips</div>
-    <div class="card"><div class="card-title">Add Trip</div>
-      <div class="form-grid">
-        <div class="field"><label>Driver</label><input id="t-driver" placeholder="Driver name…"/></div>
-        <div class="field"><label>Route</label><input id="t-route" placeholder="e.g. Lagos → Abuja"/></div>
-        <div class="field"><label>Cargo</label><input id="t-cargo" placeholder="e.g. Electronics"/></div>
-        <div class="field"><label>Amount ($)</label><input id="t-amount" type="number" min="0" step="0.01" placeholder="0.00"/></div>
-        <div class="field"><label>Date</label><input id="t-date" type="date" value="${todayStr()}"/></div>
-      </div>
-      <button class="btn btn-amber" onclick="addTrip()">+ Add Trip</button>
+function renderTrips(el){
+  const trips=currentClient.trips||[];
+  const rows=trips.map(t=>{const b=t.status==='Delivered'?'<span class="badge b-green">Done</span>':t.status==='En Route'?'<span class="badge b-amber">En Route</span>':'<span class="badge b-blue">Pending</span>';return `<tr><td>${t.driver}</td><td>${t.route}</td><td>${fmt(t.amount)}</td><td>${b}</td><td><button class="btn" onclick="doneTrip(${t.id})" style="padding:3px 8px;font-size:11px">✓</button></td></tr>`;}).join('')||`<tr><td colspan="5" class="empty">No trips</td></tr>`;
+  el.innerHTML=`<div class="card"><div class="card-title">Add Trip</div>
+    <div class="form-grid">
+      <div class="field"><label>Driver</label><input id="tdr" placeholder="Driver name"/></div>
+      <div class="field"><label>Route</label><input id="trt" placeholder="e.g. Lagos → Abuja"/></div>
+      <div class="field"><label>Cargo</label><input id="tcg" placeholder="Cargo type"/></div>
+      <div class="field"><label>Amount (₦)</label><input id="tam" type="number" min="0" placeholder="0"/></div>
     </div>
+    <button class="btn-amber" onclick="addTrip()">+ Add Trip</button></div>
     <div class="card"><div class="card-title">All Trips</div>
-      <table><thead><tr><th>Driver</th><th>Route</th><th>Cargo</th><th>Amount</th><th>Date</th><th>Status</th><th></th></tr></thead>
-      <tbody>${rows}</tbody></table></div>`;
+    <table><thead><tr><th>Driver</th><th>Route</th><th>Amount</th><th>Status</th><th></th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
-function addTrip(){const driver=document.getElementById('t-driver').value.trim();if(!driver){alert('Driver name required.');return;}state.trips.push({id:Date.now(),driver,route:document.getElementById('t-route').value.trim()||'—',cargo:document.getElementById('t-cargo').value.trim()||'—',amount:parseFloat(document.getElementById('t-amount').value)||0,date:document.getElementById('t-date').value||todayStr(),status:'En Route'});showPage('trips');}
-function deliverTrip(id){const t=state.trips.find(x=>x.id===id);if(t)t.status='Delivered';showPage('trips');}
+function addTrip(){const dr=document.getElementById('tdr').value.trim();if(!dr){alert('Driver required');return;}(currentClient.trips=currentClient.trips||[]).push({id:Date.now(),driver:dr,route:document.getElementById('trt').value.trim()||'—',cargo:document.getElementById('tcg').value.trim()||'—',amount:parseFloat(document.getElementById('tam').value)||0,date:todayStr(),status:'En Route'});buildClientDetail('trips');}
+function doneTrip(id){const t=(currentClient.trips||[]).find(x=>x.id===id);if(t)t.status='Delivered';buildClientDetail('trips');}
 
-// ── APPOINTMENTS ──
-function appointments(el){
-  const rows=state.appointments.map(a=>{const badge=a.status==='Completed'?'<span class="badge b-green">Completed</span>':'<span class="badge b-blue">Confirmed</span>';return `<tr><td>${a.client}</td><td>${a.service}</td><td>${a.staff}</td><td>${a.date}</td><td>${a.time}</td><td>${fmt(a.amount)}</td><td>${badge}</td><td><button class="btn" style="padding:3px 10px;font-size:11px" onclick="completeAppt(${a.id})">✓ Done</button></td></tr>`;}).join('')||`<tr><td colspan="8" class="empty">No appointments yet</td></tr>`;
-  el.innerHTML=`<div class="page-title">Appointments</div>
-    <div class="card"><div class="card-title">Book Appointment</div>
-      <div class="form-grid">
-        <div class="field"><label>Client Name</label><input id="a-client" placeholder="Client…"/></div>
-        <div class="field"><label>Service</label><input id="a-service" placeholder="e.g. Hair Styling"/></div>
-        <div class="field"><label>Staff</label><input id="a-staff" placeholder="e.g. Grace"/></div>
-        <div class="field"><label>Date</label><input id="a-date" type="date" value="${todayStr()}"/></div>
-        <div class="field"><label>Time</label><input id="a-time" type="time" value="10:00"/></div>
-        <div class="field"><label>Amount ($)</label><input id="a-amount" type="number" min="0" step="0.01" placeholder="0.00"/></div>
-      </div>
-      <button class="btn btn-amber" onclick="addAppt()">+ Book</button>
+function renderAppts(el){
+  const appts=currentClient.appointments||[];
+  const rows=appts.map(a=>{const b=a.status==='Completed'?'<span class="badge b-green">Done</span>':'<span class="badge b-blue">Booked</span>';return `<tr><td>${a.client}</td><td>${a.service}</td><td>${a.time}</td><td>${fmt(a.amount)}</td><td>${b}</td><td><button class="btn" onclick="doneAppt(${a.id})" style="padding:3px 8px;font-size:11px">✓</button></td></tr>`;}).join('')||`<tr><td colspan="6" class="empty">No appointments</td></tr>`;
+  el.innerHTML=`<div class="card"><div class="card-title">Book Appointment</div>
+    <div class="form-grid">
+      <div class="field"><label>Client</label><input id="acl" placeholder="Client name"/></div>
+      <div class="field"><label>Service</label><input id="asv" placeholder="Service"/></div>
+      <div class="field"><label>Staff</label><input id="ast" placeholder="Stylist"/></div>
+      <div class="field"><label>Time</label><input id="atm" type="time" value="10:00"/></div>
+      <div class="field"><label>Amount (₦)</label><input id="aam" type="number" min="0" placeholder="0"/></div>
     </div>
+    <button class="btn-amber" onclick="addAppt()">+ Book</button></div>
     <div class="card"><div class="card-title">All Appointments</div>
-      <table><thead><tr><th>Client</th><th>Service</th><th>Staff</th><th>Date</th><th>Time</th><th>Amount</th><th>Status</th><th></th></tr></thead>
-      <tbody>${rows}</tbody></table></div>`;
+    <table><thead><tr><th>Client</th><th>Service</th><th>Time</th><th>Amount</th><th>Status</th><th></th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
-function addAppt(){const client=document.getElementById('a-client').value.trim();if(!client){alert('Client name required.');return;}state.appointments.push({id:Date.now(),client,service:document.getElementById('a-service').value.trim()||'General',staff:document.getElementById('a-staff').value.trim()||'—',date:document.getElementById('a-date').value||todayStr(),time:document.getElementById('a-time').value||'09:00',amount:parseFloat(document.getElementById('a-amount').value)||0,status:'Confirmed'});showPage('appointments');}
-function completeAppt(id){const a=state.appointments.find(x=>x.id===id);if(a)a.status='Completed';showPage('appointments');}
+function addAppt(){const cl=document.getElementById('acl').value.trim();if(!cl){alert('Client required');return;}(currentClient.appointments=currentClient.appointments||[]).push({id:Date.now(),client:cl,service:document.getElementById('asv').value.trim()||'Service',staff:document.getElementById('ast').value.trim()||'—',date:todayStr(),time:document.getElementById('atm').value||'09:00',amount:parseFloat(document.getElementById('aam').value)||0,status:'Confirmed'});buildClientDetail('appointments');}
+function doneAppt(id){const a=(currentClient.appointments||[]).find(x=>x.id===id);if(a)a.status='Completed';buildClientDetail('appointments');}
 
-// ── EXPENSES ──
-function expenses(el){
-  const rows=[...state.expenses].reverse().map(e=>`<tr><td>${e.desc}</td><td>${e.category}</td><td>${fmt(e.amount)}</td><td>${e.date}</td><td><button class="btn" style="padding:3px 10px;font-size:11px" onclick="deleteExp(${e.id})">Remove</button></td></tr>`).join('')||`<tr><td colspan="5" class="empty">No expenses yet</td></tr>`;
-  const total=state.expenses.reduce((a,e)=>a+e.amount,0);
-  el.innerHTML=`<div class="page-title">Expenses</div>
-    <div class="card"><div class="card-title">Log Expense</div>
-      <div class="form-grid">
-        <div class="field"><label>Description</label><input id="e-desc" placeholder="e.g. Staff Salary"/></div>
-        <div class="field"><label>Category</label><input id="e-cat" placeholder="e.g. Salaries, Rent…"/></div>
-        <div class="field"><label>Amount ($)</label><input id="e-amount" type="number" min="0" step="0.01" placeholder="0.00"/></div>
-        <div class="field"><label>Date</label><input id="e-date" type="date" value="${todayStr()}"/></div>
-      </div>
-      <button class="btn btn-amber" onclick="addExp()">+ Log Expense</button>
+function renderExpenses(el){
+  const expenses=currentClient.expenses||[];
+  const rows=[...expenses].reverse().map(e=>`<tr><td>${e.desc}</td><td>${e.category}</td><td>${fmt(e.amount)}</td><td>${e.date}</td></tr>`).join('')||`<tr><td colspan="4" class="empty">No expenses</td></tr>`;
+  const total=expenses.reduce((a,e)=>a+e.amount,0);
+  el.innerHTML=`<div class="card"><div class="card-title">Log Expense</div>
+    <div class="form-grid">
+      <div class="field"><label>Description</label><input id="ed" placeholder="e.g. Staff Salary"/></div>
+      <div class="field"><label>Category</label><input id="ec" placeholder="e.g. Salaries"/></div>
+      <div class="field"><label>Amount (₦)</label><input id="ea" type="number" min="0" placeholder="0"/></div>
+      <div class="field"><label>Date</label><input id="edt" type="date" value="${todayStr()}"/></div>
     </div>
-    <div class="card"><div class="card-title">Expense History — Total: ${fmt(total)}</div>
-      <table><thead><tr><th>Description</th><th>Category</th><th>Amount</th><th>Date</th><th></th></tr></thead>
-      <tbody>${rows}</tbody></table></div>`;
+    <button class="btn-amber" onclick="addExp()">+ Log Expense</button></div>
+    <div class="card"><div class="card-title">Expenses — Total: ${fmt(total)}</div>
+    <table><thead><tr><th>Description</th><th>Category</th><th>Amount</th><th>Date</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
-function addExp(){const desc=document.getElementById('e-desc').value.trim();if(!desc){alert('Description required.');return;}state.expenses.push({id:Date.now(),desc,category:document.getElementById('e-cat').value.trim()||'General',amount:parseFloat(document.getElementById('e-amount').value)||0,date:document.getElementById('e-date').value||todayStr()});showPage('expenses');}
-function deleteExp(id){state.expenses=state.expenses.filter(e=>e.id!==id);showPage('expenses');}
+function addExp(){const d=document.getElementById('ed').value.trim();if(!d){alert('Description required');return;}(currentClient.expenses=currentClient.expenses||[]).push({id:Date.now(),desc:d,category:document.getElementById('ec').value.trim()||'General',amount:parseFloat(document.getElementById('ea').value)||0,date:document.getElementById('edt').value||todayStr()});buildClientDetail('expenses');}
 
-// ── STAFF ──
-function staff(el){
-  const rows=state.staff.map(s=>{const badge=s.status==='Active'?'<span class="badge b-green">Active</span>':'<span class="badge b-red">Inactive</span>';return `<tr><td>${s.name}</td><td>${s.role}</td><td>${s.phone}</td><td>${badge}</td><td><button class="btn" style="padding:3px 10px;font-size:11px" onclick="toggleStaff(${s.id})">${s.status==='Active'?'Deactivate':'Activate'}</button></td></tr>`;}).join('')||`<tr><td colspan="5" class="empty">No staff yet</td></tr>`;
-  el.innerHTML=`<div class="page-title">Staff</div>
-    <div class="card"><div class="card-title">Add Staff Member</div>
-      <div class="form-grid">
-        <div class="field"><label>Full Name</label><input id="st-name" placeholder="e.g. Alice M."/></div>
-        <div class="field"><label>Role / Position</label><input id="st-role" placeholder="e.g. Manager"/></div>
-        <div class="field"><label>Phone</label><input id="st-phone" placeholder="080-XXXX-XXXX"/></div>
-      </div>
-      <button class="btn btn-amber" onclick="addStaff()">+ Add Staff</button>
+function renderStaff(el){
+  const staff=currentClient.staff||[];
+  const rows=staff.map(s=>{const b=s.status==='Active'?'<span class="badge b-green">Active</span>':'<span class="badge b-red">Inactive</span>';return `<tr><td>${s.name}</td><td>${s.role}</td><td>${s.phone}</td><td>${b}</td></tr>`;}).join('')||`<tr><td colspan="4" class="empty">No staff</td></tr>`;
+  el.innerHTML=`<div class="card"><div class="card-title">Add Staff</div>
+    <div class="form-grid">
+      <div class="field"><label>Full Name</label><input id="stn" placeholder="e.g. Ngozi Okafor"/></div>
+      <div class="field"><label>Role</label><input id="str" placeholder="e.g. Manager"/></div>
+      <div class="field"><label>Phone</label><input id="stp" placeholder="0801-234-5678"/></div>
     </div>
-    <div class="card"><div class="card-title">Team (${state.staff.filter(s=>s.status==='Active').length} active)</div>
-      <table><thead><tr><th>Name</th><th>Role</th><th>Phone</th><th>Status</th><th></th></tr></thead>
-      <tbody>${rows}</tbody></table></div>`;
+    <button class="btn-amber" onclick="addStaff()">+ Add Staff</button></div>
+    <div class="card"><div class="card-title">Team (${staff.filter(s=>s.status==='Active').length} active)</div>
+    <table><thead><tr><th>Name</th><th>Role</th><th>Phone</th><th>Status</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
-function addStaff(){const name=document.getElementById('st-name').value.trim();if(!name){alert('Name required.');return;}state.staff.push({id:Date.now(),name,role:document.getElementById('st-role').value.trim()||'Staff',phone:document.getElementById('st-phone').value.trim()||'—',status:'Active'});showPage('staff');}
-function toggleStaff(id){const s=state.staff.find(x=>x.id===id);if(s)s.status=s.status==='Active'?'Inactive':'Active';showPage('staff');}
+function addStaff(){const n=document.getElementById('stn').value.trim();if(!n){alert('Name required');return;}(currentClient.staff=currentClient.staff||[]).push({id:Date.now(),name:n,role:document.getElementById('str').value.trim()||'Staff',phone:document.getElementById('stp').value.trim()||'—',status:'Active'});buildClientDetail('staff');}
 
-// ── CEO REPORT ──
-function ceo(el){
-  const b=state.bizType.id;
-  const totalSales=state.sales.reduce((a,s)=>a+s.revenue,0);
-  const totalExp=state.expenses.reduce((a,e)=>a+e.amount,0);
+function renderCEO(el){
+  const c=currentClient;
+  const sales=c.sales||[];const expenses=c.expenses||[];
+  const totalSales=sales.reduce((a,s)=>a+s.revenue,0);
+  const totalExp=expenses.reduce((a,e)=>a+e.amount,0);
   const profit=totalSales-totalExp;
-  const activeStaff=state.staff.filter(s=>s.status==='Active').length;
-  let kpiHtml=kpi('Total Revenue',fmt(totalSales),'↑ all time','up')+kpi('Total Expenses',fmt(totalExp),'recorded costs','')+kpi('Net Profit',fmt(profit),profit>=0?'Positive':'Loss',profit>=0?'up':'down');
-  if(state.bizType.features.includes('staff'))kpiHtml+=kpi('Active Staff',activeStaff,'team members','up');
-  const catMap={};state.expenses.forEach(e=>{catMap[e.category]=(catMap[e.category]||0)+e.amount;});
+  const activeStaff=(c.staff||[]).filter(s=>s.status==='Active').length;
+  const catMap={};expenses.forEach(e=>{catMap[e.category]=(catMap[e.category]||0)+e.amount;});
   const maxCat=Math.max(...Object.values(catMap),1);
-  const colors=['#c87941','#4caf82','#5b9bd5','#9f7aea','#e05555','#e09050'];
-  const barsHtml=Object.entries(catMap).map(([cat,amt],i)=>`<div class="bar-row"><div class="bar-meta"><span>${cat}</span><span>${fmt(amt)}</span></div><div class="bar-track"><div class="bar-fill" style="width:${Math.round(amt/maxCat*100)}%;background:${colors[i%colors.length]}"></div></div></div>`).join('')||'<div class="empty">No expense data</div>';
-  const topRows=[...state.sales].sort((a,b)=>b.revenue-a.revenue).slice(0,5).map(s=>{const p=state.products.find(x=>x.id===s.productId)||{name:'Unknown'};return `<tr><td>${p.name}</td><td>${s.qty}</td><td>${fmt(s.revenue)}</td><td>${s.date}</td></tr>`;}).join('')||`<tr><td colspan="4" class="empty">No sales data</td></tr>`;
+  const colors=['#c87941','#3ecf78','#4d9cf8','#9f7aea','#e05555','#f5c542'];
+  const bars=Object.entries(catMap).map(([cat,amt],i)=>`<div class="bar-row"><div class="bar-meta"><span>${cat}</span><span>${fmt(amt)}</span></div><div class="bar-track"><div class="bar-fill" style="width:${Math.round(amt/maxCat*100)}%;background:${colors[i%colors.length]}"></div></div></div>`).join('')||'<div class="empty">No expense data</div>';
   let special='';
-  if(b==='maintenance'){const c=state.jobs.filter(j=>j.status==='Completed');special=`<div class="card"><div class="card-title">Jobs Summary</div><div style="display:flex;gap:1.5rem;flex-wrap:wrap"><div><div style="font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:.07em">Completed</div><div style="font-size:26px;font-weight:600">${c.length}</div></div><div><div style="font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:.07em">Earned</div><div style="font-size:26px;font-weight:600;color:var(--amber)">${fmt(c.reduce((a,j)=>a+j.amount,0))}</div></div></div></div>`;}
-  if(b==='logistics'){const d=state.trips.filter(t=>t.status==='Delivered');special=`<div class="card"><div class="card-title">Trips Summary</div><div style="display:flex;gap:1.5rem;flex-wrap:wrap"><div><div style="font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:.07em">Delivered</div><div style="font-size:26px;font-weight:600">${d.length}</div></div><div><div style="font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:.07em">Revenue</div><div style="font-size:26px;font-weight:600;color:var(--amber)">${fmt(d.reduce((a,t)=>a+t.amount,0))}</div></div></div></div>`;}
-  if(b==='security'){const a=state.contracts.filter(c=>daysUntil(c.end)>0);special=`<div class="card"><div class="card-title">Contract Summary</div><div style="display:flex;gap:1.5rem;flex-wrap:wrap"><div><div style="font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:.07em">Active</div><div style="font-size:26px;font-weight:600">${a.length}</div></div><div><div style="font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:.07em">Monthly</div><div style="font-size:26px;font-weight:600;color:var(--amber)">${fmt(a.reduce((s,c)=>s+c.monthly,0))}</div></div></div></div>`;}
-  el.innerHTML=`<div class="page-title">CEO Report — ${state.client}</div><div class="ceo-kpi">${kpiHtml}</div>${special}<div class="card"><div class="card-title">Expenses by Category</div>${barsHtml}</div><div class="card"><div class="card-title">Top Sales</div><table><thead><tr><th>Product</th><th>Qty</th><th>Revenue</th><th>Date</th></tr></thead><tbody>${topRows}</tbody></table></div>`;
+  if(c.bizType==='maintenance'){const done=c.jobs.filter(j=>j.status==='Completed');special=`<div class="card"><div class="card-title">Jobs</div><div style="display:flex;gap:1.5rem"><div><div style="font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em">Completed</div><div style="font-size:22px;font-weight:600">${done.length}</div></div><div><div style="font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em">Earned</div><div style="font-size:22px;font-weight:600;color:var(--amber)">${fmt(done.reduce((a,j)=>a+j.amount,0))}</div></div></div></div>`;}
+  if(c.bizType==='logistics'){const done=(c.trips||[]).filter(t=>t.status==='Delivered');special=`<div class="card"><div class="card-title">Trips</div><div style="display:flex;gap:1.5rem"><div><div style="font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em">Delivered</div><div style="font-size:22px;font-weight:600">${done.length}</div></div><div><div style="font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em">Revenue</div><div style="font-size:22px;font-weight:600;color:var(--amber)">${fmt(done.reduce((a,t)=>a+t.amount,0))}</div></div></div></div>`;}
+  if(c.bizType==='security'){const active=(c.contracts||[]).filter(cn=>daysUntil(cn.end)>0);special=`<div class="card"><div class="card-title">Contracts</div><div style="display:flex;gap:1.5rem"><div><div style="font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em">Active</div><div style="font-size:22px;font-weight:600">${active.length}</div></div><div><div style="font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em">Monthly</div><div style="font-size:22px;font-weight:600;color:var(--amber)">${fmt(active.reduce((s,cn)=>s+cn.monthly,0))}</div></div></div></div>`;}
+  el.innerHTML=`<div class="kpi-grid">
+    <div class="kpi-card"><div class="kpi-label">Total Revenue</div><div class="kpi-value">${shortFmt(totalSales)}</div><div class="kpi-trend up">↑ all time</div></div>
+    <div class="kpi-card"><div class="kpi-label">Total Expenses</div><div class="kpi-value">${shortFmt(totalExp)}</div><div class="kpi-trend" style="color:var(--text2)">recorded</div></div>
+    <div class="kpi-card"><div class="kpi-label">Net Profit</div><div class="kpi-value">${shortFmt(profit)}</div><div class="kpi-trend ${profit>=0?'up':'down'}">${profit>=0?'Positive':'Loss'}</div></div>
+    <div class="kpi-card"><div class="kpi-label">Active Staff</div><div class="kpi-value">${activeStaff}</div><div class="kpi-trend up">members</div></div>
+  </div>${special}<div class="card"><div class="card-title">Expenses by Category</div>${bars}</div>`;
 }
-function kpi(label,value,trend,cls){return `<div class="kpi-card"><div class="kpi-label">${label}</div><div class="kpi-value">${value}</div><div class="kpi-trend ${cls==='up'?'up':cls==='down'?'down':''}">${trend}</div></div>`;}
+
+function renderAlerts(){
+  let ah='';
+  CLIENTS.forEach(c=>{
+    const products=c.products||[];
+    products.filter(p=>daysUntil(p.expiry)<=0).forEach(p=>{ah+=alertHtml('a-red','ti-alert-circle',`${c.icon} ${c.name}: ${p.name}`,'Product expired','<span class="badge b-red">Expired</span>');});
+    products.filter(p=>{const d=daysUntil(p.expiry);return d>0&&d<=30;}).forEach(p=>{ah+=alertHtml('a-amber','ti-clock',`${c.icon} ${c.name}: ${p.name}`,`Expires in ${daysUntil(p.expiry)} days`,`<span class="badge b-amber">${daysUntil(p.expiry)}d</span>`);});
+    products.filter(p=>p.qty<=p.restock&&daysUntil(p.expiry)>0).forEach(p=>{ah+=alertHtml('a-amber','ti-package',`${c.icon} ${c.name}: ${p.name}`,'Low stock — restock needed','<span class="badge b-amber">Restock</span>');});
+    (c.contracts||[]).filter(cn=>daysUntil(cn.end)<=30&&daysUntil(cn.end)>0).forEach(cn=>{ah+=alertHtml('a-amber','ti-file-text',`${c.icon} ${c.name}: ${cn.client}`,`Contract expires in ${daysUntil(cn.end)} days`,`<span class="badge b-amber">${daysUntil(cn.end)}d</span>`);});
+  });
+  if(!ah)ah='<div class="empty">✅ No alerts across all clients</div>';
+  document.getElementById('alerts-body').innerHTML=ah;
+  const count=document.querySelectorAll('#alerts-body .alert-item').length;
+  document.getElementById('nb-alerts-badge').textContent=count;
+  document.getElementById('nb-alerts-badge').style.display=count>0?'block':'none';
+}
 </script>
 </body>
 </html>
