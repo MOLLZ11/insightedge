@@ -431,7 +431,7 @@ function alertHtml(ic,icon,title,sub,right){return `<div class="alert-item"><div
 const ADMIN={username:'gideon',password:'insightedge@admin'};
 
 const CLIENTS=[
-  {id:'emeka',username:'emeka',password:'pharma001',name:"Emeka's Pharmacy",bizType:'pharmacy',icon:'💊',
+  {id:'emeka',username:'emeka',password:'pharma001',name:"Emeka Okonkwo Pharmacy",bizType:'pharmacy',icon:'💊',
    features:['dashboard','inventory','sales','expenses','staff','ceo'],
    products:[
     {id:1,name:'Amoxicillin 500mg',category:'Antibiotics',qty:80,expiry:addDays(todayStr(),18),restock:30,price:850},
@@ -459,7 +459,7 @@ const CLIENTS=[
    staff:[{id:1,name:'Ngozi Okafor',role:'Pharmacist',phone:'0801-234-5678',status:'Active'},{id:2,name:'Tunde Bello',role:'Dispenser',phone:'0802-345-6789',status:'Active'},{id:3,name:'Amaka Eze',role:'Cashier',phone:'0803-456-7890',status:'Active'}],
    pwRequest:null},
 
-  {id:'basira',username:'basira',password:'super002',name:"Iya Basira Supermarket",bizType:'supermarket',icon:'🛒',
+  {id:'basira',username:'basira',password:'super002',name:"Aisha Suleiman Stores",bizType:'supermarket',icon:'🛒',
    features:['dashboard','inventory','sales','expenses','staff','ceo'],
    products:[
     {id:1,name:'Indomie Noodles (Carton)',category:'Food Items',qty:40,expiry:addDays(todayStr(),25),restock:15,price:7500},
@@ -482,7 +482,7 @@ const CLIENTS=[
    staff:[{id:1,name:'Fatima Sule',role:'Supervisor',phone:'0804-567-8901',status:'Active'},{id:2,name:'Chidi Nwosu',role:'Stock Keeper',phone:'0805-678-9012',status:'Active'},{id:3,name:'Blessing Ojo',role:'Cashier',phone:'0806-789-0123',status:'Active'},{id:4,name:'Hassan Musa',role:'Security',phone:'0807-890-1234',status:'Active'}],
    pwRequest:null},
 
-  {id:'kunle',username:'kunle',password:'maint003',name:"Kunle Fix-It Services",bizType:'maintenance',icon:'🔧',
+  {id:'kunle',username:'kunle',password:'maint003',name:"Adeyemi Technical Services",bizType:'maintenance',icon:'🔧',
    features:['dashboard','jobs','expenses','staff','ceo'],
    jobs:[{id:1,client:'GTBank Ikeja',desc:'AC Repair',status:'Completed',amount:85000,date:addDays(todayStr(),-6)},{id:2,client:'Eko Hotels',desc:'Plumbing Overhaul',status:'Completed',amount:150000,date:addDays(todayStr(),-4)},{id:3,client:'Shoprite Lekki',desc:'Electrical Wiring',status:'In Progress',amount:120000,date:addDays(todayStr(),-2)},{id:4,client:'Mr Biggs',desc:'Generator Servicing',status:'In Progress',amount:45000,date:todayStr()},{id:5,client:'Unity Bank HQ',desc:'CCTV Installation',status:'Pending',amount:200000,date:addDays(todayStr(),2)}],
    sales:[{id:1,productId:0,qty:1,date:addDays(todayStr(),-6),revenue:85000},{id:2,productId:0,qty:1,date:addDays(todayStr(),-4),revenue:150000},{id:3,productId:0,qty:1,date:todayStr(),revenue:45000},{id:4,productId:0,qty:1,date:addDays(todayStr(),-1),revenue:60000},{id:5,productId:0,qty:1,date:addDays(todayStr(),-2),revenue:30000},{id:6,productId:0,qty:1,date:addDays(todayStr(),-3),revenue:75000},{id:7,productId:0,qty:1,date:addDays(todayStr(),-5),revenue:42000}],
@@ -490,7 +490,7 @@ const CLIENTS=[
    staff:[{id:1,name:'Kunle Adeyemi',role:'CEO/Engineer',phone:'0808-901-2345',status:'Active'},{id:2,name:'Segun Afolabi',role:'Technician',phone:'0809-012-3456',status:'Active'},{id:3,name:'Peter Okeke',role:'Technician',phone:'0810-123-4567',status:'Active'},{id:4,name:'Yemi Oladele',role:'Driver',phone:'0811-234-5678',status:'Active'}],
    products:[],pwRequest:null},
 
-  {id:'alpha',username:'alpha',password:'secure004',name:"Alpha Guard Security",bizType:'security',icon:'🛡️',
+  {id:'alpha',username:'alpha',password:'secure004',name:"Emeka Nze Security Solutions",bizType:'security',icon:'🛡️',
    features:['dashboard','contracts','staff','expenses','ceo'],
    contracts:[{id:1,client:'First Bank Plc',site:'Victoria Island',start:addDays(todayStr(),-60),end:addDays(todayStr(),120),monthly:280000,status:'Active'},{id:2,client:'Palms Shopping Mall',site:'Lekki',start:addDays(todayStr(),-30),end:addDays(todayStr(),20),monthly:450000,status:'Active'},{id:3,client:'Chevron Nigeria',site:'Staff Quarters',start:addDays(todayStr(),-90),end:addDays(todayStr(),270),monthly:600000,status:'Active'},{id:4,client:'Heritage Bank',site:'Apapa Branch',start:addDays(todayStr(),-10),end:addDays(todayStr(),350),monthly:200000,status:'Active'},{id:5,client:'Slot Systems',site:'Ikeja City Mall',start:addDays(todayStr(),-45),end:addDays(todayStr(),25),monthly:180000,status:'Active'}],
    sales:[{id:1,productId:0,qty:1,date:addDays(todayStr(),-1),revenue:280000},{id:2,productId:0,qty:1,date:addDays(todayStr(),-2),revenue:450000},{id:3,productId:0,qty:1,date:addDays(todayStr(),-3),revenue:600000},{id:4,productId:0,qty:1,date:addDays(todayStr(),-4),revenue:200000},{id:5,productId:0,qty:1,date:addDays(todayStr(),-5),revenue:180000},{id:6,productId:0,qty:1,date:todayStr(),revenue:280000},{id:7,productId:0,qty:1,date:addDays(todayStr(),-6),revenue:450000}],
@@ -498,22 +498,48 @@ const CLIENTS=[
    staff:[{id:1,name:'Col. Emeka Nze (Rtd)',role:'MD/CEO',phone:'0812-345-6789',status:'Active'},{id:2,name:'Sgt. Bello Musa',role:'Ops Head',phone:'0813-456-7890',status:'Active'},{id:3,name:'Tunde Ajayi',role:'Team Leader',phone:'0814-567-8901',status:'Active'},{id:4,name:'Grace Okonkwo',role:'Admin',phone:'0815-678-9012',status:'Active'},{id:5,name:'James Udo',role:'Guard',phone:'0816-789-0123',status:'Active'},{id:6,name:'Yusuf Garba',role:'Guard',phone:'0817-890-1234',status:'Active'}],
    products:[],pwRequest:null},
 
-  {id:'chiefs',username:'chiefs',password:'bar005',name:"Chief's Lounge & Bar",bizType:'bar',icon:'🍺',
-   features:['dashboard','inventory','sales','expenses','staff','ceo'],
-   products:[{id:1,name:'Guinness Stout (Crate)',category:'Beers',qty:30,expiry:addDays(todayStr(),60),restock:10,price:12000},{id:2,name:'Hennessy VS 75cl',category:'Spirits',qty:8,expiry:addDays(todayStr(),900),restock:5,price:28000},{id:3,name:'Pepsi 50cl (Crate)',category:'Soft Drinks',qty:5,expiry:addDays(todayStr(),15),restock:10,price:4500},{id:4,name:'Orijin Bitters (Crate)',category:'Beers',qty:20,expiry:addDays(todayStr(),45),restock:8,price:10500},{id:5,name:'Baileys Irish Cream',category:'Spirits',qty:12,expiry:addDays(todayStr(),400),restock:4,price:18500},{id:6,name:'Smoky Jollof Rice',category:'Food',qty:50,expiry:addDays(todayStr(),1),restock:10,price:3500}],
+  {id:'chiefs',username:'chiefs',password:'bar005',name:"Kalu Urban Lounge & Bar",bizType:'bar',icon:'🍺',
+   features:['dashboard','drinks','inventory','sales','expenses','staff','ceo'],
+   products:[
+    {id:1,name:'Guinness Stout (Bottle)',category:'🍺 Beers',qty:120,expiry:addDays(todayStr(),90),restock:30,price:600},
+    {id:2,name:'Star Lager (Bottle)',category:'🍺 Beers',qty:150,expiry:addDays(todayStr(),85),restock:40,price:550},
+    {id:3,name:'Heineken (Bottle)',category:'🍺 Beers',qty:80,expiry:addDays(todayStr(),120),restock:20,price:700},
+    {id:4,name:'Trophy Lager (Bottle)',category:'🍺 Beers',qty:100,expiry:addDays(todayStr(),80),restock:25,price:500},
+    {id:5,name:'Orijin Bitters (Can)',category:'🍺 Beers',qty:60,expiry:addDays(todayStr(),60),restock:15,price:650},
+    {id:6,name:'Legend Extra Stout',category:'🍺 Beers',qty:5,expiry:addDays(todayStr(),10),restock:20,price:600},
+    {id:7,name:'Hennessy VS 75cl',category:'🥃 Spirits',qty:12,expiry:addDays(todayStr(),900),restock:3,price:28000},
+    {id:8,name:'Johnnie Walker Black',category:'🥃 Spirits',qty:8,expiry:addDays(todayStr(),900),restock:3,price:32000},
+    {id:9,name:'Ciroc Vodka 75cl',category:'🥃 Spirits',qty:6,expiry:addDays(todayStr(),900),restock:2,price:25000},
+    {id:10,name:'Baileys Irish Cream',category:'🥃 Spirits',qty:10,expiry:addDays(todayStr(),400),restock:3,price:18500},
+    {id:11,name:'Smirnoff Vodka 75cl',category:'🥃 Spirits',qty:9,expiry:addDays(todayStr(),900),restock:3,price:12000},
+    {id:12,name:'Campari 75cl',category:'🥃 Spirits',qty:4,expiry:addDays(todayStr(),900),restock:2,price:8500},
+    {id:13,name:'Pepsi 50cl (Bottle)',category:'🥤 Soft Drinks',qty:5,expiry:addDays(todayStr(),12),restock:24,price:400},
+    {id:14,name:'Coca-Cola 50cl (Bottle)',category:'🥤 Soft Drinks',qty:48,expiry:addDays(todayStr(),90),restock:24,price:400},
+    {id:15,name:'Fanta Orange 50cl',category:'🥤 Soft Drinks',qty:36,expiry:addDays(todayStr(),90),restock:20,price:400},
+    {id:16,name:'Sprite 50cl',category:'🥤 Soft Drinks',qty:30,expiry:addDays(todayStr(),90),restock:15,price:400},
+    {id:17,name:'Malta Guinness (Can)',category:'🥤 Soft Drinks',qty:24,expiry:addDays(todayStr(),60),restock:12,price:500},
+    {id:18,name:'Schweppes Tonic Water',category:'🥤 Soft Drinks',qty:20,expiry:addDays(todayStr(),120),restock:10,price:450},
+    {id:19,name:'Ragolis Water 75cl',category:'💧 Water',qty:8,expiry:addDays(todayStr(),7),restock:24,price:200},
+    {id:20,name:'Eva Water 75cl',category:'💧 Water',qty:48,expiry:addDays(todayStr(),180),restock:24,price:200},
+    {id:21,name:'Nestle Pure Life 75cl',category:'💧 Water',qty:60,expiry:addDays(todayStr(),180),restock:30,price:200},
+    {id:22,name:'Table Water (Sachet Bag)',category:'💧 Water',qty:20,expiry:addDays(todayStr(),90),restock:10,price:150},
+    {id:23,name:'Smoky Jollof Rice',category:'🍽️ Food',qty:40,expiry:addDays(todayStr(),1),restock:10,price:3500},
+    {id:24,name:'Peppered Chicken',category:'🍽️ Food',qty:3,expiry:addDays(todayStr(),1),restock:5,price:4500},
+    {id:25,name:'Peppered Gizzard',category:'🍽️ Food',qty:25,expiry:addDays(todayStr(),1),restock:8,price:2500},
+   ],
    sales:[{id:1,productId:1,qty:8,date:addDays(todayStr(),-3),revenue:96000},{id:2,productId:2,qty:3,date:addDays(todayStr(),-2),revenue:84000},{id:3,productId:4,qty:5,date:addDays(todayStr(),-1),revenue:52500},{id:4,productId:6,qty:20,date:todayStr(),revenue:70000},{id:5,productId:5,qty:2,date:addDays(todayStr(),-4),revenue:37000},{id:6,productId:1,qty:5,date:addDays(todayStr(),-5),revenue:60000},{id:7,productId:3,qty:10,date:addDays(todayStr(),-6),revenue:45000}],
    expenses:[{id:1,desc:'Bar Staff Wages',category:'Salaries',amount:200000,date:addDays(todayStr(),-14)},{id:2,desc:'DJ & Entertainment',category:'Entertainment',amount:80000,date:addDays(todayStr(),-7)},{id:3,desc:'Generator Fuel',category:'Utilities',amount:35000,date:addDays(todayStr(),-5)},{id:4,desc:'Bar Rent',category:'Rent',amount:150000,date:addDays(todayStr(),-20)}],
    staff:[{id:1,name:'Chisom Eze',role:'Bartender',phone:'0818-901-2345',status:'Active'},{id:2,name:'Adaeze Nwobi',role:'Waitress',phone:'0819-012-3456',status:'Active'},{id:3,name:'Ola Fashola',role:'Security',phone:'0820-123-4567',status:'Active'}],
    pwRequest:null},
 
-  {id:'titi',username:'titi',password:'trader006',name:"Mama Titi's Provisions",bizType:'petty_trader',icon:'🧺',
+  {id:'titi',username:'titi',password:'trader006',name:"Titilayo Adeyinka Provisions",bizType:'petty_trader',icon:'🧺',
    features:['dashboard','inventory','sales','expenses','ceo'],
    products:[{id:1,name:'Golden Morn 500g',category:'Breakfast',qty:25,expiry:addDays(todayStr(),45),restock:10,price:1650},{id:2,name:'Milo 200g Tin',category:'Beverages',qty:5,expiry:addDays(todayStr(),10),restock:12,price:2200},{id:3,name:'Detergent Omo 500g',category:'Household',qty:40,expiry:addDays(todayStr(),730),restock:15,price:1100},{id:4,name:'Biscuit Cabin (Pack)',category:'Snacks',qty:60,expiry:addDays(todayStr(),30),restock:20,price:500},{id:5,name:'Tomato Stew Tin',category:'Condiments',qty:8,expiry:addDays(todayStr(),7),restock:15,price:750}],
    sales:[{id:1,productId:1,qty:10,date:addDays(todayStr(),-1),revenue:16500},{id:2,productId:3,qty:15,date:addDays(todayStr(),-2),revenue:16500},{id:3,productId:4,qty:30,date:addDays(todayStr(),-3),revenue:15000},{id:4,productId:2,qty:8,date:addDays(todayStr(),-4),revenue:17600},{id:5,productId:5,qty:12,date:todayStr(),revenue:9000},{id:6,productId:1,qty:5,date:addDays(todayStr(),-5),revenue:8250},{id:7,productId:4,qty:20,date:addDays(todayStr(),-6),revenue:10000}],
    expenses:[{id:1,desc:'Market Purchase',category:'Inventory',amount:75000,date:addDays(todayStr(),-7)},{id:2,desc:'Shop Rent',category:'Rent',amount:20000,date:addDays(todayStr(),-20)},{id:3,desc:'Transport',category:'Transport',amount:3500,date:addDays(todayStr(),-2)}],
    staff:[],pwRequest:null},
 
-  {id:'swift',username:'swift',password:'logistics007',name:"Swift Haulage & Logistics",bizType:'logistics',icon:'🚛',
+  {id:'swift',username:'swift',password:'logistics007',name:"Danladi & Sons Haulage Ltd",bizType:'logistics',icon:'🚛',
    features:['dashboard','trips','expenses','staff','ceo'],
    trips:[{id:1,driver:'Alhaji Sani Danladi',route:'Kano → Lagos',cargo:'Groundnut Oil',status:'Delivered',amount:380000,date:addDays(todayStr(),-5)},{id:2,driver:'Emeka Obi',route:'Lagos → Abuja',cargo:'Electronics',status:'Delivered',amount:250000,date:addDays(todayStr(),-3)},{id:3,driver:'Festus Eze',route:'PH → Warri',cargo:'FMCG Goods',status:'En Route',amount:180000,date:addDays(todayStr(),-1)},{id:4,driver:'Musa Aliyu',route:'Abuja → Kaduna',cargo:'Cement Bags',status:'En Route',amount:120000,date:todayStr()},{id:5,driver:'Tayo Adeleke',route:'Lagos → Ibadan',cargo:'Beverages',status:'Pending',amount:95000,date:addDays(todayStr(),1)}],
    sales:[{id:1,productId:0,qty:1,date:addDays(todayStr(),-6),revenue:380000},{id:2,productId:0,qty:1,date:addDays(todayStr(),-5),revenue:250000},{id:3,productId:0,qty:1,date:addDays(todayStr(),-4),revenue:180000},{id:4,productId:0,qty:1,date:addDays(todayStr(),-3),revenue:120000},{id:5,productId:0,qty:1,date:addDays(todayStr(),-2),revenue:95000},{id:6,productId:0,qty:1,date:addDays(todayStr(),-1),revenue:210000},{id:7,productId:0,qty:1,date:todayStr(),revenue:120000}],
@@ -521,7 +547,7 @@ const CLIENTS=[
    staff:[{id:1,name:'Alhaji Sani Danladi',role:'Sr. Driver',phone:'0821-234-5678',status:'Active'},{id:2,name:'Emeka Obi',role:'Driver',phone:'0822-345-6789',status:'Active'},{id:3,name:'Festus Eze',role:'Driver',phone:'0823-456-7890',status:'Active'},{id:4,name:'Musa Aliyu',role:'Driver',phone:'0824-567-8901',status:'Active'},{id:5,name:'Aisha Mohammed',role:'Dispatcher',phone:'0825-678-9012',status:'Active'}],
    products:[],pwRequest:null},
 
-  {id:'spice',username:'spice',password:'food008',name:"Spice of Lagos Restaurant",bizType:'restaurant',icon:'🍲',
+  {id:'spice',username:'spice',password:'food008',name:"Ngozi Okafor Kitchen & Grill",bizType:'restaurant',icon:'🍲',
    features:['dashboard','inventory','sales','expenses','staff','ceo'],
    products:[{id:1,name:'Jollof Rice (Portion)',category:'Rice Dishes',qty:80,expiry:addDays(todayStr(),1),restock:20,price:2500},{id:2,name:'Egusi Soup + Swallow',category:'Soups',qty:6,expiry:addDays(todayStr(),1),restock:15,price:3500},{id:3,name:'Suya Platter',category:'Grills',qty:40,expiry:addDays(todayStr(),1),restock:10,price:4000},{id:4,name:'Pounded Yam + Ofe',category:'Soups',qty:9,expiry:addDays(todayStr(),1),restock:15,price:3800},{id:5,name:'Chapman Drink',category:'Drinks',qty:50,expiry:addDays(todayStr(),5),restock:20,price:1200},{id:6,name:'Pepper Soup Catfish',category:'Soups',qty:3,expiry:addDays(todayStr(),1),restock:10,price:5500}],
    sales:[{id:1,productId:1,qty:35,date:addDays(todayStr(),-3),revenue:87500},{id:2,productId:3,qty:20,date:addDays(todayStr(),-2),revenue:80000},{id:3,productId:2,qty:18,date:addDays(todayStr(),-1),revenue:63000},{id:4,productId:5,qty:40,date:todayStr(),revenue:48000},{id:5,productId:4,qty:12,date:addDays(todayStr(),-4),revenue:45600},{id:6,productId:6,qty:8,date:addDays(todayStr(),-5),revenue:44000},{id:7,productId:1,qty:20,date:addDays(todayStr(),-6),revenue:50000}],
@@ -529,7 +555,7 @@ const CLIENTS=[
    staff:[{id:1,name:'Mama Ngozi',role:'Head Chef',phone:'0826-789-0123',status:'Active'},{id:2,name:'Taiwo Olanrewaju',role:'Sous Chef',phone:'0827-890-1234',status:'Active'},{id:3,name:'Chinwe Ike',role:'Waitress',phone:'0828-901-2345',status:'Active'},{id:4,name:'Biodun Awe',role:'Cashier',phone:'0829-012-3456',status:'Active'}],
    pwRequest:null},
 
-  {id:'glam',username:'glam',password:'salon009',name:"Glam Queens Beauty Salon",bizType:'salon',icon:'💅',
+  {id:'glam',username:'glam',password:'salon009',name:"Chidinma Obi Beauty Studio",bizType:'salon',icon:'💅',
    features:['dashboard','appointments','sales','expenses','staff','ceo'],
    appointments:[{id:1,client:'Mrs. Adaeze Onyeka',service:'Full Hair Braiding',staff:'Chidinma',date:addDays(todayStr(),-2),time:'10:00',amount:15000,status:'Completed'},{id:2,client:'Miss Folake Adeleke',service:'Lace Wig Install',staff:'Ngozi',date:addDays(todayStr(),-1),time:'12:00',amount:25000,status:'Completed'},{id:3,client:'Mrs. Amina Bello',service:'Manicure & Pedicure',staff:'Joy',date:todayStr(),time:'09:00',amount:8500,status:'Confirmed'},{id:4,client:'Miss Temi Oduola',service:'Hair Relaxer',staff:'Chidinma',date:todayStr(),time:'14:00',amount:12000,status:'Confirmed'},{id:5,client:'Mrs. Kemi Fashola',service:'Eyebrow Threading',staff:'Joy',date:addDays(todayStr(),1),time:'11:00',amount:3500,status:'Confirmed'}],
    sales:[{id:1,productId:0,qty:1,date:addDays(todayStr(),-6),revenue:18000},{id:2,productId:0,qty:1,date:addDays(todayStr(),-5),revenue:25000},{id:3,productId:0,qty:1,date:addDays(todayStr(),-4),revenue:12000},{id:4,productId:0,qty:1,date:addDays(todayStr(),-3),revenue:8500},{id:5,productId:0,qty:1,date:addDays(todayStr(),-2),revenue:15000},{id:6,productId:0,qty:1,date:addDays(todayStr(),-1),revenue:25000},{id:7,productId:0,qty:2,date:todayStr(),revenue:20500}],
@@ -537,7 +563,7 @@ const CLIENTS=[
    staff:[{id:1,name:'Chidinma Obi',role:'Senior Stylist',phone:'0830-123-4567',status:'Active'},{id:2,name:'Ngozi Amadi',role:'Wig Specialist',phone:'0831-234-5678',status:'Active'},{id:3,name:'Joy Eze',role:'Nail Tech',phone:'0832-345-6789',status:'Active'},{id:4,name:'Blessing Nwosu',role:'Receptionist',phone:'0833-456-7890',status:'Active'}],
    products:[],pwRequest:null},
 
-  {id:'delta',username:'delta',password:'wholesale010',name:"Delta Wholesale Depot",bizType:'wholesale',icon:'🏭',
+  {id:'delta',username:'delta',password:'wholesale010',name:"Badaru & Sons Wholesale Depot",bizType:'wholesale',icon:'🏭',
    features:['dashboard','inventory','sales','expenses','staff','ceo'],
    products:[{id:1,name:'Flour (50kg Bag)',category:'Staples',qty:200,expiry:addDays(todayStr(),60),restock:50,price:32000},{id:2,name:'Palm Oil (25L Keg)',category:'Cooking Oil',qty:8,expiry:addDays(todayStr(),14),restock:20,price:28000},{id:3,name:'Rice (50kg Bag)',category:'Staples',qty:350,expiry:addDays(todayStr(),365),restock:80,price:65000},{id:4,name:'Tomato Paste (Carton)',category:'Condiments',qty:12,expiry:addDays(todayStr(),7),restock:20,price:18000},{id:5,name:'Salt (50kg Bag)',category:'Staples',qty:100,expiry:addDays(todayStr(),730),restock:25,price:8500},{id:6,name:'Sugar (50kg Bag)',category:'Staples',qty:9,expiry:addDays(todayStr(),500),restock:30,price:42000}],
    sales:[{id:1,productId:3,qty:20,date:addDays(todayStr(),-6),revenue:1300000},{id:2,productId:1,qty:30,date:addDays(todayStr(),-5),revenue:960000},{id:3,productId:2,qty:10,date:addDays(todayStr(),-4),revenue:280000},{id:4,productId:6,qty:5,date:addDays(todayStr(),-3),revenue:210000},{id:5,productId:5,qty:15,date:addDays(todayStr(),-2),revenue:127500},{id:6,productId:3,qty:10,date:addDays(todayStr(),-1),revenue:650000},{id:7,productId:1,qty:5,date:todayStr(),revenue:160000}],
@@ -545,7 +571,7 @@ const CLIENTS=[
    staff:[{id:1,name:'Alhaji Usman Badaru',role:'Depot Manager',phone:'0834-567-8901',status:'Active'},{id:2,name:'Chukwuemeka Ibe',role:'Store Keeper',phone:'0835-678-9012',status:'Active'},{id:3,name:'Adamu Sule',role:'Loader',phone:'0836-789-0123',status:'Active'},{id:4,name:'Funke Adeyemi',role:'Accountant',phone:'0837-890-1234',status:'Active'}],
    pwRequest:null},
 
-  {id:'bola',username:'bola',password:'buka011',name:"Iya Bola Buka",bizType:'restaurant',icon:'🍛',
+  {id:'bola',username:'bola',password:'buka011',name:"Adewale Family Kitchen",bizType:'restaurant',icon:'🍛',
    features:['dashboard','inventory','sales','expenses','staff','ceo'],
    products:[{id:1,name:'Amala + Ewedu',category:'Soups',qty:60,expiry:addDays(todayStr(),1),restock:15,price:1500},{id:2,name:'Eba + Okra Soup',category:'Soups',qty:4,expiry:addDays(todayStr(),1),restock:15,price:1800},{id:3,name:'Moi Moi (Wrap)',category:'Sides',qty:80,expiry:addDays(todayStr(),2),restock:20,price:500},{id:4,name:'Ofe Onugbu + Fufu',category:'Soups',qty:30,expiry:addDays(todayStr(),1),restock:10,price:2000},{id:5,name:'Zobo Drink',category:'Drinks',qty:7,expiry:addDays(todayStr(),3),restock:15,price:400}],
    sales:[{id:1,productId:1,qty:40,date:addDays(todayStr(),-3),revenue:60000},{id:2,productId:3,qty:60,date:addDays(todayStr(),-2),revenue:30000},{id:3,productId:4,qty:20,date:addDays(todayStr(),-1),revenue:40000},{id:4,productId:5,qty:25,date:todayStr(),revenue:10000},{id:5,productId:2,qty:15,date:addDays(todayStr(),-4),revenue:27000},{id:6,productId:1,qty:30,date:addDays(todayStr(),-5),revenue:45000},{id:7,productId:3,qty:40,date:addDays(todayStr(),-6),revenue:20000}],
@@ -553,7 +579,7 @@ const CLIENTS=[
    staff:[{id:1,name:'Iya Bola Adewale',role:'Owner/Chef',phone:'0838-901-2345',status:'Active'},{id:2,name:'Seun Ogundimu',role:'Cook',phone:'0839-012-3456',status:'Active'},{id:3,name:'Ronke Abiola',role:'Server',phone:'0840-123-4567',status:'Active'}],
    pwRequest:null},
 
-  {id:'northern',username:'northern',password:'pharma012',name:"Northern Star Pharmacy",bizType:'pharmacy',icon:'💉',
+  {id:'northern',username:'northern',password:'pharma012',name:"Halima Yusuf Pharmacy",bizType:'pharmacy',icon:'💉',
    features:['dashboard','inventory','sales','expenses','staff','ceo'],
    products:[{id:1,name:'Artemether-Lumefantrine',category:'Antimalarials',qty:150,expiry:addDays(todayStr(),22),restock:40,price:1800},{id:2,name:'Azithromycin 250mg',category:'Antibiotics',qty:6,expiry:addDays(todayStr(),9),restock:25,price:2200},{id:3,name:'Amlodipine 5mg',category:'Cardiovascular',qty:200,expiry:addDays(todayStr(),500),restock:50,price:750},{id:4,name:'Glibenclamide 5mg',category:'Diabetes',qty:8,expiry:addDays(todayStr(),4),restock:30,price:650},{id:5,name:'Folic Acid 5mg',category:'Supplements',qty:300,expiry:addDays(todayStr(),800),restock:60,price:200}],
    sales:[{id:1,productId:1,qty:30,date:addDays(todayStr(),-4),revenue:54000},{id:2,productId:3,qty:50,date:addDays(todayStr(),-3),revenue:37500},{id:3,productId:5,qty:100,date:addDays(todayStr(),-2),revenue:20000},{id:4,productId:2,qty:15,date:addDays(todayStr(),-1),revenue:33000},{id:5,productId:1,qty:20,date:todayStr(),revenue:36000},{id:6,productId:4,qty:30,date:addDays(todayStr(),-5),revenue:19500},{id:7,productId:3,qty:40,date:addDays(todayStr(),-6),revenue:30000}],
@@ -561,7 +587,7 @@ const CLIENTS=[
    staff:[{id:1,name:'Pharm. Halima Yusuf',role:'Pharmacist',phone:'0841-234-5678',status:'Active'},{id:2,name:'Ibrahim Abdullahi',role:'Dispenser',phone:'0842-345-6789',status:'Active'},{id:3,name:'Zainab Musa',role:'Cashier',phone:'0843-456-7890',status:'Active'}],
    pwRequest:null},
 
-  {id:'eagle',username:'eagle',password:'secure013',name:"Eagle Eye Security Ltd",bizType:'security',icon:'🦅',
+  {id:'eagle',username:'eagle',password:'secure013',name:"Lawal Abdullahi Security Ltd",bizType:'security',icon:'🦅',
    features:['dashboard','contracts','staff','expenses','ceo'],
    contracts:[{id:1,client:'Zenith Bank HQ',site:'Vic Island',start:addDays(todayStr(),-90),end:addDays(todayStr(),270),monthly:520000,status:'Active'},{id:2,client:'UAC Nigeria',site:'Maryland Factory',start:addDays(todayStr(),-30),end:addDays(todayStr(),22),monthly:380000,status:'Active'},{id:3,client:'Coscharis Group',site:'Isheri',start:addDays(todayStr(),-15),end:addDays(todayStr(),345),monthly:290000,status:'Active'}],
    sales:[{id:1,productId:0,qty:1,date:addDays(todayStr(),-6),revenue:520000},{id:2,productId:0,qty:1,date:addDays(todayStr(),-5),revenue:380000},{id:3,productId:0,qty:1,date:addDays(todayStr(),-4),revenue:290000},{id:4,productId:0,qty:1,date:addDays(todayStr(),-3),revenue:520000},{id:5,productId:0,qty:1,date:addDays(todayStr(),-2),revenue:380000},{id:6,productId:0,qty:1,date:addDays(todayStr(),-1),revenue:290000},{id:7,productId:0,qty:1,date:todayStr(),revenue:520000}],
@@ -569,7 +595,7 @@ const CLIENTS=[
    staff:[{id:1,name:'Brig. Gen. Obi (Rtd)',role:'Director',phone:'0844-567-8901',status:'Active'},{id:2,name:'Capt. Lawal Abdullahi',role:'Operations',phone:'0845-678-9012',status:'Active'},{id:3,name:'Uche Nwachukwu',role:'Team Leader',phone:'0846-789-0123',status:'Active'},{id:4,name:'Seun Badmus',role:'Guard',phone:'0847-890-1234',status:'Active'},{id:5,name:'Yinka Oduola',role:'Guard',phone:'0848-901-2345',status:'Active'}],
    products:[],pwRequest:null},
 
-  {id:'golden',username:'golden',password:'logistics014',name:"Golden Road Haulage",bizType:'logistics',icon:'🚚',
+  {id:'golden',username:'golden',password:'logistics014',name:"Shehu & Okafor Transport Co.",bizType:'logistics',icon:'🚚',
    features:['dashboard','trips','expenses','staff','ceo'],
    trips:[{id:1,driver:'Buba Shehu',route:'Maiduguri → Kano',cargo:'Textile Goods',status:'Delivered',amount:220000,date:addDays(todayStr(),-6)},{id:2,driver:'Sunday Okafor',route:'Onitsha → Lagos',cargo:'Auto Parts',status:'Delivered',amount:310000,date:addDays(todayStr(),-4)},{id:3,driver:'Haruna Sule',route:'Lagos → Benin',cargo:'FMCG',status:'En Route',amount:175000,date:addDays(todayStr(),-1)},{id:4,driver:'Niyi Ogunleye',route:'Ibadan → Abuja',cargo:'Bottled Water',status:'En Route',amount:140000,date:todayStr()}],
    sales:[{id:1,productId:0,qty:1,date:addDays(todayStr(),-6),revenue:220000},{id:2,productId:0,qty:1,date:addDays(todayStr(),-5),revenue:310000},{id:3,productId:0,qty:1,date:addDays(todayStr(),-4),revenue:175000},{id:4,productId:0,qty:1,date:addDays(todayStr(),-3),revenue:140000},{id:5,productId:0,qty:1,date:addDays(todayStr(),-2),revenue:250000},{id:6,productId:0,qty:1,date:addDays(todayStr(),-1),revenue:175000},{id:7,productId:0,qty:1,date:todayStr(),revenue:140000}],
@@ -577,7 +603,7 @@ const CLIENTS=[
    staff:[{id:1,name:'Buba Shehu',role:'Driver',phone:'0849-012-3456',status:'Active'},{id:2,name:'Sunday Okafor',role:'Driver',phone:'0850-123-4567',status:'Active'},{id:3,name:'Haruna Sule',role:'Driver',phone:'0851-234-5678',status:'Active'},{id:4,name:'Niyi Ogunleye',role:'Driver',phone:'0852-345-6789',status:'Active'},{id:5,name:'Cynthia Aloha',role:'Dispatcher',phone:'0853-456-7890',status:'Active'}],
    products:[],pwRequest:null},
 
-  {id:'heaven',username:'heaven',password:'salon015',name:"Hair Heaven Unisex Salon",bizType:'salon',icon:'✂️',
+  {id:'heaven',username:'heaven',password:'salon015',name:"Precious Umeh Hair & Beauty",bizType:'salon',icon:'✂️',
    features:['dashboard','appointments','sales','expenses','staff','ceo'],
    appointments:[{id:1,client:'Mr. Tunde Bakare',service:'Barbing & Shaping',staff:'Maleek',date:addDays(todayStr(),-2),time:'09:00',amount:2500,status:'Completed'},{id:2,client:'Mrs. Sola Adekunle',service:'Full Hair Styling',staff:'Precious',date:addDays(todayStr(),-1),time:'11:00',amount:18000,status:'Completed'},{id:3,client:'Miss Remi Obi',service:'Cornrows',staff:'Precious',date:todayStr(),time:'10:00',amount:8000,status:'Confirmed'},{id:4,client:'Mr. Emeka Chukwu',service:'Haircut & Beard',staff:'Maleek',date:todayStr(),time:'15:00',amount:3500,status:'Confirmed'},{id:5,client:'Mrs. Ngozi Ike',service:'Locs Retwist',staff:'Precious',date:addDays(todayStr(),1),time:'13:00',amount:12000,status:'Confirmed'}],
    sales:[{id:1,productId:0,qty:1,date:addDays(todayStr(),-6),revenue:15000},{id:2,productId:0,qty:1,date:addDays(todayStr(),-5),revenue:22000},{id:3,productId:0,qty:1,date:addDays(todayStr(),-4),revenue:8500},{id:4,productId:0,qty:1,date:addDays(todayStr(),-3),revenue:12000},{id:5,productId:0,qty:1,date:addDays(todayStr(),-2),revenue:2500},{id:6,productId:0,qty:1,date:addDays(todayStr(),-1),revenue:18000},{id:7,productId:0,qty:2,date:todayStr(),revenue:11500}],
@@ -585,44 +611,18 @@ const CLIENTS=[
    staff:[{id:1,name:'Precious Umeh',role:'Senior Stylist',phone:'0854-567-8901',status:'Active'},{id:2,name:'Maleek Obi',role:'Barber',phone:'0855-678-9012',status:'Active'},{id:3,name:'Funmi Adesanya',role:'Trainee',phone:'0856-789-0123',status:'Active'}],
    products:[],pwRequest:null},
 
-  {id:'kings_cut',username:'kingscut',password:'barbing016',name:"King's Cut Barbing Salon",bizType:'barbing',icon:'💈',
+  {id:'ultimate_sage',username:'ultimatesage',password:'sage016',name:"Ultimate Sage Cut",bizType:'barbing',icon:'💈',
    features:['dashboard','appointments','inventory','sales','expenses','staff','ceo'],
-   appointments:[
-    {id:1,client:'Mr. Chukwudi Eze',service:'Low Cut & Beard Trim',staff:'Emeka',date:addDays(todayStr(),-2),time:'09:00',amount:2500,status:'Completed'},
-    {id:2,client:'Mr. Seun Adeleke',service:'Full Shave & Fade',staff:'Ade',date:addDays(todayStr(),-1),time:'11:00',amount:3000,status:'Completed'},
-    {id:3,client:'Mr. Tunde Okafor',service:'Haircut & Hot Towel',staff:'Emeka',date:todayStr(),time:'10:00',amount:2800,status:'Confirmed'},
-    {id:4,client:'Mr. Bola Nwachukwu',service:'Kids Haircut',staff:'Ade',date:todayStr(),time:'13:00',amount:1500,status:'Confirmed'},
-    {id:5,client:'Mr. Jide Fashola',service:'Dreadlocks Retwist',staff:'Emeka',date:addDays(todayStr(),1),time:'14:00',amount:5000,status:'Confirmed'},
-    {id:6,client:'Mr. Uche Obi',service:'Full Shave',staff:'Ade',date:addDays(todayStr(),1),time:'16:00',amount:2000,status:'Confirmed'},
-   ],
+   appointments:[],
    products:[
-    {id:1,name:'Clipper Oil (100ml)',category:'Equipment Care',qty:8,expiry:addDays(todayStr(),180),restock:3,price:1200},
-    {id:2,name:'Shaving Cream (Tube)',category:'Shaving',qty:5,expiry:addDays(todayStr(),12),restock:4,price:900},
-    {id:3,name:'After Shave Lotion',category:'Skincare',qty:10,expiry:addDays(todayStr(),300),restock:3,price:1500},
-    {id:4,name:'Hair Pomade (Jar)',category:'Styling',qty:3,expiry:addDays(todayStr(),7),restock:5,price:1800},
-    {id:5,name:'Disposable Blades (Box)',category:'Blades',qty:20,expiry:addDays(todayStr(),730),restock:5,price:600},
+    {id:1,name:'Clipper Oil (100ml)',category:'Equipment Care',qty:2,expiry:addDays(todayStr(),180),restock:2,price:1200},
+    {id:2,name:'Shaving Cream (Tube)',category:'Shaving',qty:3,expiry:addDays(todayStr(),300),restock:2,price:900},
+    {id:3,name:'After Shave Lotion',category:'Skincare',qty:2,expiry:addDays(todayStr(),365),restock:2,price:1500},
+    {id:4,name:'Disposable Blades (Box)',category:'Blades',qty:5,expiry:addDays(todayStr(),730),restock:3,price:600},
    ],
-   sales:[
-    {id:1,productId:0,qty:1,date:addDays(todayStr(),-6),revenue:18500},
-    {id:2,productId:0,qty:1,date:addDays(todayStr(),-5),revenue:22000},
-    {id:3,productId:0,qty:1,date:addDays(todayStr(),-4),revenue:15000},
-    {id:4,productId:0,qty:1,date:addDays(todayStr(),-3),revenue:19500},
-    {id:5,productId:0,qty:1,date:addDays(todayStr(),-2),revenue:25000},
-    {id:6,productId:0,qty:1,date:addDays(todayStr(),-1),revenue:21000},
-    {id:7,productId:0,qty:1,date:todayStr(),revenue:4300},
-   ],
-   expenses:[
-    {id:1,desc:'Barber Wages',category:'Salaries',amount:95000,date:addDays(todayStr(),-14)},
-    {id:2,desc:'Clippers & Equipment',category:'Equipment',amount:45000,date:addDays(todayStr(),-20)},
-    {id:3,desc:'Shop Rent',category:'Rent',amount:35000,date:addDays(todayStr(),-20)},
-    {id:4,desc:'Products & Supplies',category:'Inventory',amount:18000,date:addDays(todayStr(),-8)},
-    {id:5,desc:'Light Bill',category:'Utilities',amount:12000,date:addDays(todayStr(),-7)},
-   ],
-   staff:[
-    {id:1,name:'Emeka Okonkwo',role:'Senior Barber',phone:'0857-890-1234',status:'Active'},
-    {id:2,name:'Ade Babatunde',role:'Barber',phone:'0858-901-2345',status:'Active'},
-    {id:3,name:'Kingsley Udo',role:'Apprentice',phone:'0859-012-3456',status:'Active'},
-   ],
+   sales:[],
+   expenses:[],
+   staff:[],
    pwRequest:null},
 ];
 
@@ -818,7 +818,7 @@ function adminOpenClient(id){
   adminPage('client-detail');
 }
 
-const CD_LABELS={dashboard:'📊 Overview',inventory:'📦 Stock',sales:'🧾 Sales',jobs:'🔨 Jobs',contracts:'📄 Contracts',trips:'🚛 Trips',appointments:'📅 Appts',expenses:'💰 Expenses',staff:'👥 Staff',ceo:'📈 CEO'};
+const CD_LABELS={dashboard:'📊 Overview',inventory:'📦 Stock',drinks:'🍺 Drinks',sales:'🧾 Sales',jobs:'🔨 Jobs',contracts:'📄 Contracts',trips:'🚛 Trips',appointments:'📅 Appts',expenses:'💰 Expenses',staff:'👥 Staff',ceo:'📈 CEO'};
 
 function buildAdminClientDetail(tab){
   const c=currentClient;
@@ -904,7 +904,8 @@ function requestPwChange(){
 function renderDetailTab(tab,el,isAdmin){
   el.innerHTML='';
   if(tab==='dashboard')renderDash(el);
-  else if(tab==='inventory')renderInventory(el);
+  else if(tab==='drinks')renderDrinks(el,isAdmin);
+  else if(tab==='inventory')renderInventory(el,isAdmin);
   else if(tab==='sales')renderSales(el,isAdmin);
   else if(tab==='jobs')renderJobs(el,isAdmin);
   else if(tab==='contracts')renderContracts(el,isAdmin);
@@ -912,7 +913,7 @@ function renderDetailTab(tab,el,isAdmin){
   else if(tab==='appointments')renderAppts(el,isAdmin);
   else if(tab==='expenses')renderExpenses(el,isAdmin);
   else if(tab==='staff')renderStaff(el,isAdmin);
-  else if(tab==='ceo')renderCEO(el);
+  else if(tab==='ceo')renderCEO(el,isAdmin);
 }
 
 function renderDash(el){
@@ -935,28 +936,107 @@ function renderDash(el){
   </div><div class="section-title">Alerts</div>${ah}`;
 }
 
-function renderInventory(el){
-  const prods=currentClient.products||[];
-  const rows=prods.map(p=>{const d=daysUntil(p.expiry);const b=d<=0?'<span class="badge b-red">Expired</span>':d<=30?`<span class="badge b-amber">${d}d</span>`:p.qty<=p.restock?'<span class="badge b-amber">Low</span>':'<span class="badge b-green">OK</span>';return `<tr><td>${p.name}</td><td>${p.qty}</td><td>${fmt(p.price)}</td><td>${b}</td></tr>`;}).join('')||`<tr><td colspan="4" class="empty">No products</td></tr>`;
-  el.innerHTML=`<div class="card"><div class="card-title">Add Product</div>
-    <div class="form-grid"><div class="field"><label>Name</label><input id="pn" placeholder="Product name"/></div><div class="field"><label>Category</label><input id="pc" placeholder="Category"/></div><div class="field"><label>Qty</label><input id="pq" type="number" min="0" placeholder="0"/></div><div class="field"><label>Price (₦)</label><input id="pp" type="number" min="0" placeholder="0"/></div><div class="field"><label>Expiry</label><input id="pe" type="date"/></div><div class="field"><label>Restock At</label><input id="pr" type="number" min="0" placeholder="10"/></div></div>
-    <button class="btn-amber" onclick="addProd()">+ Add Product</button></div>
-    <div class="card"><div class="card-title">All Products (${prods.length})</div>
-    <table><thead><tr><th>Name</th><th>Qty</th><th>Price</th><th>Status</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+function renderDrinks(el,isAdmin){
+  const DRINKS=[
+    {cat:'🍺 Beers',color:'#f5c542',items:[
+      {name:'Guinness Stout 60cl',price:800},{name:'Guinness Stout 33cl',price:500},
+      {name:'Star Lager 60cl',price:700},{name:'Star Lager 33cl',price:450},
+      {name:'Heineken 60cl',price:900},{name:'Heineken 33cl',price:600},
+      {name:'Goldberg Lager 60cl',price:650},{name:'Trophy Lager 60cl',price:650},
+      {name:'Budweiser 33cl',price:700},{name:'Hero Lager 60cl',price:650},
+      {name:'Orijin Bitters 33cl',price:700},{name:'Legend Extra Stout 60cl',price:750},
+    ]},
+    {cat:'🥃 Spirits & Wines',color:'#a78bfa',items:[
+      {name:'Hennessy VS 75cl',price:28000},{name:'Hennessy VS (Shot)',price:2000},
+      {name:'Johnnie Walker Black 75cl',price:22000},{name:'Ciroc Vodka 75cl',price:25000},
+      {name:'Smirnoff Vodka 75cl',price:8500},{name:'Baileys Irish Cream 75cl',price:18000},
+      {name:'Campari 75cl',price:9000},{name:'Remy Martin VSOP',price:35000},
+      {name:'Red Wine (Glass)',price:2500},{name:'White Wine (Glass)',price:2500},
+    ]},
+    {cat:'🍸 Cocktails & Mixers',color:'#3ecf78',items:[
+      {name:'Chapman (Large)',price:2500},{name:'Chapman (Small)',price:1500},
+      {name:'Mojito',price:3000},{name:'Pina Colada',price:3500},
+      {name:'Tequila Sunrise',price:3000},{name:'Long Island Iced Tea',price:4000},
+    ]},
+    {cat:'🥤 Soft Drinks',color:'#4d9cf8',items:[
+      {name:'Pepsi 35cl',price:400},{name:'Coca-Cola 35cl',price:400},
+      {name:'Fanta Orange 35cl',price:400},{name:'Sprite 35cl',price:400},
+      {name:'Mirinda 35cl',price:400},{name:'7-Up 35cl',price:400},
+      {name:'Malta Guinness 33cl',price:500},{name:'Amstel Malta 33cl',price:500},
+      {name:'Hollandia Strawberry',price:600},{name:'Chivita Juice (Small)',price:700},
+    ]},
+    {cat:'💧 Water',color:'#22d3ee',items:[
+      {name:'Eva Water 75cl',price:300},{name:'Eva Water 1.5L',price:500},
+      {name:'Nestle Pure Life 75cl',price:300},{name:'Ragolis Water 75cl',price:250},
+      {name:'Table Water (Sachet)',price:50},
+    ]},
+    {cat:'🍵 Hot Drinks',color:'#e09050',items:[
+      {name:'Nescafé Coffee',price:600},{name:'Lipton Tea',price:400},
+      {name:'Bournvita (Mug)',price:500},{name:'Milo (Mug)',price:500},
+    ]},
+    {cat:'🍽️ Food & Pepper Soup',color:'#e05555',items:[
+      {name:'Smoky Jollof Rice',price:3500},{name:'Peppered Chicken',price:4500},
+      {name:'Peppered Gizzard',price:2500},{name:'Peppered Snail',price:5000},
+      {name:'Goat Meat Pepper Soup',price:4500},{name:'Catfish Pepper Soup',price:5000},
+      {name:'Assorted Pepper Soup',price:5500},{name:'Point & Kill (Per Fish)',price:6500},
+      {name:'Goat Meat (Portion)',price:3500},{name:'Fried Goat Meat (Platter)',price:5500},
+    ]},
+  ];
+  let html=`<div style="font-size:15px;font-weight:600;margin-bottom:4px">🍹 Kalu Urban Lounge & Bar</div>
+  <div style="font-size:11px;color:var(--text2);margin-bottom:12px">Full Drinks & Food Menu${isAdmin?' — Admin View (Prices Visible)':''}</div>`;
+  DRINKS.forEach(section=>{
+    html+=`<div class="card" style="margin-bottom:8px">
+      <div class="card-title" style="color:${section.color};font-size:12px;margin-bottom:8px">${section.cat}</div>
+      <table><thead><tr><th>Item</th>${isAdmin?'<th style="text-align:right">Price</th>':''}</tr></thead><tbody>
+      ${section.items.map(d=>`<tr><td>${d.name}</td>${isAdmin?`<td style="text-align:right;color:var(--amber-p);font-weight:500">${fmt(d.price)}</td>`:''}</tr>`).join('')}
+      </tbody></table></div>`;
+  });
+  el.innerHTML=html;
 }
-function addProd(){const n=document.getElementById('pn').value.trim();const e=document.getElementById('pe').value;if(!n||!e){alert('Name & expiry required');return;}(currentClient.products=currentClient.products||[]).push({id:Date.now(),name:n,category:document.getElementById('pc').value.trim()||'General',qty:parseInt(document.getElementById('pq').value)||0,price:parseFloat(document.getElementById('pp').value)||0,expiry:e,restock:parseInt(document.getElementById('pr').value)||10});if(currentClient===CLIENTS.find(c=>c.id===currentClient.id))buildAdminClientDetail('inventory');else buildClientSubNav();}
+
+function renderInventory(el,isAdmin){
+  const prods=currentClient.products||[];
+  const rows=prods.map(p=>{
+    const d=daysUntil(p.expiry);
+    const b=d<=0?'<span class="badge b-red">Expired</span>':d<=30?`<span class="badge b-amber">${d}d</span>`:p.qty<=p.restock?'<span class="badge b-amber">Low</span>':'<span class="badge b-green">OK</span>';
+    return `<tr><td>${p.name}</td><td>${p.category}</td><td>${p.qty}</td>${isAdmin?`<td style="color:var(--amber-p);font-weight:500">${fmt(p.price)}</td>`:''}<td>${b}</td></tr>`;
+  }).join('')||`<tr><td colspan="${isAdmin?5:4}" class="empty">No products</td></tr>`;
+  el.innerHTML=`<div class="card"><div class="card-title">Add Product</div>
+    <div class="form-grid"><div class="field"><label>Name</label><input id="pn" placeholder="Product name"/></div><div class="field"><label>Category</label><input id="pc" placeholder="Category"/></div><div class="field"><label>Qty</label><input id="pq" type="number" min="0" placeholder="0"/></div>${isAdmin?'<div class="field"><label>Price (₦)</label><input id="pp" type="number" min="0" placeholder="0"/></div>':''}<div class="field"><label>Expiry</label><input id="pe" type="date"/></div><div class="field"><label>Restock At</label><input id="pr" type="number" min="0" placeholder="10"/></div></div>
+    <button class="btn-amber" onclick="addProd(${isAdmin})">+ Add Product</button></div>
+    <div class="card">
+      ${!isAdmin?'<div style="display:flex;align-items:center;gap:6px;background:rgba(77,156,248,.1);border:1px solid rgba(77,156,248,.2);border-radius:8px;padding:8px 10px;margin-bottom:10px;font-size:11px;color:var(--blue)"><i class="ti ti-lock"></i> Prices are managed by your InsightEdge admin</div>':''}
+      <div class="card-title">All Products (${prods.length})</div>
+      <table><thead><tr><th>Name</th><th>Category</th><th>Qty</th>${isAdmin?'<th>Unit Price</th>':''}<th>Status</th></tr></thead><tbody>${rows}</tbody></table>
+    </div>`;
+}
+function addProd(isAdmin){
+  const n=document.getElementById('pn').value.trim();
+  const e=document.getElementById('pe').value;
+  if(!n||!e){alert('Name & expiry required');return;}
+  const priceEl=document.getElementById('pp');
+  (currentClient.products=currentClient.products||[]).push({id:Date.now(),name:n,category:document.getElementById('pc').value.trim()||'General',qty:parseInt(document.getElementById('pq').value)||0,price:priceEl?parseFloat(priceEl.value)||0:0,expiry:e,restock:parseInt(document.getElementById('pr').value)||10});
+  if(isAdmin)buildAdminClientDetail('inventory');else clientSubTab('inventory');
+}
 
 function renderSales(el,isAdmin){
   const prods=currentClient.products||[];const sales=currentClient.sales||[];
   const opts=prods.map(p=>`<option value="${p.id}">${p.name} (${p.qty})</option>`).join('');
-  const rows=[...sales].reverse().slice(0,10).map(s=>{const p=prods.find(x=>x.id===s.productId)||{name:'Service'};return `<tr><td>${p.name}</td><td>${s.qty}</td><td>${fmt(s.revenue)}</td><td>${s.date}</td></tr>`;}).join('')||`<tr><td colspan="4" class="empty">No sales</td></tr>`;
+  const rows=[...sales].reverse().slice(0,10).map(s=>{
+    const p=prods.find(x=>x.id===s.productId)||{name:'Service'};
+    return `<tr><td>${p.name}</td><td>${s.qty}</td>${isAdmin?`<td>${fmt(s.revenue)}</td>`:''}<td>${s.date}</td></tr>`;
+  }).join('')||`<tr><td colspan="${isAdmin?4:3}" class="empty">No sales</td></tr>`;
   el.innerHTML=`<div class="card"><div class="card-title">Record Sale</div>
     <div class="form-grid"><div class="field"><label>Product</label><select id="sp"><option value="">Select…</option>${opts}</select></div><div class="field"><label>Qty</label><input id="sq" type="number" min="1" placeholder="1"/></div><div class="field"><label>Date</label><input id="sd" type="date" value="${todayStr()}"/></div></div>
     <button class="btn-amber" onclick="recSale(${isAdmin})">+ Record Sale</button></div>
-    <div class="card"><div class="card-title">Recent Sales</div>
-    <table><thead><tr><th>Product</th><th>Qty</th><th>Revenue</th><th>Date</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+    <div class="card">
+      ${!isAdmin?'<div style="display:flex;align-items:center;gap:6px;background:rgba(77,156,248,.1);border:1px solid rgba(77,156,248,.2);border-radius:8px;padding:8px 10px;margin-bottom:10px;font-size:11px;color:var(--blue)"><i class="ti ti-lock"></i> Revenue figures are managed by your InsightEdge admin</div>':''}
+      <div class="card-title">Recent Sales</div>
+      <table><thead><tr><th>Product</th><th>Qty</th>${isAdmin?'<th>Revenue</th>':''}<th>Date</th></tr></thead><tbody>${rows}</tbody></table>
+    </div>`;
 }
 function recSale(isAdmin){const pid=parseInt(document.getElementById('sp').value);const qty=parseInt(document.getElementById('sq').value)||0;const date=document.getElementById('sd').value||todayStr();if(!pid||qty<=0){alert('Select product & qty');return;}const p=(currentClient.products||[]).find(x=>x.id===pid);if(!p||qty>p.qty){alert(`Only ${p?p.qty:0} in stock`);return;}(currentClient.sales=currentClient.sales||[]).push({id:Date.now(),productId:pid,qty,date,revenue:qty*p.price});p.qty-=qty;if(isAdmin)buildAdminClientDetail('sales');else clientSubTab('sales');}
+
 
 function renderJobs(el,isAdmin){
   const jobs=currentClient.jobs||[];
@@ -1028,22 +1108,25 @@ function renderStaff(el,isAdmin){
 }
 function addStaff(isAdmin){const n=document.getElementById('stn').value.trim();if(!n){alert('Name required');return;}(currentClient.staff=currentClient.staff||[]).push({id:Date.now(),name:n,role:document.getElementById('str').value.trim()||'Staff',phone:document.getElementById('stp').value.trim()||'—',status:'Active'});if(isAdmin)buildAdminClientDetail('staff');else clientSubTab('staff');}
 
-function renderCEO(el){
+function renderCEO(el,isAdmin){
   const c=currentClient;const sales=c.sales||[];const expenses=c.expenses||[];
   const totalSales=sales.reduce((a,s)=>a+s.revenue,0);const totalExp=expenses.reduce((a,e)=>a+e.amount,0);const profit=totalSales-totalExp;
   const activeStaff=(c.staff||[]).filter(s=>s.status==='Active').length;
   const catMap={};expenses.forEach(e=>{catMap[e.category]=(catMap[e.category]||0)+e.amount;});
   const maxCat=Math.max(...Object.values(catMap),1);
   const colors=['#c87941','#3ecf78','#4d9cf8','#a78bfa','#e05555','#f5c542'];
-  const bars=Object.entries(catMap).map(([cat,amt],i)=>`<div class="bar-row"><div class="bar-meta"><span>${cat}</span><span>${fmt(amt)}</span></div><div class="bar-track"><div class="bar-fill" style="width:${Math.round(amt/maxCat*100)}%;background:${colors[i%colors.length]}"></div></div></div>`).join('')||'<div class="empty">No data</div>';
+  const bars=isAdmin
+    ? Object.entries(catMap).map(([cat,amt],i)=>`<div class="bar-row"><div class="bar-meta"><span>${cat}</span><span>${fmt(amt)}</span></div><div class="bar-track"><div class="bar-fill" style="width:${Math.round(amt/maxCat*100)}%;background:${colors[i%colors.length]}"></div></div></div>`).join('')||'<div class="empty">No data</div>'
+    : Object.entries(catMap).map(([cat,amt],i)=>`<div class="bar-row"><div class="bar-meta"><span>${cat}</span><span style="color:var(--text3)">••••</span></div><div class="bar-track"><div class="bar-fill" style="width:${Math.round(amt/maxCat*100)}%;background:${colors[i%colors.length]}"></div></div></div>`).join('')||'<div class="empty">No data</div>';
   let special='';
-  if(c.bizType==='maintenance'){const done=(c.jobs||[]).filter(j=>j.status==='Completed');special=`<div class="card"><div class="card-title">Jobs</div><div style="display:flex;gap:1.5rem"><div><div style="font-size:10px;color:var(--text2);text-transform:uppercase">Completed</div><div style="font-size:22px;font-weight:600">${done.length}</div></div><div><div style="font-size:10px;color:var(--text2);text-transform:uppercase">Earned</div><div style="font-size:22px;font-weight:600;color:var(--amber)">${fmt(done.reduce((a,j)=>a+j.amount,0))}</div></div></div></div>`;}
-  if(c.bizType==='logistics'){const done=(c.trips||[]).filter(t=>t.status==='Delivered');special=`<div class="card"><div class="card-title">Trips</div><div style="display:flex;gap:1.5rem"><div><div style="font-size:10px;color:var(--text2);text-transform:uppercase">Delivered</div><div style="font-size:22px;font-weight:600">${done.length}</div></div><div><div style="font-size:10px;color:var(--text2);text-transform:uppercase">Revenue</div><div style="font-size:22px;font-weight:600;color:var(--amber)">${fmt(done.reduce((a,t)=>a+t.amount,0))}</div></div></div></div>`;}
-  if(c.bizType==='security'){const active=(c.contracts||[]).filter(cn=>daysUntil(cn.end)>0);special=`<div class="card"><div class="card-title">Contracts</div><div style="display:flex;gap:1.5rem"><div><div style="font-size:10px;color:var(--text2);text-transform:uppercase">Active</div><div style="font-size:22px;font-weight:600">${active.length}</div></div><div><div style="font-size:10px;color:var(--text2);text-transform:uppercase">Monthly</div><div style="font-size:22px;font-weight:600;color:var(--amber)">${fmt(active.reduce((s,cn)=>s+cn.monthly,0))}</div></div></div></div>`;}
-  el.innerHTML=`<div class="kpi-grid">
-    <div class="kpi-card"><div class="kpi-label">Total Revenue</div><div class="kpi-value">${shortFmt(totalSales)}</div><div class="kpi-trend up">↑ all time</div></div>
-    <div class="kpi-card"><div class="kpi-label">Total Expenses</div><div class="kpi-value">${shortFmt(totalExp)}</div><div class="kpi-trend" style="color:var(--text2)">recorded</div></div>
-    <div class="kpi-card"><div class="kpi-label">Net Profit</div><div class="kpi-value">${shortFmt(profit)}</div><div class="kpi-trend ${profit>=0?'up':'down'}">${profit>=0?'Positive':'Loss'}</div></div>
+  if(c.bizType==='maintenance'){const done=(c.jobs||[]).filter(j=>j.status==='Completed');special=`<div class="card"><div class="card-title">Jobs</div><div style="display:flex;gap:1.5rem"><div><div style="font-size:10px;color:var(--text2);text-transform:uppercase">Completed</div><div style="font-size:22px;font-weight:600">${done.length}</div></div>${isAdmin?`<div><div style="font-size:10px;color:var(--text2);text-transform:uppercase">Earned</div><div style="font-size:22px;font-weight:600;color:var(--amber)">${fmt(done.reduce((a,j)=>a+j.amount,0))}</div></div>`:''}</div></div>`;}
+  if(c.bizType==='logistics'){const done=(c.trips||[]).filter(t=>t.status==='Delivered');special=`<div class="card"><div class="card-title">Trips</div><div style="display:flex;gap:1.5rem"><div><div style="font-size:10px;color:var(--text2);text-transform:uppercase">Delivered</div><div style="font-size:22px;font-weight:600">${done.length}</div></div>${isAdmin?`<div><div style="font-size:10px;color:var(--text2);text-transform:uppercase">Revenue</div><div style="font-size:22px;font-weight:600;color:var(--amber)">${fmt(done.reduce((a,t)=>a+t.amount,0))}</div></div>`:''}</div></div>`;}
+  if(c.bizType==='security'){const active=(c.contracts||[]).filter(cn=>daysUntil(cn.end)>0);special=`<div class="card"><div class="card-title">Contracts</div><div style="display:flex;gap:1.5rem"><div><div style="font-size:10px;color:var(--text2);text-transform:uppercase">Active</div><div style="font-size:22px;font-weight:600">${active.length}</div></div>${isAdmin?`<div><div style="font-size:10px;color:var(--text2);text-transform:uppercase">Monthly</div><div style="font-size:22px;font-weight:600;color:var(--amber)">${fmt(active.reduce((s,cn)=>s+cn.monthly,0))}</div></div>`:''}</div></div>`;}
+  const lockedNotice=!isAdmin?`<div style="display:flex;align-items:center;gap:6px;background:rgba(77,156,248,.1);border:1px solid rgba(77,156,248,.2);border-radius:8px;padding:8px 10px;margin-bottom:10px;font-size:11px;color:var(--blue)"><i class="ti ti-lock"></i> Financial figures are visible to your InsightEdge admin only</div>`:'';
+  el.innerHTML=`${lockedNotice}<div class="kpi-grid">
+    <div class="kpi-card"><div class="kpi-label">Total Sales</div><div class="kpi-value">${isAdmin?shortFmt(totalSales):'••••'}</div><div class="kpi-trend up">${sales.length} transactions</div></div>
+    <div class="kpi-card"><div class="kpi-label">Total Expenses</div><div class="kpi-value">${isAdmin?shortFmt(totalExp):'••••'}</div><div class="kpi-trend" style="color:var(--text2)">${expenses.length} entries</div></div>
+    <div class="kpi-card"><div class="kpi-label">Net Profit</div><div class="kpi-value">${isAdmin?shortFmt(profit):'••••'}</div><div class="kpi-trend ${profit>=0?'up':'down'}">${isAdmin?(profit>=0?'Positive':'Loss'):'Admin only'}</div></div>
     <div class="kpi-card"><div class="kpi-label">Active Staff</div><div class="kpi-value">${activeStaff}</div><div class="kpi-trend up">members</div></div>
   </div>${special}<div class="card"><div class="card-title">Expenses by Category</div>${bars}</div>`;
 }
