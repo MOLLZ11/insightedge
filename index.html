@@ -205,13 +205,9 @@ tr:last-child td{border-bottom:none}
       <div class="logo-title">InsightEdge</div>
       <div class="logo-sub">Secure Business Platform</div>
     </div>
-    <div class="role-tabs">
-      <button class="role-tab active" id="rt-admin" onclick="setRole('admin')">🔐 Admin Login</button>
-      <button class="role-tab" id="rt-client" onclick="setRole('client')">🏢 Client Login</button>
-    </div>
     <div class="login-card">
-      <div style="font-size:20px;font-weight:600;margin-bottom:3px" id="login-title">Admin Sign In</div>
-      <div style="font-size:13px;color:var(--text2);margin-bottom:1.25rem" id="login-sub">Owner access — all clients visible</div>
+      <div style="font-size:20px;font-weight:600;margin-bottom:3px">Welcome, Gideon</div>
+      <div style="font-size:13px;color:var(--text2);margin-bottom:1.25rem">Sign in to your InsightEdge admin panel</div>
       <label class="lbl">Username</label>
       <input class="inp" id="li-user" placeholder="Enter username" autocomplete="username"/>
       <label class="lbl">Password</label>
@@ -219,7 +215,7 @@ tr:last-child td{border-bottom:none}
       <div class="login-err" id="li-err">❌ Incorrect username or password.</div>
       <button class="login-btn" onclick="doLogin()">Sign In →</button>
     </div>
-    <div class="login-foot">🔒 Credentials provided by InsightEdge Analytics<br/>Contact: <span>@mollz021</span></div>
+    <div class="login-foot">🔒 InsightEdge Analytics · <span>@mollz021</span></div>
   </div>
 </div>
 
@@ -257,8 +253,58 @@ tr:last-child td{border-bottom:none}
 
   <!-- Admin Clients -->
   <div class="page-content" id="apg-clients">
-    <div style="font-size:18px;font-weight:600;padding:.5rem 0 1rem">All Clients <span style="font-size:13px;color:var(--text2);font-weight:400">(16)</span></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:.5rem 0 1rem">
+      <div style="font-size:18px;font-weight:600">All Clients <span style="font-size:13px;color:var(--text2);font-weight:400" id="clients-count">(16)</span></div>
+      <button class="btn-amber" style="width:auto;padding:8px 16px;font-size:13px" onclick="adminPage('create-client')">+ New Client</button>
+    </div>
     <div id="a-clients-list"></div>
+  </div>
+
+  <!-- Admin Create Client -->
+  <div class="page-content" id="apg-create-client">
+    <div class="client-header">
+      <div class="back-btn" onclick="adminPage('clients')"><i class="ti ti-arrow-left"></i></div>
+      <div><div style="font-size:16px;font-weight:600">Create New Client</div><div style="font-size:11px;color:var(--amber)">Fill in details to onboard a new client</div></div>
+    </div>
+    <div class="card" style="margin-top:.5rem">
+      <div class="card-title">Business Info</div>
+      <div class="form-grid">
+        <div class="field"><label>Business Name</label><input id="nc-name" placeholder="e.g. Emeka's Pharmacy"/></div>
+        <div class="field"><label>Business Type</label>
+          <select id="nc-type">
+            <option value="">Select type…</option>
+            <option value="pharmacy">💊 Pharmacy</option>
+            <option value="supermarket">🛒 Supermarket</option>
+            <option value="maintenance">🔧 Maintenance</option>
+            <option value="security">🛡️ Security</option>
+            <option value="bar">🍺 Bar / Lounge</option>
+            <option value="petty_trader">🧺 Petty Trader</option>
+            <option value="logistics">🚛 Logistics</option>
+            <option value="restaurant">🍲 Restaurant</option>
+            <option value="salon">💅 Salon / Spa</option>
+            <option value="barbing">💈 Barbing Salon</option>
+            <option value="wholesale">🏭 Wholesale</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Login Credentials</div>
+      <div class="form-grid">
+        <div class="field"><label>Username</label><input id="nc-user" placeholder="e.g. emeka (no spaces)"/></div>
+        <div class="field"><label>Password</label><input id="nc-pass" type="text" placeholder="e.g. pharma2026"/></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Contact Info (Optional)</div>
+      <div class="form-grid">
+        <div class="field"><label>Owner Name</label><input id="nc-owner" placeholder="e.g. Emeka Okafor"/></div>
+        <div class="field"><label>Phone</label><input id="nc-phone" placeholder="e.g. 0801-234-5678"/></div>
+      </div>
+    </div>
+    <div id="nc-msg" style="font-size:13px;padding:10px 12px;border-radius:8px;margin-bottom:10px;display:none"></div>
+    <button class="btn-amber" onclick="createNewClient()">✅ Create Client</button>
+    <div style="font-size:11px;color:var(--text3);text-align:center;margin-top:.75rem">Client will be able to log in immediately after creation</div>
   </div>
 
   <!-- Admin Alerts -->
@@ -282,7 +328,7 @@ tr:last-child td{border-bottom:none}
       <div class="plan-feat"><i class="ti ti-check" style="color:var(--green)"></i>Sales & Inventory</div>
       <div class="plan-feat"><i class="ti ti-check" style="color:var(--green)"></i>Basic Expiry Alerts</div>
       <div class="plan-feat"><i class="ti ti-check" style="color:var(--green)"></i>Up to 2 Staff</div>
-      <div class="plan-feat"><i class="ti ti-x" style="color:var(--text3)"></i>CEO Report</div>
+      <div class="plan-feat"><i class="ti ti-x" style="color:var(--text3)"></i>WA Report</div>
     </div>
     <div class="plan-card featured">
       <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--amber);margin-bottom:6px">⭐ Most Popular</div>
@@ -291,7 +337,7 @@ tr:last-child td{border-bottom:none}
       <div class="plan-feat"><i class="ti ti-check" style="color:var(--green)"></i>Full Dashboard & Analytics</div>
       <div class="plan-feat"><i class="ti ti-check" style="color:var(--green)"></i>Expiry + Restock Alerts</div>
       <div class="plan-feat"><i class="ti ti-check" style="color:var(--green)"></i>Up to 10 Staff</div>
-      <div class="plan-feat"><i class="ti ti-check" style="color:var(--green)"></i>CEO Report & Charts</div>
+      <div class="plan-feat"><i class="ti ti-check" style="color:var(--green)"></i>WhatsApp Report</div>
     </div>
     <div class="plan-card"><div class="plan-name">Enterprise</div><div class="plan-price">₦40,000<span>/month</span></div>
       <div class="plan-feat"><i class="ti ti-check" style="color:var(--green)"></i>Everything in Business</div>
@@ -432,7 +478,7 @@ const ADMIN={username:'gideon',password:'insightedge@admin'};
 
 const CLIENTS=[
   {id:'emeka',username:'emeka',password:'pharma001',name:"Emeka Okonkwo Pharmacy",bizType:'pharmacy',icon:'💊',
-   features:['dashboard','inventory','sales','expenses','staff','ceo'],
+   features:['dashboard','inventory','sales','expenses','staff','report'],
    products:[
     {id:1,name:'Amoxicillin 500mg',category:'Antibiotics',qty:80,expiry:addDays(todayStr(),18),restock:30,price:850},
     {id:2,name:'Paracetamol 1g',category:'Analgesics',qty:12,expiry:addDays(todayStr(),8),restock:40,price:350},
@@ -460,7 +506,7 @@ const CLIENTS=[
    pwRequest:null},
 
   {id:'basira',username:'basira',password:'super002',name:"Aisha Suleiman Stores",bizType:'supermarket',icon:'🛒',
-   features:['dashboard','inventory','sales','expenses','staff','ceo'],
+   features:['dashboard','inventory','sales','expenses','staff','report'],
    products:[
     {id:1,name:'Indomie Noodles (Carton)',category:'Food Items',qty:40,expiry:addDays(todayStr(),25),restock:15,price:7500},
     {id:2,name:'Peak Milk 400g',category:'Dairy',qty:6,expiry:addDays(todayStr(),12),restock:20,price:3200},
@@ -483,7 +529,7 @@ const CLIENTS=[
    pwRequest:null},
 
   {id:'kunle',username:'kunle',password:'maint003',name:"Adeyemi Technical Services",bizType:'maintenance',icon:'🔧',
-   features:['dashboard','jobs','expenses','staff','ceo'],
+   features:['dashboard','jobs','expenses','staff','report'],
    jobs:[{id:1,client:'GTBank Ikeja',desc:'AC Repair',status:'Completed',amount:85000,date:addDays(todayStr(),-6)},{id:2,client:'Eko Hotels',desc:'Plumbing Overhaul',status:'Completed',amount:150000,date:addDays(todayStr(),-4)},{id:3,client:'Shoprite Lekki',desc:'Electrical Wiring',status:'In Progress',amount:120000,date:addDays(todayStr(),-2)},{id:4,client:'Mr Biggs',desc:'Generator Servicing',status:'In Progress',amount:45000,date:todayStr()},{id:5,client:'Unity Bank HQ',desc:'CCTV Installation',status:'Pending',amount:200000,date:addDays(todayStr(),2)}],
    sales:[{id:1,productId:0,qty:1,date:addDays(todayStr(),-6),revenue:85000},{id:2,productId:0,qty:1,date:addDays(todayStr(),-4),revenue:150000},{id:3,productId:0,qty:1,date:todayStr(),revenue:45000},{id:4,productId:0,qty:1,date:addDays(todayStr(),-1),revenue:60000},{id:5,productId:0,qty:1,date:addDays(todayStr(),-2),revenue:30000},{id:6,productId:0,qty:1,date:addDays(todayStr(),-3),revenue:75000},{id:7,productId:0,qty:1,date:addDays(todayStr(),-5),revenue:42000}],
    expenses:[{id:1,desc:'Staff Salary',category:'Salaries',amount:180000,date:addDays(todayStr(),-14)},{id:2,desc:'Tools & Equipment',category:'Equipment',amount:65000,date:addDays(todayStr(),-10)},{id:3,desc:'Vehicle Fuel',category:'Transport',amount:22000,date:addDays(todayStr(),-5)},{id:4,desc:'Office Rent',category:'Rent',amount:50000,date:addDays(todayStr(),-20)}],
@@ -491,7 +537,7 @@ const CLIENTS=[
    products:[],pwRequest:null},
 
   {id:'alpha',username:'alpha',password:'secure004',name:"Emeka Nze Security Solutions",bizType:'security',icon:'🛡️',
-   features:['dashboard','contracts','staff','expenses','ceo'],
+   features:['dashboard','contracts','staff','expenses','report'],
    contracts:[{id:1,client:'First Bank Plc',site:'Victoria Island',start:addDays(todayStr(),-60),end:addDays(todayStr(),120),monthly:280000,status:'Active'},{id:2,client:'Palms Shopping Mall',site:'Lekki',start:addDays(todayStr(),-30),end:addDays(todayStr(),20),monthly:450000,status:'Active'},{id:3,client:'Chevron Nigeria',site:'Staff Quarters',start:addDays(todayStr(),-90),end:addDays(todayStr(),270),monthly:600000,status:'Active'},{id:4,client:'Heritage Bank',site:'Apapa Branch',start:addDays(todayStr(),-10),end:addDays(todayStr(),350),monthly:200000,status:'Active'},{id:5,client:'Slot Systems',site:'Ikeja City Mall',start:addDays(todayStr(),-45),end:addDays(todayStr(),25),monthly:180000,status:'Active'}],
    sales:[{id:1,productId:0,qty:1,date:addDays(todayStr(),-1),revenue:280000},{id:2,productId:0,qty:1,date:addDays(todayStr(),-2),revenue:450000},{id:3,productId:0,qty:1,date:addDays(todayStr(),-3),revenue:600000},{id:4,productId:0,qty:1,date:addDays(todayStr(),-4),revenue:200000},{id:5,productId:0,qty:1,date:addDays(todayStr(),-5),revenue:180000},{id:6,productId:0,qty:1,date:todayStr(),revenue:280000},{id:7,productId:0,qty:1,date:addDays(todayStr(),-6),revenue:450000}],
    expenses:[{id:1,desc:'Guard Salaries',category:'Salaries',amount:850000,date:addDays(todayStr(),-14)},{id:2,desc:'Uniforms & Equipment',category:'Equipment',amount:120000,date:addDays(todayStr(),-20)},{id:3,desc:'Vehicle Maintenance',category:'Transport',amount:45000,date:addDays(todayStr(),-7)},{id:4,desc:'Office Rent',category:'Rent',amount:95000,date:addDays(todayStr(),-25)}],
@@ -499,7 +545,7 @@ const CLIENTS=[
    products:[],pwRequest:null},
 
   {id:'chiefs',username:'chiefs',password:'bar005',name:"Kalu Urban Lounge & Bar",bizType:'bar',icon:'🍺',
-   features:['dashboard','drinks','inventory','sales','expenses','staff','ceo'],
+   features:['dashboard','drinks','inventory','sales','expenses','staff','report'],
    products:[
     {id:1,name:'Guinness Stout (Bottle)',category:'🍺 Beers',qty:120,expiry:addDays(todayStr(),90),restock:30,price:600},
     {id:2,name:'Star Lager (Bottle)',category:'🍺 Beers',qty:150,expiry:addDays(todayStr(),85),restock:40,price:550},
@@ -533,14 +579,14 @@ const CLIENTS=[
    pwRequest:null},
 
   {id:'titi',username:'titi',password:'trader006',name:"Titilayo Adeyinka Provisions",bizType:'petty_trader',icon:'🧺',
-   features:['dashboard','inventory','sales','expenses','ceo'],
+   features:['dashboard','inventory','sales','expenses','report'],
    products:[{id:1,name:'Golden Morn 500g',category:'Breakfast',qty:25,expiry:addDays(todayStr(),45),restock:10,price:1650},{id:2,name:'Milo 200g Tin',category:'Beverages',qty:5,expiry:addDays(todayStr(),10),restock:12,price:2200},{id:3,name:'Detergent Omo 500g',category:'Household',qty:40,expiry:addDays(todayStr(),730),restock:15,price:1100},{id:4,name:'Biscuit Cabin (Pack)',category:'Snacks',qty:60,expiry:addDays(todayStr(),30),restock:20,price:500},{id:5,name:'Tomato Stew Tin',category:'Condiments',qty:8,expiry:addDays(todayStr(),7),restock:15,price:750}],
    sales:[{id:1,productId:1,qty:10,date:addDays(todayStr(),-1),revenue:16500},{id:2,productId:3,qty:15,date:addDays(todayStr(),-2),revenue:16500},{id:3,productId:4,qty:30,date:addDays(todayStr(),-3),revenue:15000},{id:4,productId:2,qty:8,date:addDays(todayStr(),-4),revenue:17600},{id:5,productId:5,qty:12,date:todayStr(),revenue:9000},{id:6,productId:1,qty:5,date:addDays(todayStr(),-5),revenue:8250},{id:7,productId:4,qty:20,date:addDays(todayStr(),-6),revenue:10000}],
    expenses:[{id:1,desc:'Market Purchase',category:'Inventory',amount:75000,date:addDays(todayStr(),-7)},{id:2,desc:'Shop Rent',category:'Rent',amount:20000,date:addDays(todayStr(),-20)},{id:3,desc:'Transport',category:'Transport',amount:3500,date:addDays(todayStr(),-2)}],
    staff:[],pwRequest:null},
 
   {id:'swift',username:'swift',password:'logistics007',name:"Danladi & Sons Haulage Ltd",bizType:'logistics',icon:'🚛',
-   features:['dashboard','trips','expenses','staff','ceo'],
+   features:['dashboard','trips','expenses','staff','report'],
    trips:[{id:1,driver:'Alhaji Sani Danladi',route:'Kano → Lagos',cargo:'Groundnut Oil',status:'Delivered',amount:380000,date:addDays(todayStr(),-5)},{id:2,driver:'Emeka Obi',route:'Lagos → Abuja',cargo:'Electronics',status:'Delivered',amount:250000,date:addDays(todayStr(),-3)},{id:3,driver:'Festus Eze',route:'PH → Warri',cargo:'FMCG Goods',status:'En Route',amount:180000,date:addDays(todayStr(),-1)},{id:4,driver:'Musa Aliyu',route:'Abuja → Kaduna',cargo:'Cement Bags',status:'En Route',amount:120000,date:todayStr()},{id:5,driver:'Tayo Adeleke',route:'Lagos → Ibadan',cargo:'Beverages',status:'Pending',amount:95000,date:addDays(todayStr(),1)}],
    sales:[{id:1,productId:0,qty:1,date:addDays(todayStr(),-6),revenue:380000},{id:2,productId:0,qty:1,date:addDays(todayStr(),-5),revenue:250000},{id:3,productId:0,qty:1,date:addDays(todayStr(),-4),revenue:180000},{id:4,productId:0,qty:1,date:addDays(todayStr(),-3),revenue:120000},{id:5,productId:0,qty:1,date:addDays(todayStr(),-2),revenue:95000},{id:6,productId:0,qty:1,date:addDays(todayStr(),-1),revenue:210000},{id:7,productId:0,qty:1,date:todayStr(),revenue:120000}],
    expenses:[{id:1,desc:'Driver Salaries',category:'Salaries',amount:420000,date:addDays(todayStr(),-14)},{id:2,desc:'Diesel & Fuel',category:'Fuel',amount:280000,date:addDays(todayStr(),-7)},{id:3,desc:'Vehicle Maintenance',category:'Maintenance',amount:95000,date:addDays(todayStr(),-10)},{id:4,desc:'Office Rent Lagos',category:'Rent',amount:120000,date:addDays(todayStr(),-20)}],
@@ -548,7 +594,7 @@ const CLIENTS=[
    products:[],pwRequest:null},
 
   {id:'spice',username:'spice',password:'food008',name:"Ngozi Okafor Kitchen & Grill",bizType:'restaurant',icon:'🍲',
-   features:['dashboard','inventory','sales','expenses','staff','ceo'],
+   features:['dashboard','inventory','sales','expenses','staff','report'],
    products:[{id:1,name:'Jollof Rice (Portion)',category:'Rice Dishes',qty:80,expiry:addDays(todayStr(),1),restock:20,price:2500},{id:2,name:'Egusi Soup + Swallow',category:'Soups',qty:6,expiry:addDays(todayStr(),1),restock:15,price:3500},{id:3,name:'Suya Platter',category:'Grills',qty:40,expiry:addDays(todayStr(),1),restock:10,price:4000},{id:4,name:'Pounded Yam + Ofe',category:'Soups',qty:9,expiry:addDays(todayStr(),1),restock:15,price:3800},{id:5,name:'Chapman Drink',category:'Drinks',qty:50,expiry:addDays(todayStr(),5),restock:20,price:1200},{id:6,name:'Pepper Soup Catfish',category:'Soups',qty:3,expiry:addDays(todayStr(),1),restock:10,price:5500}],
    sales:[{id:1,productId:1,qty:35,date:addDays(todayStr(),-3),revenue:87500},{id:2,productId:3,qty:20,date:addDays(todayStr(),-2),revenue:80000},{id:3,productId:2,qty:18,date:addDays(todayStr(),-1),revenue:63000},{id:4,productId:5,qty:40,date:todayStr(),revenue:48000},{id:5,productId:4,qty:12,date:addDays(todayStr(),-4),revenue:45600},{id:6,productId:6,qty:8,date:addDays(todayStr(),-5),revenue:44000},{id:7,productId:1,qty:20,date:addDays(todayStr(),-6),revenue:50000}],
    expenses:[{id:1,desc:'Kitchen Staff Wages',category:'Salaries',amount:250000,date:addDays(todayStr(),-14)},{id:2,desc:'Food Ingredients',category:'Inventory',amount:180000,date:addDays(todayStr(),-5)},{id:3,desc:'Gas & Electricity',category:'Utilities',amount:45000,date:addDays(todayStr(),-7)},{id:4,desc:'Restaurant Rent',category:'Rent',amount:220000,date:addDays(todayStr(),-20)}],
@@ -556,7 +602,7 @@ const CLIENTS=[
    pwRequest:null},
 
   {id:'glam',username:'glam',password:'salon009',name:"Chidinma Obi Beauty Studio",bizType:'salon',icon:'💅',
-   features:['dashboard','appointments','sales','expenses','staff','ceo'],
+   features:['dashboard','appointments','sales','expenses','staff','report'],
    appointments:[{id:1,client:'Mrs. Adaeze Onyeka',service:'Full Hair Braiding',staff:'Chidinma',date:addDays(todayStr(),-2),time:'10:00',amount:15000,status:'Completed'},{id:2,client:'Miss Folake Adeleke',service:'Lace Wig Install',staff:'Ngozi',date:addDays(todayStr(),-1),time:'12:00',amount:25000,status:'Completed'},{id:3,client:'Mrs. Amina Bello',service:'Manicure & Pedicure',staff:'Joy',date:todayStr(),time:'09:00',amount:8500,status:'Confirmed'},{id:4,client:'Miss Temi Oduola',service:'Hair Relaxer',staff:'Chidinma',date:todayStr(),time:'14:00',amount:12000,status:'Confirmed'},{id:5,client:'Mrs. Kemi Fashola',service:'Eyebrow Threading',staff:'Joy',date:addDays(todayStr(),1),time:'11:00',amount:3500,status:'Confirmed'}],
    sales:[{id:1,productId:0,qty:1,date:addDays(todayStr(),-6),revenue:18000},{id:2,productId:0,qty:1,date:addDays(todayStr(),-5),revenue:25000},{id:3,productId:0,qty:1,date:addDays(todayStr(),-4),revenue:12000},{id:4,productId:0,qty:1,date:addDays(todayStr(),-3),revenue:8500},{id:5,productId:0,qty:1,date:addDays(todayStr(),-2),revenue:15000},{id:6,productId:0,qty:1,date:addDays(todayStr(),-1),revenue:25000},{id:7,productId:0,qty:2,date:todayStr(),revenue:20500}],
    expenses:[{id:1,desc:'Stylist Salaries',category:'Salaries',amount:180000,date:addDays(todayStr(),-14)},{id:2,desc:'Hair Products',category:'Inventory',amount:85000,date:addDays(todayStr(),-8)},{id:3,desc:'Salon Rent',category:'Rent',amount:90000,date:addDays(todayStr(),-20)},{id:4,desc:'Electricity',category:'Utilities',amount:22000,date:addDays(todayStr(),-7)}],
@@ -564,7 +610,7 @@ const CLIENTS=[
    products:[],pwRequest:null},
 
   {id:'delta',username:'delta',password:'wholesale010',name:"Badaru & Sons Wholesale Depot",bizType:'wholesale',icon:'🏭',
-   features:['dashboard','inventory','sales','expenses','staff','ceo'],
+   features:['dashboard','inventory','sales','expenses','staff','report'],
    products:[{id:1,name:'Flour (50kg Bag)',category:'Staples',qty:200,expiry:addDays(todayStr(),60),restock:50,price:32000},{id:2,name:'Palm Oil (25L Keg)',category:'Cooking Oil',qty:8,expiry:addDays(todayStr(),14),restock:20,price:28000},{id:3,name:'Rice (50kg Bag)',category:'Staples',qty:350,expiry:addDays(todayStr(),365),restock:80,price:65000},{id:4,name:'Tomato Paste (Carton)',category:'Condiments',qty:12,expiry:addDays(todayStr(),7),restock:20,price:18000},{id:5,name:'Salt (50kg Bag)',category:'Staples',qty:100,expiry:addDays(todayStr(),730),restock:25,price:8500},{id:6,name:'Sugar (50kg Bag)',category:'Staples',qty:9,expiry:addDays(todayStr(),500),restock:30,price:42000}],
    sales:[{id:1,productId:3,qty:20,date:addDays(todayStr(),-6),revenue:1300000},{id:2,productId:1,qty:30,date:addDays(todayStr(),-5),revenue:960000},{id:3,productId:2,qty:10,date:addDays(todayStr(),-4),revenue:280000},{id:4,productId:6,qty:5,date:addDays(todayStr(),-3),revenue:210000},{id:5,productId:5,qty:15,date:addDays(todayStr(),-2),revenue:127500},{id:6,productId:3,qty:10,date:addDays(todayStr(),-1),revenue:650000},{id:7,productId:1,qty:5,date:todayStr(),revenue:160000}],
    expenses:[{id:1,desc:'Warehouse Staff',category:'Salaries',amount:350000,date:addDays(todayStr(),-14)},{id:2,desc:'Warehouse Rent',category:'Rent',amount:250000,date:addDays(todayStr(),-20)},{id:3,desc:'Loading Labour',category:'Labour',amount:85000,date:addDays(todayStr(),-7)},{id:4,desc:'Truck Fuel',category:'Transport',amount:120000,date:addDays(todayStr(),-5)}],
@@ -572,7 +618,7 @@ const CLIENTS=[
    pwRequest:null},
 
   {id:'bola',username:'bola',password:'buka011',name:"Adewale Family Kitchen",bizType:'restaurant',icon:'🍛',
-   features:['dashboard','inventory','sales','expenses','staff','ceo'],
+   features:['dashboard','inventory','sales','expenses','staff','report'],
    products:[{id:1,name:'Amala + Ewedu',category:'Soups',qty:60,expiry:addDays(todayStr(),1),restock:15,price:1500},{id:2,name:'Eba + Okra Soup',category:'Soups',qty:4,expiry:addDays(todayStr(),1),restock:15,price:1800},{id:3,name:'Moi Moi (Wrap)',category:'Sides',qty:80,expiry:addDays(todayStr(),2),restock:20,price:500},{id:4,name:'Ofe Onugbu + Fufu',category:'Soups',qty:30,expiry:addDays(todayStr(),1),restock:10,price:2000},{id:5,name:'Zobo Drink',category:'Drinks',qty:7,expiry:addDays(todayStr(),3),restock:15,price:400}],
    sales:[{id:1,productId:1,qty:40,date:addDays(todayStr(),-3),revenue:60000},{id:2,productId:3,qty:60,date:addDays(todayStr(),-2),revenue:30000},{id:3,productId:4,qty:20,date:addDays(todayStr(),-1),revenue:40000},{id:4,productId:5,qty:25,date:todayStr(),revenue:10000},{id:5,productId:2,qty:15,date:addDays(todayStr(),-4),revenue:27000},{id:6,productId:1,qty:30,date:addDays(todayStr(),-5),revenue:45000},{id:7,productId:3,qty:40,date:addDays(todayStr(),-6),revenue:20000}],
    expenses:[{id:1,desc:'Cook Wages',category:'Salaries',amount:95000,date:addDays(todayStr(),-14)},{id:2,desc:'Food Ingredients',category:'Inventory',amount:85000,date:addDays(todayStr(),-4)},{id:3,desc:'Firewood / Gas',category:'Utilities',amount:18000,date:addDays(todayStr(),-7)}],
@@ -580,7 +626,7 @@ const CLIENTS=[
    pwRequest:null},
 
   {id:'northern',username:'northern',password:'pharma012',name:"Halima Yusuf Pharmacy",bizType:'pharmacy',icon:'💉',
-   features:['dashboard','inventory','sales','expenses','staff','ceo'],
+   features:['dashboard','inventory','sales','expenses','staff','report'],
    products:[{id:1,name:'Artemether-Lumefantrine',category:'Antimalarials',qty:150,expiry:addDays(todayStr(),22),restock:40,price:1800},{id:2,name:'Azithromycin 250mg',category:'Antibiotics',qty:6,expiry:addDays(todayStr(),9),restock:25,price:2200},{id:3,name:'Amlodipine 5mg',category:'Cardiovascular',qty:200,expiry:addDays(todayStr(),500),restock:50,price:750},{id:4,name:'Glibenclamide 5mg',category:'Diabetes',qty:8,expiry:addDays(todayStr(),4),restock:30,price:650},{id:5,name:'Folic Acid 5mg',category:'Supplements',qty:300,expiry:addDays(todayStr(),800),restock:60,price:200}],
    sales:[{id:1,productId:1,qty:30,date:addDays(todayStr(),-4),revenue:54000},{id:2,productId:3,qty:50,date:addDays(todayStr(),-3),revenue:37500},{id:3,productId:5,qty:100,date:addDays(todayStr(),-2),revenue:20000},{id:4,productId:2,qty:15,date:addDays(todayStr(),-1),revenue:33000},{id:5,productId:1,qty:20,date:todayStr(),revenue:36000},{id:6,productId:4,qty:30,date:addDays(todayStr(),-5),revenue:19500},{id:7,productId:3,qty:40,date:addDays(todayStr(),-6),revenue:30000}],
    expenses:[{id:1,desc:'Pharmacist Salary',category:'Salaries',amount:120000,date:addDays(todayStr(),-14)},{id:2,desc:'Drug Restock',category:'Inventory',amount:280000,date:addDays(todayStr(),-8)},{id:3,desc:'Shop Rent',category:'Rent',amount:55000,date:addDays(todayStr(),-20)}],
@@ -588,7 +634,7 @@ const CLIENTS=[
    pwRequest:null},
 
   {id:'eagle',username:'eagle',password:'secure013',name:"Lawal Abdullahi Security Ltd",bizType:'security',icon:'🦅',
-   features:['dashboard','contracts','staff','expenses','ceo'],
+   features:['dashboard','contracts','staff','expenses','report'],
    contracts:[{id:1,client:'Zenith Bank HQ',site:'Vic Island',start:addDays(todayStr(),-90),end:addDays(todayStr(),270),monthly:520000,status:'Active'},{id:2,client:'UAC Nigeria',site:'Maryland Factory',start:addDays(todayStr(),-30),end:addDays(todayStr(),22),monthly:380000,status:'Active'},{id:3,client:'Coscharis Group',site:'Isheri',start:addDays(todayStr(),-15),end:addDays(todayStr(),345),monthly:290000,status:'Active'}],
    sales:[{id:1,productId:0,qty:1,date:addDays(todayStr(),-6),revenue:520000},{id:2,productId:0,qty:1,date:addDays(todayStr(),-5),revenue:380000},{id:3,productId:0,qty:1,date:addDays(todayStr(),-4),revenue:290000},{id:4,productId:0,qty:1,date:addDays(todayStr(),-3),revenue:520000},{id:5,productId:0,qty:1,date:addDays(todayStr(),-2),revenue:380000},{id:6,productId:0,qty:1,date:addDays(todayStr(),-1),revenue:290000},{id:7,productId:0,qty:1,date:todayStr(),revenue:520000}],
    expenses:[{id:1,desc:'Guard Salaries',category:'Salaries',amount:680000,date:addDays(todayStr(),-14)},{id:2,desc:'Uniform & Gear',category:'Equipment',amount:95000,date:addDays(todayStr(),-20)},{id:3,desc:'Office Admin',category:'Admin',amount:35000,date:addDays(todayStr(),-10)}],
@@ -596,7 +642,7 @@ const CLIENTS=[
    products:[],pwRequest:null},
 
   {id:'golden',username:'golden',password:'logistics014',name:"Shehu & Okafor Transport Co.",bizType:'logistics',icon:'🚚',
-   features:['dashboard','trips','expenses','staff','ceo'],
+   features:['dashboard','trips','expenses','staff','report'],
    trips:[{id:1,driver:'Buba Shehu',route:'Maiduguri → Kano',cargo:'Textile Goods',status:'Delivered',amount:220000,date:addDays(todayStr(),-6)},{id:2,driver:'Sunday Okafor',route:'Onitsha → Lagos',cargo:'Auto Parts',status:'Delivered',amount:310000,date:addDays(todayStr(),-4)},{id:3,driver:'Haruna Sule',route:'Lagos → Benin',cargo:'FMCG',status:'En Route',amount:175000,date:addDays(todayStr(),-1)},{id:4,driver:'Niyi Ogunleye',route:'Ibadan → Abuja',cargo:'Bottled Water',status:'En Route',amount:140000,date:todayStr()}],
    sales:[{id:1,productId:0,qty:1,date:addDays(todayStr(),-6),revenue:220000},{id:2,productId:0,qty:1,date:addDays(todayStr(),-5),revenue:310000},{id:3,productId:0,qty:1,date:addDays(todayStr(),-4),revenue:175000},{id:4,productId:0,qty:1,date:addDays(todayStr(),-3),revenue:140000},{id:5,productId:0,qty:1,date:addDays(todayStr(),-2),revenue:250000},{id:6,productId:0,qty:1,date:addDays(todayStr(),-1),revenue:175000},{id:7,productId:0,qty:1,date:todayStr(),revenue:140000}],
    expenses:[{id:1,desc:'Driver Pay',category:'Salaries',amount:380000,date:addDays(todayStr(),-14)},{id:2,desc:'Fuel (AGO)',category:'Fuel',amount:310000,date:addDays(todayStr(),-6)},{id:3,desc:'Tyres & Spare Parts',category:'Maintenance',amount:145000,date:addDays(todayStr(),-9)}],
@@ -604,7 +650,7 @@ const CLIENTS=[
    products:[],pwRequest:null},
 
   {id:'heaven',username:'heaven',password:'salon015',name:"Precious Umeh Hair & Beauty",bizType:'salon',icon:'✂️',
-   features:['dashboard','appointments','sales','expenses','staff','ceo'],
+   features:['dashboard','appointments','sales','expenses','staff','report'],
    appointments:[{id:1,client:'Mr. Tunde Bakare',service:'Barbing & Shaping',staff:'Maleek',date:addDays(todayStr(),-2),time:'09:00',amount:2500,status:'Completed'},{id:2,client:'Mrs. Sola Adekunle',service:'Full Hair Styling',staff:'Precious',date:addDays(todayStr(),-1),time:'11:00',amount:18000,status:'Completed'},{id:3,client:'Miss Remi Obi',service:'Cornrows',staff:'Precious',date:todayStr(),time:'10:00',amount:8000,status:'Confirmed'},{id:4,client:'Mr. Emeka Chukwu',service:'Haircut & Beard',staff:'Maleek',date:todayStr(),time:'15:00',amount:3500,status:'Confirmed'},{id:5,client:'Mrs. Ngozi Ike',service:'Locs Retwist',staff:'Precious',date:addDays(todayStr(),1),time:'13:00',amount:12000,status:'Confirmed'}],
    sales:[{id:1,productId:0,qty:1,date:addDays(todayStr(),-6),revenue:15000},{id:2,productId:0,qty:1,date:addDays(todayStr(),-5),revenue:22000},{id:3,productId:0,qty:1,date:addDays(todayStr(),-4),revenue:8500},{id:4,productId:0,qty:1,date:addDays(todayStr(),-3),revenue:12000},{id:5,productId:0,qty:1,date:addDays(todayStr(),-2),revenue:2500},{id:6,productId:0,qty:1,date:addDays(todayStr(),-1),revenue:18000},{id:7,productId:0,qty:2,date:todayStr(),revenue:11500}],
    expenses:[{id:1,desc:'Stylist Wages',category:'Salaries',amount:140000,date:addDays(todayStr(),-14)},{id:2,desc:'Hair Products',category:'Inventory',amount:65000,date:addDays(todayStr(),-8)},{id:3,desc:'Salon Rent',category:'Rent',amount:75000,date:addDays(todayStr(),-20)},{id:4,desc:'Light Bill',category:'Utilities',amount:18000,date:addDays(todayStr(),-7)}],
@@ -612,7 +658,7 @@ const CLIENTS=[
    products:[],pwRequest:null},
 
   {id:'ultimate_sage',username:'ultimatesage',password:'sage016',name:"Ultimate Sage Cut",bizType:'barbing',icon:'💈',
-   features:['dashboard','appointments','inventory','sales','expenses','staff','ceo'],
+   features:['dashboard','appointments','inventory','sales','expenses','staff','report'],
    appointments:[],
    products:[
     {id:1,name:'Clipper Oil (100ml)',category:'Equipment Care',qty:2,expiry:addDays(todayStr(),180),restock:2,price:1200},
@@ -627,55 +673,87 @@ const CLIENTS=[
 ];
 
 // ══════ STATE ══════
-let loginRole='admin';
 let currentClient=null;
 let selectedPwClient=null;
 
 // ══════ LOGIN ══════
-function setRole(r){
-  loginRole=r;
-  document.getElementById('rt-admin').classList.toggle('active',r==='admin');
-  document.getElementById('rt-client').classList.toggle('active',r==='client');
-  document.getElementById('login-title').textContent=r==='admin'?'Admin Sign In':'Client Sign In';
-  document.getElementById('login-sub').textContent=r==='admin'?'Owner access — all clients visible':'Your business dashboard';
-  document.getElementById('li-user').value='';document.getElementById('li-pass').value='';
-}
-
 function doLogin(){
   const u=document.getElementById('li-user').value.trim().toLowerCase();
   const p=document.getElementById('li-pass').value;
   const err=document.getElementById('li-err');
-  if(loginRole==='admin'){
-    if(u===ADMIN.username&&p===ADMIN.password){
-      err.style.display='none';
-      document.getElementById('s-login').classList.remove('active');
-      document.getElementById('s-admin').classList.add('active');
-      document.getElementById('a-greet-tod').textContent=tod();
-      document.getElementById('a-greet-date').textContent=fmtDate();
-      renderAdminHome();buildAdminClientsList();renderAdminAlerts();
-    }else{err.style.display='block';}
-  }else{
-    const client=CLIENTS.find(c=>c.username===u&&c.password===p);
-    if(client){
-      err.style.display='none';currentClient=client;
-      document.getElementById('s-login').classList.remove('active');
-      document.getElementById('s-client').classList.add('active');
-      document.getElementById('c-tb-sub').innerHTML=`${client.icon} ${client.name}`;
-      document.getElementById('c-greet-tod').textContent=tod();
-      document.getElementById('c-greet-name').textContent=client.name.toUpperCase();
-      document.getElementById('c-greet-icon').textContent=client.icon+' ';
-      document.getElementById('c-greet-role').textContent=typeLabel(client.bizType)+' · InsightEdge';
-      document.getElementById('c-greet-date').textContent=fmtDate();
-      document.getElementById('c-prof-av').textContent=client.icon;
-      document.getElementById('c-prof-name').textContent=client.name.toUpperCase();
-      document.getElementById('c-prof-role').textContent=typeLabel(client.bizType);
-      document.getElementById('c-prof-user').textContent=client.username;
-      document.getElementById('c-prof-type').textContent=typeLabel(client.bizType);
-      renderClientHome();buildClientSubNav();clientPage('home');
-    }else{err.style.display='block';}
+  if(u===ADMIN.username&&p===ADMIN.password){
+    err.style.display='none';
+    document.getElementById('s-login').classList.remove('active');
+    document.getElementById('s-admin').classList.add('active');
+    document.getElementById('a-greet-tod').textContent=tod();
+    document.getElementById('a-greet-date').textContent=fmtDate();
+    renderAdminHome();buildAdminClientsList();renderAdminAlerts();
+  } else {
+    err.style.display='block';
   }
 }
 document.getElementById('li-pass').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
+
+const BIZ_ICONS={pharmacy:'💊',supermarket:'🛒',maintenance:'🔧',security:'🛡️',bar:'🍺',petty_trader:'🧺',logistics:'🚛',restaurant:'🍲',salon:'💅',barbing:'💈',wholesale:'🏭'};
+const BIZ_FEATURES={
+  pharmacy:['dashboard','inventory','sales','expenses','staff','report'],
+  supermarket:['dashboard','inventory','sales','expenses','staff','report'],
+  maintenance:['dashboard','jobs','expenses','staff','report'],
+  security:['dashboard','contracts','staff','expenses','report'],
+  bar:['dashboard','drinks','inventory','sales','expenses','staff','report'],
+  petty_trader:['dashboard','inventory','sales','expenses','report'],
+  logistics:['dashboard','trips','expenses','staff','report'],
+  restaurant:['dashboard','inventory','sales','expenses','staff','report'],
+  salon:['dashboard','appointments','sales','expenses','staff','report'],
+  barbing:['dashboard','appointments','inventory','sales','expenses','staff','report'],
+  wholesale:['dashboard','inventory','sales','expenses','staff','report'],
+};
+
+function createNewClient(){
+  const name=document.getElementById('nc-name').value.trim();
+  const type=document.getElementById('nc-type').value;
+  const user=document.getElementById('nc-user').value.trim().toLowerCase().replace(/\s+/g,'');
+  const pass=document.getElementById('nc-pass').value.trim();
+  const msg=document.getElementById('nc-msg');
+
+  if(!name){showMsg('Business name is required.','red');return;}
+  if(!type){showMsg('Please select a business type.','red');return;}
+  if(!user){showMsg('Username is required.','red');return;}
+  if(!pass){showMsg('Password is required.','red');return;}
+  if(CLIENTS.find(c=>c.username===user)){showMsg(`Username "${user}" is already taken. Choose another.`,'red');return;}
+
+  const newClient={
+    id:user+'_'+Date.now(),
+    username:user,
+    password:pass,
+    name:name,
+    bizType:type,
+    icon:BIZ_ICONS[type]||'🏢',
+    features:BIZ_FEATURES[type]||['dashboard','sales','expenses','report'],
+    products:[],sales:[],expenses:[],staff:[],
+    jobs:[],contracts:[],trips:[],appointments:[],
+    pwRequest:null,
+  };
+  CLIENTS.push(newClient);
+  document.getElementById('clients-count').textContent=`(${CLIENTS.length})`;
+  showMsg(`✅ ${name} created! Username: ${user} · Password: ${pass}`,'green');
+  document.getElementById('nc-name').value='';
+  document.getElementById('nc-type').value='';
+  document.getElementById('nc-user').value='';
+  document.getElementById('nc-pass').value='';
+  document.getElementById('nc-owner').value='';
+  document.getElementById('nc-phone').value='';
+  renderAdminHome();buildAdminClientsList();
+}
+
+function showMsg(text,color){
+  const msg=document.getElementById('nc-msg');
+  msg.style.display='block';
+  msg.style.background=color==='green'?'rgba(62,207,120,.1)':'rgba(224,85,85,.1)';
+  msg.style.border=color==='green'?'1px solid rgba(62,207,120,.3)':'1px solid rgba(224,85,85,.3)';
+  msg.style.color=color==='green'?'var(--green)':'var(--red)';
+  msg.textContent=text;
+}
 
 function logout(){
   currentClient=null;
@@ -690,7 +768,7 @@ function logout(){
 }
 
 // ══════ ADMIN PAGES ══════
-const ADMIN_PAGES=['home','clients','alerts','pwreqs','plans','client-detail'];
+const ADMIN_PAGES=['home','clients','create-client','alerts','pwreqs','plans','client-detail'];
 function adminPage(page){
   ADMIN_PAGES.forEach(p=>document.getElementById('apg-'+p).classList.toggle('active',p===page));
   ['home','clients','alerts','pwreqs','plans'].forEach(p=>{
@@ -698,6 +776,7 @@ function adminPage(page){
   });
   if(page==='alerts')renderAdminAlerts();
   if(page==='pwreqs')renderPwReqs();
+  if(page==='clients'){buildAdminClientsList();}
 }
 
 function renderAdminHome(){
@@ -818,7 +897,7 @@ function adminOpenClient(id){
   adminPage('client-detail');
 }
 
-const CD_LABELS={dashboard:'📊 Overview',inventory:'📦 Stock',drinks:'🍺 Drinks',sales:'🧾 Sales',jobs:'🔨 Jobs',contracts:'📄 Contracts',trips:'🚛 Trips',appointments:'📅 Appts',expenses:'💰 Expenses',staff:'👥 Staff',ceo:'📈 CEO'};
+const CD_LABELS={dashboard:'📊 Overview',inventory:'📦 Stock',drinks:'🍺 Drinks',sales:'🧾 Sales',jobs:'🔨 Jobs',contracts:'📄 Contracts',trips:'🚛 Trips',appointments:'📅 Appts',expenses:'💰 Expenses',staff:'👥 Staff',report:'📲 WA Report'};
 
 function buildAdminClientDetail(tab){
   const c=currentClient;
@@ -913,7 +992,7 @@ function renderDetailTab(tab,el,isAdmin){
   else if(tab==='appointments')renderAppts(el,isAdmin);
   else if(tab==='expenses')renderExpenses(el,isAdmin);
   else if(tab==='staff')renderStaff(el,isAdmin);
-  else if(tab==='ceo')renderCEO(el,isAdmin);
+  else if(tab==='report')renderCEO(el,isAdmin);
 }
 
 function renderDash(el){
@@ -999,16 +1078,13 @@ function renderInventory(el,isAdmin){
   const rows=prods.map(p=>{
     const d=daysUntil(p.expiry);
     const b=d<=0?'<span class="badge b-red">Expired</span>':d<=30?`<span class="badge b-amber">${d}d</span>`:p.qty<=p.restock?'<span class="badge b-amber">Low</span>':'<span class="badge b-green">OK</span>';
-    return `<tr><td>${p.name}</td><td>${p.category}</td><td>${p.qty}</td>${isAdmin?`<td style="color:var(--amber-p);font-weight:500">${fmt(p.price)}</td>`:''}<td>${b}</td></tr>`;
-  }).join('')||`<tr><td colspan="${isAdmin?5:4}" class="empty">No products</td></tr>`;
+    return `<tr><td>${p.name}</td><td>${p.category}</td><td>${p.qty}</td><td style="color:var(--amber-p);font-weight:500">${fmt(p.price)}</td><td>${b}</td></tr>`;
+  }).join('')||`<tr><td colspan="5" class="empty">No products</td></tr>`;
   el.innerHTML=`<div class="card"><div class="card-title">Add Product</div>
-    <div class="form-grid"><div class="field"><label>Name</label><input id="pn" placeholder="Product name"/></div><div class="field"><label>Category</label><input id="pc" placeholder="Category"/></div><div class="field"><label>Qty</label><input id="pq" type="number" min="0" placeholder="0"/></div>${isAdmin?'<div class="field"><label>Price (₦)</label><input id="pp" type="number" min="0" placeholder="0"/></div>':''}<div class="field"><label>Expiry</label><input id="pe" type="date"/></div><div class="field"><label>Restock At</label><input id="pr" type="number" min="0" placeholder="10"/></div></div>
+    <div class="form-grid"><div class="field"><label>Name</label><input id="pn" placeholder="Product name"/></div><div class="field"><label>Category</label><input id="pc" placeholder="Category"/></div><div class="field"><label>Qty</label><input id="pq" type="number" min="0" placeholder="0"/></div><div class="field"><label>Price (₦)</label><input id="pp" type="number" min="0" placeholder="0"/></div><div class="field"><label>Expiry</label><input id="pe" type="date"/></div><div class="field"><label>Restock At</label><input id="pr" type="number" min="0" placeholder="10"/></div></div>
     <button class="btn-amber" onclick="addProd(${isAdmin})">+ Add Product</button></div>
-    <div class="card">
-      ${!isAdmin?'<div style="display:flex;align-items:center;gap:6px;background:rgba(77,156,248,.1);border:1px solid rgba(77,156,248,.2);border-radius:8px;padding:8px 10px;margin-bottom:10px;font-size:11px;color:var(--blue)"><i class="ti ti-lock"></i> Prices are managed by your InsightEdge admin</div>':''}
-      <div class="card-title">All Products (${prods.length})</div>
-      <table><thead><tr><th>Name</th><th>Category</th><th>Qty</th>${isAdmin?'<th>Unit Price</th>':''}<th>Status</th></tr></thead><tbody>${rows}</tbody></table>
-    </div>`;
+    <div class="card"><div class="card-title">All Products (${prods.length})</div>
+    <table><thead><tr><th>Name</th><th>Category</th><th>Qty</th><th>Price</th><th>Status</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 function addProd(isAdmin){
   const n=document.getElementById('pn').value.trim();
@@ -1024,16 +1100,13 @@ function renderSales(el,isAdmin){
   const opts=prods.map(p=>`<option value="${p.id}">${p.name} (${p.qty})</option>`).join('');
   const rows=[...sales].reverse().slice(0,10).map(s=>{
     const p=prods.find(x=>x.id===s.productId)||{name:'Service'};
-    return `<tr><td>${p.name}</td><td>${s.qty}</td>${isAdmin?`<td>${fmt(s.revenue)}</td>`:''}<td>${s.date}</td></tr>`;
-  }).join('')||`<tr><td colspan="${isAdmin?4:3}" class="empty">No sales</td></tr>`;
+    return `<tr><td>${p.name}</td><td>${s.qty}</td><td>${fmt(s.revenue)}</td><td>${s.date}</td></tr>`;
+  }).join('')||`<tr><td colspan="4" class="empty">No sales</td></tr>`;
   el.innerHTML=`<div class="card"><div class="card-title">Record Sale</div>
     <div class="form-grid"><div class="field"><label>Product</label><select id="sp"><option value="">Select…</option>${opts}</select></div><div class="field"><label>Qty</label><input id="sq" type="number" min="1" placeholder="1"/></div><div class="field"><label>Date</label><input id="sd" type="date" value="${todayStr()}"/></div></div>
     <button class="btn-amber" onclick="recSale(${isAdmin})">+ Record Sale</button></div>
-    <div class="card">
-      ${!isAdmin?'<div style="display:flex;align-items:center;gap:6px;background:rgba(77,156,248,.1);border:1px solid rgba(77,156,248,.2);border-radius:8px;padding:8px 10px;margin-bottom:10px;font-size:11px;color:var(--blue)"><i class="ti ti-lock"></i> Revenue figures are managed by your InsightEdge admin</div>':''}
-      <div class="card-title">Recent Sales</div>
-      <table><thead><tr><th>Product</th><th>Qty</th>${isAdmin?'<th>Revenue</th>':''}<th>Date</th></tr></thead><tbody>${rows}</tbody></table>
-    </div>`;
+    <div class="card"><div class="card-title">Recent Sales</div>
+    <table><thead><tr><th>Product</th><th>Qty</th><th>Revenue</th><th>Date</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 function recSale(isAdmin){const pid=parseInt(document.getElementById('sp').value);const qty=parseInt(document.getElementById('sq').value)||0;const date=document.getElementById('sd').value||todayStr();if(!pid||qty<=0){alert('Select product & qty');return;}const p=(currentClient.products||[]).find(x=>x.id===pid);if(!p||qty>p.qty){alert(`Only ${p?p.qty:0} in stock`);return;}(currentClient.sales=currentClient.sales||[]).push({id:Date.now(),productId:pid,qty,date,revenue:qty*p.price});p.qty-=qty;if(isAdmin)buildAdminClientDetail('sales');else clientSubTab('sales');}
 
@@ -1108,27 +1181,152 @@ function renderStaff(el,isAdmin){
 }
 function addStaff(isAdmin){const n=document.getElementById('stn').value.trim();if(!n){alert('Name required');return;}(currentClient.staff=currentClient.staff||[]).push({id:Date.now(),name:n,role:document.getElementById('str').value.trim()||'Staff',phone:document.getElementById('stp').value.trim()||'—',status:'Active'});if(isAdmin)buildAdminClientDetail('staff');else clientSubTab('staff');}
 
-function renderCEO(el,isAdmin){
-  const c=currentClient;const sales=c.sales||[];const expenses=c.expenses||[];
-  const totalSales=sales.reduce((a,s)=>a+s.revenue,0);const totalExp=expenses.reduce((a,e)=>a+e.amount,0);const profit=totalSales-totalExp;
+function renderReport(el,isAdmin){
+  const c=currentClient;
+  const today=todayStr();
+  const sales=c.sales||[];const expenses=c.expenses||[];
+  const prods=c.products||[];
+  const todaySales=sales.filter(s=>s.date===today).reduce((a,s)=>a+s.revenue,0);
+  const weekSales=sales.filter(s=>s.date>=addDays(today,-6)).reduce((a,s)=>a+s.revenue,0);
+  const totalSales=sales.reduce((a,s)=>a+s.revenue,0);
+  const totalExp=expenses.reduce((a,e)=>a+e.amount,0);
+  const profit=totalSales-totalExp;
   const activeStaff=(c.staff||[]).filter(s=>s.status==='Active').length;
-  const catMap={};expenses.forEach(e=>{catMap[e.category]=(catMap[e.category]||0)+e.amount;});
-  const maxCat=Math.max(...Object.values(catMap),1);
-  const colors=['#c87941','#3ecf78','#4d9cf8','#a78bfa','#e05555','#f5c542'];
-  const bars=isAdmin
-    ? Object.entries(catMap).map(([cat,amt],i)=>`<div class="bar-row"><div class="bar-meta"><span>${cat}</span><span>${fmt(amt)}</span></div><div class="bar-track"><div class="bar-fill" style="width:${Math.round(amt/maxCat*100)}%;background:${colors[i%colors.length]}"></div></div></div>`).join('')||'<div class="empty">No data</div>'
-    : Object.entries(catMap).map(([cat,amt],i)=>`<div class="bar-row"><div class="bar-meta"><span>${cat}</span><span style="color:var(--text3)">••••</span></div><div class="bar-track"><div class="bar-fill" style="width:${Math.round(amt/maxCat*100)}%;background:${colors[i%colors.length]}"></div></div></div>`).join('')||'<div class="empty">No data</div>';
-  let special='';
-  if(c.bizType==='maintenance'){const done=(c.jobs||[]).filter(j=>j.status==='Completed');special=`<div class="card"><div class="card-title">Jobs</div><div style="display:flex;gap:1.5rem"><div><div style="font-size:10px;color:var(--text2);text-transform:uppercase">Completed</div><div style="font-size:22px;font-weight:600">${done.length}</div></div>${isAdmin?`<div><div style="font-size:10px;color:var(--text2);text-transform:uppercase">Earned</div><div style="font-size:22px;font-weight:600;color:var(--amber)">${fmt(done.reduce((a,j)=>a+j.amount,0))}</div></div>`:''}</div></div>`;}
-  if(c.bizType==='logistics'){const done=(c.trips||[]).filter(t=>t.status==='Delivered');special=`<div class="card"><div class="card-title">Trips</div><div style="display:flex;gap:1.5rem"><div><div style="font-size:10px;color:var(--text2);text-transform:uppercase">Delivered</div><div style="font-size:22px;font-weight:600">${done.length}</div></div>${isAdmin?`<div><div style="font-size:10px;color:var(--text2);text-transform:uppercase">Revenue</div><div style="font-size:22px;font-weight:600;color:var(--amber)">${fmt(done.reduce((a,t)=>a+t.amount,0))}</div></div>`:''}</div></div>`;}
-  if(c.bizType==='security'){const active=(c.contracts||[]).filter(cn=>daysUntil(cn.end)>0);special=`<div class="card"><div class="card-title">Contracts</div><div style="display:flex;gap:1.5rem"><div><div style="font-size:10px;color:var(--text2);text-transform:uppercase">Active</div><div style="font-size:22px;font-weight:600">${active.length}</div></div>${isAdmin?`<div><div style="font-size:10px;color:var(--text2);text-transform:uppercase">Monthly</div><div style="font-size:22px;font-weight:600;color:var(--amber)">${fmt(active.reduce((s,cn)=>s+cn.monthly,0))}</div></div>`:''}</div></div>`;}
-  const lockedNotice=!isAdmin?`<div style="display:flex;align-items:center;gap:6px;background:rgba(77,156,248,.1);border:1px solid rgba(77,156,248,.2);border-radius:8px;padding:8px 10px;margin-bottom:10px;font-size:11px;color:var(--blue)"><i class="ti ti-lock"></i> Financial figures are visible to your InsightEdge admin only</div>`:'';
-  el.innerHTML=`${lockedNotice}<div class="kpi-grid">
-    <div class="kpi-card"><div class="kpi-label">Total Sales</div><div class="kpi-value">${isAdmin?shortFmt(totalSales):'••••'}</div><div class="kpi-trend up">${sales.length} transactions</div></div>
-    <div class="kpi-card"><div class="kpi-label">Total Expenses</div><div class="kpi-value">${isAdmin?shortFmt(totalExp):'••••'}</div><div class="kpi-trend" style="color:var(--text2)">${expenses.length} entries</div></div>
-    <div class="kpi-card"><div class="kpi-label">Net Profit</div><div class="kpi-value">${isAdmin?shortFmt(profit):'••••'}</div><div class="kpi-trend ${profit>=0?'up':'down'}">${isAdmin?(profit>=0?'Positive':'Loss'):'Admin only'}</div></div>
-    <div class="kpi-card"><div class="kpi-label">Active Staff</div><div class="kpi-value">${activeStaff}</div><div class="kpi-trend up">members</div></div>
-  </div>${special}<div class="card"><div class="card-title">Expenses by Category</div>${bars}</div>`;
+  const lowStock=prods.filter(p=>p.qty<=p.restock&&daysUntil(p.expiry)>0);
+  const expiring=prods.filter(p=>{const d=daysUntil(p.expiry);return d>=0&&d<=30;});
+  const expired=prods.filter(p=>daysUntil(p.expiry)<0);
+  const recentSales=[...sales].reverse().slice(0,5);
+
+  // Build WhatsApp message text
+  function buildWAText(){
+    const date=new Date().toLocaleDateString('en-NG',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+    let msg='';
+    msg+='📊 *INSIGHTEDGE BUSINESS REPORT*\n';
+    msg+=`🏢 *${c.name}*\n`;
+    msg+=`📅 ${date}\n`;
+    msg+='━━━━━━━━━━━━━━━━━━\n\n';
+    msg+='💰 *SALES SUMMARY*\n';
+    msg+=`• Today's Sales: *${fmt(todaySales)}*\n`;
+    msg+=`• This Week: *${fmt(weekSales)}*\n`;
+    msg+=`• Total Sales (All Time): *${fmt(totalSales)}*\n\n`;
+    msg+='📉 *EXPENSES*\n';
+    msg+=`• Total Expenses: *${fmt(totalExp)}*\n`;
+    msg+=`• Net Profit: *${fmt(profit)}* ${profit>=0?'✅':'⚠️'}\n\n`;
+    if(c.bizType==='maintenance'){
+      const done=(c.jobs||[]).filter(j=>j.status==='Completed');
+      msg+='🔧 *JOBS*\n';
+      msg+=`• Completed Jobs: *${done.length}*\n`;
+      msg+=`• Total Earned: *${fmt(done.reduce((a,j)=>a+j.amount,0))}*\n\n`;
+    }
+    if(c.bizType==='logistics'){
+      const done=(c.trips||[]).filter(t=>t.status==='Delivered');
+      msg+='🚛 *TRIPS*\n';
+      msg+=`• Delivered: *${done.length}*\n`;
+      msg+=`• Revenue: *${fmt(done.reduce((a,t)=>a+t.amount,0))}*\n\n`;
+    }
+    if(c.bizType==='security'){
+      const active=(c.contracts||[]).filter(cn=>daysUntil(cn.end)>0);
+      msg+='🛡️ *CONTRACTS*\n';
+      msg+=`• Active: *${active.length}*\n`;
+      msg+=`• Monthly Revenue: *${fmt(active.reduce((s,cn)=>s+cn.monthly,0))}*\n\n`;
+    }
+    if(activeStaff>0){
+      msg+=`👥 *STAFF*: ${activeStaff} active member${activeStaff!==1?'s':''}\n\n`;
+    }
+    if(expired.length||expiring.length||lowStock.length){
+      msg+='⚠️ *ALERTS*\n';
+      expired.forEach(p=>{msg+=`🔴 EXPIRED: ${p.name}\n`;});
+      expiring.forEach(p=>{msg+=`🟡 Expiring in ${daysUntil(p.expiry)}d: ${p.name}\n`;});
+      lowStock.forEach(p=>{msg+=`🟠 Low Stock: ${p.name} (${p.qty} left)\n`;});
+      msg+='\n';
+    } else {
+      msg+='✅ *No stock alerts*\n\n';
+    }
+    if(recentSales.length){
+      msg+='🧾 *RECENT SALES*\n';
+      recentSales.forEach(s=>{
+        const p=prods.find(x=>x.id===s.productId)||{name:'Service'};
+        msg+=`• ${p.name} × ${s.qty} → ${fmt(s.revenue)} (${s.date})\n`;
+      });
+      msg+='\n';
+    }
+    msg+='━━━━━━━━━━━━━━━━━━\n';
+    msg+='_Powered by InsightEdge Analytics_\n';
+    msg+='_📷 @mollz021 · mollz11.github.io/insightedge_';
+    return msg;
+  }
+
+  function shareOnWhatsApp(){
+    const text=buildWAText();
+    const encoded=encodeURIComponent(text);
+    window.open(`https://wa.me/2348162525880?text=${encoded}`,'_blank');
+  }
+  function copyReport(){
+    const text=buildWAText();
+    navigator.clipboard.writeText(text).then(()=>{
+      document.getElementById('copy-btn-label').textContent='✅ Copied!';
+      setTimeout(()=>{document.getElementById('copy-btn-label').textContent='📋 Copy Report Text';},2000);
+    });
+  }
+
+  // Preview the message formatted nicely
+  const alertLines=[];
+  expired.forEach(p=>alertLines.push(`<div style="color:var(--red);font-size:12px">🔴 EXPIRED: ${p.name}</div>`));
+  expiring.forEach(p=>alertLines.push(`<div style="color:var(--amber-p);font-size:12px">🟡 Expiring ${daysUntil(p.expiry)}d: ${p.name}</div>`));
+  lowStock.forEach(p=>alertLines.push(`<div style="color:var(--amber-p);font-size:12px">🟠 Low Stock: ${p.name} (${p.qty} left)</div>`));
+
+  const recentRows=recentSales.map(s=>{
+    const p=prods.find(x=>x.id===s.productId)||{name:'Service'};
+    return `<div style="display:flex;justify-content:space-between;font-size:12px;padding:5px 0;border-bottom:1px solid var(--border)"><span>${p.name} ×${s.qty}</span><span style="color:var(--green);font-weight:600">${fmt(s.revenue)}</span></div>`;
+  }).join('');
+
+  el.innerHTML=`
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;padding:.5rem 0">
+      <div style="font-size:16px;font-weight:600">📲 WhatsApp Report</div>
+      <span style="font-size:11px;color:var(--text2)">Share your summary with your admin</span>
+    </div>
+
+    <div style="background:linear-gradient(135deg,rgba(37,211,102,.1),rgba(37,211,102,.05));border:1px solid rgba(37,211,102,.25);border-radius:14px;padding:14px;margin-bottom:10px">
+      <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#25d366;margin-bottom:10px">📊 Report Preview</div>
+      <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px">${c.name}</div>
+      <div style="font-size:11px;color:var(--text2);margin-bottom:12px">${new Date().toLocaleDateString('en-NG',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
+        <div style="background:rgba(0,0,0,.2);border-radius:8px;padding:8px">
+          <div style="font-size:9px;text-transform:uppercase;letter-spacing:.07em;color:var(--text2)">Today's Sales</div>
+          <div style="font-size:18px;font-weight:700;color:var(--amber)">${fmt(todaySales)}</div>
+        </div>
+        <div style="background:rgba(0,0,0,.2);border-radius:8px;padding:8px">
+          <div style="font-size:9px;text-transform:uppercase;letter-spacing:.07em;color:var(--text2)">This Week</div>
+          <div style="font-size:18px;font-weight:700;color:var(--green)">${fmt(weekSales)}</div>
+        </div>
+        <div style="background:rgba(0,0,0,.2);border-radius:8px;padding:8px">
+          <div style="font-size:9px;text-transform:uppercase;letter-spacing:.07em;color:var(--text2)">Total Sales</div>
+          <div style="font-size:18px;font-weight:700;color:var(--blue)">${fmt(totalSales)}</div>
+        </div>
+        <div style="background:rgba(0,0,0,.2);border-radius:8px;padding:8px">
+          <div style="font-size:9px;text-transform:uppercase;letter-spacing:.07em;color:var(--text2)">Net Profit</div>
+          <div style="font-size:18px;font-weight:700;color:${profit>=0?'var(--green)':'var(--red)'}">${fmt(profit)}</div>
+        </div>
+      </div>
+      ${alertLines.length?`<div style="background:rgba(0,0,0,.2);border-radius:8px;padding:8px;margin-bottom:8px">${alertLines.join('')}</div>`:'<div style="font-size:12px;color:var(--green);margin-bottom:8px">✅ No stock alerts</div>'}
+      ${recentRows?`<div style="margin-top:4px"><div style="font-size:9px;text-transform:uppercase;letter-spacing:.07em;color:var(--text2);margin-bottom:4px">Recent Sales</div>${recentRows}</div>`:''}
+    </div>
+
+    <button onclick="shareOnWhatsApp()" style="width:100%;padding:13px;background:linear-gradient(135deg,#25d366,#128c3e);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:8px;font-family:'DM Sans',sans-serif">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Send to Admin on WhatsApp
+    </button>
+
+    <button id="copy-btn" onclick="copyReport()" style="width:100%;padding:11px;background:var(--bg3);border:1px solid var(--border2);border-radius:12px;font-size:13px;font-weight:600;cursor:pointer;color:var(--text);font-family:'DM Sans',sans-serif">
+      <span id="copy-btn-label">📋 Copy Report Text</span>
+    </button>
+
+    <div style="font-size:11px;color:var(--text3);text-align:center;margin-top:10px;line-height:1.5">Tapping "Send to Admin" opens WhatsApp with your full report<br/>pre-written and ready to send to Gideon directly.</div>
+  `;
+
+  // Attach functions to window so onclick works
+  window.shareOnWhatsApp=shareOnWhatsApp;
+  window.copyReport=copyReport;
 }
 </script>
 </body>
