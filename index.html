@@ -8,14 +8,14 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
 <style>
 :root{
-  --bg:#0d0d0d;--bg2:#181818;--bg3:#222;--bg4:#2a2a2a;
-  --border:#2e2e2e;--border2:#3d3d3d;
-  --amber:#c87941;--amber-l:#e09050;--amber-p:#f5b870;--amber-bg:rgba(200,121,65,.15);
-  --red:#e05555;--red-bg:rgba(224,85,85,.15);
-  --green:#3ecf78;--green-bg:rgba(62,207,120,.12);
-  --blue:#4d9cf8;--blue-bg:rgba(77,156,248,.12);
-  --purple:#a78bfa;--purple-bg:rgba(167,139,250,.12);
-  --text:#f0ede8;--text2:#999;--text3:#555;
+  --bg:#080808;--bg2:#111111;--bg3:#1a1a1a;--bg4:#222222;
+  --border:#282828;--border2:#383838;
+  --amber:#ff6b00;--amber-l:#ff8533;--amber-p:#ffaa66;--amber-bg:rgba(255,107,0,.13);--amber-bg2:rgba(255,107,0,.22);
+  --red:#ff3b3b;--red-bg:rgba(255,59,59,.13);
+  --green:#00c853;--green-bg:rgba(0,200,83,.11);
+  --blue:#2979ff;--blue-bg:rgba(41,121,255,.11);
+  --purple:#d500f9;--purple-bg:rgba(213,0,249,.11);
+  --text:#ffffff;--text2:#888888;--text3:#444444;
   --r:14px;--r2:18px;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -25,10 +25,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);fon
 .screen.active{display:flex}
 
 /* LOGIN */
-#s-login{align-items:center;justify-content:center;padding:2rem 1.25rem;background:radial-gradient(ellipse at 50% 10%,#2b1c0a 0%,#0d0d0d 60%)}
+#s-login{align-items:center;justify-content:center;padding:2rem 1.25rem;background:radial-gradient(ellipse at 50% 0%,#1a0800 0%,#080808 55%)}
 .login-wrap{width:100%;max-width:400px}
 .login-logo{text-align:center;margin-bottom:1.75rem}
-.logo-icon{width:72px;height:72px;background:linear-gradient(145deg,#c87941,#7a3e14);border-radius:20px;display:inline-flex;align-items:center;justify-content:center;margin-bottom:.75rem;box-shadow:0 8px 30px rgba(200,121,65,.4)}
+.logo-icon{width:72px;height:72px;background:linear-gradient(145deg,#ff6b00,#cc4400);border-radius:20px;display:inline-flex;align-items:center;justify-content:center;margin-bottom:.75rem;box-shadow:0 8px 30px rgba(255,107,0,.5)}
 .logo-icon i{font-size:34px;color:#fff}
 .logo-title{font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
 .logo-sub{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-top:3px}
@@ -37,7 +37,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);fon
 .lbl:first-of-type{margin-top:0}
 .inp{width:100%;padding:12px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;outline:none;transition:border .2s}
 .inp:focus{border-color:var(--amber)}
-.login-btn{width:100%;margin-top:1.25rem;padding:13px;background:linear-gradient(135deg,#c87941,#8b4a1e);color:#fff;font-family:'DM Sans',sans-serif;font-size:16px;font-weight:600;border:none;border-radius:var(--r);cursor:pointer}
+.login-btn{width:100%;margin-top:1.25rem;padding:13px;background:linear-gradient(135deg,#ff6b00,#cc4400);color:#fff;font-family:'DM Sans',sans-serif;font-size:16px;font-weight:600;border:none;border-radius:var(--r);cursor:pointer}
 .login-err{color:var(--red);font-size:13px;margin-top:8px;display:none;padding:8px 12px;background:var(--red-bg);border-radius:8px;text-align:center}
 .login-foot{text-align:center;font-size:11px;color:var(--text3)}
 .login-foot span{color:var(--amber)}
@@ -65,20 +65,20 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);fon
 .page-content.active{display:block}
 
 /* GREETING CARD */
-.greet-card{background:linear-gradient(135deg,#2a1a08 0%,#1c1208 100%);border:1px solid #3d2e18;border-radius:var(--r2);padding:1.25rem;margin-bottom:1rem;position:relative;overflow:hidden}
+.greet-card{background:linear-gradient(135deg,#160800 0%,#0e0500 100%);border:1px solid #2a1500;border-radius:var(--r2);padding:1.25rem;margin-bottom:1rem;position:relative;overflow:hidden}
 .greet-card::after{content:'';position:absolute;right:-20px;bottom:-20px;width:100px;height:100px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'%3E%3Crect x='10' y='30' width='16' height='35' rx='3' fill='%23e05555' opacity='.7'/%3E%3Crect x='32' y='18' width='16' height='47' rx='3' fill='%23c87941' opacity='.7'/%3E%3Crect x='54' y='10' width='16' height='55' rx='3' fill='%233ecf78' opacity='.7'/%3E%3C/svg%3E") no-repeat center/contain;opacity:.18}
 .greet-tod{font-size:13px;color:var(--text2);margin-bottom:4px}
 .greet-name{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
 .greet-role{font-size:12px;color:var(--amber);display:flex;align-items:center;gap:5px;margin-bottom:5px}
 .greet-date{font-size:11px;color:var(--text3)}
-.greet-bar{margin-top:.75rem;height:4px;width:48px;background:linear-gradient(90deg,#c87941,#e09050);border-radius:2px}
+.greet-bar{margin-top:.75rem;height:4px;width:48px;background:linear-gradient(90deg,#ff6b00,#ff8533);border-radius:2px}
 
 /* METRIC CARDS */
 .metrics-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem}
 .m-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:1rem;overflow:hidden;position:relative}
 .m-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--r2) var(--r2) 0 0}
-.mc-amber::before{background:linear-gradient(90deg,#c87941,#e09050)}
-.mc-green::before{background:linear-gradient(90deg,#3ecf78,#2bb065)}
+.mc-amber::before{background:linear-gradient(90deg,#ff6b00,#ff8533)}
+.mc-green::before{background:linear-gradient(90deg,#00c853,#00a040)}
 .mc-red::before{background:var(--red)}
 .mc-blue::before{background:var(--blue)}
 .mc-purple::before{background:var(--purple)}
@@ -124,7 +124,7 @@ th{text-align:left;font-weight:600;font-size:10px;color:var(--text3);padding:5px
 td{padding:8px 8px;border-bottom:1px solid var(--border);color:var(--text);font-size:12px}
 tr:last-child td{border-bottom:none}
 .btn{padding:7px 14px;border-radius:10px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid var(--border);background:var(--bg3);color:var(--text);font-family:'DM Sans',sans-serif}
-.btn-amber{background:linear-gradient(135deg,#c87941,#8b4a1e);color:#fff;border-color:transparent;padding:11px;width:100%;font-size:14px;font-weight:600;border-radius:var(--r);font-family:'DM Sans',sans-serif;cursor:pointer}
+.btn-amber{background:linear-gradient(135deg,#ff6b00,#cc4400);color:#fff;border-color:transparent;padding:11px;width:100%;font-size:14px;font-weight:600;border-radius:var(--r);font-family:'DM Sans',sans-serif;cursor:pointer}
 .btn-red{background:var(--red-bg);color:var(--red);border-color:var(--red);padding:5px 10px;font-size:11px}
 .btn-green{background:var(--green-bg);color:var(--green);border-color:var(--green);padding:5px 10px;font-size:11px}
 .empty{color:var(--text3);font-size:13px;padding:1rem;text-align:center}
@@ -169,7 +169,7 @@ tr:last-child td{border-bottom:none}
 
 /* PLANS */
 .plan-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:1.25rem;margin-bottom:10px}
-.plan-card.featured{border-color:var(--amber);background:linear-gradient(135deg,#1e1208,#181818)}
+.plan-card.featured{border-color:var(--amber);background:linear-gradient(135deg,#150800,#111111)}
 .plan-name{font-size:16px;font-weight:600;margin-bottom:4px}
 .plan-price{font-size:26px;font-weight:700;color:var(--amber);margin-bottom:.75rem}
 .plan-price span{font-size:13px;color:var(--text2);font-weight:400}
@@ -178,7 +178,7 @@ tr:last-child td{border-bottom:none}
 
 /* PROFILE */
 .profile-head{text-align:center;padding:1rem 0 1.5rem}
-.profile-av{width:72px;height:72px;background:linear-gradient(145deg,#c87941,#7a3e14);border-radius:20px;display:inline-flex;align-items:center;justify-content:center;font-size:30px;color:#fff;margin-bottom:.75rem}
+.profile-av{width:72px;height:72px;background:linear-gradient(145deg,#ff6b00,#cc4400);border-radius:20px;display:inline-flex;align-items:center;justify-content:center;font-size:30px;color:#fff;margin-bottom:.75rem}
 .profile-name{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
 .profile-role{font-size:12px;color:var(--amber);margin-top:2px}
 .profile-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border)}
@@ -206,8 +206,8 @@ tr:last-child td{border-bottom:none}
       <div class="logo-sub">Secure Business Platform</div>
     </div>
     <div class="login-card">
-      <div style="font-size:20px;font-weight:600;margin-bottom:3px">Welcome, Gideon</div>
-      <div style="font-size:13px;color:var(--text2);margin-bottom:1.25rem">Sign in to your InsightEdge admin panel</div>
+      <div style="font-size:20px;font-weight:600;margin-bottom:3px">Welcome Back 👋</div>
+      <div style="font-size:13px;color:var(--text2);margin-bottom:1.25rem">Admin & client login — enter your credentials</div>
       <label class="lbl">Username</label>
       <input class="inp" id="li-user" placeholder="Enter username" autocomplete="username"/>
       <label class="lbl">Password</label>
@@ -236,13 +236,13 @@ tr:last-child td{border-bottom:none}
   <div class="page-content active" id="apg-home">
     <div class="greet-card">
       <div class="greet-tod" id="a-greet-tod"></div>
-      <div class="greet-name">GIDEON OMOLOYE</div>
-      <div class="greet-role"><span>🔐</span><span>InsightEdge Analytics — Admin</span></div>
+      <div class="greet-name">INSIGHTEDGE ADMIN</div>
+      <div class="greet-role"><span>🔐</span><span>Platform Owner · All Access</span></div>
       <div class="greet-date" id="a-greet-date"></div>
       <div class="greet-bar"></div>
     </div>
     <div class="metrics-grid">
-      <div class="m-card mc-amber"><div class="m-label">Total Clients</div><div class="m-value">16</div><div class="m-sub">Active accounts</div></div>
+      <div class="m-card mc-amber"><div class="m-label">Total Clients</div><div class="m-value" id="a-total-clients">17</div><div class="m-sub">Active accounts</div></div>
       <div class="m-card mc-green"><div class="m-label">All Revenue</div><div class="m-value" id="a-total-rev">₦0</div><div class="m-sub">Across all clients</div></div>
       <div class="m-card mc-red"><div class="m-label">Total Alerts</div><div class="m-value" id="a-total-alerts">0</div><div class="m-sub">Need attention</div></div>
       <div class="m-card mc-purple"><div class="m-label">PW Requests</div><div class="m-value" id="a-pw-count">0</div><div class="m-sub">Pending approval</div></div>
@@ -254,7 +254,7 @@ tr:last-child td{border-bottom:none}
   <!-- Admin Clients -->
   <div class="page-content" id="apg-clients">
     <div style="display:flex;align-items:center;justify-content:space-between;padding:.5rem 0 1rem">
-      <div style="font-size:18px;font-weight:600">All Clients <span style="font-size:13px;color:var(--text2);font-weight:400" id="clients-count">(16)</span></div>
+      <div style="font-size:18px;font-weight:600">All Clients <span style="font-size:13px;color:var(--text2);font-weight:400" id="clients-count">(17)</span></div>
       <button class="btn-amber" style="width:auto;padding:8px 16px;font-size:13px" onclick="adminPage('create-client')">+ New Client</button>
     </div>
     <div id="a-clients-list"></div>
@@ -283,6 +283,7 @@ tr:last-child td{border-bottom:none}
             <option value="restaurant">🍲 Restaurant</option>
             <option value="salon">💅 Salon / Spa</option>
             <option value="barbing">💈 Barbing Salon</option>
+            <option value="rental">🪑 Rental Services</option>
             <option value="wholesale">🏭 Wholesale</option>
           </select>
         </div>
@@ -470,7 +471,7 @@ const daysUntil=d=>Math.ceil((new Date(d)-new Date())/86400000);
 function addDays(d,n){const dt=new Date(d);dt.setDate(dt.getDate()+n);return dt.toISOString().split('T')[0];}
 function tod(){const h=new Date().getHours();return h<12?'Good Morning ☀️':h<17?'Good Afternoon 🌤️':'Good Evening 🌙';}
 function fmtDate(){return new Date().toLocaleDateString('en-NG',{weekday:'long',day:'numeric',month:'long',year:'numeric'});}
-function typeLabel(t){const map={barbing:'Barbing Salon',petty_trader:'Petty Trader',logistics:'Logistics',maintenance:'Maintenance',security:'Security',pharmacy:'Pharmacy',supermarket:'Supermarket',restaurant:'Restaurant',salon:'Salon / Spa',bar:'Bar / Lounge',wholesale:'Wholesale'};return map[t]||(t||'').replace('_',' ').replace(/\b\w/g,l=>l.toUpperCase());}
+function typeLabel(t){const map={barbing:'Barbing Salon',petty_trader:'Petty Trader',logistics:'Logistics',maintenance:'Maintenance',security:'Security',pharmacy:'Pharmacy',supermarket:'Supermarket',restaurant:'Restaurant',salon:'Salon / Spa',bar:'Bar / Lounge',wholesale:'Wholesale',rental:'Rental Services'};return map[t]||(t||'').replace('_',' ').replace(/\b\w/g,l=>l.toUpperCase());}
 function alertHtml(ic,icon,title,sub,right){return `<div class="alert-item"><div class="a-icon ${ic}"><i class="ti ${icon}"></i></div><div class="a-text"><div class="a-title">${title}</div><div class="a-sub">${sub}</div></div><div class="a-right">${right}</div></div>`;}
 
 // ══════════ DATA ══════════
@@ -547,35 +548,49 @@ const CLIENTS=[
   {id:'chiefs',username:'chiefs',password:'bar005',name:"Kalu Urban Lounge & Bar",bizType:'bar',icon:'🍺',
    features:['dashboard','drinks','inventory','sales','expenses','staff','report'],
    products:[
-    {id:1,name:'Guinness Stout (Bottle)',category:'🍺 Beers',qty:120,expiry:addDays(todayStr(),90),restock:30,price:600},
-    {id:2,name:'Star Lager (Bottle)',category:'🍺 Beers',qty:150,expiry:addDays(todayStr(),85),restock:40,price:550},
-    {id:3,name:'Heineken (Bottle)',category:'🍺 Beers',qty:80,expiry:addDays(todayStr(),120),restock:20,price:700},
-    {id:4,name:'Trophy Lager (Bottle)',category:'🍺 Beers',qty:100,expiry:addDays(todayStr(),80),restock:25,price:500},
-    {id:5,name:'Orijin Bitters (Can)',category:'🍺 Beers',qty:60,expiry:addDays(todayStr(),60),restock:15,price:650},
-    {id:6,name:'Legend Extra Stout',category:'🍺 Beers',qty:5,expiry:addDays(todayStr(),10),restock:20,price:600},
-    {id:7,name:'Hennessy VS 75cl',category:'🥃 Spirits',qty:12,expiry:addDays(todayStr(),900),restock:3,price:28000},
-    {id:8,name:'Johnnie Walker Black',category:'🥃 Spirits',qty:8,expiry:addDays(todayStr(),900),restock:3,price:32000},
-    {id:9,name:'Ciroc Vodka 75cl',category:'🥃 Spirits',qty:6,expiry:addDays(todayStr(),900),restock:2,price:25000},
-    {id:10,name:'Baileys Irish Cream',category:'🥃 Spirits',qty:10,expiry:addDays(todayStr(),400),restock:3,price:18500},
-    {id:11,name:'Smirnoff Vodka 75cl',category:'🥃 Spirits',qty:9,expiry:addDays(todayStr(),900),restock:3,price:12000},
-    {id:12,name:'Campari 75cl',category:'🥃 Spirits',qty:4,expiry:addDays(todayStr(),900),restock:2,price:8500},
-    {id:13,name:'Pepsi 50cl (Bottle)',category:'🥤 Soft Drinks',qty:5,expiry:addDays(todayStr(),12),restock:24,price:400},
-    {id:14,name:'Coca-Cola 50cl (Bottle)',category:'🥤 Soft Drinks',qty:48,expiry:addDays(todayStr(),90),restock:24,price:400},
-    {id:15,name:'Fanta Orange 50cl',category:'🥤 Soft Drinks',qty:36,expiry:addDays(todayStr(),90),restock:20,price:400},
-    {id:16,name:'Sprite 50cl',category:'🥤 Soft Drinks',qty:30,expiry:addDays(todayStr(),90),restock:15,price:400},
-    {id:17,name:'Malta Guinness (Can)',category:'🥤 Soft Drinks',qty:24,expiry:addDays(todayStr(),60),restock:12,price:500},
-    {id:18,name:'Schweppes Tonic Water',category:'🥤 Soft Drinks',qty:20,expiry:addDays(todayStr(),120),restock:10,price:450},
-    {id:19,name:'Ragolis Water 75cl',category:'💧 Water',qty:8,expiry:addDays(todayStr(),7),restock:24,price:200},
-    {id:20,name:'Eva Water 75cl',category:'💧 Water',qty:48,expiry:addDays(todayStr(),180),restock:24,price:200},
-    {id:21,name:'Nestle Pure Life 75cl',category:'💧 Water',qty:60,expiry:addDays(todayStr(),180),restock:30,price:200},
-    {id:22,name:'Table Water (Sachet Bag)',category:'💧 Water',qty:20,expiry:addDays(todayStr(),90),restock:10,price:150},
-    {id:23,name:'Smoky Jollof Rice',category:'🍽️ Food',qty:40,expiry:addDays(todayStr(),1),restock:10,price:3500},
-    {id:24,name:'Peppered Chicken',category:'🍽️ Food',qty:3,expiry:addDays(todayStr(),1),restock:5,price:4500},
-    {id:25,name:'Peppered Gizzard',category:'🍽️ Food',qty:25,expiry:addDays(todayStr(),1),restock:8,price:2500},
+    // 🍺 BEERS — mid-range Lagos bar pricing
+    {id:1,name:'Guinness Stout (Bottle)',category:'🍺 Beers',qty:120,expiry:addDays(todayStr(),90),restock:30,price:900},
+    {id:2,name:'Star Lager (Bottle)',category:'🍺 Beers',qty:150,expiry:addDays(todayStr(),85),restock:40,price:800},
+    {id:3,name:'Heineken (Bottle)',category:'🍺 Beers',qty:80,expiry:addDays(todayStr(),120),restock:20,price:1000},
+    {id:4,name:'Trophy Lager (Bottle)',category:'🍺 Beers',qty:100,expiry:addDays(todayStr(),80),restock:25,price:750},
+    {id:5,name:'Orijin Bitters (Can)',category:'🍺 Beers',qty:60,expiry:addDays(todayStr(),60),restock:15,price:1000},
+    {id:6,name:'Legend Extra Stout',category:'🍺 Beers',qty:50,expiry:addDays(todayStr(),90),restock:20,price:900},
+    {id:7,name:'Budweiser (Can)',category:'🍺 Beers',qty:40,expiry:addDays(todayStr(),120),restock:15,price:1200},
+    {id:8,name:'33 Export Lager',category:'🍺 Beers',qty:60,expiry:addDays(todayStr(),80),restock:20,price:750},
+    // 🥃 SPIRITS — mid-range lounge pricing
+    {id:9,name:'Hennessy VS 75cl',category:'🥃 Spirits',qty:12,expiry:addDays(todayStr(),900),restock:3,price:45000},
+    {id:10,name:'Hennessy VS (Shot)',category:'🥃 Spirits',qty:50,expiry:addDays(todayStr(),900),restock:10,price:2500},
+    {id:11,name:'Johnnie Walker Black 75cl',category:'🥃 Spirits',qty:8,expiry:addDays(todayStr(),900),restock:3,price:38000},
+    {id:12,name:'Ciroc Vodka 75cl',category:'🥃 Spirits',qty:6,expiry:addDays(todayStr(),900),restock:2,price:35000},
+    {id:13,name:'Baileys Irish Cream 75cl',category:'🥃 Spirits',qty:10,expiry:addDays(todayStr(),400),restock:3,price:22000},
+    {id:14,name:'Smirnoff Vodka 75cl',category:'🥃 Spirits',qty:9,expiry:addDays(todayStr(),900),restock:3,price:18000},
+    {id:15,name:'Campari 75cl',category:'🥃 Spirits',qty:4,expiry:addDays(todayStr(),900),restock:2,price:14000},
+    {id:16,name:'Jose Cuervo Tequila',category:'🥃 Spirits',qty:5,expiry:addDays(todayStr(),900),restock:2,price:25000},
+    // 🥤 SOFT DRINKS — bar markup pricing
+    {id:17,name:'Pepsi 50cl',category:'🥤 Soft Drinks',qty:48,expiry:addDays(todayStr(),90),restock:24,price:600},
+    {id:18,name:'Coca-Cola 50cl',category:'🥤 Soft Drinks',qty:48,expiry:addDays(todayStr(),90),restock:24,price:600},
+    {id:19,name:'Fanta Orange 50cl',category:'🥤 Soft Drinks',qty:36,expiry:addDays(todayStr(),90),restock:20,price:600},
+    {id:20,name:'Sprite 50cl',category:'🥤 Soft Drinks',qty:30,expiry:addDays(todayStr(),90),restock:15,price:600},
+    {id:21,name:'Malta Guinness (Can)',category:'🥤 Soft Drinks',qty:24,expiry:addDays(todayStr(),60),restock:12,price:800},
+    {id:22,name:'Schweppes Tonic Water',category:'🥤 Soft Drinks',qty:20,expiry:addDays(todayStr(),120),restock:10,price:700},
+    {id:23,name:'5 Alive Juice (Can)',category:'🥤 Soft Drinks',qty:24,expiry:addDays(todayStr(),90),restock:12,price:700},
+    // 💧 WATER
+    {id:24,name:'Eva Water 75cl',category:'💧 Water',qty:48,expiry:addDays(todayStr(),180),restock:24,price:400},
+    {id:25,name:'Nestle Pure Life 75cl',category:'💧 Water',qty:60,expiry:addDays(todayStr(),180),restock:30,price:400},
+    {id:26,name:'Ragolis Water 75cl',category:'💧 Water',qty:36,expiry:addDays(todayStr(),180),restock:20,price:400},
+    {id:27,name:'Table Water (Sachet Bag)',category:'💧 Water',qty:20,expiry:addDays(todayStr(),90),restock:10,price:200},
+    // 🍽️ FOOD & PEPPER SOUP
+    {id:28,name:'Smoky Jollof Rice',category:'🍽️ Food & Pepper Soup',qty:0,expiry:addDays(todayStr(),1),restock:5,price:4500},
+    {id:29,name:'Peppered Chicken (Full)',category:'🍽️ Food & Pepper Soup',qty:0,expiry:addDays(todayStr(),1),restock:3,price:6500},
+    {id:30,name:'Peppered Gizzard',category:'🍽️ Food & Pepper Soup',qty:0,expiry:addDays(todayStr(),1),restock:5,price:3500},
+    {id:31,name:'Goat Meat Pepper Soup',category:'🍽️ Food & Pepper Soup',qty:0,expiry:addDays(todayStr(),1),restock:3,price:5500},
+    {id:32,name:'Catfish Pepper Soup',category:'🍽️ Food & Pepper Soup',qty:0,expiry:addDays(todayStr(),1),restock:3,price:6000},
+    {id:33,name:'Assorted Pepper Soup',category:'🍽️ Food & Pepper Soup',qty:0,expiry:addDays(todayStr(),1),restock:3,price:5000},
+    {id:34,name:'Fried Goat Meat Platter',category:'🍽️ Food & Pepper Soup',qty:0,expiry:addDays(todayStr(),1),restock:3,price:7000},
    ],
-   sales:[{id:1,productId:1,qty:8,date:addDays(todayStr(),-3),revenue:96000},{id:2,productId:2,qty:3,date:addDays(todayStr(),-2),revenue:84000},{id:3,productId:4,qty:5,date:addDays(todayStr(),-1),revenue:52500},{id:4,productId:6,qty:20,date:todayStr(),revenue:70000},{id:5,productId:5,qty:2,date:addDays(todayStr(),-4),revenue:37000},{id:6,productId:1,qty:5,date:addDays(todayStr(),-5),revenue:60000},{id:7,productId:3,qty:10,date:addDays(todayStr(),-6),revenue:45000}],
-   expenses:[{id:1,desc:'Bar Staff Wages',category:'Salaries',amount:200000,date:addDays(todayStr(),-14)},{id:2,desc:'DJ & Entertainment',category:'Entertainment',amount:80000,date:addDays(todayStr(),-7)},{id:3,desc:'Generator Fuel',category:'Utilities',amount:35000,date:addDays(todayStr(),-5)},{id:4,desc:'Bar Rent',category:'Rent',amount:150000,date:addDays(todayStr(),-20)}],
-   staff:[{id:1,name:'Chisom Eze',role:'Bartender',phone:'0818-901-2345',status:'Active'},{id:2,name:'Adaeze Nwobi',role:'Waitress',phone:'0819-012-3456',status:'Active'},{id:3,name:'Ola Fashola',role:'Security',phone:'0820-123-4567',status:'Active'}],
+   sales:[],
+   expenses:[],
+   staff:[],
    pwRequest:null},
 
   {id:'titi',username:'titi',password:'trader006',name:"Titilayo Adeyinka Provisions",bizType:'petty_trader',icon:'🧺',
@@ -670,6 +685,35 @@ const CLIENTS=[
    expenses:[],
    staff:[],
    pwRequest:null},
+
+  {id:'m4real',username:'m4real',password:'rental2026',name:"M4real Rental Services",bizType:'rental',icon:'🪑',
+   features:['dashboard','rental_items','bookings','expenses','staff','report'],
+   rentalItems:[
+    {id:1,name:'White Plastic Chair',category:'Chairs',totalQty:200,price:150,condition:'Good'},
+    {id:2,name:'Padded Banquet Chair',category:'Chairs',totalQty:100,price:300,condition:'Good'},
+    {id:3,name:'Chiavari Chair (Gold)',category:'Chairs',totalQty:50,price:500,condition:'Good'},
+    {id:4,name:'Rectangular Table (6ft)',category:'Tables',totalQty:40,price:800,condition:'Good'},
+    {id:5,name:'Round Table (5ft)',category:'Tables',totalQty:30,price:1000,condition:'Good'},
+    {id:6,name:'High Table (Cocktail)',category:'Tables',totalQty:15,price:1200,condition:'Good'},
+    {id:7,name:'Canopy (10x10ft)',category:'Canopy & Tents',totalQty:20,price:5000,condition:'Good'},
+    {id:8,name:'Large Event Tent (20x30ft)',category:'Canopy & Tents',totalQty:5,price:18000,condition:'Good'},
+    {id:9,name:'Generator (7.5KVA)',category:'Power',totalQty:3,price:15000,condition:'Good'},
+    {id:10,name:'Generator (2.5KVA)',category:'Power',totalQty:5,price:8000,condition:'Good'},
+    {id:11,name:'LED Bulb String (10m)',category:'Lighting & Decor',totalQty:30,price:2000,condition:'Good'},
+    {id:12,name:'Coloured Backdrop Stand',category:'Lighting & Decor',totalQty:4,price:5000,condition:'Good'},
+    {id:13,name:'Sound System (Set)',category:'Sound & PA',totalQty:2,price:25000,condition:'Good'},
+    {id:14,name:'Microphone (Wireless)',category:'Sound & PA',totalQty:4,price:3000,condition:'Good'},
+    {id:15,name:'Cooler (100L)',category:'Kitchen & Serving',totalQty:8,price:3000,condition:'Good'},
+    {id:16,name:'Food Warmer (Electric)',category:'Kitchen & Serving',totalQty:6,price:4000,condition:'Good'},
+    {id:17,name:'Chafing Dish (Set)',category:'Kitchen & Serving',totalQty:20,price:1500,condition:'Good'},
+    {id:18,name:'White Table Cloth (6ft)',category:'Linen',totalQty:60,price:500,condition:'Good'},
+    {id:19,name:'Round Table Cloth (5ft)',category:'Linen',totalQty:40,price:600,condition:'Good'},
+   ],
+   bookings:[],
+   sales:[],
+   expenses:[],
+   staff:[],
+   pwRequest:null},
 ];
 
 // ══════ STATE ══════
@@ -681,6 +725,8 @@ function doLogin(){
   const u=document.getElementById('li-user').value.trim().toLowerCase();
   const p=document.getElementById('li-pass').value;
   const err=document.getElementById('li-err');
+
+  // Check admin first
   if(u===ADMIN.username&&p===ADMIN.password){
     err.style.display='none';
     document.getElementById('s-login').classList.remove('active');
@@ -688,13 +734,37 @@ function doLogin(){
     document.getElementById('a-greet-tod').textContent=tod();
     document.getElementById('a-greet-date').textContent=fmtDate();
     renderAdminHome();buildAdminClientsList();renderAdminAlerts();
-  } else {
-    err.style.display='block';
+    return;
   }
+
+  // Check clients
+  const client=CLIENTS.find(c=>c.username===u&&c.password===p);
+  if(client){
+    err.style.display='none';
+    currentClient=client;
+    document.getElementById('s-login').classList.remove('active');
+    document.getElementById('s-client').classList.add('active');
+    document.getElementById('c-tb-sub').innerHTML=`${client.icon} ${client.name}`;
+    document.getElementById('c-greet-tod').textContent=tod();
+    document.getElementById('c-greet-name').textContent=client.name.toUpperCase();
+    document.getElementById('c-greet-icon').textContent=client.icon+' ';
+    document.getElementById('c-greet-role').textContent=typeLabel(client.bizType)+' · InsightEdge';
+    document.getElementById('c-greet-date').textContent=fmtDate();
+    document.getElementById('c-prof-av').textContent=client.icon;
+    document.getElementById('c-prof-name').textContent=client.name.toUpperCase();
+    document.getElementById('c-prof-role').textContent=typeLabel(client.bizType);
+    document.getElementById('c-prof-user').textContent=client.username;
+    document.getElementById('c-prof-type').textContent=typeLabel(client.bizType);
+    renderClientHome();buildClientSubNav();clientPage('home');
+    return;
+  }
+
+  // Neither matched
+  err.style.display='block';
 }
 document.getElementById('li-pass').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
 
-const BIZ_ICONS={pharmacy:'💊',supermarket:'🛒',maintenance:'🔧',security:'🛡️',bar:'🍺',petty_trader:'🧺',logistics:'🚛',restaurant:'🍲',salon:'💅',barbing:'💈',wholesale:'🏭'};
+const BIZ_ICONS={pharmacy:'💊',supermarket:'🛒',maintenance:'🔧',security:'🛡️',bar:'🍺',petty_trader:'🧺',logistics:'🚛',restaurant:'🍲',salon:'💅',barbing:'💈',wholesale:'🏭',rental:'🪑'};
 const BIZ_FEATURES={
   pharmacy:['dashboard','inventory','sales','expenses','staff','report'],
   supermarket:['dashboard','inventory','sales','expenses','staff','report'],
@@ -707,6 +777,7 @@ const BIZ_FEATURES={
   salon:['dashboard','appointments','sales','expenses','staff','report'],
   barbing:['dashboard','appointments','inventory','sales','expenses','staff','report'],
   wholesale:['dashboard','inventory','sales','expenses','staff','report'],
+  rental:['dashboard','rental_items','bookings','expenses','staff','report'],
 };
 
 function createNewClient(){
@@ -897,7 +968,7 @@ function adminOpenClient(id){
   adminPage('client-detail');
 }
 
-const CD_LABELS={dashboard:'📊 Overview',inventory:'📦 Stock',drinks:'🍺 Drinks',sales:'🧾 Sales',jobs:'🔨 Jobs',contracts:'📄 Contracts',trips:'🚛 Trips',appointments:'📅 Appts',expenses:'💰 Expenses',staff:'👥 Staff',report:'📲 WA Report'};
+const CD_LABELS={dashboard:'📊 Overview',inventory:'📦 Stock',drinks:'🍹 Drinks Menu',rental_items:'🪑 My Items',bookings:'📋 Bookings',sales:'🧾 Sales',jobs:'🔨 Jobs',contracts:'📄 Contracts',trips:'🚛 Trips',appointments:'📅 Appts',expenses:'💰 Expenses',staff:'👥 Staff',report:'📲 WA Report'};
 
 function buildAdminClientDetail(tab){
   const c=currentClient;
@@ -985,6 +1056,8 @@ function renderDetailTab(tab,el,isAdmin){
   if(tab==='dashboard')renderDash(el);
   else if(tab==='drinks')renderDrinks(el,isAdmin);
   else if(tab==='inventory')renderInventory(el,isAdmin);
+  else if(tab==='rental_items')renderRentalItems(el,isAdmin);
+  else if(tab==='bookings')renderBookings(el,isAdmin);
   else if(tab==='sales')renderSales(el,isAdmin);
   else if(tab==='jobs')renderJobs(el,isAdmin);
   else if(tab==='contracts')renderContracts(el,isAdmin);
@@ -997,6 +1070,28 @@ function renderDetailTab(tab,el,isAdmin){
 
 function renderDash(el){
   const c=currentClient;const today=todayStr();const prods=c.products||[];const sales=c.sales||[];
+
+  // Rental-specific dashboard
+  if(c.bizType==='rental'){
+    const items=c.rentalItems||[];const bookings=c.bookings||[];
+    const activeBookings=bookings.filter(b=>b.status==='Active');
+    const overdueBookings=bookings.filter(b=>b.status==='Active'&&b.dateDue<today);
+    const todayRevenue=bookings.filter(b=>b.dateOut===today).reduce((a,b)=>a+b.amount,0);
+    const totalRevenue=bookings.reduce((a,b)=>a+b.amount,0);
+    let ah='';
+    overdueBookings.forEach(b=>{const item=items.find(x=>x.id===b.itemId)||{name:'Item'};ah+=alertHtml('a-red','ti-alert-circle',`OVERDUE: ${item.name}`,`Client: ${b.client} · Due: ${b.dateDue}`,'<span class="badge b-red">Overdue</span>');});
+    const needsRepair=items.filter(i=>i.condition==='Needs Repair');
+    needsRepair.forEach(i=>{ah+=alertHtml('a-amber','ti-tools',i.name,'Needs repair — check before next booking','<span class="badge b-amber">Repair</span>');});
+    if(!ah)ah='<div class="empty">✅ All clear — no alerts</div>';
+    el.innerHTML=`<div class="metrics-grid">
+      <div class="m-card mc-amber"><div class="m-label">Today's Revenue</div><div class="m-value">${shortFmt(todayRevenue)}</div><div class="m-sub">New bookings today</div></div>
+      <div class="m-card mc-green"><div class="m-label">Total Items</div><div class="m-value">${items.length}</div><div class="m-sub">In inventory</div></div>
+      <div class="m-card mc-red"><div class="m-label">Items Out</div><div class="m-value">${activeBookings.length}</div><div class="m-sub">Active bookings</div></div>
+      <div class="m-card mc-blue"><div class="m-label">All Time Revenue</div><div class="m-value">${shortFmt(totalRevenue)}</div><div class="m-sub">Total earned</div></div>
+    </div><div class="section-title">Alerts</div>${ah}`;
+    return;
+  }
+
   const todaySales=sales.filter(s=>s.date===today).reduce((a,s)=>a+s.revenue,0);
   const weekSales=sales.filter(s=>s.date>=addDays(today,-6)).reduce((a,s)=>a+s.revenue,0);
   const lowStock=prods.filter(p=>p.qty<=p.restock&&daysUntil(p.expiry)>0).length;
@@ -1071,6 +1166,95 @@ function renderDrinks(el,isAdmin){
       </tbody></table></div>`;
   });
   el.innerHTML=html;
+}
+
+function renderRentalItems(el,isAdmin){
+  const items=currentClient.rentalItems||[];
+  const rows=items.map(item=>{
+    const booked=(currentClient.bookings||[]).filter(b=>b.itemId===item.id&&b.status==='Active').reduce((a,b)=>a+b.qty,0);
+    const avail=item.totalQty-booked;
+    const badge=avail<=0?'<span class="badge b-red">All Out</span>':avail<=item.totalQty*0.3?`<span class="badge b-amber">${avail} left</span>`:`<span class="badge b-green">${avail} avail</span>`;
+    return `<tr><td>${item.name}</td><td>${item.category}</td><td style="text-align:center">${item.totalQty}</td><td style="text-align:center;font-weight:600;color:var(--green)">${avail}</td>${isAdmin?`<td style="color:var(--amber-p);font-weight:500">${fmt(item.price)}/day</td>`:''}
+    <td>${badge}</td><td><button class="btn" style="padding:3px 8px;font-size:11px;color:var(--red)" onclick="delRentalItem(${item.id},${isAdmin})">✕</button></td></tr>`;
+  }).join('')||`<tr><td colspan="${isAdmin?7:6}" class="empty">No items added yet</td></tr>`;
+  el.innerHTML=`<div class="card"><div class="card-title">Add Rental Item</div>
+    <div class="form-grid">
+      <div class="field"><label>Item Name</label><input id="ri-name" placeholder="e.g. White Plastic Chair"/></div>
+      <div class="field"><label>Category</label><input id="ri-cat" placeholder="e.g. Chairs, Tables, Canopy"/></div>
+      <div class="field"><label>Total Quantity Owned</label><input id="ri-qty" type="number" min="1" placeholder="e.g. 100"/></div>
+      ${isAdmin?'<div class="field"><label>Price Per Day (₦)</label><input id="ri-price" type="number" min="0" placeholder="0"/></div>':''}
+      <div class="field"><label>Condition</label>
+        <select id="ri-cond"><option value="Good">Good</option><option value="Fair">Fair</option><option value="Needs Repair">Needs Repair</option></select>
+      </div>
+    </div>
+    <button class="btn-amber" onclick="addRentalItem(${isAdmin})">+ Add Item</button></div>
+  <div class="card"><div class="card-title">All Rental Items (${items.length})</div>
+    <table><thead><tr><th>Item</th><th>Category</th><th>Total</th><th>Available</th>${isAdmin?'<th>Rate</th>':''}<th>Status</th><th></th></tr></thead>
+    <tbody>${rows}</tbody></table></div>`;
+}
+function addRentalItem(isAdmin){
+  const n=document.getElementById('ri-name').value.trim();
+  if(!n){alert('Item name required');return;}
+  const priceEl=document.getElementById('ri-price');
+  (currentClient.rentalItems=currentClient.rentalItems||[]).push({
+    id:Date.now(),name:n,
+    category:document.getElementById('ri-cat').value.trim()||'General',
+    totalQty:parseInt(document.getElementById('ri-qty').value)||1,
+    price:priceEl?parseFloat(priceEl.value)||0:0,
+    condition:document.getElementById('ri-cond').value||'Good',
+  });
+  if(isAdmin)buildAdminClientDetail('rental_items');else clientSubTab('rental_items');
+}
+function delRentalItem(id,isAdmin){
+  currentClient.rentalItems=(currentClient.rentalItems||[]).filter(x=>x.id!==id);
+  if(isAdmin)buildAdminClientDetail('rental_items');else clientSubTab('rental_items');
+}
+
+function renderBookings(el,isAdmin){
+  const bookings=currentClient.bookings||[];
+  const items=currentClient.rentalItems||[];
+  const itemOpts=items.map(i=>`<option value="${i.id}">${i.name} (${i.totalQty} owned)</option>`).join('');
+  const rows=[...bookings].reverse().map(b=>{
+    const item=items.find(x=>x.id===b.itemId)||{name:'Unknown'};
+    const badge=b.status==='Active'?'<span class="badge b-amber">Out</span>':b.status==='Returned'?'<span class="badge b-green">Returned</span>':'<span class="badge b-red">Overdue</span>';
+    return `<tr><td>${item.name}</td><td>${b.client}</td><td style="text-align:center">${b.qty}</td><td>${b.dateOut}</td><td>${b.dateDue}</td><td>${isAdmin?fmt(b.amount):'—'}</td><td>${badge}</td>
+    <td>${b.status==='Active'?`<button class="btn" style="padding:3px 8px;font-size:11px;color:var(--green)" onclick="returnBooking(${b.id},${isAdmin})">↩ Return</button>`:''}</td></tr>`;
+  }).join('')||`<tr><td colspan="8" class="empty">No bookings yet</td></tr>`;
+  el.innerHTML=`<div class="card"><div class="card-title">New Booking / Issue Items</div>
+    <div class="form-grid">
+      <div class="field"><label>Client Name</label><input id="bk-client" placeholder="e.g. Mrs. Adeyemi Wedding"/></div>
+      <div class="field"><label>Item</label><select id="bk-item"><option value="">Select item…</option>${itemOpts}</select></div>
+      <div class="field"><label>Quantity</label><input id="bk-qty" type="number" min="1" placeholder="1"/></div>
+      <div class="field"><label>Date Out</label><input id="bk-out" type="date" value="${todayStr()}"/></div>
+      <div class="field"><label>Due Return Date</label><input id="bk-due" type="date"/></div>
+      ${isAdmin?'<div class="field"><label>Amount Charged (₦)</label><input id="bk-amt" type="number" min="0" placeholder="0"/></div>':''}
+    </div>
+    <button class="btn-amber" onclick="addBooking(${isAdmin})">📋 Issue Items</button></div>
+  <div class="card"><div class="card-title">All Bookings</div>
+    <table><thead><tr><th>Item</th><th>Client</th><th>Qty</th><th>Out</th><th>Due</th><th>Amount</th><th>Status</th><th></th></tr></thead>
+    <tbody>${rows}</tbody></table></div>`;
+}
+function addBooking(isAdmin){
+  const client=document.getElementById('bk-client').value.trim();
+  const itemId=parseInt(document.getElementById('bk-item').value);
+  const qty=parseInt(document.getElementById('bk-qty').value)||1;
+  const dateOut=document.getElementById('bk-out').value||todayStr();
+  const dateDue=document.getElementById('bk-due').value;
+  if(!client||!itemId||!dateDue){alert('Client, item and return date required');return;}
+  const item=(currentClient.rentalItems||[]).find(x=>x.id===itemId);
+  const booked=(currentClient.bookings||[]).filter(b=>b.itemId===itemId&&b.status==='Active').reduce((a,b)=>a+b.qty,0);
+  if(qty>item.totalQty-booked){alert(`Only ${item.totalQty-booked} available`);return;}
+  const amtEl=document.getElementById('bk-amt');
+  const days=Math.ceil((new Date(dateDue)-new Date(dateOut))/86400000)||1;
+  (currentClient.bookings=currentClient.bookings||[]).push({
+    id:Date.now(),client,itemId,qty,dateOut,dateDue,status:'Active',
+    amount:amtEl?parseFloat(amtEl.value)||0:item.price*qty*days,
+  });
+  if(isAdmin)buildAdminClientDetail('bookings');else clientSubTab('bookings');
+}
+function returnBooking(id,isAdmin){
+  const b=(currentClient.bookings||[]).find(x=>x.id===id);if(b)b.status='Returned';
+  if(isAdmin)buildAdminClientDetail('bookings');else clientSubTab('bookings');
 }
 
 function renderInventory(el,isAdmin){
@@ -1212,6 +1396,16 @@ function renderReport(el,isAdmin){
     msg+='📉 *EXPENSES*\n';
     msg+=`• Total Expenses: *${fmt(totalExp)}*\n`;
     msg+=`• Net Profit: *${fmt(profit)}* ${profit>=0?'✅':'⚠️'}\n\n`;
+    if(c.bizType==='rental'){
+      const items=c.rentalItems||[];const bookings=c.bookings||[];
+      const active=bookings.filter(b=>b.status==='Active');
+      const overdue=bookings.filter(b=>b.status==='Active'&&b.dateDue<today);
+      msg+='🪑 *RENTAL SUMMARY*\n';
+      msg+=`• Total Items in Inventory: *${items.length}*\n`;
+      msg+=`• Active Bookings Out: *${active.length}*\n`;
+      msg+=`• Overdue Returns: *${overdue.length}* ${overdue.length>0?'⚠️':' ✅'}\n`;
+      msg+=`• Total Revenue: *${fmt(bookings.reduce((a,b)=>a+b.amount,0))}*\n\n`;
+    }
     if(c.bizType==='maintenance'){
       const done=(c.jobs||[]).filter(j=>j.status==='Completed');
       msg+='🔧 *JOBS*\n';
@@ -1312,7 +1506,7 @@ function renderReport(el,isAdmin){
       ${recentRows?`<div style="margin-top:4px"><div style="font-size:9px;text-transform:uppercase;letter-spacing:.07em;color:var(--text2);margin-bottom:4px">Recent Sales</div>${recentRows}</div>`:''}
     </div>
 
-    <button onclick="shareOnWhatsApp()" style="width:100%;padding:13px;background:linear-gradient(135deg,#25d366,#128c3e);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:8px;font-family:'DM Sans',sans-serif">
+    <button onclick="shareOnWhatsApp()" style="width:100%;padding:13px;background:linear-gradient(135deg,#25d366,#1a6e30);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:8px;font-family:'DM Sans',sans-serif">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       Send to Admin on WhatsApp
     </button>
@@ -1321,7 +1515,7 @@ function renderReport(el,isAdmin){
       <span id="copy-btn-label">📋 Copy Report Text</span>
     </button>
 
-    <div style="font-size:11px;color:var(--text3);text-align:center;margin-top:10px;line-height:1.5">Tapping "Send to Admin" opens WhatsApp with your full report<br/>pre-written and ready to send to Gideon directly.</div>
+    <div style="font-size:11px;color:var(--text3);text-align:center;margin-top:10px;line-height:1.5">Tapping "Send to Admin" opens WhatsApp with your full report<br/>pre-written and ready to send directly to your admin.</div>
   `;
 
   // Attach functions to window so onclick works
